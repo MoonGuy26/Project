@@ -86,6 +86,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Lightstart2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash_logo.png" />
   </ItemGroup>
   <ItemGroup>
