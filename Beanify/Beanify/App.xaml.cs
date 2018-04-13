@@ -13,7 +13,7 @@ namespace Beanify
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.SplashScreenView());
+            MainPage = new NavigationPage(new Views.CarouselViews.SplashScreenView());
                        
         }
 

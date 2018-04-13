@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Beanify.Views.CarouselPages
+namespace Beanify.Views.CarouselViews
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Page2 : ContentPage
+	public partial class Page3 : ContentPage
 	{
-		public Page2 ()
+		public Page3 ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }

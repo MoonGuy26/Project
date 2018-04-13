@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Beanify.Views
+namespace Beanify.Views.CarouselViews
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SplashScreenView : CarouselPage
