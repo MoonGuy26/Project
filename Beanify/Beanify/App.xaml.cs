@@ -14,6 +14,7 @@ namespace Beanify
 			InitializeComponent();
 
             MainPage = new NavigationPage(new Views.SplashScreenView());
+                       
         }
 
 		protected override void OnStart ()
