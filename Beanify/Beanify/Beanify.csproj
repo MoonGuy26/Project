@@ -17,19 +17,20 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\CarouselPages\" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\Page1.xaml">
+    <EmbeddedResource Update="Views\CarouselViews\Page1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselPages\Page2.xaml">
+    <EmbeddedResource Update="Views\CarouselViews\Page2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselPages\Page3.xaml">
+    <EmbeddedResource Update="Views\CarouselViews\Page3.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SplashScreenView.xaml">
+    <EmbeddedResource Update="Views\CarouselViews\SplashScreenView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
