@@ -4,7 +4,6 @@
              x:Class="Beanify.Views.CarouselViews.SplashScreenView"
              xmlns:local="clr-namespace:Beanify.Views.CarouselViews"
               NavigationPage.HasNavigationBar="false">
-
     <local:Page1></local:Page1>
     <local:Page2></local:Page2>
     <local:Page3></local:Page3>
