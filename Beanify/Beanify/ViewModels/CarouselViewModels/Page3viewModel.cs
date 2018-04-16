@@ -8,11 +8,11 @@ namespace Beanify.ViewModels.CarouselViewModels
     public class Page3viewModel : BaseViewModel
     {
 
-        private Command loginCommand; 
+        public Command LoginCommand { get; }
 
         public Page3viewModel(INavigation navigation) : base(navigation)
         {
-            loginCommand = new Command(OnLoginExecute, CanExecuteLogin);
+            LoginCommand = new Command(OnLoginExecute, CanExecuteLogin);
         }
 
         private bool CanExecuteLogin()
@@ -22,7 +22,8 @@ namespace Beanify.ViewModels.CarouselViewModels
 
         private void OnLoginExecute()
         {
-            
+            //((App)Application.Current).MainPage= new NavigationPage(new Views.LoginView());
+            _navigation.PushModalAsync(new Views.LoginView());
         }
     }
 }

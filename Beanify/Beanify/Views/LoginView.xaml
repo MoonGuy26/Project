@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Beanify.Views.LoginView"
+             BackgroundColor="AliceBlue"
+              NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout Margin="20" Spacing="16">
+            <Label Text="WELCOME" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
+            <Entry Placeholder="email"></Entry>
+            <Entry Placeholder="password" IsPassword="True"></Entry>
+            <Button Text="Sign in"  Command="{Binding LoginCommand}"></Button>
+            <Button Text="Forgotten password"  Command="{Binding ResetPasswordCommand}"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
