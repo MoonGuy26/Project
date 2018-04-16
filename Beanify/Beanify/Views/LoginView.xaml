@@ -2,14 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.LoginView"
+             xmlns:converters="clr-namespace:Beanify.Utils.Converters"
+             xmlns:local="clr-namespace:Beanify.Views"
              BackgroundColor="AliceBlue"
               NavigationPage.HasNavigationBar="false">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>    
     <ContentPage.Content>
         <StackLayout Margin="20" Spacing="16">
             <Label Text="WELCOME" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
-            <Entry Placeholder="email"></Entry>
-            <Entry Placeholder="password" IsPassword="True"></Entry>
-            <Button Text="Sign in"  Command="{Binding LoginCommand}"></Button>
+            <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}">
+
+
+                <Entry.Triggers>
+                    <DataTrigger 
+                        TargetType="Entry"
+                        Binding="{Binding Email.IsValid}"
+                        Value="False">
+                        
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
+               />
+            <Entry Placeholder="password" IsPassword="True" Text="{Binding Password}"></Entry>
+            <Button Text="Sign in"  Command="{Binding Commands[Login]}"></Button>
             <Button Text="Forgotten password"  Command="{Binding ResetPasswordCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
