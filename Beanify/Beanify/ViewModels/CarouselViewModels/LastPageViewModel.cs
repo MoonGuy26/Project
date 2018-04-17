@@ -5,12 +5,12 @@ using Xamarin.Forms;
 
 namespace Beanify.ViewModels.CarouselViewModels
 {
-    public class Page3viewModel : BaseViewModel
+    public class LastPageViewModel : BaseViewModel
     {
 
         public Command LoginCommand { get; }
 
-        public Page3viewModel(INavigation navigation) : base(navigation)
+        public LastPageViewModel(INavigation navigation) : base(navigation)
         {
             LoginCommand = new Command(OnLoginExecute, CanExecuteLogin);
         }
@@ -22,8 +22,8 @@ namespace Beanify.ViewModels.CarouselViewModels
 
         private void OnLoginExecute()
         {
-            //((App)Application.Current).MainPage= new NavigationPage(new Views.LoginView());
-            _navigation.PushModalAsync(new Views.LoginView());
+            ((App)Application.Current).MainPage= new NavigationPage(new Views.LoginView());
+            //_navigation.PushModalAsync(new Views.LoginView());
         }
     }
 }

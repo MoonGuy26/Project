@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Beanify.Views.CarouselViews.SimplePage"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout x:Name="layout">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60*" />
+                    <RowDefinition Height="30*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <Image x:Name="img" Aspect="AspectFit" Grid.Row="0" Margin="15, 0, 15, 0"></Image>
+                <Label x:Name="text" Grid.Row="1" VerticalOptions="EndAndExpand" Margin="15, 0, 15, 0" LineBreakMode="WordWrap"></Label>
+            </Grid>
+        
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
