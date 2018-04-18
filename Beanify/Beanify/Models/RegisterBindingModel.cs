@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Beanify.Models
 {
-    class RegisterBindingModel
+    public class RegisterBindingModel:IModel
     {
         
         public string Email { get; set; }

@@ -29,7 +29,7 @@
             </Entry>
             <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                />
-            <Entry Placeholder="password" IsPassword="True" Text="{Binding Password}"></Entry>
+            <Entry Placeholder="password" IsPassword="True" Text="{Binding Password.Value}"></Entry>
             <Button Text="Sign in"  Command="{Binding Commands[Login]}"></Button>
             <Button Text="Forgotten password"  Command="{Binding Commands[ResetPasswordCommand}"></Button>
         </StackLayout>
