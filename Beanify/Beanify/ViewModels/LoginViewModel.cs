@@ -46,7 +46,9 @@ namespace Beanify.ViewModels
 
         public LoginViewModel(INavigation navigation) : base(navigation)
         {
+            
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
+            Commands.Add("ResetPasswordCommand", new Command(OnForgottenExecute));
             _email = new ValidatableObject<string>();
             AddValidations();
         }
@@ -61,13 +63,20 @@ namespace Beanify.ViewModels
 
         }
 
-        private void AddValidations()
-        {
+       private void OnForgottenExecute()
+       {
+            _navigation.PushModalAsync(new Views.ForgottenPasswordView());
+       }
+
+
+
+       private void AddValidations()
+       {
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
                 ValidationMessage = "An email adress is required."
             });
-        }
+       }
 
 	
         private bool ValidateUserName()
