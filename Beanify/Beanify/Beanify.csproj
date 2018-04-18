@@ -5,6 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\CarouselViews\Page1.xaml.cs" />
+    <Compile Remove="Views\CarouselViews\SplashScreenView.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\CarouselViews\Page1.xaml" />
+    <EmbeddedResource Remove="Views\CarouselViews\SplashScreenView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
   </ItemGroup>
@@ -13,6 +23,12 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\CarouselViews\LastPage.xaml.cs">
+      <DependentUpon>LastPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CarouselViews\SimplePage.xaml.cs">
+      <DependentUpon>SimplePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -20,16 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\CarouselViews\Page1.xaml">
+    <EmbeddedResource Update="Views\CarouselViews\SimplePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselViews\Page2.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselViews\Page3.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselViews\SplashScreenView.xaml">
+    <EmbeddedResource Update="Views\CarouselViews\LastPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginView.xaml">

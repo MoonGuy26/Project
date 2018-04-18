@@ -13,11 +13,12 @@ namespace Beanify
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.CarouselViews.SplashScreenView());
-                       
+            //MainPage = new NavigationPage(new Views.CarouselViews.SplashScreenView());
+            MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
+
         }
 
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
