@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendApp.RestClients
+namespace Beanify.RestClients
 {
     public interface IRestService
     {

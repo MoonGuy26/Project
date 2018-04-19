@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,19 @@ namespace Beanify
 			InitializeComponent();
 
             //MainPage = new NavigationPage(new Views.CarouselViews.SplashScreenView());
-            MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
+            SetMainPage();
+        }
+
+        private void SetMainPage()
+        {
+            if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
+            {
+                MainPage = new NavigationPage(new Views.DashboardView());
+            }
+            else
+            { 
+                MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
+            }
 
         }
 

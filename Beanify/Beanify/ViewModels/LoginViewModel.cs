@@ -1,4 +1,4 @@
-﻿using AgendApp.Services;
+﻿using Beanify.Services;
 using Beanify.Models;
 using Beanify.Utils.Validations;
 
@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using Beanify.Serialization;
 
 namespace Beanify.ViewModels
 {
@@ -16,7 +17,7 @@ namespace Beanify.ViewModels
         private ValidatableObject<string> _password;
         #endregion
 
-
+        private AccountService accountService;
         
 
         #region properties
@@ -49,8 +50,9 @@ namespace Beanify.ViewModels
 
         public LoginViewModel(INavigation navigation) : base(navigation)
         {
+            AccountService addDefault = new AccountService("api/Account/Register/");
             
-
+            accountService = new AccountService("Token");
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
             _email = new ValidatableObject<string>();
             _password = new ValidatableObject<string>();
@@ -64,9 +66,10 @@ namespace Beanify.ViewModels
 
         private async void OnLoginExecute()
         {
-            //await registerUserService.AddUser(Email.Value, Password.Value, Password.Value);
-            //await registerUserService.AddUser("test@gmail.com", "testtest1212", "testtest1212");
-            
+            LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);  
+            if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken)){
+                ((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
+            }
         }
 
         private void AddValidations()

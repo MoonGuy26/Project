@@ -1,12 +1,12 @@
 ﻿
-using AgendApp.RestClients;
+using Beanify.RestClients;
 using Beanify.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendApp.Services
+namespace Beanify.Services
 {
     public abstract class BaseService
     {

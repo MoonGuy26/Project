@@ -1,6 +1,7 @@
 ﻿
 using Beanify.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AgendApp.RestClients
+namespace Beanify.RestClients
 {
     public class RestService : IRestService
     {
@@ -29,7 +30,7 @@ namespace AgendApp.RestClients
             //client.MaxResponseContentBufferSize = 256000;
             //         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
             client = new HttpClient();
-            RestUrl = "http://93.113.111.183:80/BeanifyWebApp/api/" + name + "/";
+            RestUrl = "http://93.113.111.183:80/BeanifyWebApp/" + name ;
         }
 
         public async Task<List<IModel>> RefreshDataAsync()
@@ -110,6 +111,42 @@ namespace AgendApp.RestClients
             {
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
+        }
+
+        public async Task<string> LoginAsync(List<KeyValuePair<string, string>> logs)
+        {
+            
+            var request = new HttpRequestMessage(HttpMethod.Post, RestUrl);
+            request.Content = new FormUrlEncodedContent(logs);
+
+            var client = new HttpClient();
+
+            var response = await client.SendAsync(request);
+
+            var jwt = await response.Content.ReadAsStringAsync();
+
+            JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
+
+            var accessToken = jwtDynamic.Value<string>("access_token");
+
+
+            //Debug.WriteLine(content);
+
+            return accessToken;
+
+            
+        }
+
+        public async Task<bool> IsAdmin(string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var response = await client.GetStringAsync(RestUrl);
+
+            //Debug.WriteLine(response);
+
+            return Convert.ToBoolean(response);
         }
     }
 }

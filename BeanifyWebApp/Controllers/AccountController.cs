@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using BeanifyWebApp.Models;
 using BeanifyWebApp.Providers;
 using BeanifyWebApp.Results;
+using System.Web.Security;
 
 namespace BeanifyWebApp.Controllers
 {
@@ -50,6 +51,14 @@ namespace BeanifyWebApp.Controllers
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
+
+
+        // GET api/Account/IsUserAdmin
+        [Route("IsUserAdmin")]
+        public bool GetCurrentUserRole()
+        {
+            return User.IsInRole("Admin");
+        }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
