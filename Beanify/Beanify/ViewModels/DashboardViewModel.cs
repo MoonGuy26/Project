@@ -11,6 +11,8 @@ namespace Beanify.ViewModels
     {
         #region fields
         private string _dashboardMessage;
+        private string _accessToken;
+        private AccountService accountService;
         #endregion
 
         #region properties
@@ -27,24 +29,26 @@ namespace Beanify.ViewModels
         }
         #endregion
 
-        private string _accessToken;
-
-        private AccountService accountService;
-
         public DashboardViewModel():base()
         {
             Commands.Add("Logout",new Command(OnLogoutExecute));
             _accessToken = LocalStorageSettings.AccessToken;
-            GetCurrentUserRole();
-            
+            GetCurrentUserRole();    
         }
 
+        #region commandMethods
+        #region execute
         private void OnLogoutExecute()
         {
             LocalStorageSettings.AccessToken = null;
             ((App)Application.Current).MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
         }
+        #endregion
+        #region canExecute
+        #endregion
+        #endregion
 
+        #region logicMethods
         private async void GetCurrentUserRole()
         {
             accountService = new AccountService();
@@ -58,5 +62,6 @@ namespace Beanify.ViewModels
                 DashboardMessage = "USER DASHBOARD";
             }
         }
+        #endregion
     }
 }

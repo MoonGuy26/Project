@@ -33,6 +33,8 @@ namespace Beanify.RestClients
             RestUrl = "http://93.113.111.183:80/BeanifyWebApp/" + name ;
         }
 
+        #region methods
+
         public async Task<List<IModel>> RefreshDataAsync()
         {
             Items = new List<IModel>();
@@ -148,5 +150,8 @@ namespace Beanify.RestClients
 
             return Convert.ToBoolean(response);
         }
+
+        #endregion
+
     }
 }

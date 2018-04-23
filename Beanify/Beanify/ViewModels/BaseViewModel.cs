@@ -11,25 +11,20 @@ namespace Beanify.ViewModels
 {
     public abstract class BaseViewModel:ObservableProperty
     {
-       
-
-        public Dictionary<string, ICommand> Commands { get; protected set; }
-
         protected readonly INavigationService _navigationService;
 
+        public Dictionary<string, ICommand> Commands { get; protected set; }
 
         public BaseViewModel()
         {
             _navigationService = NavigationService.Instance;
             Commands = new Dictionary<string, ICommand>();
         }
-
        
         public virtual Task InitializeAsync(object navigationData)
         {
             return Task.FromResult(false);
         }
-
 
     }
 }

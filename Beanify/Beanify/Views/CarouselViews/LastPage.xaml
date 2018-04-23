@@ -13,7 +13,7 @@
                 </Grid.RowDefinitions>
                 <Image x:Name="img" Aspect="AspectFit" Grid.Row="0" Margin="15, 0, 15, 0"></Image>
                 <Label x:Name="text" Grid.Row="1" VerticalOptions="EndAndExpand" Margin="15, 0, 15, 0" LineBreakMode="WordWrap"></Label>
-                <Button Grid.Row="2" Text="OK" VerticalOptions="Start" HorizontalOptions="Fill" Scale="1.5" Command="{Binding LoginCommand}" />
+                <Button Grid.Row="2" Text="OK" VerticalOptions="Start" HorizontalOptions="Fill" Scale="1.5" Command="{Binding Commands[LoginCommand]}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

@@ -23,11 +23,8 @@ namespace Beanify.ViewModels
         private string _errorLoginMessage;
         private int _imageAngle = 0 ;
         private bool _isVisibleImage = false;
-
-        #endregion
-
         private AccountService accountService;
-        
+        #endregion
 
         #region properties
         public ValidatableObject<string> Email
@@ -100,8 +97,6 @@ namespace Beanify.ViewModels
 
         #endregion
 
-
-
         public LoginViewModel() : base()
         {
             AddValidations();
@@ -117,15 +112,12 @@ namespace Beanify.ViewModels
             Password.IsValid = true;
         }
 
+        #region commandMethods
 
+        #region execute
         private void OnLostFocusEmailExecute()
         {
             ValidateUserName();
-        }
-
-        private bool CanLoginExecute()
-        {
-            return true;
         }
 
         private async void OnLoginExecute()
@@ -133,6 +125,22 @@ namespace Beanify.ViewModels
             await NavigateDashboardView();
         }
 
+        private async void OnForgottenExecute()
+        {
+            await NavigateForgottenView();
+        }
+        #endregion
+
+        #region canExecute
+        private bool CanLoginExecute()
+        {
+            return true;
+        }
+        #endregion
+
+        #endregion
+
+        #region navigateMethods
         private async Task NavigateDashboardView()
         {
             ErrorLoginMessage = "";
@@ -160,17 +168,15 @@ namespace Beanify.ViewModels
             ErrorLoginMessage = "The email or password you entered is incorrect.";
         }
 
-       private async void OnForgottenExecute()
-       {
-            await NavigateForgottenView();
-       }
+       
 
         private async Task NavigateForgottenView()
         {
             await _navigationService.NavigateToAsync<ForgottenPasswordViewModel>();
         }
+        #endregion
 
-
+        #region validationMethods
         private void AddValidations()
         {
             _email = new ValidatableObject<string>();
@@ -218,9 +224,9 @@ namespace Beanify.ViewModels
         {
             return _password.Validate();
         }
+        #endregion
 
-
-
+        #region UIMethods
         private void RotateElement(CancellationToken cancellation)
         {
             ParallelTask parallelTask = new ParallelTask();
@@ -235,5 +241,6 @@ namespace Beanify.ViewModels
                 TaskScheduler.Default
             );
         }
+        #endregion
     }
 }
