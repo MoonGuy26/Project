@@ -7,6 +7,11 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using Beanify.Serialization;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Threading;
+
+using Beanify.Utils.Parallels;
 
 namespace Beanify.ViewModels
 {
@@ -14,7 +19,11 @@ namespace Beanify.ViewModels
     {
         #region fields
         private ValidatableObject<string> _email;
-        private ValidatableObject<string> _password;
+        private ValueChangedValidatableObject<string> _password;
+        private string _errorLoginMessage;
+        private int _imageAngle = 0 ;
+        private bool _isVisibleImage = false;
+
         #endregion
 
         private AccountService accountService;
@@ -30,11 +39,10 @@ namespace Beanify.ViewModels
                 {
                     _email = value;
                     OnPropertyChanged(nameof(Email));
-                    ValidateUserName();
                 }
             }
         }
-        public ValidatableObject<string> Password
+        public ValueChangedValidatableObject<string> Password
         {
             get { return _password; }
             set
@@ -43,21 +51,76 @@ namespace Beanify.ViewModels
                 {
                     _password = value;
                     OnPropertyChanged(nameof(Password));
+                    
                 }
             }
         }
+
+        public string ErrorLoginMessage
+        {
+            get { return _errorLoginMessage; }
+            set
+            {
+                if (_errorLoginMessage != value)
+                {
+                    _errorLoginMessage = value;
+                    OnPropertyChanged(nameof(ErrorLoginMessage));
+                }
+            }
+        }
+
+
+        public int ImageAngle
+        {
+            get { return _imageAngle; }
+            set
+            {
+                if (_imageAngle != value)
+                {
+                    _imageAngle = value%360;
+                    OnPropertyChanged(nameof(ImageAngle));
+       
+                }
+            }
+        }
+
+
+        public bool IsVisibleImage
+        {
+            get { return _isVisibleImage; }
+            set
+            {
+                if(_isVisibleImage != value)
+                {
+                    _isVisibleImage = value;
+                    OnPropertyChanged(nameof(IsVisibleImage));
+                }
+            }
+        }
+
         #endregion
+
+
 
         public LoginViewModel(INavigation navigation) : base(navigation)
         {
+            AddValidations();
             AccountService addDefault = new AccountService("api/Account/Register/");
             
             accountService = new AccountService("Token");
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
-            Commands.Add("ResetPasswordCommand", new Command(OnForgottenExecute));
-            _email = new ValidatableObject<string>();
-            _password = new ValidatableObject<string>();
-            AddValidations();
+            Commands.Add("ResetPassword", new Command(OnForgottenExecute));
+            Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
+            
+            
+            Email.IsValid = true;
+            Password.IsValid = true;
+        }
+
+
+        private void OnLostFocusEmailExecute()
+        {
+            ValidateUserName();
         }
 
         private bool CanLoginExecute()
@@ -67,31 +130,103 @@ namespace Beanify.ViewModels
 
         private async void OnLoginExecute()
         {
-            LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);  
-            if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken)){
-                ((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
+            ErrorLoginMessage = "";
+
+            CancellationTokenSource cts = new CancellationTokenSource();
+            var token = cts.Token;
+            IsVisibleImage = true;
+            RotateElement(token);
+
+            if (ValidateUserName()&&ValidatePassword())
+            {
+                LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);  
+                if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken)){
+                    cts.Cancel();
+                    IsVisibleImage = false;
+                    ((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
+                    
+                }
+
             }
+            cts.Cancel();
+            IsVisibleImage = false;
+            ErrorLoginMessage = "The email or password you entered is incorrect.";
+            
         }
 
-       private void OnForgottenExecute()
+       private async void OnForgottenExecute()
        {
-            _navigation.PushModalAsync(new Views.ForgottenPasswordView());
+            if (_navigation.NavigationStack.Count == 0 ||
+                _navigation.NavigationStack.Last().GetType() != typeof(Views.ForgottenPasswordView))
+            {
+                await _navigation.PushAsync(new Views.ForgottenPasswordView(), true);
+            }
        }
 
 
+        private void AddValidations()
+        {
+            _email = new ValidatableObject<string>();
+            _password = new ValueChangedValidatableObject<string>();
 
-       private void AddValidations()
-       {
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
                 ValidationMessage = "An email adress is required."
             });
-       }
+            _email.Validations.Add(new IsValidEmailRule<string>
+            {
+                ValidationMessage = "Please enter a valid email address."
+            });
 
-	
+            _password.Validations.Add(new IsNotNullOrEmptyRule<string>
+            {
+                ValidationMessage = "A password is required."
+            });
+            _password.Validations.Add(new LengthValidationRule<string>("Password must be at least 6 characters.", 6));
+            _password.Validations.Add(new ContainLowercaseRule<string>
+            {
+                ValidationMessage = "Password must contain at least one lowercase character."
+            });
+            _password.Validations.Add(new ContainUppercaseRule<string>
+            {
+                ValidationMessage = "Password must contain at least one uppercase character."
+            });
+            _password.Validations.Add(new ContainDigitRule<string>
+            {
+                ValidationMessage = "Password must contain at least one digit."
+            });
+            _password.Validations.Add(new ContainNonLetterOrDigitRule<string>
+            {
+                ValidationMessage = "Password must contain at least one special character."
+            });
+            
+        }
+
         private bool ValidateUserName()
         {
             return _email.Validate();
+        }
+
+        private bool ValidatePassword()
+        {
+            return _password.Validate();
+        }
+
+
+
+        private void RotateElement(CancellationToken cancellation)
+        {
+            ParallelTask parallelTask = new ParallelTask();
+            
+
+            Task t = Task.Factory.StartNew(
+                () => {
+                    parallelTask.ExecuteParallelLoop(cancellation, "2", value => ImageAngle += Int32.Parse(value));
+                },
+                cancellation,
+                TaskCreationOptions.LongRunning,
+                TaskScheduler.Default
+            );
         }
     }
 }

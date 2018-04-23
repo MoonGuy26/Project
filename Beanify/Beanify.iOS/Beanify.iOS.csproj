@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Utils\Effects\EntryLineColorEffect.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,4 +132,5 @@
       <Name>Beanify</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
 </Project>

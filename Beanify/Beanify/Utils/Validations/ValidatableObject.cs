@@ -13,7 +13,7 @@ namespace Beanify.Utils.Validations
         private bool _isValid;
         private ICollection<string> _errors;
 
-        public T Value
+        public virtual T Value
         {
             get { return _value; }
             set
@@ -21,7 +21,7 @@ namespace Beanify.Utils.Validations
 
                 _value = value;
                 OnPropertyChanged(nameof(Value));
-                Validate();
+                
 
             }
         }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Beanify.Views.Behaviors
+namespace Beanify.Utils.Behaviors
 {
     public class NumberValidatorBehavior : Behavior<Entry>
     {

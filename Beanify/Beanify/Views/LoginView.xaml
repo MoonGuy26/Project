@@ -4,34 +4,106 @@
              x:Class="Beanify.Views.LoginView"
              xmlns:converters="clr-namespace:Beanify.Utils.Converters"
              xmlns:local="clr-namespace:Beanify.Views"
+             xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
+             xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              BackgroundColor="AliceBlue"
               NavigationPage.HasNavigationBar="false">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+            <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
+            <converters:ErrorsToVisibilityConverter x:Key="errorsToVisibilityConverter" />
+
+            <Color x:Key="FocusColor">#abdbab</Color>
+            <Color x:Key="ErrorColor">#ea251e</Color>
+            <Color x:Key="BlackColor">#34657a</Color>
+
+            <Style x:Key="EntryStyle"
+            TargetType="{x:Type Entry}">
+                <Setter Property="behaviors:LineColorBehavior.ApplyLineColor"
+                    Value="True" />
+                <Setter Property="behaviors:LineColorBehavior.LineColor"
+                    Value="{StaticResource BlackColor}" />
+            </Style>
         </ResourceDictionary>
+        
     </ContentPage.Resources>    
     <ContentPage.Content>
         <StackLayout Margin="20" Spacing="16">
             <Label Text="WELCOME" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
-            <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}">
-
-
+            <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}"  >
+                <Entry.Behaviors>
+                    <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
+                </Entry.Behaviors>
+                
+                <Entry.Style>
+                    <OnPlatform x:TypeArguments="Style">
+                        <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
+                        
+                    </OnPlatform>
+                </Entry.Style>
+                
                 <Entry.Triggers>
+                    <Trigger TargetType="Entry"
+                        Property="IsFocused" Value="True">
+                        <Setter 
+                            Property="TextColor"
+                            Value="{StaticResource BlackColor}" />
+                    </Trigger>
                     <DataTrigger 
                         TargetType="Entry"
                         Binding="{Binding Email.IsValid}"
                         Value="False">
-                        
+                        <Setter Property="behaviors:LineColorBehavior.LineColor" 
+                                Value="{StaticResource ErrorColor}" />
+                        <Setter Property="TextColor"
+                                Value="{StaticResource ErrorColor}" />
                     </DataTrigger>
                 </Entry.Triggers>
             </Entry>
             <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
-               />
-            <Entry Placeholder="password" IsPassword="True" Text="{Binding Password.Value}"></Entry>
-            <Button Text="Sign in"  Command="{Binding Commands[Login]}"></Button>
-            <Button Text="Forgotten password"  Command="{Binding Commands[ResetPasswordCommand}"></Button>
+                    IsVisible="{Binding Email.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
+                    TextColor="{StaticResource ErrorColor}"/>
+            <Entry Placeholder="password" IsPassword="True" Text="{Binding Password.Value, Mode=TwoWay}">
+                
+                
+                <Entry.Style>
+                    <OnPlatform x:TypeArguments="Style">
+                        <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
+
+                    </OnPlatform>
+                </Entry.Style>
+
+                <Entry.Triggers>
+                    <Trigger TargetType="Entry"
+                        Property="IsFocused" Value="True">
+                        <Setter 
+                            Property="TextColor"
+                            Value="{StaticResource BlackColor}" />
+                    </Trigger>
+                    <DataTrigger 
+                        TargetType="Entry"
+                        Binding="{Binding Password.IsValid}"
+                        Value="False">
+                        <Setter Property="behaviors:LineColorBehavior.LineColor" 
+                                Value="{StaticResource ErrorColor}" />
+                        
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label Text="{Binding Password.Errors,Converter={StaticResource firstValidationErrorConverter}}"
+                    IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
+                    TextColor="{StaticResource ErrorColor}"/>
+            <Button Text="Sign in" Command="{Binding Commands[Login]}"></Button>
+            <Image Source="https://xamarinhelp.com/wp-content/uploads/2016/04/selected_circle.png" Rotation="{Binding ImageAngle,Mode=TwoWay}" IsVisible="{Binding IsVisibleImage}" />
+            <Label Text="{Binding ErrorLoginMessage}" 
+                   HorizontalTextAlignment="Center"
+                   FontSize="18"
+                   IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
+                   TextColor="{StaticResource ErrorColor}"/>
+            <Button Text="Forgotten password"  Command="{Binding Commands[ResetPassword]}"></Button>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

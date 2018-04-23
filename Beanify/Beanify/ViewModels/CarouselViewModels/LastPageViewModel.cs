@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
@@ -20,12 +21,14 @@ namespace Beanify.ViewModels.CarouselViewModels
             return true;
         }
 
-        private void OnLoginExecute()
+        private async void  OnLoginExecute()
         {
             //((App)Application.Current).MainPage= new NavigationPage(new Views.LoginView());
-            
-            _navigation.PushModalAsync(new Views.LoginView());
-            
+            if (_navigation.NavigationStack.Count == 0 ||
+                _navigation.NavigationStack.Last().GetType() != typeof(Views.LoginView))
+            {
+                await _navigation.PushAsync(new Views.LoginView(), true);
+            }
         }
     }
 }

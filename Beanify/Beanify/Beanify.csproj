@@ -19,6 +19,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="1.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Behaviors\" />
     <Folder Include="Views\CarouselPages\" />
   </ItemGroup>
 
