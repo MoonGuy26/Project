@@ -31,7 +31,7 @@ namespace Beanify.ViewModels
 
         private AccountService accountService;
 
-        public DashboardViewModel(INavigation navigation) : base(navigation)
+        public DashboardViewModel():base()
         {
             Commands.Add("Logout",new Command(OnLogoutExecute));
             _accessToken = LocalStorageSettings.AccessToken;

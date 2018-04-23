@@ -5,18 +5,18 @@ using Xamarin.Forms;
 
 namespace Beanify.ViewModels
 {
-    public class ForgottenViewModel : BaseViewModel
+    public class ForgottenPasswordViewModel : BaseViewModel
     {
 
-        public ForgottenViewModel(INavigation navigation) : base(navigation)
+        public ForgottenPasswordViewModel():base()
         {
             Commands.Add("ForgottenComplete", new Command(OnForgottenCompleteExecute));
         }
 
         private void OnForgottenCompleteExecute()
         {
-            Console.WriteLine("mlkjhgf");
-            _navigation.PopModalAsync();
+          
+            
         }
 
         private bool CanForgottenComplete() {

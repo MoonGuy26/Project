@@ -16,7 +16,7 @@ namespace Beanify.Views
 		public LoginView ()
 		{
 			InitializeComponent ();
-            BindingContext = new LoginViewModel(Navigation);
+            BindingContext = new LoginViewModel();
 		}
 	}
 }

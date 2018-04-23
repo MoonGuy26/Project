@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Beanify.Views
 		public ForgottenPasswordView ()
 		{
 			InitializeComponent ();
+            BindingContext = new ForgottenPasswordViewModel();
 		}
 	}
 }

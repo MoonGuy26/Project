@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Beanify.Utils.Navigation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -9,15 +11,25 @@ namespace Beanify.ViewModels
 {
     public abstract class BaseViewModel:ObservableProperty
     {
-        protected INavigation _navigation;
+       
 
         public Dictionary<string, ICommand> Commands { get; protected set; }
 
-        public BaseViewModel(INavigation navigation){
-            _navigation = navigation;
+        protected readonly INavigationService _navigationService;
+
+
+        public BaseViewModel()
+        {
+            _navigationService = NavigationService.Instance;
             Commands = new Dictionary<string, ICommand>();
         }
 
-        
+       
+        public virtual Task InitializeAsync(object navigationData)
+        {
+            return Task.FromResult(false);
+        }
+
+
     }
 }

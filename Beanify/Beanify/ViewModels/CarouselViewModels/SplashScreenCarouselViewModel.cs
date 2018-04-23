@@ -9,7 +9,7 @@ namespace Beanify.ViewModels
     {
 
 
-        public SplashScreenCarouselViewModel(INavigation navigation) : base(navigation)
+        public SplashScreenCarouselViewModel():base()
         {
 
 

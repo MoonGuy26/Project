@@ -1,9 +1,10 @@
 ﻿using Beanify.Serialization;
+using Beanify.Utils.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Beanify
@@ -15,7 +16,7 @@ namespace Beanify
 			InitializeComponent();
 
             //MainPage = new NavigationPage(new Views.CarouselViews.SplashScreenView());
-            SetMainPage();
+            InitNavigation();
         }
 
         private void SetMainPage()
@@ -29,6 +30,11 @@ namespace Beanify
                 MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
             }
 
+        }
+
+        private Task InitNavigation()
+        {
+            return NavigationService.Instance.InitializeAsync();
         }
 
         protected override void OnStart ()

@@ -1,7 +1,7 @@
 ﻿using Beanify.Services;
 using Beanify.Models;
 using Beanify.Utils.Validations;
-
+using Beanify.Utils.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -102,7 +102,7 @@ namespace Beanify.ViewModels
 
 
 
-        public LoginViewModel(INavigation navigation) : base(navigation)
+        public LoginViewModel() : base()
         {
             AddValidations();
             AccountService addDefault = new AccountService("api/Account/Register/");
@@ -130,6 +130,11 @@ namespace Beanify.ViewModels
 
         private async void OnLoginExecute()
         {
+            await NavigateDashboardView();
+        }
+
+        private async Task NavigateDashboardView()
+        {
             ErrorLoginMessage = "";
 
             CancellationTokenSource cts = new CancellationTokenSource();
@@ -137,31 +142,33 @@ namespace Beanify.ViewModels
             IsVisibleImage = true;
             RotateElement(token);
 
-            if (ValidateUserName()&&ValidatePassword())
+            if (ValidateUserName() && ValidatePassword())
             {
-                LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);  
-                if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken)){
+                LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);
+                if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
+                {
                     cts.Cancel();
                     IsVisibleImage = false;
-                    ((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
-                    
+                    await _navigationService.NavigateToAsync<DashboardViewModel>();
+                    //((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
+
                 }
 
             }
             cts.Cancel();
             IsVisibleImage = false;
             ErrorLoginMessage = "The email or password you entered is incorrect.";
-            
         }
 
        private async void OnForgottenExecute()
        {
-            if (_navigation.NavigationStack.Count == 0 ||
-                _navigation.NavigationStack.Last().GetType() != typeof(Views.ForgottenPasswordView))
-            {
-                await _navigation.PushAsync(new Views.ForgottenPasswordView(), true);
-            }
+            await NavigateForgottenView();
        }
+
+        private async Task NavigateForgottenView()
+        {
+            await _navigationService.NavigateToAsync<ForgottenPasswordViewModel>();
+        }
 
 
         private void AddValidations()
