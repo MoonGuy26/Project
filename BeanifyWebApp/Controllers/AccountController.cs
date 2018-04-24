@@ -17,6 +17,8 @@ using BeanifyWebApp.Models;
 using BeanifyWebApp.Providers;
 using BeanifyWebApp.Results;
 using System.Web.Security;
+using System.Net.Mail;
+using System.Text;
 
 namespace BeanifyWebApp.Controllers
 {
@@ -121,6 +123,23 @@ namespace BeanifyWebApp.Controllers
                 Logins = logins,
                 ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
             };
+        }
+
+        // POST api/Account/ForgotPassword
+        [AllowAnonymous]
+        [Route("ForgotPassword")]
+        public async Task<IHttpActionResult> ForgotPassword(string email)
+        {
+
+            var user = await UserManager.FindByNameAsync(email);
+
+            
+
+            
+            string code2 = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+            //var callbackUrl2 = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code2 }, protocol: Request.GetUrlHelper.Scheme);
+            await UserManager.SendEmailAsync(email, "Reset Password", "Please reset your password by clicking <a href=\"" + "\">here</a>");
+            return Ok();
         }
 
         // POST api/Account/ChangePassword

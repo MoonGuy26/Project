@@ -10,13 +10,13 @@ using Xamarin.Forms.Xaml;
 
 namespace Beanify.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ForgottenPasswordView : ContentPage
-	{
-		public ForgottenPasswordView ()
-		{
-			InitializeComponent ();
-            BindingContext = new ForgottenPasswordViewModel();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ForgottenPasswordView : ContentPage
+    {
+        public ForgottenPasswordView()
+        {
+            InitializeComponent();
+            BindingContext = new ForgottenPasswordViewModel(Navigation);
+        }
+    }
 }

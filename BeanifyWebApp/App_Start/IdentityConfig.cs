@@ -4,9 +4,20 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using BeanifyWebApp.Models;
+using BeanifyWebApp.Services;
 
 namespace BeanifyWebApp
 {
+    public class EmailService : IIdentityMessageService
+    {
+        public Task SendAsync(IdentityMessage message)
+        {
+            // Plug in your email service here to send an email.
+            var _email = new EmailSender();
+            return _email.SendEmailAsync(message.Destination, message.Subject, message.Body);
+            //return Task.FromResult(0);
+        }
+    }
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
     public class ApplicationUserManager : UserManager<ApplicationUser>

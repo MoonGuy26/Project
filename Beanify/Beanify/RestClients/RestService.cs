@@ -151,6 +151,20 @@ namespace Beanify.RestClients
             return Convert.ToBoolean(response);
         }
 
+        public async Task ForgotPassword(string email)
+        {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Post, "http://93.113.111.183:80/BeanifyWebApp/Account/ForgotPassword");
+            var content = new StringContent(email);
+
+            //request.Content = new FormUrlEncodedContent(email);
+
+            //await client.PostAsync(RestUrl, request.Content);
+            var response = await client.PostAsync("http://93.113.111.183:80/BeanifyWebApp/Account/ForgotPassword", content);
+            Debug.WriteLine(response);
+
+        }
+
         #endregion
 
     }

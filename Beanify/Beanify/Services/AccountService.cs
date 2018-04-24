@@ -52,5 +52,17 @@ namespace Beanify.Services
 
             return isAdmin;
         }
+
+        public async Task ForgottenPassword(string email)
+        {
+            RestService restService = new RestService("api/Account/ForgotPassword");
+            /*
+            var keyValues = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string,string>("username",email)
+            };*/
+
+            await restService.ForgotPassword(email);
+        }
     }
 }
