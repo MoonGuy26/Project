@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Threading;
 
 using Beanify.Utils.Parallels;
+using System.Diagnostics;
+using Beanify.Utils.Orientation;
 
 namespace Beanify.ViewModels
 {
@@ -23,6 +25,9 @@ namespace Beanify.ViewModels
         private string _errorLoginMessage;
         private int _imageAngle = 0 ;
         private bool _isVisibleImage = false;
+        private StackOrientation _screenOrientation;
+
+
         private AccountService accountService;
         #endregion
 
@@ -52,7 +57,6 @@ namespace Beanify.ViewModels
                 }
             }
         }
-
         public string ErrorLoginMessage
         {
             get { return _errorLoginMessage; }
@@ -65,8 +69,6 @@ namespace Beanify.ViewModels
                 }
             }
         }
-
-
         public int ImageAngle
         {
             get { return _imageAngle; }
@@ -80,8 +82,6 @@ namespace Beanify.ViewModels
                 }
             }
         }
-
-
         public bool IsVisibleImage
         {
             get { return _isVisibleImage; }
@@ -91,6 +91,18 @@ namespace Beanify.ViewModels
                 {
                     _isVisibleImage = value;
                     OnPropertyChanged(nameof(IsVisibleImage));
+                }
+            }
+        }
+        public StackOrientation ScreenOrientation
+        {
+            get{ return _screenOrientation; }
+            set
+            {
+                if (_screenOrientation != value)
+                {
+                    _screenOrientation = value;
+                    OnPropertyChanged(nameof(ScreenOrientation));
                 }
             }
         }
@@ -106,6 +118,7 @@ namespace Beanify.ViewModels
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
             Commands.Add("ResetPassword", new Command(OnForgottenExecute));
             Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
+            Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
             
             
             Email.IsValid = true;
@@ -129,6 +142,25 @@ namespace Beanify.ViewModels
         {
             await NavigateForgottenView();
         }
+
+        private void OnSizeChangedExecute()
+        {
+            var orientation = DependencyService.Get<IDeviceOrientation>().GetOrientation();
+            switch (orientation)
+            {
+                case DeviceOrientations.Undefined:
+                    
+                    break;
+                case DeviceOrientations.Landscape:
+                    ScreenOrientation = StackOrientation.Horizontal;
+                    break;
+                case DeviceOrientations.Portrait:
+                    ScreenOrientation = StackOrientation.Vertical;
+                    break;
+            }
+
+            Debug.WriteLine(ScreenOrientation);
+        }
         #endregion
 
         #region canExecute
@@ -149,26 +181,33 @@ namespace Beanify.ViewModels
             var token = cts.Token;
             IsVisibleImage = true;
             RotateElement(token);
-
-            if (ValidateUserName() && ValidatePassword())
+            try
             {
-                LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);
-                if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
+                if (ValidateUserName() & ValidatePassword())
                 {
-                    cts.Cancel();
-                    IsVisibleImage = false;
-                    await _navigationService.NavigateToAsync<DashboardViewModel>();
-                    //((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
+                    LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);
+                    if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
+                    {
+                        cts.Cancel();
+                        IsVisibleImage = false;
+                        await _navigationService.NavigateToAsync<DashboardViewModel>();
+                        //((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
+                    }
 
+                }
+                else
+                {
+                    throw new Exception("Fields are not correctly filled.");
                 }
 
             }
-            cts.Cancel();
-            IsVisibleImage = false;
-            ErrorLoginMessage = "The email or password you entered is incorrect.";
+            catch(Exception e)
+            {
+                ErrorLoginMessage = e.Message;
+                cts.Cancel();
+                IsVisibleImage = false;
+            }
         }
-
-       
 
         private async Task NavigateForgottenView()
         {
@@ -234,13 +273,15 @@ namespace Beanify.ViewModels
 
             Task t = Task.Factory.StartNew(
                 () => {
-                    parallelTask.ExecuteParallelLoop(cancellation, "2", value => ImageAngle += Int32.Parse(value));
+                    parallelTask.ExecuteParallelLoop(cancellation, "45", value => ImageAngle += Int32.Parse(value));
                 },
                 cancellation,
                 TaskCreationOptions.LongRunning,
                 TaskScheduler.Default
             );
+            
         }
+        
         #endregion
     }
 }

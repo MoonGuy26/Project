@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Beanify.Droid.Utils.Effects;
-using Beanify.Utils.Behaviors;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Beanify.Utils.Behaviors;
 
 [assembly: ResolutionGroupName("Beanify")]
 [assembly: ExportEffect(typeof(EntryLineColorEffect), "EntryLineColorEffect")]

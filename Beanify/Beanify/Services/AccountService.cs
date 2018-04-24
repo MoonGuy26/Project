@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Beanify.Services
 {
@@ -32,16 +33,24 @@ namespace Beanify.Services
 
         public async Task<string> LoginUser(string email, string password)
         {
-            RestService restService = new RestService(_namePath);
-
-            var keyValues = new List<KeyValuePair<string, string>>
+            try
             {
-                new KeyValuePair<string,string>("username",email),
-                new KeyValuePair<string, string>("password",password),
-                new KeyValuePair<string, string>("grant_type","password")
-            };
+                RestService restService = new RestService(_namePath);
+            
+                var keyValues = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string,string>("username",email),
+                    new KeyValuePair<string, string>("password",password),
+                    new KeyValuePair<string, string>("grant_type","password")
+                };
 
-           return await restService.LoginAsync(keyValues);
+               return await restService.LoginAsync(keyValues);
+
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task<bool> IsAdmin(string accessToken)

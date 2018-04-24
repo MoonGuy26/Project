@@ -16,7 +16,7 @@ namespace Beanify.Utils.Parallels
                     cancellation.ThrowIfCancellationRequested();
                 }
                 setOutput(input);
-                Thread.Sleep(1);
+                Thread.Sleep(150);
             }
         }
     }

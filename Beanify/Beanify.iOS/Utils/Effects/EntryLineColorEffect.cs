@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using Beanify.iOS.Utils.Effects;
-using Beanify.Utils.Behaviors;
 using CoreAnimation;
 using CoreGraphics;
-using Foundation;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using Beanify.Utils.Behaviors;
 
 [assembly: ResolutionGroupName("Beanify")]
 [assembly: ExportEffect(typeof(EntryLineColorEffect), "EntryLineColorEffect")]

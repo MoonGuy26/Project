@@ -1,5 +1,6 @@
 ﻿
 using Beanify.Models;
+using Beanify.Utils.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -123,20 +124,32 @@ namespace Beanify.RestClients
 
             var client = new HttpClient();
 
-            var response = await client.SendAsync(request);
+            try
+            {
+                var response = await client.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    var jwt = await response.Content.ReadAsStringAsync();
 
-            var jwt = await response.Content.ReadAsStringAsync();
+                    JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
 
-            JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
+                    var accessToken = jwtDynamic.Value<string>("access_token");
 
-            var accessToken = jwtDynamic.Value<string>("access_token");
-
-
-            //Debug.WriteLine(content);
-
-            return accessToken;
-
-            
+                    return accessToken;
+                }
+                else
+                {
+                    throw new UnsuccessfulStatusCodeException("The email or password you entered is incorrect.");
+                }
+            }
+            catch (UnsuccessfulStatusCodeException)
+            {
+                throw;
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Impossible to connect to the server. Please check your connection.");
+            }
         }
 
         public async Task<bool> IsAdmin(string accessToken)
