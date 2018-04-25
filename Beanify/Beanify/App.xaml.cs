@@ -1,10 +1,16 @@
 ﻿using Beanify.Serialization;
+using Beanify.Services;
 using Beanify.Utils.Navigation;
+using Beanify.ViewModels;
+using Beanify.ViewModels.CarouselViewModels;
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unity;
+using Unity.ServiceLocation;
 using Xamarin.Forms;
 
 namespace Beanify
@@ -15,7 +21,9 @@ namespace Beanify
 		{
 			InitializeComponent();
 
-            //MainPage = new NavigationPage(new Views.CarouselViews.SplashScreenView());
+            
+
+
             InitNavigation();
         }
 
@@ -34,7 +42,16 @@ namespace Beanify
 
         private Task InitNavigation()
         {
-            return NavigationService.Instance.InitializeAsync();
+            UnityContainer unityContainer = new UnityContainer();
+            unityContainer.RegisterType<IBaseService, BaseService>();
+            unityContainer.RegisterType<IAccountService, AccountService>();
+            unityContainer.RegisterSingleton<INavigationService, NavigationService>();
+            unityContainer.RegisterType<LastPageViewModel>();
+            unityContainer.RegisterType<LoginViewModel>();
+            ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unityContainer));
+            var viewModelLocator = new ViewModelLocator();
+            var navigationService = viewModelLocator.NavigationService;
+            return navigationService.InitializeAsync();
         }
 
         protected override void OnStart ()

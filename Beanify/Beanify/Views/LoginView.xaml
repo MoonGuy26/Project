@@ -7,9 +7,8 @@
              xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              BackgroundColor="AliceBlue"
-              NavigationPage.HasNavigationBar="false"
-             
-            >
+             NavigationPage.HasNavigationBar="false"
+             BindingContext="{Binding LoginViewModel, Source={StaticResource Locator}}">
     <ContentPage.Behaviors>
         <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
     </ContentPage.Behaviors>
@@ -19,6 +18,7 @@
             <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
             <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
             <converters:ErrorsToVisibilityConverter x:Key="errorsToVisibilityConverter" />
+            <converters:BoolToInvertBoolConverter x:Key="boolToInvertBoolConverter" />
 
             <Color x:Key="FocusColor">#abdbab</Color>
             <Color x:Key="ErrorColor">#ea251e</Color>
@@ -38,8 +38,8 @@
 
         <StackLayout Margin="20" Spacing="16" >
             <Label Text="WELCOME" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}">
-                <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="Fill">
+            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" VerticalOptions="Center">
+                <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
                     <Entry.Behaviors>
                         <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
                     </Entry.Behaviors>
@@ -73,8 +73,8 @@
                     IsVisible="{Binding Email.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource ErrorColor}"/>
             </StackLayout>
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}">
-                <Entry Placeholder="password" IsPassword="True" Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="Fill">
+            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  VerticalOptions="Center">
+                <Entry Placeholder="password" IsPassword="True" Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
 
 
                     <Entry.Style>
@@ -105,8 +105,8 @@
                     IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource ErrorColor}"/>
             </StackLayout>
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}">
-                <Button Text="Sign in" Command="{Binding Commands[Login]}"></Button>
+            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                <Button Text="Sign in" Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"></Button>
                 <Image Source="loading_dots.png" Rotation="{Binding ImageAngle,Mode=TwoWay}" IsVisible="{Binding IsVisibleImage}" />
             </StackLayout>
             <Label Text="{Binding ErrorLoginMessage}" 
@@ -114,7 +114,7 @@
                    FontSize="18"
                    IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
                    TextColor="{StaticResource ErrorColor}"/>
-            <Button Text="Forgotten password"  Command="{Binding Commands[ResetPassword]}"></Button>
+            <Button Text="Forgotten password"  Command="{Binding Commands[ResetPassword]}" HorizontalOptions="Center"></Button>
             
         </StackLayout>
     </ContentPage.Content>

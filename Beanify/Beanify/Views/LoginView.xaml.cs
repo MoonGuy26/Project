@@ -1,4 +1,5 @@
 ﻿using Beanify.ViewModels;
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Beanify.Views
 		public LoginView ()
 		{
 			InitializeComponent ();
-            BindingContext = new LoginViewModel();
-		}
+            
+        }
 	}
 }

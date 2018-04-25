@@ -1,4 +1,5 @@
 ﻿using Beanify.ViewModels.CarouselViewModels;
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Beanify.Views.CarouselViews
             public LastPage(string textToDisplay, string imgToDisplay)
             {
                 InitializeComponent();
-                BindingContext = new LastPageViewModel();
+                
 
                 layout.BackgroundColor = Color.SaddleBrown;
                 layout.VerticalOptions = LayoutOptions.FillAndExpand;

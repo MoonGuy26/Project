@@ -9,16 +9,16 @@ using System.Threading;
 
 namespace Beanify.Services
 {
-    public class AccountService : BaseService
+    public class AccountService :BaseService, IAccountService
     {
-        public AccountService(string namePath="Account/Register") : base(namePath)
+        public AccountService() : base()
         {
             
         }
 
         public async Task AddUser(string email, string password, string confirmPassword)
         {
-            RestService restService = new RestService(_namePath);
+            RestService restService = new RestService("");
 
             var model = new RegisterBindingModel
             {
@@ -35,7 +35,7 @@ namespace Beanify.Services
         {
             try
             {
-                RestService restService = new RestService(_namePath);
+                RestService restService = new RestService("Token");
             
                 var keyValues = new List<KeyValuePair<string, string>>
                 {

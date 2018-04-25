@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace Beanify.ViewModels
 {
-    public abstract class BaseViewModel:ObservableProperty
+    public class BaseViewModel:ObservableProperty
     {
         protected readonly INavigationService _navigationService;
 
@@ -17,14 +17,21 @@ namespace Beanify.ViewModels
 
         public BaseViewModel()
         {
-            _navigationService = NavigationService.Instance;
+            InitializeViewModel();
+            var viewModelLocator = new ViewModelLocator();
+            _navigationService = viewModelLocator.NavigationService;
+        }
+
+        protected virtual void InitializeViewModel()
+        {
             Commands = new Dictionary<string, ICommand>();
         }
-       
+
         public virtual Task InitializeAsync(object navigationData)
         {
             return Task.FromResult(false);
         }
+
 
     }
 }

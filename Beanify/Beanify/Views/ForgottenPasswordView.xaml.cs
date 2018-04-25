@@ -15,8 +15,7 @@ namespace Beanify.Views
 	{
 		public ForgottenPasswordView ()
 		{
-			InitializeComponent ();
-            BindingContext = new ForgottenPasswordViewModel();
+            InitializeComponent();
 		}
 	}
 }

@@ -8,18 +8,17 @@ using System.Threading.Tasks;
 
 namespace Beanify.Services
 {
-    public abstract class BaseService
+    public abstract class BaseService : IBaseService
     {
-        protected string _namePath;
+        
 
-        public BaseService(string namePath)
+        public BaseService()
         {
-            _namePath = namePath;
         }
 
-        public async Task AddItem(IModel item)
+        public async Task AddItem(IModel item,string path)
         {
-            RestService restService = new RestService(_namePath);
+            RestService restService = new RestService(path);
             await restService.SaveItemAsync(item, true);
         }
 

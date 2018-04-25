@@ -28,7 +28,7 @@ namespace Beanify.ViewModels
         private StackOrientation _screenOrientation;
 
 
-        private AccountService accountService;
+        private IAccountService _accountService;
         #endregion
 
         #region properties
@@ -109,18 +109,26 @@ namespace Beanify.ViewModels
 
         #endregion
 
-        public LoginViewModel() : base()
+        
+
+        public LoginViewModel(IAccountService accountService):base()
         {
+            _accountService = accountService;
+        }
+
+        override protected void InitializeViewModel()
+        {
+            base.InitializeViewModel();
             AddValidations();
-            AccountService addDefault = new AccountService("api/Account/Register/");
             
-            accountService = new AccountService("Token");
+
+            
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
             Commands.Add("ResetPassword", new Command(OnForgottenExecute));
             Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
             Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
-            
-            
+
+
             Email.IsValid = true;
             Password.IsValid = true;
         }
@@ -185,7 +193,7 @@ namespace Beanify.ViewModels
             {
                 if (ValidateUserName() & ValidatePassword())
                 {
-                    LocalStorageSettings.AccessToken = await accountService.LoginUser(Email.Value, Password.Value);
+                    LocalStorageSettings.AccessToken = await _accountService.LoginUser(Email.Value, Password.Value);
                     if (!string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
                     {
                         cts.Cancel();

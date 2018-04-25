@@ -16,25 +16,13 @@ namespace Beanify.Utils.Navigation
     public class NavigationService : INavigationService
     {
 
-        private static NavigationService _instance;
-
-        private NavigationService()
+        
+        public NavigationService()
         {
 
         }
 
-        public static NavigationService Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new NavigationService();
-                }
-                return _instance;
-            }
-        }
-
+        
         public BaseViewModel PreviousPageViewModel
         {
             get
@@ -123,9 +111,9 @@ namespace Beanify.Utils.Navigation
             {
                 Application.Current.MainPage = new CustomNavigationView(page);
             }
-          
 
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+
         }
 
         

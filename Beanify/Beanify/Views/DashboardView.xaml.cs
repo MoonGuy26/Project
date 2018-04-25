@@ -15,8 +15,7 @@ namespace Beanify.Views
 	{
 		public DashboardView ()
 		{
-			InitializeComponent();
-            BindingContext = new DashboardViewModel();
+            InitializeComponent();
         }
 	}
 }
