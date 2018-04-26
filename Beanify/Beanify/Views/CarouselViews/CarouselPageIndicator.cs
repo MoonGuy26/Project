@@ -11,11 +11,13 @@ namespace Beanify.Views
         {
             this.Orientation = StackOrientation.Horizontal;
             this.HorizontalOptions = LayoutOptions.CenterAndExpand;
+            this.HeightRequest = 8;
 
             for (int i = 0; i < totalItems; i++)
             {
                 var image = new Image();
-
+                image.Aspect = Aspect.AspectFit;
+                image.HorizontalOptions = LayoutOptions.EndAndExpand;
                 if (i == currentIndex)
                     image.Source = sourceIndicator;
                 else

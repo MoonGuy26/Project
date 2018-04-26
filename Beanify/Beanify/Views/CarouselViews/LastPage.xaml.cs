@@ -18,9 +18,6 @@ namespace Beanify.Views.CarouselViews
             public LastPage(string textToDisplay, string imgToDisplay)
             {
                 InitializeComponent();
-                
-
-                layout.BackgroundColor = Color.SaddleBrown;
                 layout.VerticalOptions = LayoutOptions.FillAndExpand;
 
                 text.Text = textToDisplay;

@@ -17,7 +17,7 @@ namespace Beanify.Views.CarouselViews
         {
             InitializeComponent();
 
-            layout.BackgroundColor = Color.SaddleBrown;
+            
             layout.VerticalOptions = LayoutOptions.FillAndExpand;
 
 

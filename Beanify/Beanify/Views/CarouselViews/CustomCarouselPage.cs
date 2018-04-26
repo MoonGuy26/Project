@@ -36,7 +36,7 @@ namespace Beanify.Views.CarouselViews
 
             if (contentPage != null)
             {
-                contentPage.FinalStack.Children.Add(new CarouselPageIndicator(currentPage, totalPages, "https://xamarinhelp.com/wp-content/uploads/2016/04/selected_circle.png", "https://xamarinhelp.com/wp-content/uploads/2016/04/unselected_circle.png"));
+                contentPage.FinalStack.Children.Add(new CarouselPageIndicator(currentPage, totalPages, "@drawable/selected_circle.png", "@drawable/unselected_circle.png"));
             }
         }
 
