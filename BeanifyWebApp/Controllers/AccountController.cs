@@ -53,6 +53,7 @@ namespace BeanifyWebApp.Controllers
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
 
+
         // GET api/Account/IsUserAdmin
         [Route("IsUserAdmin")]
         public bool GetCurrentUserRole()
