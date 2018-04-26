@@ -127,6 +127,8 @@ namespace Beanify.ViewModels
             Commands.Add("ResetPassword", new Command(OnForgottenExecute));
             Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
             Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
+            Commands.Add("PlayingAnimation", new Command(OnPlayingAnimationExecute));
+            Commands.Add("FinishedAnimation", new Command(OnFinishedAnimationExecute));
 
 
             Email.IsValid = true;
@@ -169,6 +171,16 @@ namespace Beanify.ViewModels
 
             Debug.WriteLine(ScreenOrientation);
         }
+
+        private void OnPlayingAnimationExecute()
+        {
+
+        }
+
+        private void OnFinishedAnimationExecute()
+        {
+
+        }
         #endregion
 
         #region canExecute
@@ -198,7 +210,7 @@ namespace Beanify.ViewModels
                     {
                         cts.Cancel();
                         IsVisibleImage = false;
-                        await _navigationService.NavigateToAsync<DashboardViewModel>();
+                        await _navigationService.SetRootAsync<DashboardViewModel>();
                         //((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
                     }
 

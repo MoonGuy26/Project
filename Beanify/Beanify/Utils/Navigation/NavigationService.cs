@@ -39,7 +39,7 @@ namespace Beanify.Utils.Navigation
         public Task InitializeAsync()
         {
             if (string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
-                return InternalNavigateToDashboard(new CustomCarouselPage(),null);
+                return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
             else
                 return NavigateToAsync<DashboardViewModel>();
         }
@@ -52,6 +52,21 @@ namespace Beanify.Utils.Navigation
         public Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel
         {
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
+        }
+
+        public Task SetRootAsync<TViewModel>() where TViewModel:BaseViewModel
+        {
+            return InternalSetRootPageAsync(typeof(TViewModel), null);
+        }
+
+        public Task SetRootAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        {
+            return InternalSetRootPageAsync(typeof(TViewModel), parameter);
+        }
+
+        public Task SetRootFromPageAsync<TPage>() where TPage : Page
+        {
+            return InternalNavigateToFromPageAsync(typeof(TPage), null);
         }
 
         public Task RemoveLastFromBackStackAsync()
@@ -83,9 +98,19 @@ namespace Beanify.Utils.Navigation
             return Task.FromResult(true);
         }
 
-        private async Task InternalNavigateToDashboard(Page page, object parameter)
+        private async Task InternalNavigateToFromPageAsync(Type pageType, object parameter)
         {
-            Application.Current.MainPage = new CustomNavigationView(page);
+            Page page = Activator.CreateInstance(pageType) as Page;
+            var navigationPage = Application.Current.MainPage as CustomNavigationView;
+            if (navigationPage != null)
+            {
+                if (NotAlreadyOpened(page, navigationPage))
+                {
+                    Application.Current.MainPage = new CustomNavigationView(page);
+                }
+            }
+            else
+                Application.Current.MainPage = new CustomNavigationView(page);
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
         }
 
@@ -100,8 +125,7 @@ namespace Beanify.Utils.Navigation
             var navigationPage = Application.Current.MainPage as CustomNavigationView;
             if (navigationPage != null)
             {
-                if (navigationPage.Navigation.NavigationStack.Count == 0 ||
-                  navigationPage.Navigation.NavigationStack.Last().GetType() != page.GetType())
+                if (NotAlreadyOpened(page,navigationPage))
                 {
                      await navigationPage.PushAsync(page);
                 }
@@ -116,7 +140,22 @@ namespace Beanify.Utils.Navigation
 
         }
 
-        
+        private async Task InternalSetRootPageAsync(Type viewModelType, object parameter)
+        {
+            Page page = CreatePage(viewModelType, parameter);
+            Type viewType = GetPageTypeForViewModel(viewModelType);
+            var navigationPage = Application.Current.MainPage as CustomNavigationView;
+            if (navigationPage != null)
+            {
+                if (NotAlreadyOpened(page, navigationPage))
+                {
+                    Application.Current.MainPage = new CustomNavigationView(page);
+                }
+            }
+            else
+                Application.Current.MainPage = new CustomNavigationView(page);
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+        }
 
         private Page CreatePage(Type viewModelType, object parameter)
         {
@@ -137,6 +176,13 @@ namespace Beanify.Utils.Navigation
             var viewAssemblyName = string.Format(CultureInfo.InvariantCulture, "{0}, {1}", viewName, viewModelAssemblyName);
             var viewType = Type.GetType(viewAssemblyName);
             return viewType;
+        }
+
+        private bool NotAlreadyOpened(Page currentPage,CustomNavigationView navigationPage)
+        {
+            return (navigationPage.Navigation.NavigationStack.Count == 0 ||
+                  navigationPage.Navigation.NavigationStack.Last().GetType() != currentPage.GetType());
+           
         }
     }
 }

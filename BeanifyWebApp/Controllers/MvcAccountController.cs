@@ -2,9 +2,12 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -15,13 +18,13 @@ namespace BeanifyWebApp.Controllers
     public class MvcAccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
-        private MvcApplicationUserManager _userManager;
+        private ApplicationUserManager _userManager;
 
         public MvcAccountController()
         {
         }
 
-        public MvcAccountController(MvcApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public MvcAccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -39,11 +42,11 @@ namespace BeanifyWebApp.Controllers
             }
         }
 
-        public MvcApplicationUserManager UserManager
+        public ApplicationUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<MvcApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
             private set
             {
@@ -70,11 +73,9 @@ namespace BeanifyWebApp.Controllers
             {
                 return View(model);
             }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
             
-            var result = await SignInManager.PasswordSignInAsync("arthur.tronche@gmail.com", "1Gr$7gi754=g", model.RememberMe, shouldLockout: false);
+
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

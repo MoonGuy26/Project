@@ -17,7 +17,7 @@ namespace Beanify.Views
             {
                 var image = new Image();
                 image.Aspect = Aspect.AspectFit;
-                image.HorizontalOptions = LayoutOptions.EndAndExpand;
+                image.HorizontalOptions = LayoutOptions.CenterAndExpand;
                 if (i == currentIndex)
                     image.Source = sourceIndicator;
                 else

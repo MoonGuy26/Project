@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Beanify.Views"
              xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
              BackgroundColor="AliceBlue"
              NavigationPage.HasNavigationBar="false"
              BindingContext="{Binding LoginViewModel, Source={StaticResource Locator}}">
@@ -42,6 +43,7 @@
                 <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
                     <Entry.Behaviors>
                         <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
+                        <b:EventToCommandBehavior EventName="Completed" Command="{Binding Commands[LostFocusEmail]}" />
                     </Entry.Behaviors>
 
                     <Entry.Style>
@@ -74,7 +76,9 @@
                     TextColor="{StaticResource ErrorColor}"/>
             </StackLayout>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  VerticalOptions="Center">
-                <Entry Placeholder="password" IsPassword="True" Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
+                <Entry Placeholder="password" IsPassword="True" 
+                       Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
+                       x:Name="passwordEntry">
 
 
                     <Entry.Style>
@@ -107,7 +111,21 @@
             </StackLayout>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                 <Button Text="Sign in" Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"></Button>
-                <Image Source="loading_dots.png" Rotation="{Binding ImageAngle,Mode=TwoWay}" IsVisible="{Binding IsVisibleImage}" />
+                
+                <forms:AnimationView 
+	                x:Name="animationView" 
+	                HeightRequest="128"
+                    WidthRequest="128"
+	                Animation="trail_loading.json" 
+	                Loop="true" 
+	                AutoPlay="true"
+                    Speed="2"
+	                IsVisible="{Binding IsVisibleImage}"
+	                PlaybackStartedCommand="{Binding Commands[PlayingAnimation]}"
+	                PlaybackFinishedCommand="{Binding Commands[FinishedAnimation]}" 
+	                ClickedCommand="{Binding ClickedCommand}"
+	                VerticalOptions="FillAndExpand" 
+	                HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <Label Text="{Binding ErrorLoginMessage}" 
                    HorizontalTextAlignment="Center"

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Beanify.Droid</RootNamespace>
     <AssemblyName>Beanify.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -66,6 +66,8 @@
     <Compile Include="Utils\Renderers\TextFieldRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\material_loader.json" />
+    <AndroidAsset Include="Assets\trail_loading.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
