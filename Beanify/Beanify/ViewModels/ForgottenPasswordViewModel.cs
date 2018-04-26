@@ -3,6 +3,7 @@ using Beanify.Utils.Validations;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Beanify.ViewModels
@@ -46,6 +47,7 @@ namespace Beanify.ViewModels
         {
             _accountService = new AccountService();
             Commands.Add("ForgottenComplete", new Command(OnForgottenCompleteExecute));
+            Commands.Add("Login", new Command(OnLoginExecute));
             _email = new ValidatableObject<string>();
         }
 
@@ -58,6 +60,16 @@ namespace Beanify.ViewModels
         private bool CanForgottenComplete()
         {
             return true;
+        }
+
+        private async void OnLoginExecute()
+        {
+            await NavigateLogin();
+        }
+
+        private async Task NavigateLogin()
+        {
+            await _navigationService.NavigateToAsync<LoginViewModel>();
         }
     }
 }
