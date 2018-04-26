@@ -33,7 +33,10 @@ namespace Beanify.ViewModels
         {
             Commands.Add("Logout",new Command(OnLogoutExecute));
             _accessToken = LocalStorageSettings.AccessToken;
-            GetCurrentUserRole();    
+            
+            GetCurrentUserRole();
+
+            //RemovePreviousStack();
         }
 
         #region commandMethods
@@ -41,7 +44,7 @@ namespace Beanify.ViewModels
         private void OnLogoutExecute()
         {
             LocalStorageSettings.AccessToken = null;
-            ((App)Application.Current).MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
+            _navigationService.SetRootFromPageAsync<Views.CarouselViews.CustomCarouselPage>();
         }
         #endregion
         #region canExecute
@@ -61,6 +64,11 @@ namespace Beanify.ViewModels
             {
                 DashboardMessage = "USER DASHBOARD";
             }
+        }
+
+        private async void RemovePreviousStack()
+        {
+            await _navigationService.RemoveBackStackAsync();
         }
         #endregion
     }
