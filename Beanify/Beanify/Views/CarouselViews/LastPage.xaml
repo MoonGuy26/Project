@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.CarouselViews.LastPage"
-             BackgroundColor="OrangeRed"
+             BackgroundColor="#121212"
              BindingContext="{Binding LastPageViewModel, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <StackLayout x:Name="layout">
@@ -13,7 +13,7 @@
                     <RowDefinition Height="10*" />
                 </Grid.RowDefinitions>
                 <Image x:Name="img" Aspect="AspectFit" Grid.Row="0" Margin="15, 0, 15, 0"></Image>
-                <Label x:Name="text" Grid.Row="1" VerticalOptions="EndAndExpand" Margin="15, 0, 15, 0" LineBreakMode="WordWrap"></Label>
+                <Label x:Name="text" Grid.Row="1" VerticalOptions="EndAndExpand" Margin="15, 0, 15, 0" LineBreakMode="WordWrap" TextColor="WhiteSmoke"></Label>
                 <Button Grid.Row="2" Text="OK" VerticalOptions="Start" HorizontalOptions="Fill" Scale="1.5" Command="{Binding Commands[LoginCommand]}" />
             </Grid>
         </StackLayout>

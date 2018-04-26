@@ -351,6 +351,7 @@ namespace BeanifyWebApp.Controllers
             return Ok();
         }
 
+
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
