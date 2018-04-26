@@ -16,6 +16,6 @@ namespace Beanify.Views
 		public ForgottenPasswordView ()
 		{
             InitializeComponent();
-		}
+        }
 	}
 }
