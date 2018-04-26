@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Lottie.Forms.Droid;
 
 namespace Beanify.Droid
 {
@@ -20,6 +21,9 @@ namespace Beanify.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            AnimationViewRenderer.Init();
+
             LoadApplication(new App());
         }
     }

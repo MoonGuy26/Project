@@ -66,6 +66,8 @@
     <Compile Include="Utils\Renderers\TextFieldRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\material_loader.json" />
+    <AndroidAsset Include="Assets\trail_loading.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
