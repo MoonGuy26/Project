@@ -37,6 +37,8 @@ namespace Beanify.ViewModels
             GetCurrentUserRole();
 
             //RemovePreviousStack();
+
+            Commands.Add("OrderView", new Command(OnOrderingView));
         }
 
         #region commandMethods
@@ -44,7 +46,12 @@ namespace Beanify.ViewModels
         private void OnLogoutExecute()
         {
             LocalStorageSettings.AccessToken = null;
-            _navigationService.SetRootFromPageAsync<Views.CarouselViews.CustomCarouselPage>();
+            _navigationService.SetRootFromPageAsync<Views.LoginView>();
+        }
+
+        private void OnOrderingView()
+        {
+            _navigationService.NavigateToAsync<OrderNewViewModel>();
         }
         #endregion
         #region canExecute

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Beanify.Views.OrderNewView"
+             BackgroundColor="AliceBlue">
+  <ContentPage.Content>
+      <StackLayout>
+            <Image Source="@drawable/Lightstart2.jpg"></Image>
+            <Label Text="Sample" x:Name="title"  Margin="15, 0, 15, 0" HorizontalOptions="Center"/>
+            <Label Text="Sample" x:Name="detail" VerticalOptions="StartAndExpand"  HorizontalOptions="Center" Margin="15, 0, 15, 0" LineBreakMode="WordWrap"/>
+            <Picker Title="Quantity :" x:Name="quantity_picker" WidthRequest="100" HorizontalOptions="Fill"/>
+            <Button Text="Continue ?" Command="{Binding Commands[Continue]}"/>
+        </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
