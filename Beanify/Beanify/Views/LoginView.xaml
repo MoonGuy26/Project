@@ -119,7 +119,7 @@
                    IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
                    TextColor="{StaticResource ErrorColor}"/>
             <Button Text="Forgotten password"  Command="{Binding Commands[ResetPassword]}" HorizontalOptions="Center"></Button>
-            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -9,6 +9,7 @@
             <Label Text="{Binding DashboardMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" TextColor="Black" />
+            <Button Text="Ordering views"  Command="{Binding Commands[OrderView]}" HorizontalOptions="Center"></Button>
             <Button Command="{Binding Commands[Logout]}" Text="Logout"/>
         </StackLayout>
     </ContentPage.Content>
