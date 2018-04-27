@@ -248,6 +248,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MvcAccountController.cs" />
+    <Compile Include="Controllers\MvcProductModelsController.cs" />
+    <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,6 +260,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductContext.cs" />
+    <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -326,6 +330,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MvcAccount\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\MvcProductModels\Create.cshtml" />
+    <Content Include="Views\MvcProductModels\Delete.cshtml" />
+    <Content Include="Views\MvcProductModels\Details.cshtml" />
+    <Content Include="Views\MvcProductModels\Edit.cshtml" />
+    <Content Include="Views\MvcProductModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
