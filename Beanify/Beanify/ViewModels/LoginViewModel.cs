@@ -26,6 +26,9 @@ namespace Beanify.ViewModels
         private int _imageAngle = 0 ;
         private bool _isVisibleImage = false;
         private StackOrientation _screenOrientation;
+        private bool _isFocusedPassword;
+
+        
 
 
         private IAccountService _accountService;
@@ -106,15 +109,28 @@ namespace Beanify.ViewModels
                 }
             }
         }
+        public bool IsFocusedPassword
+        {
+            get {
+                return _isFocusedPassword;
+                
+            }
+            set {
+                _isFocusedPassword = value;
+                OnPropertyChanged(nameof(IsFocusedPassword));
+            }
+        }
 
         #endregion
 
-        
+
 
         public LoginViewModel(IAccountService accountService):base()
         {
             _accountService = accountService;
         }
+
+        
 
         override protected void InitializeViewModel()
         {
@@ -126,6 +142,7 @@ namespace Beanify.ViewModels
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
             Commands.Add("ResetPassword", new Command(OnForgottenExecute));
             Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
+            Commands.Add("CompletedEmail", new Command(OnCompletedEmailExecute));
             Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
             Commands.Add("PlayingAnimation", new Command(OnPlayingAnimationExecute));
             Commands.Add("FinishedAnimation", new Command(OnFinishedAnimationExecute));
@@ -141,6 +158,12 @@ namespace Beanify.ViewModels
         private void OnLostFocusEmailExecute()
         {
             ValidateUserName();
+            IsFocusedPassword = true;
+        }
+
+        private void OnCompletedEmailExecute()
+        {
+            IsFocusedPassword = true;
         }
 
         private async void OnLoginExecute()
@@ -298,8 +321,7 @@ namespace Beanify.ViewModels
                 cancellation,
                 TaskCreationOptions.LongRunning,
                 TaskScheduler.Default
-            );
-            
+            );    
         }
         
         #endregion

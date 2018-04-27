@@ -16,6 +16,7 @@ namespace Beanify.Utils.Navigation
         Task SetRootFromPageAsync<TPage>() where TPage : Page;
         Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel;
         Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
+        Task NavigateBackAsync();
         Task RemoveLastFromBackStackAsync();
         Task RemoveBackStackAsync();
     }

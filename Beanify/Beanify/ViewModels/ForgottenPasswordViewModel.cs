@@ -9,9 +9,21 @@ namespace Beanify.ViewModels
 {
     public class ForgottenPasswordViewModel : BaseViewModel
     {
-        private AccountService _accountService;
+        private IAccountService _accountService;
 
         private ValidatableObject<string> _email;
+        private string _textConfirmation;
+        private bool _isVisibleLoading;
+
+        public bool IsVisibleLoading
+        {
+            get { return _isVisibleLoading; }
+            set {
+                _isVisibleLoading = value;
+                OnPropertyChanged(nameof(IsVisibleLoading));
+            }
+        }
+
 
         public ValidatableObject<string> Email
         {
@@ -26,8 +38,6 @@ namespace Beanify.ViewModels
                 }
             }
         }
-
-        private string _textConfirmation;
 
         public string TextConfirmation
         {
@@ -44,15 +54,50 @@ namespace Beanify.ViewModels
 
         public ForgottenPasswordViewModel(IAccountService accountService) : base()
         {
-            _accountService = new AccountService();
+            _accountService = accountService;
             Commands.Add("ForgottenComplete", new Command(OnForgottenCompleteExecute));
-            _email = new ValidatableObject<string>();
+            Commands.Add("LoginNavigation", new Command(OnLoginNavigationExecute));
+
+
+            AddValidations();
         }
 
-        private async void OnForgottenCompleteExecute()
+        private void AddValidations()
         {
-            await _accountService.ForgottenPassword(Email.Value);
-            TextConfirmation = "A email has been sent to your email inbox, please go check it !";
+            _email = new ValidatableObject<string>();
+           
+
+            _email.Validations.Add(new IsNotNullOrEmptyRule<string>
+            {
+                ValidationMessage = "An email adress is required."
+            });
+            _email.Validations.Add(new IsValidEmailRule<string>
+            {
+                ValidationMessage = "Please enter a valid email address."
+            });
+        }
+
+        private bool ValidateEmail()
+        {
+            return Email.Validate();
+        }
+
+
+        private async void OnForgottenCompleteExecute()
+        { 
+            if (ValidateEmail())
+            {
+                IsVisibleLoading = true;
+                TextConfirmation = "Sending";
+                await _accountService.ForgottenPassword(Email.Value);
+                IsVisibleLoading = false;
+                TextConfirmation = "A email has been sent to your email inbox, please go check it !";
+            }
+            
+        }
+        private async void OnLoginNavigationExecute()
+        {
+            await _navigationService.NavigateBackAsync();
         }
 
         private bool CanForgottenComplete()
