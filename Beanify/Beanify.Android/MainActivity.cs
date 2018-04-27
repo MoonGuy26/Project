@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Lottie.Forms.Droid;
+using HockeyApp.Android;
 
 namespace Beanify.Droid
 {
@@ -19,6 +20,9 @@ namespace Beanify.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+
+            base.OnResume();
+            CrashManager.Register(this, "7f70a56f74af4103ae0b13417235f1f9");
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 

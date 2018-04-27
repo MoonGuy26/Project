@@ -16,22 +16,8 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
-            <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
-            <converters:ErrorsToVisibilityConverter x:Key="errorsToVisibilityConverter" />
-            <converters:BoolToInvertBoolConverter x:Key="boolToInvertBoolConverter" />
+            
 
-            <Color x:Key="FocusColor">#abdbab</Color>
-            <Color x:Key="ErrorColor">#ea251e</Color>
-            <Color x:Key="BlackColor">#34657a</Color>
-
-            <Style x:Key="EntryStyle"
-            TargetType="{x:Type Entry}">
-                <Setter Property="behaviors:LineColorBehavior.ApplyLineColor"
-                    Value="True" />
-                <Setter Property="behaviors:LineColorBehavior.LineColor"
-                    Value="{StaticResource BlackColor}" />
-            </Style>
         </ResourceDictionary>
         
     </ContentPage.Resources>    
@@ -43,7 +29,7 @@
                 <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
                     <Entry.Behaviors>
                         <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
-                        <b:EventToCommandBehavior EventName="Completed" Command="{Binding Commands[LostFocusEmail]}" />
+                        <b:EventToCommandBehavior EventName="Completed" Command="{Binding Commands[CompletedEmail]}" />
                     </Entry.Behaviors>
 
                     <Entry.Style>
@@ -78,7 +64,7 @@
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  VerticalOptions="Center">
                 <Entry Placeholder="password" IsPassword="True" 
                        Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
-                       x:Name="passwordEntry">
+                       IsFocused="{Binding IsFocusedPassword}">
 
 
                     <Entry.Style>

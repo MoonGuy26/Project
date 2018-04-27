@@ -2,12 +2,31 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Beanify.ViewModels;assembly=Beanify"
+             xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
+             xmlns:converters="clr-namespace:Beanify.Utils.Converters"
              x:Class="Beanify.App">
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
         <ResourceDictionary>
             <viewModels:ViewModelLocator x:Key="Locator"/>
+
+            <converters:FirstValidationErrorConverter x:Key="firstValidationErrorConverter" />
+            <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
+            <converters:ErrorsToVisibilityConverter x:Key="errorsToVisibilityConverter" />
+            <converters:BoolToInvertBoolConverter x:Key="boolToInvertBoolConverter" />
+            
+            <Color x:Key="FocusColor">#abdbab</Color>
+            <Color x:Key="ErrorColor">#ea251e</Color>
+            <Color x:Key="BlackColor">#34657a</Color>
+
+            <Style x:Key="EntryStyle"
+            TargetType="{x:Type Entry}">
+                <Setter Property="behaviors:LineColorBehavior.ApplyLineColor"
+                    Value="True" />
+                <Setter Property="behaviors:LineColorBehavior.LineColor"
+                    Value="{StaticResource BlackColor}" />
+            </Style>
         </ResourceDictionary>
 	</Application.Resources>
 </Application>

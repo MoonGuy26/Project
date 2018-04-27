@@ -98,6 +98,13 @@ namespace Beanify.Utils.Navigation
             return Task.FromResult(true);
         }
 
+        public async Task NavigateBackAsync()
+        {
+            var navigationPage = Application.Current.MainPage as CustomNavigationView;
+            await navigationPage.PopAsync();
+
+        }
+
         private async Task InternalNavigateToFromPageAsync(Type pageType, object parameter)
         {
             Page page = Activator.CreateInstance(pageType) as Page;
@@ -112,9 +119,8 @@ namespace Beanify.Utils.Navigation
             else
                 Application.Current.MainPage = new CustomNavigationView(page);
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
-        }
+        } 
 
-            
         private async Task InternalNavigateToAsync(Type viewModelType, object parameter)
         {
             Page page = CreatePage(viewModelType, parameter);
@@ -139,6 +145,7 @@ namespace Beanify.Utils.Navigation
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
 
         }
+
 
         private async Task InternalSetRootPageAsync(Type viewModelType, object parameter)
         {

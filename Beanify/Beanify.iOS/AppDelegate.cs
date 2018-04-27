@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using HockeyApp.iOS;
 using Lottie.Forms.iOS.Renderers;
 using UIKit;
 
@@ -23,6 +24,10 @@ namespace Beanify.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            var manager = BITHockeyManager.SharedHockeyManager;
+            manager.Configure("68bc18fcb44a43a3978f485db8f2fe09");
+            manager.StartManager();
+            manager.Authenticator.AuthenticateInstallation();
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
