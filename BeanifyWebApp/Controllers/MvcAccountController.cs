@@ -76,9 +76,12 @@ namespace BeanifyWebApp.Controllers
             
 
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (User.IsInRole("Admin"))
+                        return RedirectToAction("Index", "Admin");
                     return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -168,6 +171,15 @@ namespace BeanifyWebApp.Controllers
             {
                 return View();
             }
+        }
+
+        // POST: /Account/LogOff
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
         }
 
         #region Helpers

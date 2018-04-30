@@ -21,5 +21,8 @@ namespace Beanify.Models
         [Required]
         [DataType(DataType.Currency)]
         public float Price { get; set; }
+
+        [Required]
+        public bool IsNew { get; set; }
     }
 }

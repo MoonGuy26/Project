@@ -1,11 +1,37 @@
-﻿<div class="jumbotron">
+﻿@using Microsoft.AspNet.Identity
+<div class="jumbotron">
     <h1>Beanify Web Administration</h1>
-    <p class="lead"></p>
-    <p>
-       
+    &nbsp;
+    <div class="container-center">
+
+
+        @if (!Request.IsAuthenticated)
+        {
             @Html.ActionLink("Authenticate", "Login", "MvcAccount",
-         routeValues: null, htmlAttributes: new { id = "loginLink" , @class = "btn btn-primary btn-lg" }
-         )
-      
-    </p>
+                          routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg" }
+                          )
+
+        }
+        else
+        {
+            if (User.IsInRole("Admin"))
+            {
+                <div class="centered-flex">
+                    @Html.ActionLink("Messaging", "Login", "MvcAccount",
+                            routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg child" }
+                            )
+                    @Html.ActionLink("Orders", "Login", "MvcAccount",
+                                       routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg child" }
+                                       )
+                    @Html.ActionLink("Customers", "Login", "MvcAccount",
+                                       routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg child" }
+                                       )
+                    @Html.ActionLink("Products", "Login", "MvcAccount",
+                                       routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-lg child" }
+                                       )
+                </div>
+            }
+
+        }
+    </div>
 </div>
