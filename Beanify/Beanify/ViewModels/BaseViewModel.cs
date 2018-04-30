@@ -12,6 +12,20 @@ namespace Beanify.ViewModels
     public class BaseViewModel:ObservableProperty
     {
         protected readonly INavigationService _navigationService;
+        protected StackOrientation _screenOrientation;
+
+        public StackOrientation ScreenOrientation
+        {
+            get { return _screenOrientation; }
+            set
+            {
+                if (_screenOrientation != value)
+                {
+                    _screenOrientation = value;
+                    OnPropertyChanged(nameof(ScreenOrientation));
+                }
+            }
+        }
 
         public Dictionary<string, ICommand> Commands { get; protected set; }
 

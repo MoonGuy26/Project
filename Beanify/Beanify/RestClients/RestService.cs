@@ -168,8 +168,7 @@ namespace Beanify.RestClients
         {
             var client = new HttpClient();
             string url = RestUrl;
-            RestUrl = "http://93.113.111.183/BeanifyMvcWebApp/Account/ForgotPassword";
-            //Resturl = "http://93.113.111.183/BeanifyWebApp/api/Account/ForgotPassword";
+            RestUrl = "http://93.113.111.183/BeanifyWebApp/MvcAccount/ForgotPassword";
             var uri = new Uri(string.Format(RestUrl, string.Empty));
 
             try
@@ -186,7 +185,7 @@ namespace Beanify.RestClients
                 {
                     Debug.WriteLine(@"Mail successfully sent.");
                 }
-                Debug.WriteLine(@"Mail successfully not sent (lol).");
+                else Debug.WriteLine(@"Mail successfully not sent (lol).");
             }
             catch (Exception ex)
             {

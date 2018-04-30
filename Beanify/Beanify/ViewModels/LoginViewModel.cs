@@ -25,7 +25,7 @@ namespace Beanify.ViewModels
         private string _errorLoginMessage;
         private int _imageAngle = 0 ;
         private bool _isVisibleImage = false;
-        private StackOrientation _screenOrientation;
+       
         private bool _isFocusedPassword;
 
         
@@ -97,18 +97,7 @@ namespace Beanify.ViewModels
                 }
             }
         }
-        public StackOrientation ScreenOrientation
-        {
-            get{ return _screenOrientation; }
-            set
-            {
-                if (_screenOrientation != value)
-                {
-                    _screenOrientation = value;
-                    OnPropertyChanged(nameof(ScreenOrientation));
-                }
-            }
-        }
+
         public bool IsFocusedPassword
         {
             get {

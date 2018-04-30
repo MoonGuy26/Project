@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BeanifyMvcWebApp.Models;
+using WebTesting.Services;
 
 namespace BeanifyMvcWebApp
 {
@@ -19,7 +20,9 @@ namespace BeanifyMvcWebApp
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var _email = new EmailSender();
+            return _email.SendEmailAsync(message.Destination, message.Subject, message.Body);
+            //return Task.FromResult(0);
         }
     }
 

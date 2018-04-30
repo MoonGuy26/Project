@@ -7,6 +7,7 @@ using BeanifyWebApp.Models;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
 using System;
+using BeanifyWebApp.Services;
 
 namespace BeanifyWebApp
 {
@@ -37,6 +38,7 @@ namespace BeanifyWebApp
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
+            manager.EmailService = new EmailService();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
@@ -51,7 +53,9 @@ namespace BeanifyWebApp
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var _email = new EmailSender();
+            return _email.SendEmailAsync(message.Destination, message.Subject, message.Body);
+            //return Task.FromResult(0);
         }
     }
 
