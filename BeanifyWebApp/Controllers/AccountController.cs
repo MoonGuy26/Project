@@ -59,6 +59,7 @@ namespace BeanifyWebApp.Controllers
         public bool GetCurrentUserRole()
         {
             return User.IsInRole("Admin");
+            
         }
 
         // GET api/Account/UserInfo
