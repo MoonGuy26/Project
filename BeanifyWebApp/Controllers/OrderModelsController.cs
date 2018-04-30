@@ -14,45 +14,46 @@ using BeanifyWebApp.Models;
 namespace BeanifyWebApp.Controllers
 {
     [Authorize]
-    public class ProductModelsController : ApiController
+    public class OrderModelsController : ApiController
     {
-        private ProductContext db = new ProductContext();
+        
+        private OrderContext db = new OrderContext();
 
-        // GET: api/ProductModels
+        // GET: api/OrderModels
         [AllowAnonymous]
-        public IQueryable<ProductModel> GetProductModels()
+        public IQueryable<OrderModel> GetOrderModels()
         {
-            return db.ProductModels;
+            return db.OrderModels;
         }
 
-        // GET: api/ProductModels/5
-        [ResponseType(typeof(ProductModel))]
-        public IHttpActionResult GetProductModel(int id)
+        // GET: api/OrderModels/5
+        [ResponseType(typeof(OrderModel))]
+        public IHttpActionResult GetOrderModel(int id)
         {
-            ProductModel productModel = db.ProductModels.Find(id);
-            if (productModel == null)
+            OrderModel orderModel = db.OrderModels.Find(id);
+            if (orderModel == null)
             {
                 return NotFound();
             }
 
-            return Ok(productModel);
+            return Ok(orderModel);
         }
 
-        // PUT: api/ProductModels/5
+        // PUT: api/OrderModels/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutProductModel(int id, ProductModel productModel)
+        public IHttpActionResult PutOrderModel(int id, OrderModel orderModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != productModel.Id)
+            if (id != orderModel.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(productModel).State = EntityState.Modified;
+            db.Entry(orderModel).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +61,7 @@ namespace BeanifyWebApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProductModelExists(id))
+                if (!OrderModelExists(id))
                 {
                     return NotFound();
                 }
@@ -73,35 +74,35 @@ namespace BeanifyWebApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ProductModels
-        [ResponseType(typeof(ProductModel))]
-        public IHttpActionResult PostProductModel(ProductModel productModel)
+        // POST: api/OrderModels
+        [ResponseType(typeof(OrderModel))]
+        public IHttpActionResult PostOrderModel(OrderModel orderModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.ProductModels.Add(productModel);
+            db.OrderModels.Add(orderModel);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = productModel.Id }, productModel);
+            return CreatedAtRoute("DefaultApi", new { id = orderModel.Id }, orderModel);
         }
 
-        // DELETE: api/ProductModels/5
-        [ResponseType(typeof(ProductModel))]
-        public IHttpActionResult DeleteProductModel(int id)
+        // DELETE: api/OrderModels/5
+        [ResponseType(typeof(OrderModel))]
+        public IHttpActionResult DeleteOrderModel(int id)
         {
-            ProductModel productModel = db.ProductModels.Find(id);
-            if (productModel == null)
+            OrderModel orderModel = db.OrderModels.Find(id);
+            if (orderModel == null)
             {
                 return NotFound();
             }
 
-            db.ProductModels.Remove(productModel);
+            db.OrderModels.Remove(orderModel);
             db.SaveChanges();
 
-            return Ok(productModel);
+            return Ok(orderModel);
         }
 
         protected override void Dispose(bool disposing)
@@ -113,9 +114,9 @@ namespace BeanifyWebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ProductModelExists(int id)
+        private bool OrderModelExists(int id)
         {
-            return db.ProductModels.Count(e => e.Id == id) > 0;
+            return db.OrderModels.Count(e => e.Id == id) > 0;
         }
     }
 }

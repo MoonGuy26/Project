@@ -248,7 +248,9 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MvcAccountController.cs" />
+    <Compile Include="Controllers\MvcOrderModelsController.cs" />
     <Compile Include="Controllers\MvcProductModelsController.cs" />
+    <Compile Include="Controllers\OrderModelsController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -260,6 +262,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrderContext.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
