@@ -44,6 +44,22 @@ namespace Beanify.ViewModels
             }
         }
 
+        public OrderNewViewModel OrderNewViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<OrderNewViewModel>();
+            }
+        }
+
+        public OrderReviewViewModel OrderReviewViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<OrderReviewViewModel>();
+            }
+        }
+
         public NavigationService NavigationService
         {
             get

@@ -1,12 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Beanify.Views.OrderReviewView">
+             x:Class="Beanify.Views.OrderReviewView"
+             BackgroundColor="AliceBlue"
+             BindingContext="{Binding OrderReviewViewModel, Source={StaticResource Locator}}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="15, 0, 15, 0">
+            <Label Text="Order Review" FontSize="25" HorizontalOptions="Center"/>
+            <Image Source="@drawable/Lightstart2.jpg"  ></Image>
+            <Label Text="Lorem Ipsum" FontSize="Large" x:Name="title" HorizontalOptions="Center"/>
+
+            <StackLayout BackgroundColor="Red" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Item Name" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Quantity" FontSize="Medium" HorizontalOptions="End"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Bindable Item Name" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Bindable Item Name" HorizontalOptions="End"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                <Label Text="Price :" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Bindable Price" HorizontalOptions="End"/>
+            </StackLayout>
+            <Button Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

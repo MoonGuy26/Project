@@ -2,13 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.OrderNewView"
-             BackgroundColor="AliceBlue">
+             BackgroundColor="AliceBlue"
+             BindingContext="{Binding OrderNewViewModel, Source={StaticResource Locator}}">
   <ContentPage.Content>
-      <StackLayout>
-            <Image Source="@drawable/Lightstart2.jpg"></Image>
-            <Label Text="Sample" x:Name="title"  Margin="15, 0, 15, 0" HorizontalOptions="Center"/>
-            <Label Text="Sample" x:Name="detail" VerticalOptions="StartAndExpand"  HorizontalOptions="Center" Margin="15, 0, 15, 0" LineBreakMode="WordWrap"/>
-            <Picker Title="Quantity :" x:Name="quantity_picker" WidthRequest="100" HorizontalOptions="Fill"/>
+        <StackLayout Margin="15, 0, 15, 0">
+            <Label Text="Order Review" FontSize="25" HorizontalOptions="Center"/>
+            <Image Source="@drawable/Lightstart2.jpg"  ></Image>
+            <Label Text="Lorem Ipsum" FontSize="Large" x:Name="title" HorizontalOptions="Center"/>
+            <Label Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." 
+                   x:Name="detail"  HorizontalOptions="Center" LineBreakMode="WordWrap"/>
+            <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
+            <Picker Title="How many items would you like ?" x:Name="quantity_picker" ItemsSource="{Binding ObservablePicker}" VerticalOptions="StartAndExpand" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
             <Button Text="Continue ?" Command="{Binding Commands[Continue]}"/>
         </StackLayout>
   </ContentPage.Content>
