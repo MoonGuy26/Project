@@ -8,12 +8,10 @@ namespace Beanify.Models
     public class OrderModel:AbstractBaseModel
     {
         [Required]
-        [DataType(DataType.Text)]
-        public string ProductName { get; set; }
+        public string ProductId { get; set; }
 
         [Required]
-        [DataType(DataType.Text)]
-        public string ClientName { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [Range(1, 100)]

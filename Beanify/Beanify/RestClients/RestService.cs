@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace Beanify.RestClients
 {
-    public class RestService : IRestService
+    public class RestService<T> : IRestService<T>
     {
         HttpClient client;
 
-        public List<IModel> Items { get; private set; }
+        public List<T> Items { get; private set; }
 
         private string RestUrl;
 
@@ -36,9 +36,9 @@ namespace Beanify.RestClients
 
         #region methods
 
-        public async Task<List<IModel>> RefreshDataAsync()
+        public async Task<List<T>> RefreshDataAsync()
         {
-            Items = new List<IModel>();
+            Items = new List<T>();
 
 
             var uri = new Uri(string.Format(RestUrl, string.Empty));
@@ -49,7 +49,7 @@ namespace Beanify.RestClients
                 if (response.IsSuccessStatusCode)
                 {
                     var content = await response.Content.ReadAsStringAsync();
-                    Items = JsonConvert.DeserializeObject<List<IModel>>(content);
+                    Items = JsonConvert.DeserializeObject<List<T>>(content);
 
                 }
             }
@@ -61,7 +61,7 @@ namespace Beanify.RestClients
             return Items;
         }
 
-        public async Task SaveItemAsync(IModel item, bool isNewItem = false)
+        public async Task SaveItemAsync(T item, bool isNewItem = false)
         {
             string url = RestUrl;
             var uri = new Uri(string.Format(RestUrl, string.Empty));
@@ -95,7 +95,7 @@ namespace Beanify.RestClients
             }
         }
 
-        public async Task DeleteItemAsync(int id)
+        public async Task DeleteItemAsync(string id)
         {
 
             var uri = new Uri(string.Format(RestUrl, id));
@@ -164,7 +164,7 @@ namespace Beanify.RestClients
             return Convert.ToBoolean(response);
         }
 
-        public async Task ForgotPassword(IModel item)
+        public async Task ForgotPassword(T item)
         {
             var client = new HttpClient();
             string url = RestUrl;
@@ -194,7 +194,7 @@ namespace Beanify.RestClients
 
         }
 
-        public async Task RequestWithSerializableParameter(IModel item, string restUrl)
+        public async Task RequestWithSerializableParameter(T item, string restUrl)
         {
             var client = new HttpClient();
             RestUrl = restUrl;

@@ -8,6 +8,6 @@ namespace Beanify.Services
 {
     public interface IProductService
     {
-        Task<List<IModel>> GetProducts();
+        Task<List<ProductModel>> GetProducts();
     }
 }

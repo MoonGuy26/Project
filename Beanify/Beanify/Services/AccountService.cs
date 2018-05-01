@@ -18,7 +18,7 @@ namespace Beanify.Services
 
         public async Task AddUser(string email, string password, string confirmPassword)
         {
-            RestService restService = new RestService("");
+            RestService<RegisterBindingModel> restService = new RestService<RegisterBindingModel>("");
 
             var model = new RegisterBindingModel
             {
@@ -35,7 +35,7 @@ namespace Beanify.Services
         {
             try
             {
-                RestService restService = new RestService("Token");
+                RestService<object> restService = new RestService<object>("Token");
             
                 var keyValues = new List<KeyValuePair<string, string>>
                 {
@@ -55,7 +55,7 @@ namespace Beanify.Services
 
         public async Task<bool> IsAdmin(string accessToken)
         {
-            RestService restService = new RestService("api/Account/IsUserAdmin");
+            RestService<object> restService = new RestService<object>("api/Account/IsUserAdmin");
 
             var isAdmin =  await restService.IsAdmin(accessToken);
 
@@ -64,7 +64,7 @@ namespace Beanify.Services
 
         public async Task ForgottenPassword(string email)
         {
-            RestService restService = new RestService("api/Account/ForgotPassword");
+            RestService<ForgotPasswordViewModel> restService = new RestService<ForgotPasswordViewModel>("api/Account/ForgotPassword");
 
             /*var model = new ForgotPasswordBindingModel
             {
@@ -81,7 +81,7 @@ namespace Beanify.Services
         
         public async Task OrderConfirmation()
         {
-            RestService restService = new RestService("api/Account/ForgotPassword");
+            RestService<object> restService = new RestService<object>("api/Account/ForgotPassword");
 
             //await restService.ForgotPassword(model2);
         }

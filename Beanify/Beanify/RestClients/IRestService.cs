@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Beanify.RestClients
 {
-    public interface IRestService
+    public interface IRestService<T>
     {
-        Task<List<IModel>> RefreshDataAsync();
+        Task<List<T>> RefreshDataAsync();
 
-        Task SaveItemAsync(IModel item, bool isNewItem);
+        Task SaveItemAsync(T item, bool isNewItem);
 
 
 
-        Task DeleteItemAsync(int id);
+        Task DeleteItemAsync(string id);
     }
 }

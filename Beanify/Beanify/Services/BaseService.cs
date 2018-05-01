@@ -18,7 +18,7 @@ namespace Beanify.Services
 
         public async Task AddItem(IModel item,string path)
         {
-            RestService restService = new RestService(path);
+            RestService<IModel> restService = new RestService<IModel>(path);
             await restService.SaveItemAsync(item, true);
         }
 

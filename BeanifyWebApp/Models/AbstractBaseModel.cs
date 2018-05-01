@@ -6,6 +6,6 @@ namespace Beanify.Models
 {
     public abstract class AbstractBaseModel:IModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }

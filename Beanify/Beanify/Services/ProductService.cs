@@ -9,11 +9,11 @@ namespace Beanify.Services
 {
     public class ProductService : BaseService, IProductService
     {
-        public Task<List<IModel>> GetProducts()
+        public Task<List<ProductModel>> GetProducts()
         {
             try
             {
-                RestService restService = new RestService("api/ProductModels");
+                RestService<ProductModel> restService = new RestService<ProductModel>("api/ProductModels");
 
                 return restService.RefreshDataAsync();
 
