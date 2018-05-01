@@ -10,5 +10,6 @@ namespace Beanify.Models
         public string ClientName { get; set; }
         public int Quantity { get; set; }
         public float Price { get; set; }
+        public bool IsNew { get; set; }
     }
 }

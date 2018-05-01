@@ -16,6 +16,7 @@ namespace Beanify.Models
         public string ClientName { get; set; }
 
         [Required]
+        [Range(1, 100)]
         public int Quantity { get; set; }
 
         [Required]

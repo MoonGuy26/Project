@@ -49,7 +49,7 @@ namespace BeanifyWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ProductName,ClientName,Quantity,Price")] OrderModel orderModel)
+        public ActionResult Create([Bind(Include = "Id,ProductName,ClientName,Quantity,Price,IsNew")] OrderModel orderModel)
         {
             if (ModelState.IsValid)
             {
@@ -81,7 +81,7 @@ namespace BeanifyWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ProductName,ClientName,Quantity,Price")] OrderModel orderModel)
+        public ActionResult Edit([Bind(Include = "Id,ProductName,ClientName,Quantity,Price,IsNew")] OrderModel orderModel)
         {
             if (ModelState.IsValid)
             {
@@ -117,6 +117,8 @@ namespace BeanifyWebApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {
