@@ -2,27 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.OrderReviewView"
+             xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              BackgroundColor="AliceBlue"
              BindingContext="{Binding OrderReviewViewModel, Source={StaticResource Locator}}">
-    <ContentPage.Content>
-        <StackLayout Margin="15, 0, 15, 0">
-            <Label Text="Order Review" FontSize="25" HorizontalOptions="Center"/>
-            <Image Source="@drawable/Lightstart2.jpg"  ></Image>
-            <Label Text="Lorem Ipsum" FontSize="Large" x:Name="title" HorizontalOptions="Center"/>
+    <ContentPage.Behaviors>
+        <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
+    </ContentPage.Behaviors>
 
-            <StackLayout BackgroundColor="Red" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Label Text="Item Name" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                <Label Text="Quantity" FontSize="Medium" HorizontalOptions="End"/>
+    <ContentPage.Content>
+        <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  >
+            <StackLayout  Margin="15, 15, 15, 0" VerticalOptions="StartAndExpand" HorizontalOptions="Center" HeightRequest="250" WidthRequest="350">
+                <Label Text="Order Review" FontSize="25" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Text="Lorem Ipsum" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Image Source="@drawable/Lightstart2.jpg" Aspect="AspectFill" />
+                
             </StackLayout>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Label Text="Bindable Item Name" HorizontalOptions="StartAndExpand"/>
-                <Label Text="Bindable Item Name" HorizontalOptions="End"/>
+            <StackLayout Margin="15, 15, 15, 0"  VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Item Name" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Quantity" FontSize="Medium" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Bindable Item Name" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Bindable Item Name" HorizontalOptions="End"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
+                    <Label Text="Price :" HorizontalOptions="StartAndExpand"/>
+                    <Label Text="Bindable Price" HorizontalOptions="End"/>
+                </StackLayout>
+                <Button Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
-                <Label Text="Price :" HorizontalOptions="StartAndExpand"/>
-                <Label Text="Bindable Price" HorizontalOptions="End"/>
-            </StackLayout>
-            <Button Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

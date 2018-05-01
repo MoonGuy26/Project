@@ -1,4 +1,5 @@
 ﻿using Beanify.Utils.Navigation;
+using Beanify.Utils.Orientation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,9 +37,29 @@ namespace Beanify.ViewModels
             _navigationService = viewModelLocator.NavigationService;
         }
 
+        protected void OnSizeChangedExecute()
+        {
+            var orientation = DependencyService.Get<IDeviceOrientation>().GetOrientation();
+            switch (orientation)
+            {
+                case DeviceOrientations.Undefined:
+
+                    break;
+                case DeviceOrientations.Landscape:
+                    ScreenOrientation = StackOrientation.Horizontal;
+                    break;
+                case DeviceOrientations.Portrait:
+                    ScreenOrientation = StackOrientation.Vertical;
+                    break;
+            }
+
+            //Debug.WriteLine(ScreenOrientation);
+        }
+
         protected virtual void InitializeViewModel()
         {
             Commands = new Dictionary<string, ICommand>();
+            Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
         }
 
         public virtual Task InitializeAsync(object navigationData)

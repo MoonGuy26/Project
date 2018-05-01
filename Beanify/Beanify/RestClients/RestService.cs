@@ -194,6 +194,30 @@ namespace Beanify.RestClients
 
         }
 
+        public async Task RequestWithSerializableParameter(IModel item, string restUrl)
+        {
+            var client = new HttpClient();
+            RestUrl = restUrl;
+            var uri = new Uri(string.Format(RestUrl, string.Empty));
+            try
+            {
+                var json = JsonConvert.SerializeObject(item);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                HttpResponseMessage response1 = null;
+                response1 = await client.PostAsync(uri, content);
+                Debug.WriteLine(response1);
+                if (response1.IsSuccessStatusCode)
+                {
+                    Debug.WriteLine(@"Request successfully done.");
+                }
+                else Debug.WriteLine(@"Request failled...");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
+            }
+        }
+
         #endregion
 
     }

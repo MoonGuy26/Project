@@ -23,7 +23,7 @@ namespace Beanify.ViewModels
 
         public async void OnOrderExecute()
         {
-            //await _accountService.OrderConfirmation();
+            await _accountService.OrderConfirmation();
         }
 
     }

@@ -66,10 +66,10 @@ namespace Beanify.Services
         {
             RestService restService = new RestService("api/Account/ForgotPassword");
 
-            var model = new ForgotPasswordBindingModel
+            /*var model = new ForgotPasswordBindingModel
             {
                 Email = email
-            };
+            };*/
 
             var model2 = new ForgotPasswordViewModel
             {
@@ -77,6 +77,13 @@ namespace Beanify.Services
             };
 
             await restService.ForgotPassword(model2);
+        }
+        
+        public async Task OrderConfirmation()
+        {
+            RestService restService = new RestService("api/Account/ForgotPassword");
+
+            //await restService.ForgotPassword(model2);
         }
     }
 }

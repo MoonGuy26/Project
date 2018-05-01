@@ -1,16 +1,10 @@
 ﻿using Beanify.Services;
-using Beanify.Models;
 using Beanify.Utils.Validations;
-using Beanify.Utils.Navigation;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 using Beanify.Serialization;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
-
 using Beanify.Utils.Parallels;
 using System.Diagnostics;
 using Beanify.Utils.Orientation;
@@ -132,7 +126,7 @@ namespace Beanify.ViewModels
             Commands.Add("ResetPassword", new Command(OnForgottenExecute));
             Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
             Commands.Add("CompletedEmail", new Command(OnCompletedEmailExecute));
-            Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
+            //Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
             Commands.Add("PlayingAnimation", new Command(OnPlayingAnimationExecute));
             Commands.Add("FinishedAnimation", new Command(OnFinishedAnimationExecute));
 
@@ -165,7 +159,7 @@ namespace Beanify.ViewModels
             await NavigateForgottenView();
         }
 
-        private void OnSizeChangedExecute()
+       /* private void OnSizeChangedExecute()
         {
             var orientation = DependencyService.Get<IDeviceOrientation>().GetOrientation();
             switch (orientation)
@@ -182,7 +176,7 @@ namespace Beanify.ViewModels
             }
 
             Debug.WriteLine(ScreenOrientation);
-        }
+        }*/
 
         private void OnPlayingAnimationExecute()
         {
