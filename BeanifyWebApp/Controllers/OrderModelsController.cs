@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BeanifyWebApp.Models;
+using Microsoft.AspNet.Identity;
 
 namespace BeanifyWebApp.Controllers
 {
@@ -16,6 +17,7 @@ namespace BeanifyWebApp.Controllers
     public class OrderModelsController : ApiController
     {
         private OrderContext db = new OrderContext();
+        private ProductContext dbProduct = new ProductContext();
 
         // GET: api/OrderModels
         public IQueryable<OrderModel> GetOrderModels()
@@ -73,17 +75,22 @@ namespace BeanifyWebApp.Controllers
 
         // POST: api/OrderModels
         [ResponseType(typeof(OrderModel))]
-        public IHttpActionResult PostOrderModel(OrderModel orderModel)
+        public IHttpActionResult PostOrderModel(OrderViewModel orderModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.OrderModels.Add(orderModel);
+            var userId = User.Identity.GetUserId();
+            var productId = dbProduct.ProductModels.Where(p => p.Name == orderModel.ProductName).First().Id;
+            var model = new OrderModel { ProductId = productId, UserId = userId, Date = orderModel.Date, IsNew = true, Price = orderModel.Price, Quantity = orderModel.Quantity };
+
+            db.OrderModels.Add(model);
+
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = orderModel.Id }, orderModel);
+            return CreatedAtRoute("DefaultApi", new { id = model.Id }, orderModel);
         }
 
         // DELETE: api/OrderModels/5
