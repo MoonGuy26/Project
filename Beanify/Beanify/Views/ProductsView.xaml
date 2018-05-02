@@ -33,8 +33,11 @@
                 </ListView.ItemTemplate>
             </ListView>--> <!-- Keep crashing because of an UnsupportedException, a solution could be to create a custom list layout with it own ctor -->
 
-            <ListView  ItemsSource="{Binding Products}" HasUnevenRows="True" Margin="20,40">
+            <ListView  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding Products}" HasUnevenRows="True" Margin="20,40" >
+                <ListView.Header>
+                </ListView.Header>
                 <ListView.ItemTemplate>
+                    
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
@@ -45,6 +48,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Text="More info" Command="{Binding Commands[LoadingDetails]}" HorizontalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

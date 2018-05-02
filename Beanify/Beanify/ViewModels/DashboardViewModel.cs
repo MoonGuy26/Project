@@ -32,9 +32,9 @@ namespace Beanify.ViewModels
         public DashboardViewModel():base()
         {
             Commands.Add("Logout",new Command(OnLogoutExecute));
-            //_accessToken = LocalStorageSettings.AccessToken;
+            _accessToken = LocalStorageSettings.AccessToken;
             
-            //GetCurrentUserRole();
+            GetCurrentUserRole();
 
             //RemovePreviousStack();
 
