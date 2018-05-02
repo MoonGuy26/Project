@@ -1,4 +1,5 @@
 ﻿using Beanify.Models;
+using Beanify.RestClients;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Beanify.Services
 {
     public interface IBaseService
     {
-        Task AddItem(IModel item,string path);
+       
+        Task AddItem(IModel item);
     }
 }

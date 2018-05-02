@@ -1,4 +1,5 @@
-﻿using Beanify.Services;
+﻿using Beanify.Models;
+using Beanify.Services;
 using Beanify.Views;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,42 @@ namespace Beanify.ViewModels
 {
     public class OrderReviewViewModel : BaseViewModel
     {
-        private AccountService _accountService;
 
+        private IModel _order;
 
+        private IBaseService _orderService;
 
-        public OrderReviewViewModel(IAccountService accountService) : base()
+        public IModel Order
         {
-            _accountService = new AccountService();
+            get { return _order; }
+            set {
+                if(_order != value)
+                {
+                    _order = value;
+                    OnPropertyChanged(nameof(Order));
+                }
+            }
+        }
 
+
+
+        public OrderReviewViewModel(IOrderService orderService) : base()
+        {
+            _orderService = orderService;
             Commands.Add("Order", new Command(OnOrderExecute));
         }
 
         public async void OnOrderExecute()
         {
-            await _accountService.OrderConfirmation();
+            await _orderService.AddItem(Order);
         }
 
+        public override Task InitializeAsync(object navigationData)
+        {
+            var order = navigationData as OrderModel;
+            Order = order;
+
+            return base.InitializeAsync(navigationData);
+        }
     }
 }

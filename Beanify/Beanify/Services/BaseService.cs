@@ -11,15 +11,16 @@ namespace Beanify.Services
     public abstract class BaseService : IBaseService
     {
         
-
         public BaseService()
         {
+            
         }
 
-        public async Task AddItem(IModel item,string path)
+
+        public Task AddItem(IModel item)
         {
-            RestService<IModel> restService = new RestService<IModel>(path);
-            await restService.SaveItemAsync(item, true);
+            var restService = new RestService<IModel>("api/"+item.GetType().ToString()+"s");
+            return restService.SaveItemAsync(item, true);
         }
 
     }

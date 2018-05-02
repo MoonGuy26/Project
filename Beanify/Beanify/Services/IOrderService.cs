@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BeanifyWebApp.Models
+namespace Beanify.Services
 {
-    public interface IModel
+    public interface IOrderService:IBaseService
     {
+
     }
 }

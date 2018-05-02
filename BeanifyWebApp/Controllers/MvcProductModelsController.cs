@@ -6,12 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Beanify.Models;
 using BeanifyWebApp.Models;
 
 namespace BeanifyWebApp.Controllers
 {
-    [Authorize]
     [Authorize(Roles = "Admin")]
     public class MvcProductModelsController : Controller
     {

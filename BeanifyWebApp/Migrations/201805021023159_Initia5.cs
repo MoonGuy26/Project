@@ -3,7 +3,7 @@ namespace BeanifyWebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Initia5 : DbMigration
     {
         public override void Up()
         {
@@ -12,8 +12,9 @@ namespace BeanifyWebApp.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        ProductName = c.String(nullable: false),
-                        ClientName = c.String(nullable: false),
+                        ProductId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false),
+                        Date = c.DateTime(nullable: false),
                         Quantity = c.Int(nullable: false),
                         Price = c.Single(nullable: false),
                         IsNew = c.Boolean(nullable: false),
