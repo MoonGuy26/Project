@@ -19,12 +19,12 @@
             </StackLayout>
             <StackLayout Margin="15, 15, 15, 0"  VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
                 <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label Text="Item Name" FontSize="Medium" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="Quantity" FontSize="Medium" HorizontalOptions="End"/>
+                    <Label Text="Item Name" FontSize="Medium" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
+                    <Label Text="Quantity" FontSize="Medium" HorizontalOptions="End" LineBreakMode="WordWrap"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label Text="Bindable Item Name" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="Bindable Item Name" HorizontalOptions="End"/>
+                    <Label Text="Bindable Item Name DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
+                    <Label Text="Bindable Item Name DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" HorizontalOptions="End" LineBreakMode="WordWrap"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
                     <Label Text="Price :" HorizontalOptions="StartAndExpand"/>

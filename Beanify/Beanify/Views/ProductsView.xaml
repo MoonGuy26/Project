@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Beanify.Views.ProductsView"
+             BackgroundColor="AliceBlue"
+             BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<ListView ItemsSource="{Binding Categ}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                    <Button Text="+" HorizontalOptions="End"/>
+                                </StackLayout>
+                                <ListView ItemsSource="{Binding Products}" HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                                    <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                                    <Button Text="More info" HorizontalOptions="End"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>--> <!-- Keep crashing because of an UnsupportedException, a solution could be to create a custom list layout with it own ctor -->
+
+            <ListView  ItemsSource="{Binding Products}" HasUnevenRows="True" Margin="20,40">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
+                                <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                <Button BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}" Text="More info" Command="{Binding Commands[LoadingDetails]}" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -12,6 +12,15 @@ namespace Beanify.ViewModels
 {
     public class ViewModelLocator
     {
+        public ProductsViewModel ProductsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ProductsViewModel>();
+            }
+        }
+
+
         public LastPageViewModel LastPageViewModel
         {
             get

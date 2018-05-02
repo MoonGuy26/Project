@@ -32,13 +32,14 @@ namespace Beanify.ViewModels
         public DashboardViewModel():base()
         {
             Commands.Add("Logout",new Command(OnLogoutExecute));
-            _accessToken = LocalStorageSettings.AccessToken;
+            //_accessToken = LocalStorageSettings.AccessToken;
             
-            GetCurrentUserRole();
+            //GetCurrentUserRole();
 
             //RemovePreviousStack();
 
             Commands.Add("OrderView", new Command(OnOrderingView));
+            Commands.Add("List", new Command(OnListingView));
         }
 
         #region commandMethods
@@ -53,6 +54,12 @@ namespace Beanify.ViewModels
         {
             _navigationService.NavigateToAsync<OrderNewViewModel>();
         }
+
+        private void OnListingView()
+        {
+            _navigationService.NavigateToAsync<ProductsViewModel>();
+        }
+
         #endregion
         #region canExecute
         #endregion

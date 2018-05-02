@@ -119,9 +119,9 @@ namespace Beanify.ViewModels
         {
             base.InitializeViewModel();
             AddValidations();
-            
 
-            
+
+            Commands.Add("OfflineLogin", new Command(OnNoLoginExecute));
             Commands.Add("Login", new Command(OnLoginExecute, CanLoginExecute));
             Commands.Add("ResetPassword", new Command(OnForgottenExecute));
             Commands.Add("LostFocusEmail", new Command(OnLostFocusEmailExecute));
@@ -138,6 +138,11 @@ namespace Beanify.ViewModels
         #region commandMethods
 
         #region execute
+        private async void OnNoLoginExecute()
+        {
+            await _navigationService.NavigateToAsync<DashboardViewModel>();
+        }
+
         private void OnLostFocusEmailExecute()
         {
             ValidateUserName();

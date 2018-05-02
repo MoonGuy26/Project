@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Beanify.Models
 {
-    public class ProductModel:AbstractBaseModel
+    public class ProductModel : AbstractBaseModel
     {
         public string Name { get; set; }
         public string Description { get; set; }
