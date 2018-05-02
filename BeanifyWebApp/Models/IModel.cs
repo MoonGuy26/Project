@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Beanify.Models
+namespace BeanifyWebApp.Models
 {
     public interface IModel
     {

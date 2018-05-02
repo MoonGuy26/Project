@@ -19,6 +19,8 @@ namespace BeanifyWebApp.Models
         {
         }
 
-        public System.Data.Entity.DbSet<Beanify.Models.OrderModel> OrderModels { get; set; }
+        public System.Data.Entity.DbSet<BeanifyWebApp.Models.OrderModel> OrderModels { get; set; }
+
+        
     }
 }

@@ -249,7 +249,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MvcAccountController.cs" />
-    <Compile Include="Controllers\MvcOrderModelsController.cs" />
     <Compile Include="Controllers\MvcProductModelsController.cs" />
     <Compile Include="Controllers\OrderModelsController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
@@ -257,11 +256,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805010852582_Initial.cs" />
-    <Compile Include="Migrations\201805010852582_Initial.Designer.cs">
-      <DependentUpon>201805010852582_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201805021023159_Initia5.cs" />
+    <Compile Include="Migrations\201805021023159_Initia5.Designer.cs">
+      <DependentUpon>201805021023159_Initia5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\ConfigurationOrder.cs" />
     <Compile Include="Models\AbstractBaseModel.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -270,6 +270,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrderContext.cs" />
     <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Models\OrderViewModels.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -342,16 +343,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MvcAccount\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\MvcProductModels\Create.cshtml" />
-    <Content Include="Views\MvcProductModels\Delete.cshtml" />
-    <Content Include="Views\MvcProductModels\Details.cshtml" />
-    <Content Include="Views\MvcProductModels\Edit.cshtml" />
-    <Content Include="Views\MvcProductModels\Index.cshtml" />
-    <Content Include="Views\MvcOrderModels\Create.cshtml" />
-    <Content Include="Views\MvcOrderModels\Delete.cshtml" />
-    <Content Include="Views\MvcOrderModels\Details.cshtml" />
-    <Content Include="Views\MvcOrderModels\Edit.cshtml" />
-    <Content Include="Views\MvcOrderModels\Index.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
@@ -359,6 +350,11 @@
     <Content Include="Views\MvcAccount\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\MvcAccount\ResetPassword.cshtml" />
     <Content Include="Views\MvcAccount\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\MvcProductModels\Create.cshtml" />
+    <Content Include="Views\MvcProductModels\Delete.cshtml" />
+    <Content Include="Views\MvcProductModels\Details.cshtml" />
+    <Content Include="Views\MvcProductModels\Edit.cshtml" />
+    <Content Include="Views\MvcProductModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -379,8 +375,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805010852582_Initial.resx">
-      <DependentUpon>201805010852582_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805021023159_Initia5.resx">
+      <DependentUpon>201805021023159_Initia5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

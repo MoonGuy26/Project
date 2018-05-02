@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Beanify.Models;
 using BeanifyWebApp.Models;
 
 namespace BeanifyWebApp.Controllers
@@ -39,6 +38,7 @@ namespace BeanifyWebApp.Controllers
         }
 
         // PUT: api/ProductModels/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProductModel(int id, ProductModel productModel)
         {
@@ -74,6 +74,7 @@ namespace BeanifyWebApp.Controllers
         }
 
         // POST: api/ProductModels
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(ProductModel))]
         public IHttpActionResult PostProductModel(ProductModel productModel)
         {
@@ -89,6 +90,7 @@ namespace BeanifyWebApp.Controllers
         }
 
         // DELETE: api/ProductModels/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(ProductModel))]
         public IHttpActionResult DeleteProductModel(int id)
         {

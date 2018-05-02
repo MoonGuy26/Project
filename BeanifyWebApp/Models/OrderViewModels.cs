@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Web;
 
-namespace Beanify.Models
+namespace BeanifyWebApp.Models
 {
-    public class OrderModel:AbstractBaseModel
+    public class OrderViewModel
     {
         public string ProductName { get; set; }
         public string ClientName { get; set; }

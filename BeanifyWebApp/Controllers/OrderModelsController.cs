@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Beanify.Models;
 using BeanifyWebApp.Models;
 
 namespace BeanifyWebApp.Controllers
@@ -16,11 +15,9 @@ namespace BeanifyWebApp.Controllers
     [Authorize]
     public class OrderModelsController : ApiController
     {
-        
         private OrderContext db = new OrderContext();
 
         // GET: api/OrderModels
-        [AllowAnonymous]
         public IQueryable<OrderModel> GetOrderModels()
         {
             return db.OrderModels;
