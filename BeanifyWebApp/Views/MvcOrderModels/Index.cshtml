@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BeanifyWebApp.Models.OrderViewModel>
+@using BeanifyWebApp.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr class='@(item.IsNew ? "table-info" : "table-light") zoom' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.ClientName)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    
+                </td>
+
+            </tr>
+        
+        }
+        </tbody>
+</table>
