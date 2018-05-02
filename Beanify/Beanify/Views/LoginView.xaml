@@ -95,7 +95,7 @@
                     TextColor="{StaticResource ErrorColor}"/>
             </StackLayout>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button Text="Sign in" Command="{Binding Commands[OfflineLogin]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"></Button>
+                <Button Text="Sign in" Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"></Button>
                 
                 <forms:AnimationView 
 	                x:Name="animationView" 

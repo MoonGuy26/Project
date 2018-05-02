@@ -13,9 +13,9 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" >
-                <StackLayout  Margin="15, 15, 15, 0"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="250" WidthRequest="350">
-                    <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFit" VerticalOptions="Center" ></Image>
-                    <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <StackLayout  Margin="15, 15, 15, 0"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="300" WidthRequest="450">
+                    <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFit" VerticalOptions="Center" HeightRequest="250" WidthRequest="350"></Image>
+                    <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="End"/>
                 </StackLayout>
                 <StackLayout Margin="15, 15, 15, 0" VerticalOptions="Center"  HorizontalOptions="Center" >
                     <ScrollView>

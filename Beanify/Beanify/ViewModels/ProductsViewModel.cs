@@ -22,7 +22,24 @@ namespace Beanify.ViewModels
         {
             get; set;
         }
-
+        public ProductModel _selectedItem;
+        public ProductModel SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value && value != null)
+                {
+                    if (_selectedItem != null)
+                    {
+                        Products[Products.IndexOf(_selectedItem)].IsSelected = false;
+                    }
+                    _selectedItem = value;
+                    Products[Products.IndexOf(_selectedItem)].IsSelected = true;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+            }
+        }
 
         public ProductsViewModel() : base()
         {
@@ -31,13 +48,13 @@ namespace Beanify.ViewModels
             Products = new ObservableCollection<ProductModel>
             {
                 new ProductModel {
-                    Name = "Qwerty",Description = "azerty", Price = 12 , ImagePath = "@drawable/Lightstart1.jpg"
+                    Name = "Qwerty",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart1.jpg"
                 },
                 new ProductModel {
-                    Name = "Jean",Description = "azerty", Price = 12 , ImagePath = "@drawable/Lightstart2.jpg"
+                    Name = "Jean",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart2.jpg"
                 },
                 new ProductModel {
-                    Name = "Pierre",Description = "azerty", Price = 12 , ImagePath = "@drawable/Lightstart3.jpg"
+                    Name = "Pierre",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart3.jpg"
                 }
 
             };
@@ -60,9 +77,18 @@ namespace Beanify.ViewModels
             };*/
         }
 
+        public ProductModel FindSelectedItem(ObservableCollection<ProductModel> productModels) {
+            foreach (ProductModel items in productModels)
+            {
+                if (items.IsSelected == true) { return items;  }
+            }
+            return null;
+
+        }
+
         public async void OnMoreInfoExecute()
         {
-            await _navigationService.NavigateToAsync<OrderNewViewModel>();
+            await _navigationService.NavigateToAsync<OrderNewViewModel>(FindSelectedItem(Products));
         
         }
   
