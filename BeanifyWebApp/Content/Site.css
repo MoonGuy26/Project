@@ -80,3 +80,25 @@ textarea {
 
         
     }
+table tr td a {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+table tr td {
+    padding-left: 0;
+    padding-right: 0;
+}
+.zoom {
+    transition: transform .2s;
+}
+.zoom:hover {
+    transform: scale(1.05);
+}
+
+table tr:hover {
+    -webkit-filter: brightness(110%);
+    filter: brightness(110%);
+    
+    cursor: pointer;
+}

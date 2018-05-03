@@ -249,6 +249,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MvcAccountController.cs" />
+    <Compile Include="Controllers\MvcOrderModelsController.cs" />
     <Compile Include="Controllers\MvcProductModelsController.cs" />
     <Compile Include="Controllers\OrderModelsController.cs" />
     <Compile Include="Controllers\ProductModelsController.cs" />
@@ -355,6 +356,11 @@
     <Content Include="Views\MvcProductModels\Details.cshtml" />
     <Content Include="Views\MvcProductModels\Edit.cshtml" />
     <Content Include="Views\MvcProductModels\Index.cshtml" />
+    <Content Include="Views\MvcOrderModels\Create.cshtml" />
+    <Content Include="Views\MvcOrderModels\Delete.cshtml" />
+    <Content Include="Views\MvcOrderModels\Details.cshtml" />
+    <Content Include="Views\MvcOrderModels\Edit.cshtml" />
+    <Content Include="Views\MvcOrderModels\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
