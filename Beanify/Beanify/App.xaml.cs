@@ -35,7 +35,7 @@ namespace Beanify
             }
             else
             { 
-                MainPage = new NavigationPage(new Views.CarouselViews.CustomCarouselPage());
+                MainPage = new NavigationPage(new Views.HomeCarouselView());
             }
 
         }
@@ -45,10 +45,12 @@ namespace Beanify
             UnityContainer unityContainer = new UnityContainer();
             unityContainer.RegisterType<IBaseService, BaseService>();
             unityContainer.RegisterType<IAccountService, AccountService>();
+            unityContainer.RegisterType<IOrderService, OrderService>();
             unityContainer.RegisterSingleton<INavigationService, NavigationService>();
             unityContainer.RegisterType<IOrderService, OrderService>();
             unityContainer.RegisterType<LastPageViewModel>();
             unityContainer.RegisterType<LoginViewModel>();
+            unityContainer.RegisterType<HomeCarouselViewModel>();
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unityContainer));
             var viewModelLocator = new ViewModelLocator();
             var navigationService = viewModelLocator.NavigationService;

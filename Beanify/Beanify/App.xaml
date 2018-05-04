@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:Beanify.ViewModels;assembly=Beanify"
              xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
              xmlns:converters="clr-namespace:Beanify.Utils.Converters"
+             xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              x:Class="Beanify.App">
 	<Application.Resources>
 
@@ -15,6 +16,7 @@
             <converters:StringToVisibilityConverter x:Key="stringToVisibilityConverter" />
             <converters:ErrorsToVisibilityConverter x:Key="errorsToVisibilityConverter" />
             <converters:BoolToInvertBoolConverter x:Key="boolToInvertBoolConverter" />
+            <converters:ScreenOrientationToCarouselOrientationConverter x:Key="screenOrientationToCarouselOrientationConverter" />
             
             <Color x:Key="FocusColor">#abdbab</Color>
             <Color x:Key="ErrorColor">#ea251e</Color>

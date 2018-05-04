@@ -203,7 +203,7 @@ namespace Beanify.ViewModels
 
         #endregion
 
-        #region navigateMethods
+       #region navigateMethods
         private async Task NavigateDashboardView()
         {
             ErrorLoginMessage = "";

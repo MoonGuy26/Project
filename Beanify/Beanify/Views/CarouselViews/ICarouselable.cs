@@ -7,6 +7,6 @@ namespace Beanify.Views
 {
     public interface ICarouselable
     {
-        StackLayout FinalStack { get; set; }
+        int Index { get; set; }
     }
 }

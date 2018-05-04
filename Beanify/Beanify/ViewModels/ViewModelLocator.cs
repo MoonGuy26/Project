@@ -21,11 +21,11 @@ namespace Beanify.ViewModels
         }
 
 
-        public LastPageViewModel LastPageViewModel
+        public ButtonHomePageViewModel ButtonHomePageViewModel
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<LastPageViewModel>();
+                return ServiceLocator.Current.GetInstance<ButtonHomePageViewModel>();
             }
         }
 
@@ -66,6 +66,22 @@ namespace Beanify.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<OrderReviewViewModel>();
+            }
+        }
+
+        public HomeCarouselViewModel HomeCarouselViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomeCarouselViewModel>();
+            }
+        }
+
+        public HomePageViewModel HomePageViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomePageViewModel>();
             }
         }
 
