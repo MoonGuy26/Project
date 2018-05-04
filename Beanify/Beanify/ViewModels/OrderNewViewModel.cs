@@ -14,11 +14,48 @@ namespace Beanify.ViewModels
     {
         private IAccountService _accountService;
 
-        private ObservableCollection<int> _observable_picker;
+        private ObservableCollection<string> _observable_picker = new ObservableCollection<string>();
 
-        public ObservableCollection<int> ObservablePicker
+        public ObservableCollection<string> ObservablePicker
         {
             get { return _observable_picker;  }
+            set {
+                if (_observable_picker != value)
+                {
+                    _observable_picker = value;
+                    OnPropertyChanged(nameof(ObservablePicker));
+                }
+            }
+        }
+
+        private string _selectedItem;
+
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+            }
+        }
+
+        private int _quantity = 1;
+
+        public int Quantity
+        {
+            get { return _quantity; }
+            set
+            {
+                if (_quantity != value)
+                {
+                    _quantity = value;
+                    OnPropertyChanged(nameof(Quantity));
+                }
+            }
         }
 
         private ProductModel _productModel;
@@ -37,24 +74,26 @@ namespace Beanify.ViewModels
         }
 
         static private int capacity = 100;
-        private List<int> picker_list = new List<int>(capacity);
+        private List<string> picker_list = new List<string>(capacity);
 
         public OrderNewViewModel(IAccountService accountService) : base()
         {
 
             _accountService = accountService;
 
-            picker_list = ListInitializer(picker_list);
-            _observable_picker = new ObservableCollection<int>(picker_list);
+
 
             Commands.Add("Continue", new Command(OnContinueExecute));
+            
         }
 
-        private List<int> ListInitializer(List<int> list)
+        private List<string> ListInitializer(List<string> list)
         {
             for (int i = 1; i <= capacity; i++)
             {
-                list.Add(i);
+
+                var price = _productModel.Price * i;
+                list.Add(i.ToString() + "items : (£" + price.ToString() + ")");
             }
             return list;
         }
@@ -65,7 +104,13 @@ namespace Beanify.ViewModels
 
         private async Task NavigateOrderReviewView()
         {
-            await _navigationService.NavigateToAsync<OrderReviewViewModel>();
+            await _navigationService.NavigateToAsync<OrderReviewViewModel>(new OrderModel
+            {   ProductName = ProductModel.Name,
+                Price = _productModel.Price * (_quantity + 1),
+                Quantity = _quantity + 1,
+                ImagePath = ProductModel.ImagePath,
+                ClientName = "s.daroukh@live.fr",
+            });
         }
 
 
@@ -73,6 +118,9 @@ namespace Beanify.ViewModels
         {
 
             ProductModel = (navigationData as ProductModel);
+            picker_list = ListInitializer(picker_list);
+            ObservablePicker = new ObservableCollection<string>(picker_list);
+
             return Task.FromResult(true);
             //return base.InitializeAsync(navigationData);
         }

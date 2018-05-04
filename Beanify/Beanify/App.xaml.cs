@@ -46,6 +46,7 @@ namespace Beanify
             unityContainer.RegisterType<IBaseService, BaseService>();
             unityContainer.RegisterType<IAccountService, AccountService>();
             unityContainer.RegisterSingleton<INavigationService, NavigationService>();
+            unityContainer.RegisterType<IOrderService, OrderService>();
             unityContainer.RegisterType<LastPageViewModel>();
             unityContainer.RegisterType<LoginViewModel>();
             ServiceLocator.SetLocatorProvider(() => new UnityServiceLocator(unityContainer));

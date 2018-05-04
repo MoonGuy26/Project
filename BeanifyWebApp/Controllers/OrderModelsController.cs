@@ -122,5 +122,7 @@ namespace BeanifyWebApp.Controllers
         {
             return db.OrderModels.Count(e => e.Id == id) > 0;
         }
+
+       
     }
 }

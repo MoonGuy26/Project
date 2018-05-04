@@ -13,22 +13,22 @@
         <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  >
             <StackLayout  Margin="15, 15, 15, 0" VerticalOptions="StartAndExpand" HorizontalOptions="Center" HeightRequest="250" WidthRequest="350">
                 <Label Text="Order Review" FontSize="25" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Text="Lorem Ipsum" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Image Source="@drawable/Lightstart2.jpg" Aspect="AspectFill" />
+                <Label Text="{Binding Order.ProductName}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Image Source="{Binding Order.ImagePath}" Aspect="AspectFill" />
                 
             </StackLayout>
             <StackLayout Margin="15, 15, 15, 0"  VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
                 <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label Text="{Binding Order.ProductName}" FontSize="Medium" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
-                    <Label Text="{Binding Order.Quantity}" FontSize="Medium" HorizontalOptions="End" LineBreakMode="WordWrap"/>
+                    <Label Text="{Binding Order.ProductName}" FontSize="Large" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
+                    <Label Text="{Binding Order.Quantity}" FontSize="Large" HorizontalOptions="End" LineBreakMode="WordWrap"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label Text="Bindable Item Name DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
-                    <Label Text="Bindable Item Name DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD" HorizontalOptions="End" LineBreakMode="WordWrap"/>
+                    <Label Text="Item Name" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
+                    <Label Text="Quantity" HorizontalOptions="End" LineBreakMode="WordWrap"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" VerticalOptions="StartAndExpand" >
-                    <Label Text="Price :" HorizontalOptions="StartAndExpand"/>
-                    <Label Text="{Binding Order.Price}" HorizontalOptions="End"/>
+                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" >
+                    <Label Text="Price :" HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Order.Price}" FontSize="50" FontAttributes="Italic" HorizontalOptions="Fill"/>
                 </StackLayout>
                 <Button Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
             </StackLayout>

@@ -85,13 +85,14 @@ namespace Beanify.RestClients
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine(@"				TodoItem successfully saved.");
+                    Debug.Write(response);
+                    Debug.WriteLine(@"TodoItem successfully saved.");
                 }
 
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
         }
 
@@ -194,10 +195,9 @@ namespace Beanify.RestClients
 
         }
 
-        public async Task RequestWithSerializableParameter(T item, string restUrl)
+        public async Task RequestWithSerializableParameter(T item)
         {
             var client = new HttpClient();
-            RestUrl = restUrl;
             var uri = new Uri(string.Format(RestUrl, string.Empty));
             try
             {
@@ -222,12 +222,11 @@ namespace Beanify.RestClients
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            HttpResponseMessage response1 = null;
+
+            /*HttpResponseMessage response1 = null;
             try
             {
-                response1 = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
-                Debug.WriteLine(response1);
-                var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
+                var json = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
                 Debug.WriteLine(json);
                 var products = JsonConvert.DeserializeObject<List<ProductModel>>(json);
 
@@ -237,8 +236,12 @@ namespace Beanify.RestClients
             {
                 Debug.Write(e);
             }
-            return null;
+            return null;*/
 
+
+            var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
+            Debug.WriteLine(json);
+            return null;
         }
 
         #endregion
