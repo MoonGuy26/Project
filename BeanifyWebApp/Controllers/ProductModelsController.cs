@@ -18,11 +18,7 @@ namespace BeanifyWebApp.Controllers
         private ProductContext db = new ProductContext();
 
         // GET: api/ProductModels
-<<<<<<< HEAD
         [Authorize]
-=======
-        
->>>>>>> ff63baa8428cf5aebe6647085b8de7f1b45d51bf
         public IQueryable<ProductModel> GetProductModels()
         {
             return db.ProductModels;
