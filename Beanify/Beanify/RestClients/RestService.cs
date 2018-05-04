@@ -106,13 +106,13 @@ namespace Beanify.RestClients
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Debug.WriteLine(@"				TodoItem successfully deleted.");
+                    Debug.WriteLine(@"TodoItem successfully deleted.");
                 }
 
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+                Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
         }
 
@@ -216,6 +216,29 @@ namespace Beanify.RestClients
             {
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
+        }
+
+        public async Task<List<ProductModel>> GetProducts(string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response1 = null;
+            try
+            {
+                response1 = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
+                Debug.WriteLine(response1);
+                var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
+                Debug.WriteLine(json);
+                var products = JsonConvert.DeserializeObject<List<ProductModel>>(json);
+
+                return products;
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e);
+            }
+            return null;
+
         }
 
         #endregion

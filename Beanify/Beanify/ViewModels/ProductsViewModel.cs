@@ -32,10 +32,10 @@ namespace Beanify.ViewModels
                 {
                     if (_selectedItem != null)
                     {
-                        Products[Products.IndexOf(_selectedItem)].IsSelected = false;
+                        //Products[Products.IndexOf(_selectedItem)].IsSelected = false;
                     }
                     _selectedItem = value;
-                    Products[Products.IndexOf(_selectedItem)].IsSelected = true;
+                    //Products[Products.IndexOf(_selectedItem)].IsSelected = true;
                     OnPropertyChanged(nameof(SelectedItem));
                 }
             }
@@ -43,9 +43,10 @@ namespace Beanify.ViewModels
 
         public ProductsViewModel() : base()
         {
-            //ProductService productService = new ProductService();
+            
+            ProductService productService = new ProductService();
 
-            Products = new ObservableCollection<ProductModel>
+           /* Products = new ObservableCollection<ProductModel>
             {
                 new ProductModel {
                     Name = "Qwerty",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart1.jpg"
@@ -57,11 +58,11 @@ namespace Beanify.ViewModels
                     Name = "Pierre",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart3.jpg"
                 }
 
-            };
+            };*/
             Commands.Add("LoadingDetails", new Command(OnMoreInfoExecute));
 
 
-            //Products = new ObservableCollection<ProductModel>(productService.GetProducts().Result);
+            Products = new ObservableCollection<ProductModel>(productService.GetProducts().Result);
 
             /*Categ = new ObservableCollection<ProductsModel>
             {
@@ -80,7 +81,7 @@ namespace Beanify.ViewModels
         public ProductModel FindSelectedItem(ObservableCollection<ProductModel> productModels) {
             foreach (ProductModel items in productModels)
             {
-                if (items.IsSelected == true) { return items;  }
+                //if (items.IsSelected == true) { return items;  }
             }
             return null;
 
@@ -88,8 +89,9 @@ namespace Beanify.ViewModels
 
         public async void OnMoreInfoExecute()
         {
-            await _navigationService.NavigateToAsync<OrderNewViewModel>(FindSelectedItem(Products));
-        
+            //await _navigationService.NavigateToAsync<OrderNewViewModel>(FindSelectedItem(Products));
+            await _navigationService.NavigateToAsync<OrderNewViewModel>(_selectedItem);
+
         }
   
     }
