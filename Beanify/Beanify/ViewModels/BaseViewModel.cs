@@ -3,6 +3,7 @@ using Beanify.Utils.Orientation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,6 +15,11 @@ namespace Beanify.ViewModels
     {
         protected readonly INavigationService _navigationService;
         protected StackOrientation _screenOrientation;
+        protected double _screenWidth;
+        protected double _screenHeight;
+
+
+
 
         public StackOrientation ScreenOrientation
         {
@@ -25,6 +31,23 @@ namespace Beanify.ViewModels
                     _screenOrientation = value;
                     OnPropertyChanged(nameof(ScreenOrientation));
                 }
+            }
+        }
+
+        public double ScreenWidth
+        {
+            get { return _screenWidth; }
+            set { _screenWidth = value;
+                OnPropertyChanged(nameof(ScreenWidth));
+            }
+        }
+        public double ScreenHeight
+        {
+            get { return _screenHeight; }
+            set
+            {
+                _screenHeight = value;
+                OnPropertyChanged(nameof(ScreenHeight));
             }
         }
 
@@ -52,8 +75,11 @@ namespace Beanify.ViewModels
                     ScreenOrientation = StackOrientation.Vertical;
                     break;
             }
-
-            //Debug.WriteLine(ScreenOrientation);
+            ScreenWidth = Application.Current.MainPage.Width;
+            ScreenHeight = Application.Current.MainPage.Height;
+            Debug.WriteLine(ScreenOrientation);
+            Debug.WriteLine(ScreenWidth);
+            Debug.WriteLine(ScreenHeight);
         }
 
         protected virtual void InitializeViewModel()

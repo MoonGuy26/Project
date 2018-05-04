@@ -21,20 +21,22 @@ namespace BeanifyWebApp.Controllers
         public ActionResult Index()
         {
             var orderViewModels = new List<OrderViewModel>();
-            foreach(var orderModel in db.OrderModels.OrderByDescending(o=>o.Date).ToList())
+            foreach (var orderModel in db.OrderModels.OrderByDescending(o => o.Date).ToList())
             {
                 orderViewModels.Add(new OrderViewModel
                 {
-                    Id=orderModel.Id,
-                    ClientName = dbUsers.Users.Where(u => u.Id == orderModel.UserId).First().UserName,
-                    ProductName = dbProduct.ProductModels.Where(p => p.Id == orderModel.Id).First().Name,
+                    Id = orderModel.Id,
+                    ClientName = "test",
+                    // dbUsers.Users.Where(u => u.Id == orderModel.UserId).First().UserName,
+                    ProductName = "test",
+                    //dbProduct.ProductModels.Where(p => p.Id == orderModel.Id).First().Name,
                     Date = orderModel.Date,
                     Price = orderModel.Price,
                     Quantity = orderModel.Quantity,
                     IsNew = orderModel.IsNew
                 });
             }
-            
+
             return View(orderViewModels);
         }
 

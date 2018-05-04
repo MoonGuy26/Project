@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CarouselView.FormsPlugin.iOS;
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using HockeyApp.iOS;
 using Lottie.Forms.iOS.Renderers;
@@ -29,6 +30,8 @@ namespace Beanify.iOS
             manager.StartManager();
             manager.Authenticator.AuthenticateInstallation();
             global::Xamarin.Forms.Forms.Init();
+            CarouselViewRenderer.Init();
+            CachedImageRenderer.Init();
             LoadApplication(new App());
 
             AnimationViewRenderer.Init();

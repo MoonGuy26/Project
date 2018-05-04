@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using Lottie.Forms.Droid;
 using HockeyApp.Android;
+using CarouselView.FormsPlugin.Android;
+
+using FFImageLoading.Forms.Droid;
 
 namespace Beanify.Droid
 {
@@ -25,6 +28,8 @@ namespace Beanify.Droid
             CrashManager.Register(this, "7f70a56f74af4103ae0b13417235f1f9");
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            CarouselViewRenderer.Init();
+            CachedImageRenderer.Init(true);
 
             AnimationViewRenderer.Init();
 

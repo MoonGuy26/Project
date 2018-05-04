@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Beanify.Views.HomePageView"
+             xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             IsClippedToBounds="True"
+             
+             BindingContext="{Binding HomePageViewModel, Source={StaticResource Locator}}">
+    <ContentView.Behaviors>
+        <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
+    </ContentView.Behaviors>
+<ContentView.Content>
+        <StackLayout x:Name="layout" BackgroundColor="Black" Orientation="{Binding ScreenOrientation,Mode=TwoWay}">
+            
+                <Image Source="{Binding ImagePath}"  Margin="15, 0, 15, 0" ></Image>
+                <Label Text="{Binding Text}" HorizontalOptions="Center" Margin="15, 0, 15, 0" LineBreakMode="WordWrap" TextColor="WhiteSmoke"></Label>
+            
+
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -13,6 +13,8 @@ namespace Beanify.Views.CarouselViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SimplePage : ContentPage, ICarouselable
     {
+        public int Index { get ; set ; }
+
         public SimplePage(string textToDisplay, string imgToDisplay)
         {
             InitializeComponent();
@@ -23,12 +25,8 @@ namespace Beanify.Views.CarouselViews
 
             text.Text = textToDisplay;
             img.Source = imgToDisplay;
-
-            this.FinalStack = layout;
-
-            this.Content = FinalStack;
         }
 
-        public StackLayout FinalStack { get; set; }
+        
     }
 }

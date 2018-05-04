@@ -95,8 +95,15 @@ table tr td {
 .zoom:hover {
     transform: scale(1.05);
 }
+.zoom-little {
+    transition: transform .2s;
+}
 
-table tr:hover {
+.zoom-little:hover {
+        transform: scale(1.01);
+}
+
+table tbody tr:hover {
     -webkit-filter: brightness(110%);
     filter: brightness(110%);
     

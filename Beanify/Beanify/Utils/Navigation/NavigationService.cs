@@ -39,7 +39,8 @@ namespace Beanify.Utils.Navigation
         public Task InitializeAsync()
         {
             if (string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
-                return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
+                return NavigateToAsync<HomeCarouselViewModel>();
+            // return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
             else
                 return NavigateToAsync<DashboardViewModel>();
         }
