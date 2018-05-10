@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Beanify.RestClients
@@ -195,9 +196,10 @@ namespace Beanify.RestClients
 
         }
 
-        public async Task RequestWithSerializableParameter(T item)
+        public async Task RequestWithSerializableParameter(T item, string accessToken)
         {
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             var uri = new Uri(string.Format(RestUrl, string.Empty));
             try
             {
@@ -218,30 +220,25 @@ namespace Beanify.RestClients
             }
         }
 
-        public async Task<List<ProductModel>> GetProducts(string accessToken)
+        public async Task<List<ProductModel>> GetProductsAsync(string accessToken)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-            /*HttpResponseMessage response1 = null;
-            try
-            {
-                var json = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
-                Debug.WriteLine(json);
-                var products = JsonConvert.DeserializeObject<List<ProductModel>>(json);
-
-                return products;
-            }
-            catch (Exception e)
-            {
-                Debug.Write(e);
-            }
-            return null;*/
-
-
-            var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels");
+            var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels").ConfigureAwait(false);
             Debug.WriteLine(json);
-            return null;
+            var products = JsonConvert.DeserializeObject<List<ProductModel>>(json);
+            return products;
+        }
+
+        public async Task<HttpResponseMessage> SaveOrderAsync(string accessToken, IModel orderModel)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var json = JsonConvert.SerializeObject(orderModel);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels", content).ConfigureAwait(false);
+            Debug.WriteLine(response);
+            return response;
         }
 
         #endregion

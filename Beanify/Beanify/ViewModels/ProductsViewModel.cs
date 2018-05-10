@@ -30,40 +30,23 @@ namespace Beanify.ViewModels
             {
                 if (_selectedItem != value && value != null)
                 {
-                    if (_selectedItem != null)
-                    {
-                        //Products[Products.IndexOf(_selectedItem)].IsSelected = false;
-                    }
-                    _selectedItem = value;
-                    //Products[Products.IndexOf(_selectedItem)].IsSelected = true;
+                    if (_selectedItem != null){}
+                    _selectedItem = value;                   
                     OnPropertyChanged(nameof(SelectedItem));
                 }
             }
         }
 
-        public ProductsViewModel() : base()
+        public ProductsViewModel(IProductService ProductService) : base()
         {
+
+            ProductService productService = (ProductService)ProductService;
+            Products = new ObservableCollection<ProductModel>(productService.GetProducts());
             
-            ProductService productService = new ProductService();
+            // Problem has been identified : It should be run-away tasks issues, so, it means that the UI is lock due to this run-away tasks
+            // https://blog.xamarin.com/getting-started-with-async-await/ - Here is a nice tutorial to get rid of it.
 
-            Products = new ObservableCollection<ProductModel>
-            {
-                new ProductModel {
-                    Name = "Qwerty",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart1.jpg"
-                },
-                new ProductModel {
-                    Name = "Jean",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart2.jpg"
-                },
-                new ProductModel {
-                    Name = "Pierre",Description = "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", Price = 12 , ImagePath = "@drawable/Lightstart3.jpg"
-                }
-
-            };
             Commands.Add("LoadingDetails", new Command(OnMoreInfoExecute));
-
-
-           // Products = new ObservableCollection<ProductModel>(productService.GetProducts().Result);
-
             /*Categ = new ObservableCollection<ProductsModel>
             {
                 new ProductsModel {
@@ -78,20 +61,9 @@ namespace Beanify.ViewModels
             };*/
         }
 
-        public ProductModel FindSelectedItem(ObservableCollection<ProductModel> productModels) {
-            foreach (ProductModel items in productModels)
-            {
-                //if (items.IsSelected == true) { return items;  }
-            }
-            return null;
-
-        }
-
         public async void OnMoreInfoExecute()
         {
-            //await _navigationService.NavigateToAsync<OrderNewViewModel>(FindSelectedItem(Products));
             await _navigationService.NavigateToAsync<OrderNewViewModel>(_selectedItem);
-
         }
   
     }
