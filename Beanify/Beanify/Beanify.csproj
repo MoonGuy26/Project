@@ -21,9 +21,11 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Unity" Version="5.8.6" />
+    <PackageReference Include="Xam.FormsPlugin.Iconize" Version="1.0.10" />
+    <PackageReference Include="Xam.Plugin.Iconize" Version="1.0.10" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.6" />
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.444934" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
     <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="1.4.0" />
   </ItemGroup>
 
@@ -36,6 +38,12 @@
     </Compile>
     <Compile Update="Views\CarouselViews\SimplePage.xaml.cs">
       <DependentUpon>SimplePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DashboardNavigationViewMaster.xaml.cs">
+      <DependentUpon>DashboardNavigationViewMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Models\DashboardNavigationViewMenuItem.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\ForgottenPasswordView.xaml.cs">
       <DependentUpon>ForgottenPasswordView.xaml</DependentUpon>
@@ -56,6 +64,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CustomNavigationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DashboardNavigationView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DashboardNavigationViewDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DashboardNavigationViewMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DashboardView.xaml">

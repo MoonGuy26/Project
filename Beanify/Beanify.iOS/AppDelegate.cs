@@ -25,6 +25,10 @@ namespace Beanify.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            FormsPlugin.Iconize.iOS.IconControls.Init();
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
+                                  .With(new Plugin.Iconize.Fonts.MaterialModule());
+
             var manager = BITHockeyManager.SharedHockeyManager;
             manager.Configure("68bc18fcb44a43a3978f485db8f2fe09");
             manager.StartManager();
@@ -35,6 +39,7 @@ namespace Beanify.iOS
             LoadApplication(new App());
 
             AnimationViewRenderer.Init();
+            
 
             return base.FinishedLaunching(app, options);
         }

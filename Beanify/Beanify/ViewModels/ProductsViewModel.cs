@@ -12,6 +12,7 @@ namespace Beanify.ViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {
+        private ProductModel _selectedItem;
 
         public ObservableCollection<ProductsModel> Categ
         {
@@ -22,7 +23,6 @@ namespace Beanify.ViewModels
         {
             get; set;
         }
-        public ProductModel _selectedItem;
         public ProductModel SelectedItem
         {
             get { return _selectedItem; }

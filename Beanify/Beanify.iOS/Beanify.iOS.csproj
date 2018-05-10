@@ -94,7 +94,9 @@
     <Compile Include="Utils\Effects\EntryLineColorEffect.cs" />
     <Compile Include="Utils\Orientation\DeviceOrientationImplementation.cs" />
     <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="material_loader.json" />
     <BundleResource Include="trail_loading.json" />
@@ -130,6 +132,18 @@
     <PackageReference Include="HockeySDK.Xamarin">
       <Version>5.1.2</Version>
     </PackageReference>
+    <PackageReference Include="Xam.FormsPlugin.Iconize">
+      <Version>1.0.10</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Iconize">
+      <Version>1.0.10</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Iconize.FontAwesome">
+      <Version>1.0.10</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Iconize.Material">
+      <Version>1.0.10</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
     </PackageReference>
@@ -144,5 +158,8 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading_dots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu_button.png" />
   </ItemGroup>
 </Project>

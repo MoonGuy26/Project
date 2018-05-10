@@ -40,7 +40,7 @@ namespace Beanify.ViewModels.CarouselViewModels
         #region navigateMethods
         private async Task NavigateLoginView()
         {
-            await _navigationService.NavigateToAsync<LoginViewModel>();
+            await _navigationService.SetRootAsync<LoginViewModel>();
         }
         #endregion
 

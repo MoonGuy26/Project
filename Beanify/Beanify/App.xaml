@@ -5,6 +5,7 @@
              xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
              xmlns:converters="clr-namespace:Beanify.Utils.Converters"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             
              x:Class="Beanify.App">
 	<Application.Resources>
 
