@@ -86,31 +86,21 @@ namespace BeanifyWebApp.Controllers
             var userId = User.Identity.GetUserId();
             var productId = dbProduct.ProductModels.Where(p => p.Name == orderModel.ProductName).First().Id;
             var model = new OrderModel { ProductId = productId, UserId = userId, Date = orderModel.Date, IsNew = true, Price = orderModel.Price, Quantity = orderModel.Quantity };
-
+            EmailService email = new EmailService();
+            IdentityMessage identityMessage = new IdentityMessage();
+            identityMessage.Destination = User.Identity.GetUserName();
+            identityMessage.Subject = "Order Confirmation";
+            identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\nThanks for buying our delicious coffees.";
+            email.Send(identityMessage);
             db.OrderModels.Add(model);
 
             db.SaveChanges();
 
+
+
             return CreatedAtRoute("DefaultApi", new { id = model.Id }, orderModel);
         }
 
-        //
-        // POST: api/OrderModels/OrderConfirmation
-        public async Task<IHttpActionResult> OrderConfirmation(OrderViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                EmailService email = new EmailService();
-                IdentityMessage identityMessage = new IdentityMessage();
-                identityMessage.Destination = User.Identity.GetUserId();
-                identityMessage.Subject = "Order Confirmation";
-                identityMessage.Body = "You've just ordered " + model.Quantity.ToString() + " " + model.ProductName + ".\nThanks for buying our delicious coffees.";
-                await email.SendAsync(identityMessage);
-                //await UserManager.SendEmailAsync("s.daroukh@live.fr", "Order Confirmation", "You've just ordered " + model.Quantity + " " + model.ProductName + ".\nThanks for buying our delicious coffees.");
-            }
-            // If we got this far, something failed, redisplay form
-            return null;
-        }
 
         // DELETE: api/OrderModels/5
         [ResponseType(typeof(OrderModel))]
@@ -141,7 +131,5 @@ namespace BeanifyWebApp.Controllers
         {
             return db.OrderModels.Count(e => e.Id == id) > 0;
         }
-
-       
     }
 }

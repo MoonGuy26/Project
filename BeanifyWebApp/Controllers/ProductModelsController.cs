@@ -18,7 +18,7 @@ namespace BeanifyWebApp.Controllers
         private ProductContext db = new ProductContext();
 
         // GET: api/ProductModels
-        [Route("api/ProductModels")]
+        [Authorize]
         public IQueryable<ProductModel> GetProductModels()
         {
             return db.ProductModels;
@@ -38,6 +38,7 @@ namespace BeanifyWebApp.Controllers
         }
 
         // PUT: api/ProductModels/5
+        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProductModel(int id, ProductModel productModel)
         {

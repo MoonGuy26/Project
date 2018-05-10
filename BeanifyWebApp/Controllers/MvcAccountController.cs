@@ -270,25 +270,6 @@ namespace BeanifyWebApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //
-        // POST: /MvcAccount/OrderConfirmation
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<ActionResult> OrderConfirmation(OrderViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await UserManager.FindByNameAsync(model.ClientName);
-                if (user == null)
-                {
-                    return null;
-                }
-                await UserManager.SendEmailAsync("s.daroukh@live.fr", "Order Confirmation", "You've just ordered " + model.Quantity + " " + model.ProductName + ".\nThanks for buying our delicious coffees.");
-            }
-            // If we got this far, something failed, redisplay form
-            return null;
-        }
-
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
