@@ -221,7 +221,7 @@ namespace Beanify.ViewModels
                     {
                         cts.Cancel();
                         IsVisibleImage = false;
-                        await _navigationService.SetRootAsync<DashboardViewModel>();
+                        await _navigationService.InitializeAsync();
                         //((App)Application.Current).MainPage = new NavigationPage(new Views.DashboardView());
                     }
 

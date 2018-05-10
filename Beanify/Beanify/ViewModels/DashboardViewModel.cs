@@ -69,15 +69,15 @@ namespace Beanify.ViewModels
         private async void GetCurrentUserRole()
         {
             accountService = new AccountService();
-            var isAdmin = await accountService.IsAdmin(_accessToken);
-            if(isAdmin)
-            {
-                DashboardMessage = "ADMIN DASHBOARD";
-            }
-            else
-            {
-                DashboardMessage = "USER DASHBOARD";
-            }
+            //var isAdmin = await accountService.IsAdmin(_accessToken);
+            //if(isAdmin)
+            //{
+            //    DashboardMessage = "ADMIN DASHBOARD";
+            //}
+            //else
+            //{
+            //    DashboardMessage = "USER DASHBOARD";
+            //}
         }
 
         private async void RemovePreviousStack()

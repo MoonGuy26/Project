@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
+             x:Class="Beanify.Views.DashboardNavigationViewMaster"
+             >
+  <StackLayout>
+    <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}"
+              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+              >
+    <ListView.Behaviors>
+        <b:EventToCommandBehavior EventName="ItemSelected" Command="{Binding Commands[ItemSelected]}" />
+    </ListView.Behaviors>
+    <ListView.Header>
+                
+      </ListView.Header>
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+                <Grid Padding="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="8*"/>
+                    </Grid.ColumnDefinitions>
+                            <iconize:IconImage HeightRequest="20" Icon="{Binding Icon}" WidthRequest="20" 
+                                IconColor="Black"
+                                Grid.Column="0"/>
+
+                    <Label  Margin="10,0"
+                            VerticalOptions="FillAndExpand" 
+                            VerticalTextAlignment="Center" 
+                            Text="{Binding Title}" 
+                            FontSize="24"
+                            Grid.Column="1"/>
+                    
+                </Grid>
+            
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

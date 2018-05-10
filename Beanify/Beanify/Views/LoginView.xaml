@@ -22,8 +22,8 @@
     </ContentPage.Resources>    
     <ContentPage.Content>
 
-        <StackLayout Margin="20" Spacing="16" >
-            <Label Text="WELCOME" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
+        <StackLayout Margin="20,80" Spacing="16" >
+            <Label Text="BEANIFY" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" VerticalOptions="Center">
                 <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
                     <Entry.Behaviors>
@@ -94,8 +94,18 @@
                     IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource ErrorColor}"/>
             </StackLayout>
+            <Button Text="Forgotten password ?"   Command="{Binding Commands[ResetPassword]}" 
+                HorizontalOptions="End"
+                BorderColor="Transparent"
+                BackgroundColor="Transparent"
+                Scale="0.8"></Button>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button Text="Sign in" Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"></Button>
+                <Button Text="Login" BackgroundColor="DarkGray" TextColor="LightGray" Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
+                        BorderRadius="20"
+                        WidthRequest="150"
+                        Scale="1.2">
+                    
+                </Button>
                 
                 <forms:AnimationView 
 	                x:Name="animationView" 
@@ -117,7 +127,7 @@
                    FontSize="18"
                    IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
                    TextColor="{StaticResource ErrorColor}"/>
-            <Button Text="Forgotten password"  Command="{Binding Commands[ResetPassword]}" HorizontalOptions="Center"></Button>
+            
 
         </StackLayout>
     </ContentPage.Content>

@@ -42,6 +42,7 @@ namespace Beanify
 
         private Task InitNavigation()
         {
+            
             UnityContainer unityContainer = new UnityContainer();
             unityContainer.RegisterType<IBaseService, BaseService>();
             unityContainer.RegisterType<IAccountService, AccountService>();

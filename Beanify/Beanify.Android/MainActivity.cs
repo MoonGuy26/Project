@@ -11,6 +11,8 @@ using HockeyApp.Android;
 using CarouselView.FormsPlugin.Android;
 
 using FFImageLoading.Forms.Droid;
+using Xamarin.Forms;
+using Beanify.Views;
 
 namespace Beanify.Droid
 {
@@ -24,17 +26,38 @@ namespace Beanify.Droid
 
             base.OnCreate(bundle);
 
+            FormsPlugin.Iconize.Droid.IconControls.Init(Resource.Id.toolbar);
+            Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
+                                  .With(new Plugin.Iconize.Fonts.MaterialModule());
+
             base.OnResume();
             CrashManager.Register(this, "7f70a56f74af4103ae0b13417235f1f9");
-
+            
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CarouselViewRenderer.Init();
             CachedImageRenderer.Init(true);
 
             AnimationViewRenderer.Init();
 
+            MessagingCenter.Subscribe<HomeCarouselView>(this, "allowLandScapePortrait", sender =>
+            {
+                RequestedOrientation = ScreenOrientation.Unspecified;
+            });
+
+            //during page close setting back to portrait
+            MessagingCenter.Subscribe<HomeCarouselView>(this, "preventLandScape", sender =>
+            {
+                RequestedOrientation = ScreenOrientation.Portrait;
+            });
+
+            
+
             LoadApplication(new App());
         }
+        
+        
+
+        
     }
 }
 

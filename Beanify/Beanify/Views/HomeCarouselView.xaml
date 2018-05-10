@@ -41,10 +41,7 @@
             MinimumHeightRequest="{Binding ScreenHeight,Mode=TwoWay}"
             ShowIndicators="true"       
             >
-            <controls:CarouselViewControl.ItemSource >
-               
-
-            </controls:CarouselViewControl.ItemSource>
+            
         </controls:CarouselViewControl>
     </ContentPage.Content>
 </ContentPage>

@@ -50,5 +50,10 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>Beanify</string>
+	<key>UIAppFonts</key>
+	<array>     
+		<string>iconize-fontawesome.ttf</string>
+    <string>iconize-material.ttf</string>
+	</array>    
 </dict>
 </plist>

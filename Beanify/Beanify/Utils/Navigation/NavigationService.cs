@@ -42,7 +42,9 @@ namespace Beanify.Utils.Navigation
                 return NavigateToAsync<HomeCarouselViewModel>();
             // return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
             else
-                return NavigateToAsync<DashboardViewModel>();
+                //return NavigateToAsync<DashboardNavigationViewModel>();
+               ((App)Application.Current).MainPage = new DashboardNavigationView();
+            return Task.FromResult(false);
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
@@ -162,6 +164,7 @@ namespace Beanify.Utils.Navigation
             }
             else
                 Application.Current.MainPage = new CustomNavigationView(page);
+            
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
         }
 

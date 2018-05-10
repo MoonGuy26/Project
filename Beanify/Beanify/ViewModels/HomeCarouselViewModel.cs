@@ -14,9 +14,9 @@ namespace Beanify.ViewModels
     {
 
 
-        private ObservableCollection<View> _carouselPages;
+        private ObservableCollection<DataTemplate> _carouselPages;
             
-        public ObservableCollection<View> CarouselPages
+        public ObservableCollection<DataTemplate> CarouselPages
         {
             get { return _carouselPages; }
             set {
@@ -30,10 +30,11 @@ namespace Beanify.ViewModels
 
         public HomeCarouselViewModel()
         {
-            CarouselPages = new ObservableCollection<View>();
-            CarouselPages.Add(new HomePageView());
-            CarouselPages.Add(new HomePageView());
-            CarouselPages.Add(new ButtonHomePageView());
+            CarouselPages = new ObservableCollection<DataTemplate>() {
+                new DataTemplate(() => { return new HomePageView(); }),
+                new DataTemplate(() => { return new HomePageView(); }),
+                new DataTemplate(() => { return new ButtonHomePageView(); })};
+            
             
             
         }
