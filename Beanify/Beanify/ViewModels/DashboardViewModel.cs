@@ -1,7 +1,10 @@
-﻿using Beanify.Serialization;
+﻿using Beanify.Models;
+using Beanify.Serialization;
 using Beanify.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using Xamarin.Forms;
 
@@ -27,6 +30,8 @@ namespace Beanify.ViewModels
                 }
             }
         }
+
+        public ObservableCollection<ProductModel> Products { get; private set; }
         #endregion
 
         public DashboardViewModel():base()

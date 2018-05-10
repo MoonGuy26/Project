@@ -12,13 +12,13 @@ namespace Beanify.Services
 {
     public class ProductService : BaseService, IProductService
     {
-        public async Task<List<ProductModel>> GetProducts()
+        public List<ProductModel> GetProducts()
         {
             try
             {
                 RestService<ProductModel> restService = new RestService<ProductModel>("api/ProductModels");
 
-                return await restService.GetProducts(LocalStorageSettings.AccessToken);
+                return restService.GetProductsAsync(LocalStorageSettings.AccessToken).Result;
 
             }
             catch (Exception e)

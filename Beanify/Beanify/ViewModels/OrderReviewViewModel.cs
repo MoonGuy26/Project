@@ -34,10 +34,11 @@ namespace Beanify.ViewModels
             Commands.Add("Order", new Command(OnOrderExecute));
         }
 
-        public async void OnOrderExecute()
+        public void OnOrderExecute()
         {
             //await _orderService.AddItem(Order);
-            await _orderService.OrderConfirmation(Order);
+            //_orderService.OrderConfirmation(Order);
+            _orderService.AddItem(Order);
         }
 
         public override Task InitializeAsync(object navigationData)

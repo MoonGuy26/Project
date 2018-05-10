@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BeanifyWebApp.Models;
@@ -91,6 +92,24 @@ namespace BeanifyWebApp.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = model.Id }, orderModel);
+        }
+
+        //
+        // POST: api/OrderModels/OrderConfirmation
+        public async Task<IHttpActionResult> OrderConfirmation(OrderViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                EmailService email = new EmailService();
+                IdentityMessage identityMessage = new IdentityMessage();
+                identityMessage.Destination = User.Identity.GetUserId();
+                identityMessage.Subject = "Order Confirmation";
+                identityMessage.Body = "You've just ordered " + model.Quantity.ToString() + " " + model.ProductName + ".\nThanks for buying our delicious coffees.";
+                await email.SendAsync(identityMessage);
+                //await UserManager.SendEmailAsync("s.daroukh@live.fr", "Order Confirmation", "You've just ordered " + model.Quantity + " " + model.ProductName + ".\nThanks for buying our delicious coffees.");
+            }
+            // If we got this far, something failed, redisplay form
+            return null;
         }
 
         // DELETE: api/OrderModels/5

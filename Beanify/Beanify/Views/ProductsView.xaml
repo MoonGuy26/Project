@@ -33,16 +33,16 @@
                 </ListView.ItemTemplate>
             </ListView>--> <!-- Keep crashing because of an UnsupportedException, a solution could be to create a custom list layout with it own ctor -->
 
-            <ListView  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding Products}" HasUnevenRows="True" Margin="20,40" >
+            <!-- For reason of time deadline, and also task priority, I'm using code-behind for ItemSelected Event, it'll change next iteration, I'll try to look for EventToCommand Converter -->
+            <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding Products}" HasUnevenRows="True" Margin="20,40">
                 <ListView.Header>
                 </ListView.Header>
                 <ListView.ItemTemplate>
-                    
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                                 <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                <Button BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}" Text="More info" Command="{Binding Commands[LoadingDetails]}" HorizontalOptions="End"/>
+                                <Button  Text="More info" Command="{Binding Commands[LoadingDetails]}" HorizontalOptions="End"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

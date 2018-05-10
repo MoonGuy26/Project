@@ -1,13 +1,15 @@
 ﻿using Beanify.Models;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Beanify.Services
 {
-    public interface IOrderService:IBaseService
+    public interface IOrderService
     {
-        Task OrderConfirmation(IModel item);
+       HttpResponseMessage AddItem(IModel item);
+       Task OrderConfirmation(IModel item);
     }
 }

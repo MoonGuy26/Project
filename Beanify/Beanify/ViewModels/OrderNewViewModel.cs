@@ -105,11 +105,14 @@ namespace Beanify.ViewModels
         private async Task NavigateOrderReviewView()
         {
             await _navigationService.NavigateToAsync<OrderReviewViewModel>(new OrderModel
-            {   ProductName = ProductModel.Name,
+            { ProductName = ProductModel.Name,
                 Price = _productModel.Price * (_quantity + 1),
                 Quantity = _quantity + 1,
-                ImagePath = ProductModel.ImagePath,
+                //ImagePath = ProductModel.ImagePath,
                 ClientName = "s.daroukh@live.fr",
+                Date = DateTime.Now,
+                IsNew = true,
+                Id = "6",
             });
         }
 

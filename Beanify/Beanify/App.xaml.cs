@@ -47,7 +47,7 @@ namespace Beanify
             unityContainer.RegisterType<IAccountService, AccountService>();
             unityContainer.RegisterType<IOrderService, OrderService>();
             unityContainer.RegisterSingleton<INavigationService, NavigationService>();
-            unityContainer.RegisterType<IOrderService, OrderService>();
+            unityContainer.RegisterType<IProductService, ProductService>();
             unityContainer.RegisterType<LastPageViewModel>();
             unityContainer.RegisterType<LoginViewModel>();
             unityContainer.RegisterType<HomeCarouselViewModel>();
