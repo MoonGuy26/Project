@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" >
-                <StackLayout  Margin="15, 15, 15, 0"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="300" WidthRequest="450">
+                <StackLayout  Margin="15, 15, 15, 0"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="300" WidthRequest="350">
                     <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFit" VerticalOptions="Center" HeightRequest="250" WidthRequest="350"></Image>
                     <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="End"/>
                 </StackLayout>
@@ -24,7 +24,7 @@
                         <Label Text="{Binding ProductModel.Description}" x:Name="detail"  HorizontalOptions="Center" LineBreakMode="WordWrap"/>
                     </ScrollView>
                     <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
-                    <Picker Title="How many items would you like ?" x:Name="quantity_picker" ItemsSource="{Binding ObservablePicker}" VerticalOptions="StartAndExpand" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
+                    <Picker Title="How many items would you like ?" x:Name="quantity_picker" ItemsSource="{Binding ObservablePicker}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedIndex="{Binding Quantity, Mode=TwoWay}" VerticalOptions="StartAndExpand" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
                     <Button Text="Continue ?" Command="{Binding Commands[Continue]}"/>
                 </StackLayout>
             </StackLayout>

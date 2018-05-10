@@ -12,16 +12,17 @@ using BeanifyWebApp.Models;
 
 namespace BeanifyWebApp.Controllers
 {
-    [Authorize]
     public class ProductModelsController : ApiController
     {
         private ProductContext db = new ProductContext();
 
         // GET: api/ProductModels
+
         [Authorize]
         public IQueryable<ProductModel> GetProductModels()
         {
-            return db.ProductModels;
+            ProductContext db1 = new ProductContext();
+            return db1.ProductModels;
         }
 
         // GET: api/ProductModels/5
@@ -38,7 +39,6 @@ namespace BeanifyWebApp.Controllers
         }
 
         // PUT: api/ProductModels/5
-        [Authorize(Roles = "Admin")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProductModel(int id, ProductModel productModel)
         {

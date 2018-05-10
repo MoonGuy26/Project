@@ -14,5 +14,12 @@ namespace Beanify.Services
             var restService = new RestService<IModel>("api/OrderModels");
             return restService.SaveItemAsync(item, true);
         }
+
+        public async Task OrderConfirmation(IModel item)
+        {
+            RestService<object> restService = new RestService<object>("MvcAccount/OrderConfirmation");
+
+            await restService.RequestWithSerializableParameter(item);
+        }
     }
 }

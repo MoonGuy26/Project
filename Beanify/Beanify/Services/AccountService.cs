@@ -78,12 +78,5 @@ namespace Beanify.Services
 
             await restService.ForgotPassword(model2);
         }
-        
-        public async Task OrderConfirmation()
-        {
-            RestService<object> restService = new RestService<object>("api/Account/ForgotPassword");
-
-            //await restService.ForgotPassword(model2);
-        }
     }
 }
