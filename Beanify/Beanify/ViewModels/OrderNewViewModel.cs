@@ -104,7 +104,7 @@ namespace Beanify.ViewModels
 
         private async Task NavigateOrderReviewView()
         {
-            await _navigationService.NavigateToAsync<OrderReviewViewModel>(new OrderModel
+            await _navigationService.NavigateToInsideDashboardAsync<OrderReviewViewModel>(new OrderModel
             { ProductName = ProductModel.Name,
                 Price = _productModel.Price * (_quantity + 1),
                 Quantity = _quantity + 1,

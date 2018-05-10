@@ -63,7 +63,7 @@ namespace Beanify.ViewModels
 
         public async void OnMoreInfoExecute()
         {
-            await _navigationService.NavigateToAsync<OrderNewViewModel>(_selectedItem);
+            await _navigationService.NavigateToInsideDashboardAsync<OrderNewViewModel>(_selectedItem);
         }
   
     }

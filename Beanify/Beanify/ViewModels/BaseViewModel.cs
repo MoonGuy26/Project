@@ -1,5 +1,6 @@
 ﻿using Beanify.Utils.Navigation;
 using Beanify.Utils.Orientation;
+using Beanify.Utils.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,8 @@ namespace Beanify.ViewModels
     {
         protected readonly INavigationService _navigationService;
         protected StackOrientation _screenOrientation;
-        protected double _screenWidth;
-        protected double _screenHeight;
+        protected ScreenDimensions _screenSize;
+        
 
 
 
@@ -34,22 +35,14 @@ namespace Beanify.ViewModels
             }
         }
 
-        public double ScreenWidth
+        public ScreenDimensions ScreenSize
         {
-            get { return _screenWidth; }
-            set { _screenWidth = value;
-                OnPropertyChanged(nameof(ScreenWidth));
+            get { return _screenSize; }
+            set { _screenSize = value;
+                OnPropertyChanged(nameof(ScreenSize));
             }
         }
-        public double ScreenHeight
-        {
-            get { return _screenHeight; }
-            set
-            {
-                _screenHeight = value;
-                OnPropertyChanged(nameof(ScreenHeight));
-            }
-        }
+        
 
         public Dictionary<string, ICommand> Commands { get; protected set; }
 
@@ -75,17 +68,19 @@ namespace Beanify.ViewModels
                     ScreenOrientation = StackOrientation.Vertical;
                     break;
             }
-            ScreenWidth = Application.Current.MainPage.Width;
-            ScreenHeight = Application.Current.MainPage.Height;
+            ScreenSize.ScreenWidth = Application.Current.MainPage.Width;
+            ScreenSize.ScreenHeight = Application.Current.MainPage.Height;
+            OnPropertyChanged(nameof(ScreenSize));
             Debug.WriteLine(ScreenOrientation);
-            Debug.WriteLine(ScreenWidth);
-            Debug.WriteLine(ScreenHeight);
+            Debug.WriteLine(ScreenSize.ScreenWidth);
+            Debug.WriteLine(ScreenSize.ScreenHeight);
         }
 
         protected virtual void InitializeViewModel()
         {
             Commands = new Dictionary<string, ICommand>();
             Commands.Add("SizeChanged", new Command(OnSizeChangedExecute));
+            ScreenSize= new ScreenDimensions();
         }
 
         public virtual Task InitializeAsync(object navigationData)

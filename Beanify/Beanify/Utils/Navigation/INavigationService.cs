@@ -18,6 +18,8 @@ namespace Beanify.Utils.Navigation
         Task NavigateToAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
         Task NavigateToDashboardAsync<TViewModel>() where TViewModel : BaseViewModel;
         Task NavigateToDashboardAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
+        Task NavigateToInsideDashboardAsync<TViewModel>() where TViewModel : BaseViewModel;
+        Task NavigateToInsideDashboardAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel;
         Task NavigateBackAsync();
         Task RemoveLastFromBackStackAsync();
         Task RemoveBackStackAsync();

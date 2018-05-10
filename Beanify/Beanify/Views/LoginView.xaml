@@ -100,10 +100,8 @@
                 BackgroundColor="Transparent"
                 Scale="0.8"></Button>
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button Text="Login" BackgroundColor="DarkGray" TextColor="LightGray" Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
-                        BorderRadius="20"
-                        WidthRequest="150"
-                        Scale="1.2">
+                <Button Text="Login"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
+                        Style="{StaticResource roundButtonStyle}">
                     
                 </Button>
                 

@@ -11,23 +11,30 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <StackLayout>
+        
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" >
-                <StackLayout  Margin="15, 15, 15, 0"  HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="300" WidthRequest="350">
-                    <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFit" VerticalOptions="Center" HeightRequest="250" WidthRequest="350"></Image>
-                    <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="End"/>
+                <StackLayout HorizontalOptions="Center"  >
+                <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}" ></Image>
+               
+                <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </StackLayout>
-                <StackLayout Margin="15, 15, 15, 0" VerticalOptions="Center"  HorizontalOptions="Center" >
+                <StackLayout Margin="15, 15, 15, 0"  HorizontalOptions="Center">
                     <ScrollView>
                         <!--<Label Text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." 
                        x:Name="detail"  HorizontalOptions="Center" LineBreakMode="WordWrap"/>-->
                         <Label Text="{Binding ProductModel.Description}" x:Name="detail"  HorizontalOptions="Center" LineBreakMode="WordWrap"/>
                     </ScrollView>
                     <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
-                    <Picker Title="How many items would you like ?" x:Name="quantity_picker" ItemsSource="{Binding ObservablePicker}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedIndex="{Binding Quantity, Mode=TwoWay}" VerticalOptions="StartAndExpand" WidthRequest="100" HorizontalOptions="FillAndExpand"/>
-                    <Button Text="Continue ?" Command="{Binding Commands[Continue]}"/>
+                    <Picker Title="How many items would you like ?" 
+                            x:Name="quantity_picker" 
+                            ItemsSource="{Binding ObservablePicker}" 
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                            SelectedIndex="{Binding Quantity, Mode=TwoWay}" 
+                            VerticalOptions="StartAndExpand" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+                    <Button Style="{StaticResource roundButtonStyle}"
+                        Text="Continue" Command="{Binding Commands[Continue]}"/>
                 </StackLayout>
             </StackLayout>
-        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>

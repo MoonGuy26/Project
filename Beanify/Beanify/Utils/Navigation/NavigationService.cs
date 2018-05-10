@@ -67,6 +67,16 @@ namespace Beanify.Utils.Navigation
             return InternalNavigateToDashboardAsync(typeof(TViewModel), parameter);
         }
 
+        public Task NavigateToInsideDashboardAsync<TViewModel>() where TViewModel : BaseViewModel
+        {
+            return InternalNavigateToInsideDashboardAsync(typeof(TViewModel), null);
+        }
+
+        public Task NavigateToInsideDashboardAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        {
+            return InternalNavigateToInsideDashboardAsync(typeof(TViewModel), parameter);
+        }
+
         public Task SetRootAsync<TViewModel>() where TViewModel:BaseViewModel
         {
             return InternalSetRootPageAsync(typeof(TViewModel), null);
@@ -81,6 +91,7 @@ namespace Beanify.Utils.Navigation
         {
             return InternalNavigateToFromPageAsync(typeof(TPage), null);
         }
+
 
         public Task RemoveLastFromBackStackAsync()
         {
@@ -203,6 +214,31 @@ namespace Beanify.Utils.Navigation
 
         }
 
+        private async Task InternalNavigateToInsideDashboardAsync(Type viewModelType, object parameter)
+        {
+            Page page = CreatePage(viewModelType, parameter);
+            Type viewType = GetPageTypeForViewModel(viewModelType);
+
+
+            var masterDetailView = Application.Current.MainPage as DashboardNavigationView;
+            var navigationPage = masterDetailView.Detail as CustomNavigationView;
+            if (navigationPage != null)
+            {
+
+                await navigationPage.PushAsync(page);
+                masterDetailView.IsPresented = false;
+
+
+            }
+            else
+            {
+                Application.Current.MainPage = new DashboardNavigationView();
+            }
+
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+
+        }
+
         private Page CreatePage(Type viewModelType, object parameter)
         {
             Type pageType = GetPageTypeForViewModel(viewModelType);
@@ -230,5 +266,7 @@ namespace Beanify.Utils.Navigation
                   navigationPage.Navigation.NavigationStack.Last().GetType() != currentPage.GetType());
            
         }
+
+        
     }
 }

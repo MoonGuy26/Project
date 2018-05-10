@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.OrderReviewView"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             Title="Review Order"
              BackgroundColor="AliceBlue"
              BindingContext="{Binding OrderReviewViewModel, Source={StaticResource Locator}}">
     <ContentPage.Behaviors>
