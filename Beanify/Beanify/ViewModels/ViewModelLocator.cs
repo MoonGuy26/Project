@@ -84,6 +84,13 @@ namespace Beanify.ViewModels
                 return ServiceLocator.Current.GetInstance<HomePageViewModel>();
             }
         }
+        public PreviousOrdersViewModel PreviousOrderrsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PreviousOrdersViewModel>();
+            }
+        }
 
         public NavigationService NavigationService
         {

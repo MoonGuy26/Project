@@ -57,6 +57,16 @@ namespace Beanify.Utils.Navigation
             return InternalNavigateToAsync(typeof(TViewModel), parameter);
         }
 
+        public Task NavigateToDashboardAsync<TViewModel>() where TViewModel : BaseViewModel
+        {
+            return InternalNavigateToDashboardAsync(typeof(TViewModel), null);
+        }
+
+        public Task NavigateToDashboardAsync<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        {
+            return InternalNavigateToDashboardAsync(typeof(TViewModel), parameter);
+        }
+
         public Task SetRootAsync<TViewModel>() where TViewModel:BaseViewModel
         {
             return InternalSetRootPageAsync(typeof(TViewModel), null);
@@ -166,6 +176,31 @@ namespace Beanify.Utils.Navigation
                 Application.Current.MainPage = new CustomNavigationView(page);
             
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+        }
+
+        private async Task InternalNavigateToDashboardAsync(Type viewModelType, object parameter)
+        {
+            Page page = CreatePage(viewModelType, parameter);
+            Type viewType = GetPageTypeForViewModel(viewModelType);
+
+
+            var masterDetailView = Application.Current.MainPage as DashboardNavigationView;
+            var navigationPage = masterDetailView.Detail as CustomNavigationView;
+            if (navigationPage != null)
+            {
+
+               ( Application.Current.MainPage as DashboardNavigationView ).Detail= new CustomNavigationView(page);
+                    masterDetailView.IsPresented = false;
+              
+
+            }
+            else
+            {
+                Application.Current.MainPage = new DashboardNavigationView();
+            }
+
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
+
         }
 
         private Page CreatePage(Type viewModelType, object parameter)

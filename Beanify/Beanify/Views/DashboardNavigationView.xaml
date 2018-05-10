@@ -15,7 +15,7 @@
   <MasterDetailPage.Detail>
     <pages:CustomNavigationView>
       <x:Arguments>
-        <pages:DashboardView/>
+        <pages:ProductsView/>
       </x:Arguments>
     </pages:CustomNavigationView>
   </MasterDetailPage.Detail>

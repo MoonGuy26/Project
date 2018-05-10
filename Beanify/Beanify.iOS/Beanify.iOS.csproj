@@ -93,6 +93,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Utils\Effects\EntryLineColorEffect.cs" />
     <Compile Include="Utils\Orientation\DeviceOrientationImplementation.cs" />
+    <Compile Include="Utils\Renderers\CustomViewCellRenderer.cs" />
+    <Compile Include="Utils\Renderers\HomeCarouselViewRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>

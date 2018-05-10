@@ -45,9 +45,10 @@ namespace Beanify.ViewModels
             base.InitializeViewModel();
             MenuItems = new ObservableCollection<DashboardNavigationViewMenuItem>(new[]
             {
-                    new DashboardNavigationViewMenuItem { Id = 0, Title = "Place Order",Icon="md-shopping-cart"
-                        },
-                    new DashboardNavigationViewMenuItem { Id = 1, Title = "My Previous Orders",Icon="md-free-breakfast" },
+                    new DashboardNavigationViewMenuItem { Id = 0, Title = "Place Order",Icon="md-shopping-cart",
+                    OnClicked =OnPlaceOrderExecute},
+                    new DashboardNavigationViewMenuItem { Id = 1, Title = "My Previous Orders",Icon="md-free-breakfast",
+                    OnClicked =OnPreviousOrderExecute },
                     new DashboardNavigationViewMenuItem { Id = 2, Title = "Log out",Icon="md-input",
                     OnClicked =OnLogoutExecute },
                     
@@ -57,9 +58,22 @@ namespace Beanify.ViewModels
             
         }
 
+        
+
         private void ItemSelectedExecute()
         {
             _selectedItem.OnClicked?.Invoke();
+        }
+
+        private void OnPreviousOrderExecute()
+        {
+            _navigationService.NavigateToDashboardAsync<PreviousOrdersViewModel>();
+
+        }
+
+        private void OnPlaceOrderExecute()
+        {
+            _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
         }
 
         private void OnLogoutExecute()
