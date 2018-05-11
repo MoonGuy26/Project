@@ -30,7 +30,7 @@
                             SelectedIndex="{Binding Quantity, Mode=TwoWay}" 
                             VerticalOptions="StartAndExpand" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
                     <Button Style="{StaticResource roundButtonStyle}"
-                        Text="Continue" Command="{Binding Commands[Continue]}"/>
+                        Text="Continue" Command="{Binding Commands[Continue]}" VerticalOptions="End"/>
                 </StackLayout>
             </StackLayout>
         
