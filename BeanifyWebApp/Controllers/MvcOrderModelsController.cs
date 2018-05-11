@@ -27,9 +27,9 @@ namespace BeanifyWebApp.Controllers
                 {
                     Id = orderModel.Id,
                     ClientName = "test",
-                    // dbUsers.Users.Where(u => u.Id == orderModel.UserId).First().UserName,
+                    //dbUsers.Users.Where(u => u.Id == orderModel.UserId).First().UserName,
                     ProductName = "test",
-                    //dbProduct.ProductModels.Where(p => p.Id == orderModel.Id).First().Name,
+                     //dbProduct.ProductModels.Where(p => p.Id == orderModel.Id).First().Name,
                     Date = orderModel.Date,
                     Price = orderModel.Price,
                     Quantity = orderModel.Quantity,

@@ -4,8 +4,10 @@ using Beanify.Utils.Navigation;
 using Beanify.ViewModels;
 using Beanify.ViewModels.CarouselViewModels;
 using CommonServiceLocator;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,13 +66,15 @@ namespace Beanify
 		}
 
 		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+        {
+            var navS = new NavigationSerializer();
+            navS.SerializeNavigationStack();
+        }
 
 		protected override void OnResume ()
 		{
-			// Handle when your app resumes
+            // Handle when your app resumes
+            Debug.Write("app resume");
 		}
 	}
 }

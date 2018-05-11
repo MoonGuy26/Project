@@ -1,4 +1,5 @@
-﻿using Beanify.ViewModels;
+﻿using Beanify.Serialization;
+using Beanify.ViewModels;
 using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,11 @@ namespace Beanify.Views
 			InitializeComponent ();
             
         }
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LocalStorageSettings.LastViewModel = nameof(this.GetType) + "Model";
+        }
+    }
 }
