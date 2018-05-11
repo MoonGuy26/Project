@@ -11,9 +11,8 @@ namespace Beanify.ViewModels
 {
     public class OrderReviewViewModel : BaseViewModel
     {
-
+        private IModel _product;
         private IModel _order;
-
         private IOrderService _orderService;
 
         public IModel Order
@@ -28,6 +27,19 @@ namespace Beanify.ViewModels
             }
         }
 
+        public IModel Product
+        {
+            get { return _product; }
+            set
+            {
+                if (_product != value)
+                {
+                    _product = value;
+                    OnPropertyChanged(nameof(Product));
+                }
+            }
+        }
+
         public OrderReviewViewModel(IOrderService orderService) : base()
         {
             _orderService = orderService;
@@ -36,15 +48,14 @@ namespace Beanify.ViewModels
 
         public void OnOrderExecute()
         {
-            //await _orderService.AddItem(Order);
-            //_orderService.OrderConfirmation(Order);
-            _orderService.AddItem(Order);
+            _orderService.AddItem(Order as OrderModel);
         }
 
         public override Task InitializeAsync(object navigationData)
         {
-            var order = navigationData as OrderModel;
-            Order = order;
+            var objectList = navigationData as List<object>;
+            Product = objectList[0] as ProductModel;
+            Order = objectList[1] as OrderModel;
 
             return base.InitializeAsync(navigationData);
         }

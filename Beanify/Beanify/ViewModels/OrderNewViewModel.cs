@@ -78,13 +78,8 @@ namespace Beanify.ViewModels
 
         public OrderNewViewModel(IAccountService accountService) : base()
         {
-
             _accountService = accountService;
-
-
-
             Commands.Add("Continue", new Command(OnContinueExecute));
-            
         }
 
         private List<string> ListInitializer(List<string> list)
@@ -104,16 +99,22 @@ namespace Beanify.ViewModels
 
         private async Task NavigateOrderReviewView()
         {
-            await _navigationService.NavigateToInsideDashboardAsync<OrderReviewViewModel>(new OrderModel
-            { ProductName = ProductModel.Name,
+            var orderModel = new OrderModel
+            {
+                ProductName = ProductModel.Name,
                 Price = _productModel.Price * (_quantity + 1),
                 Quantity = _quantity + 1,
-                //ImagePath = ProductModel.ImagePath,
-                ClientName = "s.daroukh@live.fr",
                 Date = DateTime.Now,
                 IsNew = true,
                 Id = "6",
-            });
+                ClientName = "s.daroukh@live.fr",
+            };
+            var object_list = new List<object>();
+            object_list.Add(_productModel);
+            object_list.Add(orderModel);
+
+
+            await _navigationService.NavigateToInsideDashboardAsync<OrderReviewViewModel>(object_list);
         }
 
 
@@ -125,7 +126,6 @@ namespace Beanify.ViewModels
             ObservablePicker = new ObservableCollection<string>(picker_list);
 
             return Task.FromResult(true);
-            //return base.InitializeAsync(navigationData);
         }
 
 
