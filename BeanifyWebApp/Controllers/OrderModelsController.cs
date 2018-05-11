@@ -90,7 +90,7 @@ namespace BeanifyWebApp.Controllers
             IdentityMessage identityMessage = new IdentityMessage();
             identityMessage.Destination = User.Identity.GetUserName();
             identityMessage.Subject = "Order Confirmation";
-            identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\nThanks for buying our delicious coffees.";
+            identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\n\nYou've paid " + orderModel.Price + "£ for it. Order has been passed on the " + orderModel.Date.ToShortDateString() + " at " + orderModel.Date.ToShortTimeString() +". \nThanks for buying our delicious coffees.";
             email.Send(identityMessage);
             db.OrderModels.Add(model);
 

@@ -11,28 +11,40 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  >
-            <StackLayout  Margin="15, 15, 15, 0" VerticalOptions="StartAndExpand" HorizontalOptions="Center" HeightRequest="250" WidthRequest="350">
-                <Label Text="Order Review" FontSize="25" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Label Text="{Binding Order.ProductName}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Image Source="{Binding Order.ImagePath}" Aspect="AspectFill" />
-                
+        <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" BackgroundColor="Gray" Margin="15, 10, 15, 10"  HorizontalOptions="FillAndExpand" >
+            <StackLayout VerticalOptions="Start">
+
+                <Image Source="{Binding Product.ImagePath}" Aspect="AspectFill" HeightRequest="250" WidthRequest="350"/>
+        
             </StackLayout>
-            <StackLayout Margin="15, 15, 15, 0"  VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand">
-                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label Text="{Binding Order.ProductName}" FontSize="Large" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
-                    <Label Text="{Binding Order.Quantity}" FontSize="Large" HorizontalOptions="End" LineBreakMode="WordWrap"/>
+            <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+                <StackLayout Padding="5,0,5,0">
+                    <StackLayout Orientation="Vertical" Margin="0,15,0,0">
+                        <Label Text="Total" FontSize="Medium" HorizontalOptions="Center"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Label Text="£" FontSize="50"/>
+                            <Label Text="{Binding Order.Price}" FontSize="50"/>
+                        </StackLayout>
+                        <BoxView Style="{StaticResource whiteLine}"/>
+                    </StackLayout>
+                    <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
+                        <Label Text="{Binding Order.Quantity}" FontSize="Medium" x:Name="title" HorizontalOptions="Start"/>
+                        <Label Text="x" FontSize="Medium" LineBreakMode="WordWrap"/>
+                        <Label Text="{Binding Order.ProductName}" FontSize="Medium"  LineBreakMode="WordWrap"/>
+                        <Label Text="{Binding Order.Price}" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                    </StackLayout>
+                    <BoxView Style="{StaticResource whiteLine}"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,15">
+                            <Label Text="Total" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
+                            <Label Text="£" HorizontalOptions="End"/>
+                            <Label Text="{Binding Order.Price}" HorizontalOptions="End" LineBreakMode="WordWrap"/>
+                        </StackLayout>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                    <Label Text="Item Name" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
-                    <Label Text="Quantity" HorizontalOptions="End" LineBreakMode="WordWrap"/>
+                <StackLayout  Orientation="Horizontal" VerticalOptions="End" HorizontalOptions="FillAndExpand" Padding="15,0,15,0" BackgroundColor="AliceBlue">
+                    <Button Style="{StaticResource roundButtonStyle}" HorizontalOptions="FillAndExpand" Margin="0,15,0,0" Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
                 </StackLayout>
-                <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" >
-                    <Label Text="Price :" HorizontalOptions="CenterAndExpand"/>
-                    <Label Text="{Binding Order.Price}" FontSize="50" FontAttributes="Italic" HorizontalOptions="Fill"/>
-                </StackLayout>
-                <Button Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
             </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
