@@ -28,10 +28,10 @@
                             ItemsSource="{Binding ObservablePicker}" 
                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                             SelectedIndex="{Binding Quantity, Mode=TwoWay}" 
-                            VerticalOptions="StartAndExpand" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
-                    <Button Style="{StaticResource roundButtonStyle}"
-                        Text="Continue" Command="{Binding Commands[Continue]}" VerticalOptions="End"/>
-                </StackLayout>
+                            VerticalOptions="End" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+                <Button Style="{StaticResource roundButtonStyle}"
+                        Text="Continue" Command="{Binding Commands[Continue]}" VerticalOptions="End" HorizontalOptions="Center"/>
+            </StackLayout>
             </StackLayout>
         
     </ContentPage.Content>

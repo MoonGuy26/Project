@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Beanify.ViewModels;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
@@ -33,6 +34,18 @@ namespace Beanify.Serialization
             set
             {
                 AppSettings.AddOrUpdateValue("AccessToken", value);
+            }
+        }
+
+        public static string LastViewModel
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("LastViewModel","HomeCarouselViewModel");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("LastViewModel", value);
             }
         }
 

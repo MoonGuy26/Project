@@ -9,6 +9,7 @@ using Beanify.Serialization;
 using Beanify.ViewModels;
 using Beanify.Views;
 using Beanify.Views.CarouselViews;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace Beanify.Utils.Navigation
@@ -39,7 +40,21 @@ namespace Beanify.Utils.Navigation
         public Task InitializeAsync()
         {
             if (string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
+            {
+                if (Application.Current.Properties.ContainsKey("nav_saved")){
+                    var navS = new NavigationSerializer();
+                    navS.DeserializeNavigationStack();
+                    return Task.FromResult(false);
+                }
                 return NavigateToAsync<HomeCarouselViewModel>();
+
+               // }
+                //Type type = Type.GetType("Beanify.ViewModels." + LocalStorageSettings.LastViewModel);
+                //BaseViewModel vm = Activator.CreateInstance(type) as BaseViewModel;
+                
+
+            }
+                
             // return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
             else
                 //return NavigateToAsync<DashboardNavigationViewModel>();
