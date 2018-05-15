@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.DashboardView"
              
-             BackgroundColor="AliceBlue"
+             BackgroundColor="White"
              BindingContext="{Binding DashboardViewModel, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <StackLayout>
+            <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}"
+                   Aspect="AspectFill" 
+                   WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}" ></Image>
             <Label Text="{Binding DashboardMessage}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" TextColor="Black" />
-            <Button Text="Products"  Command="{Binding Commands[List]}" />
-            <Button Text="Ordering views"  Command="{Binding Commands[OrderView]}" />
-            <Button Command="{Binding Commands[Logout]}" Text="Logout"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

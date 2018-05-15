@@ -10,10 +10,11 @@ using BeanifyWebApp.Models;
 
 namespace BeanifyWebApp.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //set authorize Admin when possible
+    [Authorize]
     public class MvcProductModelsController : Controller
     {
-        private ProductContext db = new ProductContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: MvcProductModels
         public ActionResult Index()
@@ -47,7 +48,7 @@ namespace BeanifyWebApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,ImagePath")] ProductModel productModel)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price,IsAvailable,ImagePath")] ProductModel productModel)
         {
             if (ModelState.IsValid)
             {

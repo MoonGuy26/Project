@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BeanifyWebApp.Models.OrderViewModel>
+﻿@model IEnumerable<BeanifyWebApp.Models.OrderModel>
 @using BeanifyWebApp.Models
 
 @{
@@ -12,6 +12,9 @@
         <tr>
             <th scope="col">
                 Customer
+            </th>
+            <th scope="col">
+                Company
             </th>
             <th scope="col">
                 Product
@@ -32,25 +35,28 @@
         @foreach (var item in Model)
         {
 
-            <tr class='@(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
-                <th scope="row">
-                    @Html.DisplayFor(modelItem => item.ClientName)
-                </th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-              
+        <tr class='@(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
+            <th scope="row">
+                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+            </th>
+            <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductModel.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
 
-            </tr>
+
+        </tr>
         
         }
         </tbody>

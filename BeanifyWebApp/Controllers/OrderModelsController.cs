@@ -17,8 +17,8 @@ namespace BeanifyWebApp.Controllers
     [Authorize]
     public class OrderModelsController : ApiController
     {
-        private OrderContext db = new OrderContext();
-        private ProductContext dbProduct = new ProductContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
+        
 
         // GET: api/OrderModels
         public IQueryable<OrderModel> GetOrderModels()
@@ -84,10 +84,12 @@ namespace BeanifyWebApp.Controllers
             }
 
             var userId = User.Identity.GetUserId();
-            var productId = dbProduct.ProductModels.Where(p => p.Name == orderModel.ProductName).First().Id;
-            var model = new OrderModel { ProductId = productId, UserId = userId, Date = orderModel.Date, IsNew = true, Price = orderModel.Price, Quantity = orderModel.Quantity };
+            var productId = db.ProductModels.Where(p => p.Name == orderModel.ProductName).First().Id;
+            var model = new OrderModel {  ProductModelId= productId, ApplicationUserId = userId, Date = DateTime.Now, IsNew = true, Price = orderModel.Price, Quantity = orderModel.Quantity };
+
             EmailService email = new EmailService();
             IdentityMessage identityMessage = new IdentityMessage();
+
             identityMessage.Destination = User.Identity.GetUserName();
             identityMessage.Subject = "Order Confirmation";
             identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\n\nYou've paid " + orderModel.Price + "£ for it. Order has been passed on the " + orderModel.Date.ToShortDateString() + " at " + orderModel.Date.ToShortTimeString() +". \nThanks for buying our delicious coffees.";

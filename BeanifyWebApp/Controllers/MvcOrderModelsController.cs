@@ -10,34 +10,21 @@ using BeanifyWebApp.Models;
 
 namespace BeanifyWebApp.Controllers
 {
-    [Authorize(Roles ="Admin")]
+    //set authorize Admin when possible
+    [Authorize]
     public class MvcOrderModelsController : Controller
     {
-        private OrderContext db = new OrderContext();
-        private ProductContext dbProduct = new ProductContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
+        
         private ApplicationDbContext dbUsers = new ApplicationDbContext();
 
         // GET: MvcOrderModels
         public ActionResult Index()
         {
-            var orderViewModels = new List<OrderViewModel>();
-            foreach (var orderModel in db.OrderModels.OrderByDescending(o => o.Date).ToList())
-            {
-                orderViewModels.Add(new OrderViewModel
-                {
-                    Id = orderModel.Id,
-                    ClientName = "test",
-                    //dbUsers.Users.Where(u => u.Id == orderModel.UserId).First().UserName,
-                    ProductName = "test",
-                     //dbProduct.ProductModels.Where(p => p.Id == orderModel.Id).First().Name,
-                    Date = orderModel.Date,
-                    Price = orderModel.Price,
-                    Quantity = orderModel.Quantity,
-                    IsNew = orderModel.IsNew
-                });
-            }
+            var orders = db.OrderModels.Include(o => o.ProductModel).Include(o => o.ApplicationUser).OrderByDescending(o=>o.Date);
 
-            return View(orderViewModels);
+            return View(orders.ToList());
+
         }
 
         // GET: MvcOrderModels/Details/5

@@ -4,18 +4,19 @@
              x:Class="Beanify.Views.DashboardNavigationView"
              NavigationPage.HasNavigationBar="True"
              xmlns:pages="clr-namespace:Beanify.Views"
+                  
              >
   <MasterDetailPage.Master>
         <pages:CustomNavigationView>
             <x:Arguments>
-            <pages:DashboardNavigationViewMaster x:Name="MasterPage" />
+            <pages:DashboardNavigationViewMaster x:Name="MasterPage"  />
         </x:Arguments>
         </pages:CustomNavigationView>
     </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <pages:CustomNavigationView>
       <x:Arguments>
-        <pages:ProductsView/>
+        <pages:DashboardView/>
       </x:Arguments>
     </pages:CustomNavigationView>
   </MasterDetailPage.Detail>

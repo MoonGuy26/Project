@@ -22,5 +22,10 @@ namespace BeanifyWebApp.Models
         [Required]
         [DataType(DataType.ImageUrl)]
         public string ImagePath { get; set; }
+
+        [Required]
+        public bool IsAvailable { get; set; }
+
+        public virtual ICollection<OrderModel> OrderModels { get; set; }
     }
 }

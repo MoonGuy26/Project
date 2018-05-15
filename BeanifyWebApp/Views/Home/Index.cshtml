@@ -5,7 +5,7 @@
     <div class="container-center">
 
 
-    @if (!Request.IsAuthenticated)
+    @if (!Request.IsAuthenticated || !User.IsInRole("Admin") )
     {
         @Html.ActionLink("Authenticate", "Login", "MvcAccount",
                        routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-dark btn-lg child" }
@@ -14,7 +14,8 @@
     }
     else
     {
-        if (User.IsInRole("Admin"))
+      if (User.IsInRole("Admin")
+          )
         {
             <a href="/BeanifyWebApp/MvcOrderModels" class=" btn btn-dark btn-lg child zoom">
 

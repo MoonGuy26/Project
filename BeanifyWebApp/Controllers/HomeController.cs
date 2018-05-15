@@ -9,12 +9,13 @@ namespace BeanifyWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private OrderContext db = new OrderContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
             ViewBag.Title = "Home Page";
             if (User.IsInRole("Admin"))
+         
             {
                 int newOrders = db.OrderModels.Where(o => o.IsNew).Count();
                 ViewBag.NewOrders = newOrders;

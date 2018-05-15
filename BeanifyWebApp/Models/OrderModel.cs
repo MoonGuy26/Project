@@ -8,12 +8,6 @@ namespace BeanifyWebApp.Models
     public class OrderModel:AbstractBaseModel
     {
         [Required]
-        public int ProductId { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
-
-        [Required]
         [DataType(DataType.DateTime)]
         public DateTime Date { get; set; }
 
@@ -27,5 +21,14 @@ namespace BeanifyWebApp.Models
 
         [Required]
         public bool IsNew { get; set; }
+
+        [Display(Name = "Product")]
+        public int ProductModelId { get; set; }
+
+        [Display(Name = "Customer")]
+        public string ApplicationUserId { get; set; }
+
+        public virtual ProductModel ProductModel { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

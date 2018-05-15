@@ -31,24 +31,27 @@ namespace BeanifyWebApp
             if (!roleManager.RoleExists("Admin"))
             {
 
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                var role = new IdentityRole();
                 role.Name = "Admin";
                 roleManager.Create(role);
 
 
-                var user = new ApplicationUser();
-                user.UserName = "arthur.tronche@gmail.com";
-                user.Email = "arthur.tronche@gmail.com";
+                
+                
 
-                string userPWD = "1Gr$7gi754=g";
+            }
+            var user = new ApplicationUser();
+            user.UserName = "arthur.chetron@gmail.com";
+            user.Email = "arthur.chetron@gmail.com";
 
-                var chkUser = UserManager.Create(user, userPWD);
+            string userPWD = "1Gr$7gi754=g";
 
-                if (chkUser.Succeeded)
-                {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
+            var chkUser = UserManager.Create(user, userPWD);
 
-                }
+            if (chkUser.Succeeded)
+            {
+                var result1 = UserManager.AddToRole(user.Id, "Admin");
+
             }
 
             if (!roleManager.RoleExists("Manager"))

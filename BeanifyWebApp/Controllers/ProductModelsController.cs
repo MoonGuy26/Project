@@ -15,7 +15,7 @@ namespace BeanifyWebApp.Controllers
     [Authorize]
     public class ProductModelsController : ApiController
     {
-        private ProductContext db = new ProductContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/ProductModels
         [Authorize]
