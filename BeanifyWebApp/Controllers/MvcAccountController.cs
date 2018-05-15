@@ -5,6 +5,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Claims;
@@ -248,7 +249,21 @@ namespace BeanifyWebApp.Controllers
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "MvcAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                
+                string FilePath = "C:\\inetpub\\wwwroot\\BeanifyWebApp\\EmailTemplates\\ResetPassword.html";
+                StreamReader str = new StreamReader(FilePath);
+                string MailText = str.ReadToEnd().ToString();
+                str.Close();
+
+                MailText = MailText.Replace("{0}", "Reset Password");
+                MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
+                MailText = MailText.Replace("{2}", user.UserName);
+                MailText = MailText.Replace("{3}", callbackUrl);
+
+
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", MailText);
+
+                //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "MvcAccount");
             }
             // If we got this far, something failed, redisplay form
