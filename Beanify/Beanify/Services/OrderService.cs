@@ -17,11 +17,19 @@ namespace Beanify.Services
             return restService.SaveOrderAsync(LocalStorageSettings.AccessToken, item).Result;
         }
 
-        public async Task OrderConfirmation(IModel item)
+        public List<OrderModel> GetOrder()
         {
-            RestService<object> restService = new RestService<object>("api/OrderModels/OrderConfirmation");
+            try
+            {
+                RestService<OrderModel> restService = new RestService<OrderModel>("api/OrderModels/GetFromUser");
 
-            await restService.RequestWithSerializableParameter(item, LocalStorageSettings.AccessToken);
+                return restService.GetOrdersAsync(LocalStorageSettings.AccessToken).Result;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

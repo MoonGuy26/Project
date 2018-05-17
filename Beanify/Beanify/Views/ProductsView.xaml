@@ -2,53 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.ProductsView"
+             xmlns:customControls="clr-namespace:Beanify.Utils.Controls"
              BackgroundColor="AliceBlue"
-             BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}">
+             BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}"
+             x:Name="Page">
     <ContentPage.Content>
         <StackLayout>
-            <!--<ListView ItemsSource="{Binding Categ}" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                    <Button Text="+" HorizontalOptions="End"/>
-                                </StackLayout>
-                                <ListView ItemsSource="{Binding Products}" HasUnevenRows="True">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                                                    <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                                    <Button Text="More info" HorizontalOptions="End"/>
-                                                </StackLayout>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>--> <!-- Keep crashing because of an UnsupportedException, a solution could be to create a custom list layout with it own ctor -->
-
-            <!-- For reason of time deadline, and also task priority, I'm using code-behind for ItemSelected Event, it'll change next iteration, I'll try to look for EventToCommand Converter -->
-            <ListView SelectedItem="{Binding SelectedItem, Mode=TwoWay}" ItemsSource="{Binding Products}" HasUnevenRows="True" Margin="20,40">
+            <ListView ItemsSource="{Binding Products}" HasUnevenRows="True" SeparatorColor="CornflowerBlue">
                 <ListView.Header>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                                <Label Text="{Binding Name}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                <Button  Text="More info" Command="{Binding Commands[LoadingDetails]}" HorizontalOptions="End"/>
+                        <customControls:CustomViewCell SelectedBackgroundColor="AliceBlue">
+                            <StackLayout x:Name="Item" Orientation="Horizontal" Margin="25, 25, 25, 25">
+                                <Image Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
+                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Label Text="Price : " HorizontalOptions="Start" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Button  Text="More info >"                                        
+                                         Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
+                                         CommandParameter="{Binding . }}"
+                                         VerticalOptions="End" 
+                                         HorizontalOptions="End"
+                                         BorderColor="Transparent"
+                                         BackgroundColor="Transparent"/>
                             </StackLayout>
-                        </ViewCell>
+                        </customControls:CustomViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="More info" Command="{Binding Commands[LoadingDetails]}" HorizontalOptions="End"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

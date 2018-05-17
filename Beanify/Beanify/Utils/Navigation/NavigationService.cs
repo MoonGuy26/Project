@@ -10,6 +10,7 @@ using Beanify.ViewModels;
 using Beanify.Views;
 using Beanify.Views.CarouselViews;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Beanify.Utils.Navigation
@@ -184,6 +185,7 @@ namespace Beanify.Utils.Navigation
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
 
         }
+
 
 
         private async Task InternalSetRootPageAsync(Type viewModelType, object parameter)

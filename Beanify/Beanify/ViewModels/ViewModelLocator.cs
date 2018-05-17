@@ -12,6 +12,30 @@ namespace Beanify.ViewModels
 {
     public class ViewModelLocator
     {
+        public OrderPopUpViewModel OrderPopUpViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<OrderPopUpViewModel>();
+            }
+        }
+
+        public LogoutPopUpViewModel LogoutPopUpViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LogoutPopUpViewModel>();
+            }
+        }
+
+        public PreviousOrdersViewModel PreviousOrdersViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PreviousOrdersViewModel>();
+            }
+        }
+
         public ProductsViewModel ProductsViewModel
         {
             get

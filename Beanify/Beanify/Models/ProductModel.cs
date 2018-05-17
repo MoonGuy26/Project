@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace Beanify.Models
@@ -9,7 +10,14 @@ namespace Beanify.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public float Price { get; set; }
-        public string ImagePath { get; set; }
+        public string imagePath;
+        public string ImagePath
+        {
+            get { return imagePath; }
+            set {
+                imagePath = System.IO.Path.Combine("http://93.113.111.183:80/BeanifyWebApp/", value.Substring(2).Replace("\\\\" , "/"));   
+            }
+        }
         //public bool IsSelected { get; set; } = false;
     }
 }
