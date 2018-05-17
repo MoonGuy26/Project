@@ -81,4 +81,28 @@ namespace BeanifyWebApp.Models
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class EditAccountBindingModel
+    {
+        public string Id { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [RegularExpression("^[\\p{L} .'-]+$", ErrorMessage = "This name is not valid.")]
+        public string Name { get; set; }
+
+
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name ="Contact Number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Username (email address)")]
+        public string Email { get; set; }
+
+        [Display(Name="Business Name")]
+        [MaxLength(100,ErrorMessage ="The business name has a maximum length of 100 caracters.")]
+        public string Company { get; set; }
+    }
 }

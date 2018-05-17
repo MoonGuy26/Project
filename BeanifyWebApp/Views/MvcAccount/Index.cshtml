@@ -1,0 +1,57 @@
+﻿@model IEnumerable<BeanifyWebApp.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "AppUsers";
+}
+<hr />
+<h2>App Users</h2>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+               Business
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+        </tr>
+  </thead>
+
+        
+    <tbody>
+        @foreach (var item in Model)
+    {
+        <tr class="table-light cursor colorize"
+            onclick="document.location='/BeanifyWebApp/MvcAccount/Edit/@Html.Raw(item.Id) '">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @if (item.Company != null)
+                {
+                    @Html.DisplayFor(modelItem => item.Company);
+                }
+                else
+                {
+                    @Html.Raw("No company");
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+        </tr>
+        }
+        <tr class="alert-link">
+            <td colspan="3">
+                @Html.ActionLink("Add User", "AddUser", "MvcAccount",
+                        routeValues: null, htmlAttributes: new { @class = "btn btn-secondary btn-lg" }
+                        )
+            </td>
+        </tr>
+    </tbody>
+</table>

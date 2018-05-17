@@ -10,7 +10,34 @@
     <h4>OrderModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Name)
+        </dd>
+
+        @if (Model.ApplicationUser.Company != null)
+        {
+            <dt>
+               Business
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationUser.Company)
+            </dd>
+
+        }
+
+        <dt>
+           Product
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductModel.Name)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Date)
         </dt>
@@ -35,17 +62,8 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsNew)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsNew)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

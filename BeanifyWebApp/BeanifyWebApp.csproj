@@ -257,13 +257,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805021023159_Initia5.cs" />
-    <Compile Include="Migrations\201805021023159_Initia5.Designer.cs">
-      <DependentUpon>201805021023159_Initia5.cs</DependentUpon>
+    <Compile Include="Migrations\201805161325254_validation.cs" />
+    <Compile Include="Migrations\201805161325254_validation.Designer.cs">
+      <DependentUpon>201805161325254_validation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractBaseModel.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EditProductModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -279,6 +281,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Scripts\bootstrap-confirmation.js" />
+    <Content Include="Scripts\bootstrap-confirmation.min.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="EmailTemplates\ResetPassword.html" />
@@ -291,8 +295,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -315,10 +317,20 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\bootstrap-confirmation.js.map" />
+    <Content Include="Scripts\bootstrap-confirmation.min.js.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -327,6 +339,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
@@ -353,17 +366,19 @@
     <Content Include="Views\MvcAccount\ResetPassword.cshtml" />
     <Content Include="Views\MvcAccount\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\MvcProductModels\Create.cshtml" />
-    <Content Include="Views\MvcProductModels\Delete.cshtml" />
     <Content Include="Views\MvcProductModels\Details.cshtml" />
     <Content Include="Views\MvcProductModels\Edit.cshtml" />
     <Content Include="Views\MvcProductModels\Index.cshtml" />
     <Content Include="Views\MvcOrderModels\Details.cshtml" />
-    <Content Include="Views\MvcOrderModels\Edit.cshtml" />
     <Content Include="Views\MvcOrderModels\Index.cshtml" />
-    <Content Include="Views\MvcAccount\Register.cshtml" />
+    <Content Include="Views\MvcAccount\AddUser.cshtml" />
+    <Content Include="Views\MvcAccount\Index.cshtml" />
+    <Content Include="Views\MvcAccount\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Images\ProductModels\" />
+    <Folder Include="Images\ProductModels\" />
+    <Folder Include="Models\AppModels\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\RegisterUser\" />
   </ItemGroup>
@@ -381,8 +396,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805021023159_Initia5.resx">
-      <DependentUpon>201805021023159_Initia5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805161325254_validation.resx">
+      <DependentUpon>201805161325254_validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

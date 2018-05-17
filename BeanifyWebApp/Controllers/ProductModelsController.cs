@@ -21,7 +21,7 @@ namespace BeanifyWebApp.Controllers
         [Authorize]
         public IQueryable<ProductModel> GetProductModels()
         {
-            return db.ProductModels;
+            return db.ProductModels.Where(p=>p.IsAvailable);
         }
 
         // GET: api/ProductModels/5

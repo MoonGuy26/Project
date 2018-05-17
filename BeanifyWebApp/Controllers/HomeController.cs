@@ -23,5 +23,20 @@ namespace BeanifyWebApp.Controllers
 
             return View();
         }
+
+        public ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/App_Data/Images"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+            }
+            // after successfully uploading redirect the user
+            return RedirectToAction("Edit", "MvdProductModels");
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using BeanifyWebApp.Models;
 using Microsoft.AspNet.Identity;
@@ -23,6 +24,7 @@ namespace BeanifyWebApp
         private void CreateRolesandUsers()
         {
             ApplicationDbContext context = new ApplicationDbContext();
+            
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
@@ -40,11 +42,12 @@ namespace BeanifyWebApp
                 
 
             }
-            var user = new ApplicationUser();
-            user.UserName = "arthur.chetron@gmail.com";
-            user.Email = "arthur.chetron@gmail.com";
+            var user = new ApplicationUser { Name = "Arthur Tronche" };
+            
+            user.UserName = "arthur.tronche@gmail.com";
+            user.Email = "arthur.tronche@gmail.com";
 
-            string userPWD = "1Gr$7gi754=g";
+            string userPWD = "Test123==";
 
             var chkUser = UserManager.Create(user, userPWD);
 

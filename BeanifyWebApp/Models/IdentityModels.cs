@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Security.Claims;
@@ -13,6 +14,11 @@ namespace BeanifyWebApp.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [Required]
+        [StringLength(100)]
+        [RegularExpression("^[\\p{L} .'-]+$", ErrorMessage = "This name is not valid.")]
+        public string Name { get; set; }
+
         public string Company { get; set; }
 
         public virtual ICollection<OrderModel> OrderModels { get; set; }

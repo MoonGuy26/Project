@@ -1,21 +1,17 @@
-﻿@model BeanifyWebApp.Models.EditProductModel
+﻿@model BeanifyWebApp.Models.EditAccountBindingModel
 
 @{
     ViewBag.Title = "Edit";
 }
-<hr />
-<h2>Edit Product</h2>
+<hr/>
+<h2>Edit User</h2>
 
-@using (Html.BeginForm("Edit", "MvcProductModels", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -25,41 +21,30 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="Description">Description</label>
+            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <textarea class="form-control text-box" id="Description" name="Description"
-                          type="textarea" placeholder="Enter a description..." rows="4"></textarea>
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Business name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-        <div class="form-group form-check form-check-inline">
-            <input @(Model.IsAvailable?"":"checked")
-                   class="form-control check-box" id="IsAvailable" name="IsAvailable" type="checkbox" value="false" />
-            <input name="IsAvailable" type="hidden" value="true" />
-            <label class="form-check-label" for="Out_of_stock">Out of stock</label>
-        </div>
-
-        <div class="container">
-            <p>Current Image</p>
-            <img src="@Url.Content(ViewBag.CurrentImage)" alt="No Image" width="200" height="200" />
-        </div>
-
-
-        <div class="form-group">
-            <label for="file">Upload a new Image</label>
-            <input type="file" name="file" id="file" style="width: 100%;" class="btn btn-link" />
-        </div>
-
-        
 
         <div class="form-group">
             <div class="row">
@@ -75,8 +60,11 @@
             </div>
 
         </div>
+
+
     </div>
 }
+
 
 <!--MODAL CONFIRMATION-->
 <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -89,22 +77,22 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>You are about to delete this product.</p>
+                <p>You are about to delete this user.</p>
                 <p class="alert alert-danger">It will also remove all his related orders.</p>
                 <p>Do you want to proceed?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-
-                <form action='/BeanifyWebApp/MvcProductModels/Delete/@Html.Raw(Model.Id)' method="post">
+             
+                <form action='/BeanifyWebApp/MvcAccount/Delete/@Html.Raw(Model.Id)' method="post">
                     <input type="submit" value="Yes" class="btn btn-success" />
                 </form>
 
             </div>
         </div>
     </div>
-</div>
+ </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

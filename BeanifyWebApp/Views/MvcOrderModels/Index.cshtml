@@ -5,7 +5,8 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<hr />
+<h2>Orders</h2>
 
 <table class="table">
     <thead class="thead-dark">
@@ -35,7 +36,7 @@
         @foreach (var item in Model)
         {
 
-        <tr class='@(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
+        <tr class='highlight cursor @(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
             <th scope="row">
                 @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
             </th>

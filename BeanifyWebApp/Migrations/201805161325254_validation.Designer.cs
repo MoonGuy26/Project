@@ -7,13 +7,13 @@ namespace BeanifyWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Initia5 : IMigrationMetadata
+    public sealed partial class validation : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initia5));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(validation));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805021023159_Initia5"; }
+            get { return "201805161325254_validation"; }
         }
         
         string IMigrationMetadata.Source

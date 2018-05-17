@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Linq;
+using System.Web;
 
 namespace BeanifyWebApp.Models
 {
-    public class ProductModel:AbstractBaseModel
+    public class EditProductModel:AbstractBaseModel
     {
         [Required]
         [StringLength(100)]
@@ -21,13 +22,8 @@ namespace BeanifyWebApp.Models
             ErrorMessage = "Price must be between 0.01 and 100000000.00")]
         public float Price { get; set; }
 
-        [Required]
-        [DataType(DataType.ImageUrl)]
-        public string ImagePath { get; set; }
 
         [Required]
         public bool IsAvailable { get; set; }
-
-        public virtual ICollection<OrderModel> OrderModels { get; set; }
     }
 }

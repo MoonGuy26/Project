@@ -89,13 +89,22 @@ namespace BeanifyWebApp.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(100)]
+        [RegularExpression("^[\\p{L} .'-]+$", ErrorMessage = "This name is not valid.")]
+        public string Name { get; set; }
+
+
+        [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "Username (email address)")]
         public string Email { get; set; }
 
-        
-        [Display(Name = "Company")]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Contact Number")]
+        public string PhoneNumber { get; set; }
+
+        [Display(Name = "Business Name")]
+        [MaxLength(100, ErrorMessage = "The business name has a maximum length of 100 caracters.")]
         public string Company { get; set; }
 
         [Required]

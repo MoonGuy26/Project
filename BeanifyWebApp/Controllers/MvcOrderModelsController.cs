@@ -11,7 +11,7 @@ using BeanifyWebApp.Models;
 namespace BeanifyWebApp.Controllers
 {
     //set authorize Admin when possible
-    [Authorize]
+    [Authorize(Roles="Admin")]
     public class MvcOrderModelsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -34,7 +34,8 @@ namespace BeanifyWebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OrderModel orderModel = db.OrderModels.Find(id);
+
+            OrderModel orderModel = db.OrderModels.Where(o => o.Id == id).Include(o => o.ProductModel).Include(o => o.ApplicationUser).First(); 
             if (orderModel == null)
             {
                 return HttpNotFound();

@@ -103,9 +103,17 @@ table tr td {
         transform: scale(1.01);
 }
 
-table tbody tr:hover {
+.highlight:hover {
     -webkit-filter: brightness(110%);
     filter: brightness(110%);
-    
+}
+
+.cursor:hover {
     cursor: pointer;
+}
+
+.colorize:hover {
+    background: lightblue;
+    -webkit-filter: invert(85%);
+    filter: invert(85%);
 }

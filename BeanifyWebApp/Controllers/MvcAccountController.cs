@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ using System.Web.Mvc;
 
 namespace BeanifyWebApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class MvcAccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -53,6 +54,13 @@ namespace BeanifyWebApp.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        //
+        // GET: /MvcAccount
+        public ActionResult Index()
+        {
+            return View(UserManager.Users.ToList());
         }
 
         //
@@ -100,26 +108,25 @@ namespace BeanifyWebApp.Controllers
         }
 
         //
-        // GET: /MvcAccount/Register
+        // GET: /MvcAccount/AddUser
         //[Authorize(Roles = "Admin")]
-        [AllowAnonymous]
-        public ActionResult Register()
+        
+        public ActionResult AddUser()
         {
             return View();
         }
 
         //
-        // POST: /MvcAccount/Register
+        // POST: /MvcAccount/AddUser
         [HttpPost]
         //[Authorize(Roles = "Admin")]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> AddUser(RegisterViewModel model)
         {
            
                 if (ModelState.IsValid)
                 {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Company=model.Company };
+                var user = new ApplicationUser {Name=model.Name, UserName = model.Email, Email = model.Email, Company=model.Company, PhoneNumber=model.PhoneNumber };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
@@ -131,7 +138,7 @@ namespace BeanifyWebApp.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index");
                     }
                     AddErrors(result);
                 }
@@ -140,12 +147,52 @@ namespace BeanifyWebApp.Controllers
             return View(model);
         }
 
-
-
-        // GET: MvcAccount
-        public ActionResult Index()
+        // GET: MvcAccount/Edit/5
+        public ActionResult Edit(string id)
         {
-            return View();
+             if (string.IsNullOrEmpty(id))
+             {
+                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+             }
+             ApplicationUser applicationUser = UserManager.FindById(id);
+            if (applicationUser == null)
+            {
+                return HttpNotFound();
+            }
+
+            EditAccountBindingModel editedUser = new EditAccountBindingModel
+            {
+                Id = id,
+                Name=applicationUser.Name,
+                PhoneNumber = applicationUser.PhoneNumber,
+                Company = applicationUser.Company,
+                Email = applicationUser.UserName
+
+            };
+            
+            return View(editedUser);
+
+        }
+
+        // POST: MvcAccount/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        public async Task<ActionResult> Edit( EditAccountBindingModel editedUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var newUser = UserManager.FindById(editedUser.Id);
+
+                newUser.Name = editedUser.Name;
+                newUser.PhoneNumber = editedUser.PhoneNumber;
+                newUser.Company = editedUser.Company;
+                newUser.UserName = editedUser.Email;
+                newUser.Email = editedUser.Email;
+                await UserManager.UpdateAsync(newUser);
+                return RedirectToAction("Index");
+            }
+            return View(editedUser);
         }
 
         // GET: MvcAccount/Details/5
@@ -154,70 +201,23 @@ namespace BeanifyWebApp.Controllers
             return View();
         }
 
-        // GET: MvcAccount/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MvcAccount/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MvcAccount/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MvcAccount/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MvcAccount/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
         // POST: MvcAccount/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id)
         {
-            try
+            if (string.IsNullOrEmpty(id))
             {
-                // TODO: Add delete logic here
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var context = new ApplicationDbContext();
+            var x = (from o in context.OrderModels
+                     where o.ApplicationUserId == id
+                     select o);
+            context.OrderModels.RemoveRange(x);
+            context.SaveChanges();
+            UserManager.Delete(UserManager.FindById(id));
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index");
         }
 
         //

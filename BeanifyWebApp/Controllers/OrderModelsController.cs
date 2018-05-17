@@ -28,6 +28,12 @@ namespace BeanifyWebApp.Controllers
             return db.OrderModels;
         }
 
+        // GET: api/UserOrderModels
+        public IQueryable<OrderModel> GetFromUser()
+        {
+            return db.OrderModels.Where(o=>o.ApplicationUserId==User.Identity.GetUserId());
+        }
+
         // GET: api/OrderModels/5
         [ResponseType(typeof(OrderModel))]
         public IHttpActionResult GetOrderModel(int id)
