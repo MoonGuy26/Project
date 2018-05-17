@@ -4,6 +4,7 @@ using Beanify.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -12,29 +13,9 @@ namespace Beanify.ViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {
-        private ProductModel _selectedItem;
-
-        public ObservableCollection<ProductsModel> Categ
-        {
-            get; set;
-        }
-
         public ObservableCollection<ProductModel> Products
         {
             get; set;
-        }
-        public ProductModel SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                if (_selectedItem != value && value != null)
-                {
-                    if (_selectedItem != null){}
-                    _selectedItem = value;                   
-                    OnPropertyChanged(nameof(SelectedItem));
-                }
-            }
         }
 
         public ProductsViewModel(IProductService ProductService) : base()
@@ -46,24 +27,18 @@ namespace Beanify.ViewModels
             // Problem has been identified : It should be run-away tasks issues, so, it means that the UI is lock due to this run-away tasks
             // https://blog.xamarin.com/getting-started-with-async-await/ - Here is a nice tutorial to get rid of it.
 
-            Commands.Add("LoadingDetails", new Command(OnMoreInfoExecute));
-            /*Categ = new ObservableCollection<ProductsModel>
-            {
-                new ProductsModel {
-                                Name = "azerty", Products = this.Products
-                            },
-                new ProductsModel {
-                                Name = "azerty", Products = this.Products
-                            },
-                new ProductsModel {
-                                Name = "azerty", Products = this.Products
-                            }
-            };*/
+            Commands.Add("LoadingDetails", OnMoreInfoExecute);
+        }
+        private Command<object> _OnMoreInfoExecute;
+
+        public  Command<object> OnMoreInfoExecute
+        {
+            get { return _OnMoreInfoExecute ?? (_OnMoreInfoExecute = new Command<object>((currentObject) => NavigateToInfo(currentObject))); }
         }
 
-        public async void OnMoreInfoExecute()
+        private async void NavigateToInfo(object currentObject)
         {
-            await _navigationService.NavigateToInsideDashboardAsync<OrderNewViewModel>(_selectedItem);
+            await _navigationService.NavigateToInsideDashboardAsync<OrderNewViewModel>((ProductModel)currentObject);
         }
   
     }

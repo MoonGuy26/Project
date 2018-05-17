@@ -20,6 +20,7 @@
     <PackageReference Include="HockeySDK.Xamarin" Version="5.1.2" />
     <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.158-pre" />
     <PackageReference Include="Unity" Version="5.8.6" />
     <PackageReference Include="Xam.FormsPlugin.Iconize" Version="1.0.10" />
     <PackageReference Include="Xam.Plugin.Iconize" Version="1.0.10" />
@@ -50,6 +51,9 @@
     </Compile>
     <Compile Update="Views\DashboardView.xaml.cs">
       <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\LogoutPopUpView.xaml.cs">
+      <DependentUpon>LogoutPopUpView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -93,8 +97,14 @@
     <EmbeddedResource Update="Views\OrderNewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\OrderPopUpView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\OrderReviewView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\LogoutPopUpView.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\PreviousOrdersView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

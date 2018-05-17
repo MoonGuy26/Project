@@ -230,6 +230,18 @@ namespace Beanify.RestClients
             return products;
         }
 
+
+        public async Task<List<OrderModel>> GetOrdersAsync(string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            //var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels").ConfigureAwait(false);
+            var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/Api/OrderModels/GetOrderModels").ConfigureAwait(false);
+            Debug.WriteLine(json);
+            var orders = JsonConvert.DeserializeObject<List<OrderModel>>(json);
+            return orders;
+        }
+
         public async Task<HttpResponseMessage> SaveOrderAsync(string accessToken, IModel orderModel)
         {
             var client = new HttpClient();

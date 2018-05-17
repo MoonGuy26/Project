@@ -1,6 +1,7 @@
 ﻿using Beanify.Models;
 using Beanify.Serialization;
 using Beanify.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,15 +16,15 @@ namespace Beanify.ViewModels
         private DashboardNavigationViewMenuItem _selectedItem;
         private Page _detailPage;
 
+        private DashboardNavigationViewMenuItem _previousSelectedItem;
         
-
-
         public DashboardNavigationViewMenuItem SelectedItem
         {
             get { return _selectedItem; }
             set {
                 if (_selectedItem != value)
                 {
+                    _previousSelectedItem = _selectedItem;
                     _selectedItem = value;
                     OnPropertyChanged(nameof(SelectedItem));
                 }
@@ -37,8 +38,6 @@ namespace Beanify.ViewModels
         }
 
         public ObservableCollection<DashboardNavigationViewMenuItem> MenuItems { get; set; }
-
-        
 
         override protected void InitializeViewModel()
         {
@@ -84,10 +83,14 @@ namespace Beanify.ViewModels
 
         private void OnLogoutExecute()
         {
-            LocalStorageSettings.AccessToken = null;
             //Application.Current.MainPage = new CustomNavigationView(new LoginView() as Page);
-            ((App)Application.Current).MainPage = new Views.LoginView();
 
+            //LocalStorageSettings.AccessToken = null;
+            //((App)Application.Current).MainPage = new Views.LoginView();
+
+           _selectedItem = _previousSelectedItem;
+            PopupNavigation.Instance.PushAsync(new LogoutPopUpView());
+            
         }
 
         

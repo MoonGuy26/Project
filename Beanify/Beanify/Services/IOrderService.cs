@@ -10,6 +10,6 @@ namespace Beanify.Services
     public interface IOrderService
     {
        HttpResponseMessage AddItem(IModel item);
-       Task OrderConfirmation(IModel item);
+        List<OrderModel> GetOrder();
     }
 }

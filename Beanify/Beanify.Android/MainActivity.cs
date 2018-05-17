@@ -32,7 +32,9 @@ namespace Beanify.Droid
 
             base.OnResume();
             CrashManager.Register(this, "7f70a56f74af4103ae0b13417235f1f9");
-            
+
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
             CarouselViewRenderer.Init();
             CachedImageRenderer.Init(true);

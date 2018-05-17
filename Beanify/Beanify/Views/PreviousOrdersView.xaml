@@ -5,9 +5,21 @@
              BindingContext="{Binding PreviousOrdersViewModel, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Orders}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell IsEnabled="False">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
+                                <Label Text="{Binding Date}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                <StackLayout Orientation="Horizontal" Padding="15,15,15,15">
+                                    <Label Text="{Binding Quantity}" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding ProductModel.ProductName}" HorizontalOptions="End" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
