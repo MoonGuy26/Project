@@ -138,8 +138,16 @@ namespace BeanifyWebApp.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    
+                    new Thread(() =>
+                    {
                         Thread.CurrentThread.IsBackground = true;
+
+                        EmailService email = new EmailService();
+                        IdentityMessage identityMessage = new IdentityMessage();
+
+                        identityMessage.Destination = model.Email;
+                        identityMessage.Subject = "New Beanify account";
+
                         string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/AccountChanged.html");
                         StreamReader str = new StreamReader(FilePath);
                         string MailText = str.ReadToEnd().ToString();
@@ -147,15 +155,18 @@ namespace BeanifyWebApp.Controllers
 
                         MailText = MailText.Replace("{0}", "Account updated");
                         MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
-                        MailText = MailText.Replace("{2}", model.Email);
-                        MailText = MailText.Replace("{3}", model.Password);
+                        MailText = MailText.Replace("{2}", model.Name);
+                        
+                        MailText = MailText.Replace("{4}", model.Password);
                         
 
-                        MailText = MailText.Replace("{4}", VirtualPathUtility.ToAbsolute("~/MvcAccount/ForgotPassword"));
+                        MailText = MailText.Replace("{5}", Path.Combine("http://93.113.111.183", VirtualPathUtility.ToAbsolute("~/MvcAccount/ForgotPassword")));
 
-                        UserManager.SendEmail(UserManager.FindByName(model.Email).Id, "New Beanify account", MailText);
+                        identityMessage.Body = MailText;
 
-                    
+                        email.Send(identityMessage);
+
+                    }).Start();
                     return RedirectToAction("Index");
                     }
                     AddErrors(result);
@@ -219,8 +230,16 @@ namespace BeanifyWebApp.Controllers
                 if (emailChanged || passwordChanged)
                 {
 
-                    
+                    new Thread(() =>
+                    {
                         Thread.CurrentThread.IsBackground = true;
+
+                        EmailService email = new EmailService();
+                        IdentityMessage identityMessage = new IdentityMessage();
+
+                        identityMessage.Destination = newUser.Email;
+                        identityMessage.Subject = "Beanify account updated";
+
                         string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/AccountChanged.html");
                         StreamReader str = new StreamReader(FilePath);
                         string MailText = str.ReadToEnd().ToString();
@@ -228,17 +247,20 @@ namespace BeanifyWebApp.Controllers
 
                         MailText = MailText.Replace("{0}", "Account updated");
                         MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
-                        MailText = MailText.Replace("{2}", editedUser.Email);
+                        MailText = MailText.Replace("{2}", editedUser.Name);
+                        MailText = MailText.Replace("{3}", editedUser.Email);
                         if (passwordChanged)
-                            MailText = MailText.Replace("{3}", editedUser.NewPassword);
+                            MailText = MailText.Replace("{4}", editedUser.NewPassword);
                         else
-                            MailText = MailText.Replace("{3}", "your password has not been changed");
+                            MailText = MailText.Replace("{4}", "your password has not been changed");
 
-                        MailText = MailText.Replace("{4}", VirtualPathUtility.ToAbsolute("~/MvcAccount/ForgotPassword"));
+                        MailText = MailText.Replace("{4}", Path.Combine("http://93.113.111.183", VirtualPathUtility.ToAbsolute("~/MvcAccount/ForgotPassword")));
 
-                        UserManager.SendEmail(newUser.Id, "Beanify account updated", MailText);
+                        identityMessage.Body = MailText;
 
-                    
+                        email.Send(identityMessage);
+
+                    }).Start();
                 }
 
                 

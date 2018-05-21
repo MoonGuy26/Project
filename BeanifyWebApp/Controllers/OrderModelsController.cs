@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Hosting;
 using System.Web.Http;
@@ -100,41 +101,43 @@ namespace BeanifyWebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            
 
-            EmailService email = new EmailService();
-            IdentityMessage identityMessage = new IdentityMessage();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                EmailService email = new EmailService();
+                IdentityMessage identityMessage = new IdentityMessage();
 
-            identityMessage.Destination = User.Identity.GetUserName();
-            identityMessage.Subject = "Order Confirmation";
+                identityMessage.Destination = User.Identity.GetUserName();
+                identityMessage.Subject = "Order Confirmation";
 
-            //Fetching Email Body Text from EmailTemplate File.  
-            //string FilePath = Path.GetFullPath("OrderConfirmation.html");
+                //Fetching Email Body Text from EmailTemplate File.  
+                //string FilePath = Path.GetFullPath("OrderConfirmation.html");
 
-            string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/OrderConfirmation.html");
-            StreamReader str = new StreamReader(FilePath);
-            string MailText = str.ReadToEnd().ToString();
-            str.Close();
+                string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/OrderConfirmation.html");
+                StreamReader str = new StreamReader(FilePath);
+                string MailText = str.ReadToEnd().ToString();
+                str.Close();
 
-            //{0} : Subject  
-            //{1} : DateTime  
-            //{2} : Email  
-            //{3} : Item  
-            //{4} : Quantity  
-            //{5} : Price  
+                //{0} : Subject  
+                //{1} : DateTime  
+                //{2} : Email  
+                //{3} : Item  
+                //{4} : Quantity  
+                //{5} : Price  
 
-            MailText = MailText.Replace("{0}", identityMessage.Subject);
-            MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
-            MailText = MailText.Replace("{2}", User.Identity.GetUserName());
-            MailText = MailText.Replace("{3}", orderModel.ProductName);
-            MailText = MailText.Replace("{4}", orderModel.Quantity.ToString() + " items");
-            MailText = MailText.Replace("{5}", orderModel.Price.ToString());
+                MailText = MailText.Replace("{0}", identityMessage.Subject);
+                MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
+                MailText = MailText.Replace("{2}", User.Identity.GetUserName());
+                MailText = MailText.Replace("{3}", orderModel.ProductName);
+                MailText = MailText.Replace("{4}", orderModel.Quantity.ToString() + " items");
+                MailText = MailText.Replace("{5}", orderModel.Price.ToString());
 
-            identityMessage.Body = MailText;
-            //identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\n\nYou've paid " + orderModel.Price + "£ for it. Order has been passed on the " + orderModel.Date.ToShortDateString() + " at " + orderModel.Date.ToShortTimeString() +". \nThanks for buying our delicious coffees.";
+                identityMessage.Body = MailText;
+                //identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\n\nYou've paid " + orderModel.Price + "£ for it. Order has been passed on the " + orderModel.Date.ToShortDateString() + " at " + orderModel.Date.ToShortTimeString() +". \nThanks for buying our delicious coffees.";
 
-            email.Send(identityMessage);
-
+                email.Send(identityMessage);
+            }).Start();
 
 
             db.OrderModels.Add(orderModel);

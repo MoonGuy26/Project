@@ -52,11 +52,7 @@ namespace BeanifyWebApp.Controllers
         public ActionResult Create([Bind(Include = "Id,Name,Description,Price,IsAvailable")]ProductModel productModel, 
             HttpPostedFileBase file)
         {
-            if (productModel.Description != null)
-            {
-                ViewBag.EnteredDescription = productModel.Description;
-            }
-
+            
             if (file == null)
             {
                 ViewBag.NoImageError = "An image is required!";
@@ -89,10 +85,6 @@ namespace BeanifyWebApp.Controllers
             ViewBag.NoImageError = null;
             ViewBag.EnteredDescription = null;
             return RedirectToAction("Index");
-
-          
-                
-            
             //return View(productModel);
         }
 

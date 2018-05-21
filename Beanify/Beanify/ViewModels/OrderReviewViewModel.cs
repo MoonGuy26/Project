@@ -65,7 +65,6 @@ namespace Beanify.ViewModels
                 
                 _orderService.AddItem(Order);
                 await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
-
             }
             catch (Exception e)
             {
