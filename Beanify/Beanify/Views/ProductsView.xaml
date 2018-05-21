@@ -8,7 +8,7 @@
              x:Name="Page">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Products}" HasUnevenRows="True" SeparatorColor="CornflowerBlue">
+            <ListView ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorColor="CornflowerBlue">
                 <ListView.Header>
                 </ListView.Header>
                 <ListView.ItemTemplate>
