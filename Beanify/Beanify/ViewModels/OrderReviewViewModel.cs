@@ -48,20 +48,12 @@ namespace Beanify.ViewModels
             Commands.Add("Order", new Command(OnOrderExecute));
         }
 
-<<<<<<< HEAD
-        public async void OnOrderExecute()
-        {
 
-            _orderService.AddItem(Order as OrderModel);
-            await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
-
-            /*PopupNavigation.Instance.PushAsync(new OrderPopUpView());
-=======
         private async void OnOrderExecute()
         {
             await OrderAndBackToProducts();
         }
->>>>>>> 21d604b7eae1d6d4e604248575befeb33a47494f
+
 
         private async Task OrderAndBackToProducts()
         {
@@ -74,12 +66,6 @@ namespace Beanify.ViewModels
                 
                 _orderService.AddItem(Order);
                 await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
-<<<<<<< HEAD
-                MessagingCenter.Unsubscribe<OrderPopUpViewModel>(this, "Yes");
-            });*/
-=======
->>>>>>> 21d604b7eae1d6d4e604248575befeb33a47494f
-
             }
             catch (Exception e)
             {
