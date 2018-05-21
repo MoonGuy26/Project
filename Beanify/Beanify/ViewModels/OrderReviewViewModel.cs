@@ -54,7 +54,6 @@ namespace Beanify.ViewModels
             await OrderAndBackToProducts();
         }
 
-
         private async Task OrderAndBackToProducts()
         {
             try
