@@ -10,6 +10,7 @@ namespace Beanify.Services
         Task AddUser(string email, string password, string confirmPassword);
         Task<string> LoginUser(string email, string password);
         Task<bool> IsAdmin(string accessToken);
+        Task<bool> IsAuthenticated(string accessToken);
         Task ForgottenPassword(string email);
 
     }

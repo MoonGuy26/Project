@@ -66,6 +66,15 @@ namespace Beanify.Services
             return isAdmin;
         }
 
+        public async Task<bool> IsAuthenticated(string accessToken)
+        {
+            RestService<object> restService = new RestService<object>("api/Account/IsAuthenticated");
+
+            var isAuthenticated = await restService.IsAuthenticated(accessToken);
+
+            return isAuthenticated;
+        }
+
         public async Task ForgottenPassword(string email)
         {
             RestService<ForgotPasswordViewModel> restService = new RestService<ForgotPasswordViewModel>("api/Account/ForgotPassword");
