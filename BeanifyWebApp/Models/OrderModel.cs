@@ -22,13 +22,27 @@ namespace BeanifyWebApp.Models
         [Required]
         public bool IsNew { get; set; }
 
+        [Required]
+        [StringLength(100)]
+        public string CustomerName { get; set; }
+
+        [StringLength(100)]
+        public string CompanyName { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [DataType(DataType.Text)]
+        public string ProductName { get; set; }
+
+
+
         [Display(Name = "Product")]
         public int ProductModelId { get; set; }
 
         [Display(Name = "Customer")]
         public string ApplicationUserId { get; set; }
 
-        public virtual ProductModel ProductModel { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        //public virtual ProductModel ProductModel { get; set; }
+       // public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

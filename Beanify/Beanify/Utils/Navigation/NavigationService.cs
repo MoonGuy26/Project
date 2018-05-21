@@ -216,9 +216,9 @@ namespace Beanify.Utils.Navigation
             var navigationPage = masterDetailView.Detail as CustomNavigationView;
             if (navigationPage != null)
             {
-
-               ( Application.Current.MainPage as DashboardNavigationView ).Detail= new CustomNavigationView(page);
-                    masterDetailView.IsPresented = false;
+                masterDetailView.IsPresented = false;
+                ( Application.Current.MainPage as DashboardNavigationView ).Detail= new CustomNavigationView(page);
+                    
               
 
             }

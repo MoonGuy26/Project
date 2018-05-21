@@ -101,13 +101,13 @@ namespace Beanify.ViewModels
         {
             var orderModel = new OrderModel
             {
+                ProductModelId = ProductModel.Id,
                 ProductName = ProductModel.Name,
                 Price = _productModel.Price * (_quantity + 1),
                 Quantity = _quantity + 1,
-                Date = DateTime.Now,
+                
                 IsNew = true,
-                Id = "6",
-                ClientName = "s.daroukh@live.fr",
+                
             };
             var object_list = new List<object>();
             object_list.Add(_productModel);

@@ -13,8 +13,9 @@
                                 <Label Text="{Binding Date}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
                                 <StackLayout Orientation="Horizontal" Padding="15,15,15,15">
                                     <Label Text="{Binding Quantity}" HorizontalOptions="StartAndExpand" />
-                                    <Label Text="{Binding ProductModel.ProductName}" HorizontalOptions="End" />
+                                    <Label Text="{Binding ProductName}" HorizontalOptions="End" />
                                 </StackLayout>
+                                <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" HorizontalOptions="StartAndExpand" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

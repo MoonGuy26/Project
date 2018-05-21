@@ -4,66 +4,20 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>OrderModel</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <div class="jumbotron align-content-center">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationUser.Name)
-        </dd>
-
-        @if (Model.ApplicationUser.Company != null)
-        {
-            <dt>
-               Business
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.ApplicationUser.Company)
-            </dd>
-
-        }
-
-        <dt>
-           Product
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProductModel.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Date)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Date)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
-</div>
+        <h2>Order Overview</h2>
+        <br/>
+        <h3>@Model.CustomerName @(string.IsNullOrEmpty(Model.CompanyName)?"":Model.CompanyName)</h3>
+        <h3>@Model.Quantity x @Model.ProductName</h3>
+        <br/>
+        <h4>Total @Html.DisplayFor(model=>model.Price)</h4>
+    </div>
 <p>
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+</div>

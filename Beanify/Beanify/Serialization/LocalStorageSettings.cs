@@ -37,6 +37,30 @@ namespace Beanify.Serialization
             }
         }
 
+        public static string Email
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("Email", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("Email", value);
+            }
+        }
+
+        public static string Password
+        {
+            get
+            {
+                return AppSettings.GetValueOrDefault("Password", "");
+            }
+            set
+            {
+                AppSettings.AddOrUpdateValue("Password", value);
+            }
+        }
+
         public static string LastViewModel
         {
             get

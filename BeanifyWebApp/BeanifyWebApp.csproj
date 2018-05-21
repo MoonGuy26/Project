@@ -270,14 +270,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805161325254_validation.cs" />
-    <Compile Include="Migrations\201805161325254_validation.Designer.cs">
-      <DependentUpon>201805161325254_validation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AbstractBaseModel.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AppModels\AppOrderModel.cs" />
     <Compile Include="Models\EditProductModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IModel.cs" />
@@ -294,6 +290,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="EmailTemplates\AccountAdded.html" />
+    <Content Include="EmailTemplates\AccountChanged.html" />
     <Content Include="Scripts\bootstrap-confirmation.js" />
     <Content Include="Scripts\bootstrap-confirmation.min.js" />
     <Content Include="Content\bootstrap.css" />
@@ -391,7 +389,7 @@
   <ItemGroup>
     <Folder Include="App_Data\Images\ProductModels\" />
     <Folder Include="Images\ProductModels\" />
-    <Folder Include="Models\AppModels\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\RegisterUser\" />
   </ItemGroup>
@@ -407,11 +405,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201805161325254_validation.resx">
-      <DependentUpon>201805161325254_validation.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

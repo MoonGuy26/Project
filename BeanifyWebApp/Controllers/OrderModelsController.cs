@@ -12,7 +12,9 @@ using System.Web.Hosting;
 using System.Web.Http;
 using System.Web.Http.Description;
 using BeanifyWebApp.Models;
+using BeanifyWebApp.Models.AppModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BeanifyWebApp.Controllers
 {
@@ -20,20 +22,17 @@ namespace BeanifyWebApp.Controllers
     public class OrderModelsController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
 
         // GET: api/OrderModels
         public IQueryable<OrderModel> GetOrderModels()
         {
-            return db.OrderModels;
+            var userId = User.Identity.GetUserId();
+            return db.OrderModels.Where(o => o.ApplicationUserId == userId); ;
         }
+         
 
-        // GET: api/UserOrderModels
-        public IQueryable<OrderModel> GetFromUser()
-        {
-            return db.OrderModels.Where(o=>o.ApplicationUserId==User.Identity.GetUserId());
-        }
-
+        
         // GET: api/OrderModels/5
         [ResponseType(typeof(OrderModel))]
         public IHttpActionResult GetOrderModel(int id)
@@ -84,16 +83,24 @@ namespace BeanifyWebApp.Controllers
 
         // POST: api/OrderModels
         [ResponseType(typeof(OrderModel))]
-        public IHttpActionResult PostOrderModel(OrderViewModel orderModel)
+        public IHttpActionResult PostOrderModel(OrderModel orderModel)
         {
+            var userId = User.Identity.GetUserId();
+            var user = Request.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(userId);
+
+
+            orderModel.ApplicationUserId = userId;
+            orderModel.CustomerName = user.Name;
+            orderModel.CompanyName =user.Company;
+            orderModel.Date = DateTime.Now;
+            orderModel.IsNew = true;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userId = User.Identity.GetUserId();
-            var productId = db.ProductModels.Where(p => p.Name == orderModel.ProductName).First().Id;
-            var model = new OrderModel {  ProductModelId= productId, ApplicationUserId = userId, Date = DateTime.Now, IsNew = true, Price = orderModel.Price, Quantity = orderModel.Quantity };
+            
 
             EmailService email = new EmailService();
             IdentityMessage identityMessage = new IdentityMessage();
@@ -103,7 +110,8 @@ namespace BeanifyWebApp.Controllers
 
             //Fetching Email Body Text from EmailTemplate File.  
             //string FilePath = Path.GetFullPath("OrderConfirmation.html");
-            string FilePath = "C:\\inetpub\\wwwroot\\BeanifyWebApp\\EmailTemplates\\OrderConfirmation.html";
+
+            string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/OrderConfirmation.html");
             StreamReader str = new StreamReader(FilePath);
             string MailText = str.ReadToEnd().ToString();
             str.Close();
@@ -129,10 +137,10 @@ namespace BeanifyWebApp.Controllers
 
 
 
-            db.OrderModels.Add(model);
+            db.OrderModels.Add(orderModel);
             db.SaveChanges();
             
-            return CreatedAtRoute("DefaultApi", new { id = model.Id }, orderModel);
+            return CreatedAtRoute("DefaultApi", new { id = orderModel.Id }, orderModel);
         }
 
 

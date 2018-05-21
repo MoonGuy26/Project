@@ -1,6 +1,7 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
 using Beanify.Views;
+using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace Beanify.ViewModels
     public class OrderReviewViewModel : BaseViewModel
     {
         private IModel _product;
-        private IModel _order;
+        private OrderModel _order;
         private IOrderService _orderService;
 
-        public IModel Order
+        public OrderModel Order
         {
             get { return _order; }
             set {
@@ -47,25 +48,42 @@ namespace Beanify.ViewModels
             Commands.Add("Order", new Command(OnOrderExecute));
         }
 
-        public void OnOrderExecute()
+        private async void OnOrderExecute()
         {
-            PopupNavigation.Instance.PushAsync(new OrderPopUpView());
+            await OrderAndBackToProducts();
+        }
 
-            MessagingCenter.Subscribe<OrderPopUpViewModel>(this, "Yes", async  (sender) =>  {
+        private async Task OrderAndBackToProducts()
+        {
+            try
+            {
+                Order.ApplicationUserId = "default";
+                Order.CompanyName = "default";
+                Order.CustomerName = "default";
+                Order.Date = DateTime.Now;
                 
-                _orderService.AddItem(Order as OrderModel);
+                _orderService.AddItem(Order);
                 await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
-                MessagingCenter.Unsubscribe<OrderPopUpViewModel>(this, "Yes");
-            });
 
-            //_orderService.AddItem(Order as OrderModel);
+            }
+            catch (Exception e)
+            {
+                PopupPage popup = new ErrorPopupView();
+                await PopupNavigation.Instance.PushAsync(popup);
+                var errorMessage = e.Message;
+                if(e.Message.Equals("One or more errors occurred."))
+                {
+                    errorMessage = "An error has occurred during the ordering proccess. No order has been made.";
+                }
+                await (popup.BindingContext as BaseViewModel).InitializeAsync(errorMessage);
+            }
         }
 
         public void OnExecuteResult(bool choice)
         {
             if (choice)
             {
-                _orderService.AddItem(Order as OrderModel);
+                _orderService.AddItem(Order);
             }
                        
         }

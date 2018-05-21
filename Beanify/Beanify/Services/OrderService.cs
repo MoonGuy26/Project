@@ -13,15 +13,22 @@ namespace Beanify.Services
     {
         public HttpResponseMessage AddItem(IModel item)
         {
-            var restService = new RestService<IModel>("api/OrderModels");
-            return restService.SaveOrderAsync(LocalStorageSettings.AccessToken, item).Result;
+            try
+            {
+                var restService = new RestService<IModel>("api/OrderModels");
+                return restService.SaveOrderAsync(LocalStorageSettings.AccessToken, item).Result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-        public List<OrderModel> GetOrder()
+        public List<AppOrderModel> GetOrders()
         {
             try
             {
-                RestService<OrderModel> restService = new RestService<OrderModel>("api/OrderModels/GetFromUser");
+                RestService<AppOrderModel> restService = new RestService<AppOrderModel>("api/OrderModels/GetFromUser");
 
                 return restService.GetOrdersAsync(LocalStorageSettings.AccessToken).Result;
 

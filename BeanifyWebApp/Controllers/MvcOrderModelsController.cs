@@ -21,7 +21,7 @@ namespace BeanifyWebApp.Controllers
         // GET: MvcOrderModels
         public ActionResult Index()
         {
-            var orders = db.OrderModels.Include(o => o.ProductModel).Include(o => o.ApplicationUser).OrderByDescending(o=>o.Date);
+            var orders = db.OrderModels.OrderByDescending(o=>o.Date);
 
             return View(orders.ToList());
 
@@ -35,12 +35,13 @@ namespace BeanifyWebApp.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            OrderModel orderModel = db.OrderModels.Where(o => o.Id == id).Include(o => o.ProductModel).Include(o => o.ApplicationUser).First(); 
+            OrderModel orderModel = db.OrderModels.Find(id);
             if (orderModel == null)
             {
                 return HttpNotFound();
             }
-            db.OrderModels.Find(id).IsNew = false;
+            orderModel.IsNew = false;
+            db.Entry(orderModel).State = EntityState.Modified;
             db.SaveChanges();
             return View(orderModel);
         }

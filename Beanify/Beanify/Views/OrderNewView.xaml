@@ -14,7 +14,8 @@
         
             <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" >
                 <StackLayout HorizontalOptions="Center"  >
-                <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}" ></Image>
+                <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}" 
+                       ></Image>
                
                 <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </StackLayout>
