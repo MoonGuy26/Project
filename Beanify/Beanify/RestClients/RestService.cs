@@ -1,11 +1,13 @@
 ﻿
 using Beanify.Models;
+using Beanify.Serialization;
 using Beanify.Utils.Exceptions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -136,6 +138,7 @@ namespace Beanify.RestClients
                     JObject jwtDynamic = JsonConvert.DeserializeObject<dynamic>(jwt);
 
                     var accessToken = jwtDynamic.Value<string>("access_token");
+                    var accessTokenExpiration = jwtDynamic.Value<string>(".expires");
 
                     return accessToken;
                 }
@@ -187,7 +190,7 @@ namespace Beanify.RestClients
                 {
                     Debug.WriteLine(@"Mail successfully sent.");
                 }
-                else Debug.WriteLine(@"Mail successfully not sent (lol).");
+                else Debug.WriteLine(@"Mail successfully not sent.");
             }
             catch (Exception ex)
             {
@@ -224,21 +227,41 @@ namespace Beanify.RestClients
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels").ConfigureAwait(false);
-            Debug.WriteLine(json);
+            HttpResponseMessage response = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels").ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                CheckUnauthorized(response);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", LocalStorageSettings.AccessToken);
+                response = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/ProductModels").ConfigureAwait(false);
+
+            }
+            var json = await response.Content.ReadAsStringAsync();
+
             var products = JsonConvert.DeserializeObject<List<ProductModel>>(json);
             return products;
         }
 
 
-        public async Task<List<OrderModel>> GetOrdersAsync(string accessToken)
+        public async Task<List<AppOrderModel>> GetOrdersAsync(string accessToken)
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             //var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels").ConfigureAwait(false);
-            var json = await client.GetStringAsync("http://93.113.111.183/BeanifyWebApp/Api/OrderModels/GetOrderModels").ConfigureAwait(false);
-            Debug.WriteLine(json);
-            var orders = JsonConvert.DeserializeObject<List<OrderModel>>(json);
+            
+
+            HttpResponseMessage response = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels").ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                CheckUnauthorized(response);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", LocalStorageSettings.AccessToken);
+                response = await client.GetAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels").ConfigureAwait(false);
+
+            }
+            var json = await response.Content.ReadAsStringAsync();
+
+            var orders = JsonConvert.DeserializeObject<List<AppOrderModel>>(json);
             return orders;
         }
 
@@ -248,12 +271,54 @@ namespace Beanify.RestClients
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             var json = JsonConvert.SerializeObject(orderModel);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels", content).ConfigureAwait(false);
-            Debug.WriteLine(response);
-            return response;
+            try
+            {
+                var response = await client.PostAsync("http://93.113.111.183/BeanifyWebApp/api/OrderModels", content).ConfigureAwait(false);
+                if (response.IsSuccessStatusCode)
+                {
+                    return response;
+                }
+                else
+                {
+                    Debug.Write(response.Content);
+                    throw new UnsuccessfulStatusCodeException("An error has occurred during the ordering proccess. No order has been made.");
+                }
+            }
+            catch (UnsuccessfulStatusCodeException)
+            {
+                throw;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Impossible to connect to the server. Please check your connection.");
+            }
+
+
+
+            
+
         }
 
         #endregion
+
+        private void CheckUnauthorized(HttpResponseMessage response)
+        {
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                RequestAccessToken(LocalStorageSettings.Email, LocalStorageSettings.Password);
+            }
+        }
+
+        private async void RequestAccessToken(string email, string password)
+        {
+            var keyValues = new List<KeyValuePair<string, string>>
+                {
+                    new KeyValuePair<string,string>("username",email),
+                    new KeyValuePair<string, string>("password",password),
+                    new KeyValuePair<string, string>("grant_type","password")
+                };
+            LocalStorageSettings.AccessToken= await this.LoginAsync(keyValues);
+        }
 
     }
 }

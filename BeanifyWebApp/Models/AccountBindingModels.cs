@@ -104,5 +104,9 @@ namespace BeanifyWebApp.Models
         [Display(Name="Business Name")]
         [MaxLength(100,ErrorMessage ="The business name has a maximum length of 100 caracters.")]
         public string Company { get; set; }
+
+        [Required]
+        [Display(Name = "New password")]
+        public string NewPassword { get; set; }
     }
 }

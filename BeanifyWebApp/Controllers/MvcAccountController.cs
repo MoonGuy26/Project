@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.Remoting.Contexts;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -130,15 +131,32 @@ namespace BeanifyWebApp.Controllers
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                       // await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    // await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    
+                        Thread.CurrentThread.IsBackground = true;
+                        string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/AccountChanged.html");
+                        StreamReader str = new StreamReader(FilePath);
+                        string MailText = str.ReadToEnd().ToString();
+                        str.Close();
 
-                        return RedirectToAction("Index");
+                        MailText = MailText.Replace("{0}", "Account updated");
+                        MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
+                        MailText = MailText.Replace("{2}", model.Email);
+                        MailText = MailText.Replace("{3}", model.Password);
+                        
+
+                        MailText = MailText.Replace("{4}", VirtualPathUtility.ToAbsolute("~/MvcAccount/ForgotPassword"));
+
+                        UserManager.SendEmail(UserManager.FindByName(model.Email).Id, "New Beanify account", MailText);
+
+                    
+                    return RedirectToAction("Index");
                     }
                     AddErrors(result);
                 }
@@ -183,13 +201,56 @@ namespace BeanifyWebApp.Controllers
             if (ModelState.IsValid)
             {
                 var newUser = UserManager.FindById(editedUser.Id);
+                var oldEmail = newUser.Email;
 
+                bool emailChanged = false;
+                bool passwordChanged = false;
+                if (editedUser.NewPassword != null)
+                {
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(newUser.Id);
+                    await UserManager.ResetPasswordAsync(newUser.Id, code, editedUser.NewPassword);
+                    passwordChanged = true;
+                }
+                if (newUser.Email != editedUser.Email)
+                {
+                    emailChanged = true;
+                }
+
+                if (emailChanged || passwordChanged)
+                {
+
+                    
+                        Thread.CurrentThread.IsBackground = true;
+                        string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/AccountChanged.html");
+                        StreamReader str = new StreamReader(FilePath);
+                        string MailText = str.ReadToEnd().ToString();
+                        str.Close();
+
+                        MailText = MailText.Replace("{0}", "Account updated");
+                        MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
+                        MailText = MailText.Replace("{2}", editedUser.Email);
+                        if (passwordChanged)
+                            MailText = MailText.Replace("{3}", editedUser.NewPassword);
+                        else
+                            MailText = MailText.Replace("{3}", "your password has not been changed");
+
+                        MailText = MailText.Replace("{4}", VirtualPathUtility.ToAbsolute("~/MvcAccount/ForgotPassword"));
+
+                        UserManager.SendEmail(newUser.Id, "Beanify account updated", MailText);
+
+                    
+                }
+
+                
                 newUser.Name = editedUser.Name;
                 newUser.PhoneNumber = editedUser.PhoneNumber;
                 newUser.Company = editedUser.Company;
+
+                
                 newUser.UserName = editedUser.Email;
                 newUser.Email = editedUser.Email;
                 await UserManager.UpdateAsync(newUser);
+
                 return RedirectToAction("Index");
             }
             return View(editedUser);
@@ -209,12 +270,8 @@ namespace BeanifyWebApp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var context = new ApplicationDbContext();
-            var x = (from o in context.OrderModels
-                     where o.ApplicationUserId == id
-                     select o);
-            context.OrderModels.RemoveRange(x);
-            context.SaveChanges();
+            
+            
             UserManager.Delete(UserManager.FindById(id));
 
             return RedirectToAction("Index");
@@ -250,7 +307,7 @@ namespace BeanifyWebApp.Controllers
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "MvcAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 
-                string FilePath = "C:\\inetpub\\wwwroot\\BeanifyWebApp\\EmailTemplates\\ResetPassword.html";
+                string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/ResetPassword.html");
                 StreamReader str = new StreamReader(FilePath);
                 string MailText = str.ReadToEnd().ToString();
                 str.Close();

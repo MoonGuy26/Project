@@ -182,10 +182,7 @@ namespace BeanifyWebApp.Controllers
         {
             ProductModel productModel = db.ProductModels.Find(id);
 
-            var x = (from o in db.OrderModels
-                     where o.ProductModelId == id
-                     select o);
-            db.OrderModels.RemoveRange(x);
+          
 
             var previousFile = Server.MapPath(db.ProductModels.Find(productModel.Id).ImagePath);
             

@@ -28,6 +28,6 @@ namespace BeanifyWebApp.Models
         [Required]
         public bool IsAvailable { get; set; }
 
-        public virtual ICollection<OrderModel> OrderModels { get; set; }
+        //public virtual ICollection<OrderModel> OrderModels { get; set; }
     }
 }

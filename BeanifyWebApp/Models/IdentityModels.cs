@@ -19,9 +19,10 @@ namespace BeanifyWebApp.Models
         [RegularExpression("^[\\p{L} .'-]+$", ErrorMessage = "This name is not valid.")]
         public string Name { get; set; }
 
+        [StringLength(100)]
         public string Company { get; set; }
 
-        public virtual ICollection<OrderModel> OrderModels { get; set; }
+        //public virtual ICollection<OrderModel> OrderModels { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {

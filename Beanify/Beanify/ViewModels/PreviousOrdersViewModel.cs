@@ -9,15 +9,17 @@ namespace Beanify.ViewModels
 {
     public class PreviousOrdersViewModel : BaseViewModel
     {
-        public ObservableCollection<OrderModel> Orders
+        private IOrderService _orderService;
+
+        public ObservableCollection<AppOrderModel> Orders
         {
             get; set;
         }
 
         public PreviousOrdersViewModel(IOrderService OrderService) : base()
         {
-            OrderService orderService = (OrderService)OrderService;
-            Orders = new ObservableCollection<OrderModel>(orderService.GetOrder());
+            _orderService= OrderService;
+            LoadOrders();
 
             /*Orders = new ObservableCollection<OrderModel>
             {
@@ -70,6 +72,11 @@ namespace Beanify.ViewModels
                                ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
                            },
            };*/
+        }
+
+        private void LoadOrders()
+        {
+            Orders = new ObservableCollection<AppOrderModel>(_orderService.GetOrders());
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using Beanify.Serialization;
 
 namespace Beanify.Services
 {
@@ -35,6 +36,9 @@ namespace Beanify.Services
         {
             try
             {
+                LocalStorageSettings.Email = email;
+                LocalStorageSettings.Password = password;
+
                 RestService<object> restService = new RestService<object>("Token");
             
                 var keyValues = new List<KeyValuePair<string, string>>

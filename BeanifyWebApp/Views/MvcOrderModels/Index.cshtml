@@ -38,13 +38,13 @@
 
         <tr class='highlight cursor @(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
             <th scope="row">
-                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+                @Html.DisplayFor(modelItem => item.CustomerName)
             </th>
             <td>
-            @Html.DisplayFor(modelItem => item.ApplicationUser.Company)
+            @Html.DisplayFor(modelItem => item.CompanyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductModel.Name)
+                @Html.DisplayFor(modelItem => item.ProductName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
