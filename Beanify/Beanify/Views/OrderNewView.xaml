@@ -25,11 +25,12 @@
                     <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
                     <Picker Title="How many items would you like ?" 
                             x:Name="quantity_picker" 
-                            ItemsSource="{Binding ObservablePicker}" 
+                            ItemsSource="{Binding ObservablePicker, Mode=TwoWay}" 
                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
                             SelectedIndex="{Binding Quantity, Mode=TwoWay}" 
                             VerticalOptions="End" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
                 <Button Style="{StaticResource roundButtonStyle}"
+                        IsEnabled="{Binding Continue, Mode=OneWayToSource}"
                         Text="Continue" Command="{Binding Commands[Continue]}" VerticalOptions="End" HorizontalOptions="Center"/>
             </StackLayout>
             </StackLayout>

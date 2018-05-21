@@ -26,7 +26,7 @@ namespace Beanify.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            Rg.Plugins.Popup.Popup.Init(this, bundle);
+            Rg.Plugins.Popup.Popup.Init();
             FormsPlugin.Iconize.iOS.IconControls.Init();
             Plugin.Iconize.Iconize.With(new Plugin.Iconize.Fonts.FontAwesomeModule())
                                   .With(new Plugin.Iconize.Fonts.MaterialModule());

@@ -43,7 +43,22 @@ namespace Beanify.ViewModels
             }
         }
 
-        private int _quantity = 1;
+        private bool _continue = false;
+
+        public bool Continue
+        {
+            get { return _continue;  }
+            set
+            {
+                if(_continue != value)
+                {
+                    _continue = value;
+                    OnPropertyChanged(nameof(Continue));
+                }
+            }
+        }
+
+        private int _quantity;
 
         public int Quantity
         {
@@ -52,6 +67,7 @@ namespace Beanify.ViewModels
             {
                 if (_quantity != value)
                 {
+                    _continue = true;
                     _quantity = value;
                     OnPropertyChanged(nameof(Quantity));
                 }
@@ -87,8 +103,8 @@ namespace Beanify.ViewModels
             for (int i = 1; i <= capacity; i++)
             {
 
-                var price = _productModel.Price * i;
-                list.Add(i.ToString() + "items : (£" + price.ToString() + ")");
+                float price = _productModel.Price * i;
+                list.Add(i.ToString() + " item(s) : ( £ " + price.ToString("n2") + " )");
             }
             return list;
         }

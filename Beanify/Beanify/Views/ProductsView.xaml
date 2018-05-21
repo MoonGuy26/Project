@@ -18,6 +18,7 @@
                                 <Image Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
                                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                                     <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Description}" FontSize="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                                         <Label Text="Price : " HorizontalOptions="Start" VerticalOptions="Center"/>
                                         <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Center"/>

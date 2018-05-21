@@ -47,16 +47,20 @@ namespace Beanify.ViewModels
             Commands.Add("Order", new Command(OnOrderExecute));
         }
 
-        public void OnOrderExecute()
+        public async void OnOrderExecute()
         {
-            PopupNavigation.Instance.PushAsync(new OrderPopUpView());
+
+            _orderService.AddItem(Order as OrderModel);
+            await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
+
+            /*PopupNavigation.Instance.PushAsync(new OrderPopUpView());
 
             MessagingCenter.Subscribe<OrderPopUpViewModel>(this, "Yes", async  (sender) =>  {
                 
                 _orderService.AddItem(Order as OrderModel);
                 await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
                 MessagingCenter.Unsubscribe<OrderPopUpViewModel>(this, "Yes");
-            });
+            });*/
 
             //_orderService.AddItem(Order as OrderModel);
         }

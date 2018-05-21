@@ -13,9 +13,7 @@ namespace Beanify.Utils.Converters
         {
             if (value == null)
                 return false;
-            float price = (float)value;
-            string priceToString = "£ " + price.ToString();
-            return priceToString;
+            return "£ " + ((float)value).ToString("n2");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
