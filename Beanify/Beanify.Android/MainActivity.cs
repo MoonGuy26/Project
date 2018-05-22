@@ -16,7 +16,9 @@ using Beanify.Views;
 
 namespace Beanify.Droid
 {
-    [Activity(Label = "Beanify", Icon = "@drawable/icon", Theme = "@style/MyTheme.Splash", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, NoHistory = true)]
+    [Activity(Label = "Beanify", Icon = "@drawable/icon", Theme = "@style/MyTheme.Splash",
+        MainLauncher = true, 
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)

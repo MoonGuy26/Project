@@ -32,11 +32,12 @@ namespace Beanify.ViewModels
 
 
 
-        private ProductService _productService;
+        private IProductService _productService;
 
         public ProductsViewModel(IProductService ProductService) : base()
         {
-            _productService = (ProductService)ProductService;
+            Products = new ObservableCollection<ProductModel>();
+            _productService = ProductService;
 
             Thread thread = new Thread(new ThreadStart(AsynchronousTask));
             thread.IsBackground = true;
@@ -51,7 +52,6 @@ namespace Beanify.ViewModels
         private void AsynchronousTask()
         {
             Products = new ObservableCollection<ProductModel>(_productService.GetProducts());
-            Debug.WriteLine((Products).ToString());
         }
 
         private Command<object> _OnMoreInfoExecute;

@@ -55,6 +55,8 @@ namespace Beanify.ViewModels
                     
                    
                 });
+            _previousSelectedItem= MenuItems[0];
+            
             Commands.Add("ItemSelected", new Command(ItemSelectedExecute));
             
         }
@@ -87,9 +89,9 @@ namespace Beanify.ViewModels
 
             //LocalStorageSettings.AccessToken = null;
             //((App)Application.Current).MainPage = new Views.LoginView();
-
-           _selectedItem = _previousSelectedItem;
-            PopupNavigation.Instance.PushAsync(new LogoutPopUpView());
+            if(_previousSelectedItem!=null)
+                _selectedItem = _previousSelectedItem;
+           PopupNavigation.Instance.PushAsync(new LogoutPopUpView());
             
         }
 

@@ -25,6 +25,7 @@ namespace Beanify.Views
 
             BindingContext = new DashboardNavigationViewModel();
             ListView = MenuItemsListView;
+            
 
            
         }

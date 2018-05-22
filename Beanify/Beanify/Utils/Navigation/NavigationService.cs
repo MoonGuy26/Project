@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Beanify.Serialization;
 using Beanify.Services;
@@ -231,11 +232,10 @@ namespace Beanify.Utils.Navigation
             var navigationPage = masterDetailView.Detail as CustomNavigationView;
             if (navigationPage != null)
             {
+                
                 masterDetailView.IsPresented = false;
+                
                 ( Application.Current.MainPage as DashboardNavigationView ).Detail= new CustomNavigationView(page);
-                    
-              
-
             }
             else
             {
