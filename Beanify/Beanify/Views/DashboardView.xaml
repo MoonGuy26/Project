@@ -5,14 +5,27 @@
              BindingContext="{Binding DashboardViewModel, Source={StaticResource Locator}}"
              BackgroundImage="bg.png">
     <ContentPage.Content>
-        <StackLayout>
-            <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}"
-                   Aspect="AspectFill" 
-                   WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}" ></Image>
-            <Label Text="{Binding DashboardMessage}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" TextColor="Black" />
-            
-        </StackLayout>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image  Source="logo.png" Grid.Row="1"></Image>
+            <Image Source="separator.png" Grid.Row="2" VerticalOptions="Center" ></Image>
+     
+
+                <Label TextColor="{StaticResource TitleWhite}" VerticalOptions="Center"  HorizontalOptions="Center"
+                       FontFamily="Arial" FontSize="36" Grid.Row="3">NOW BREWING</Label>
+                <Label TextColor="{StaticResource TitleWhite}" VerticalOptions="Center"  HorizontalOptions="Center"
+                    FontFamily="Arial" FontSize="36" FontAttributes="Bold" Grid.Row="4">KENYA HARVEST </Label>
+
+            <Image Source="separator.png" Grid.Row="5" VerticalOptions="Center"></Image>
+            <Label TextColor="{StaticResource TitleWhite}" 
+                FontFamily="Arial" FontSize="Medium" Grid.Row="6" VerticalOptions="Center">The medium strength Kenya Harvest is roasted from the much sought after Kenyan beans, renowned for producing an intense flavour, full body and pleasant aroma</Label>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
