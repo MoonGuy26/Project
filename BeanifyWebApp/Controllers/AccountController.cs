@@ -58,8 +58,19 @@ namespace BeanifyWebApp.Controllers
         [Route("IsUserAdmin")]
         public bool GetCurrentUserRole()
         {
+
             return User.IsInRole("Admin");
             
+        }
+
+        // GET api/Account/IsAuthenticated
+        [Route("IsAuthenticated")]
+        public bool GetUserAuthenticated()
+        {
+
+            return (UserManager.FindById(User.Identity.GetUserId()) != null);
+            
+
         }
 
         // GET api/Account/UserInfo

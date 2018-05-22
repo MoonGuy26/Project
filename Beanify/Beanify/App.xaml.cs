@@ -62,8 +62,9 @@ namespace Beanify
 
         protected override void OnStart ()
 		{
-			// Handle when your app starts
-		}
+            Debug.Write("app starts");
+            // Handle when your app starts
+        }
 
 		protected override void OnSleep ()
         {

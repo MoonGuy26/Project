@@ -4,8 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Beanify.Serialization;
+using Beanify.Services;
 using Beanify.ViewModels;
 using Beanify.Views;
 using Beanify.Views.CarouselViews;
@@ -38,16 +40,17 @@ namespace Beanify.Utils.Navigation
         
 
 
-        public Task InitializeAsync()
+        public async Task InitializeAsync()
         {
             if (string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
             {
                 if (Application.Current.Properties.ContainsKey("nav_saved")){
                     var navS = new NavigationSerializer();
                     navS.DeserializeNavigationStack();
-                    return Task.FromResult(false);
+                    await Task.FromResult(false);
                 }
-                return NavigateToAsync<HomeCarouselViewModel>();
+
+                await NavigateToAsync<HomeCarouselViewModel>();
 
                // }
                 //Type type = Type.GetType("Beanify.ViewModels." + LocalStorageSettings.LastViewModel);
@@ -55,12 +58,25 @@ namespace Beanify.Utils.Navigation
                 
 
             }
-                
+
             // return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
             else
-                //return NavigateToAsync<DashboardNavigationViewModel>();
-               ((App)Application.Current).MainPage = new DashboardNavigationView();
-            return Task.FromResult(false);
+            {
+                AccountService accountService = new AccountService();
+                var isAuthenticated = await accountService.IsAuthenticated(LocalStorageSettings.AccessToken);
+                if (isAuthenticated)
+                    ((App)Application.Current).MainPage = new DashboardNavigationView();
+                else
+                {
+                    LocalStorageSettings.AccessToken = null;
+                    ((App)Application.Current).MainPage = new Views.LoginView();
+                }
+                    
+
+            }
+            await Task.FromResult(false);
+
+            //return NavigateToAsync<DashboardNavigationViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
@@ -216,12 +232,10 @@ namespace Beanify.Utils.Navigation
             var navigationPage = masterDetailView.Detail as CustomNavigationView;
             if (navigationPage != null)
             {
+                
                 masterDetailView.IsPresented = false;
                 
                 ( Application.Current.MainPage as DashboardNavigationView ).Detail= new CustomNavigationView(page);
-                    
-              
-
             }
             else
             {

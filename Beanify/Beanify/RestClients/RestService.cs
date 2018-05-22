@@ -169,6 +169,32 @@ namespace Beanify.RestClients
             return Convert.ToBoolean(response);
         }
 
+        public async Task<bool> IsAuthenticated(string accessToken)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+
+            var requestTask = client.GetAsync(RestUrl);
+            var response = Task.Run(() => requestTask).Result;
+            var isAuthenticated = Convert.ToBoolean(await response.Content.ReadAsStringAsync());
+            
+            if (!response.IsSuccessStatusCode||!isAuthenticated)
+            {
+                CheckUnauthorized(response);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", 
+                    LocalStorageSettings.AccessToken);
+                HttpResponseMessage secondResponse = await client.GetAsync(RestUrl).ConfigureAwait(false) ;
+                isAuthenticated = Convert.ToBoolean(await secondResponse.Content.ReadAsStringAsync());
+                if (!secondResponse.IsSuccessStatusCode|| !isAuthenticated)
+                {
+                    return false;
+                }
+
+            }
+            return true;
+            
+        }
+
         public async Task ForgotPassword(T item)
         {
             var client = new HttpClient();
