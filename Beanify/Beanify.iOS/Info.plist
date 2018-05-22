@@ -54,6 +54,8 @@
 	<array>     
 		<string>iconize-fontawesome.ttf</string>
     <string>iconize-material.ttf</string>
+   <string>Fonts/OpenSans-Regular.ttf</string>
+   <string>Fonts/Oswald-Regular.ttf</string>    
 	</array>    
 </dict>
 </plist>

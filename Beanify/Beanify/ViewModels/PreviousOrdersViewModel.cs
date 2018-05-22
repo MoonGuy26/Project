@@ -21,57 +21,7 @@ namespace Beanify.ViewModels
             _orderService= OrderService;
             LoadOrders();
 
-            /*Orders = new ObservableCollection<OrderModel>
-            {
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-               new OrderModel {
-                               ProductName = "azerty", Date = DateTime.Now , Quantity = 12,
-                           },
-           };*/
+            
         }
 
         private void LoadOrders()

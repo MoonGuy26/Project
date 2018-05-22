@@ -24,7 +24,11 @@ namespace Beanify.ViewModels
             set {
                 if (_selectedItem != value)
                 {
-                    _previousSelectedItem = _selectedItem;
+                    if ( _selectedItem == null)
+                    {
+                        _previousSelectedItem = MenuItems[0];
+                    }
+                    else _previousSelectedItem = _selectedItem;
                     _selectedItem = value;
                     OnPropertyChanged(nameof(SelectedItem));
                 }

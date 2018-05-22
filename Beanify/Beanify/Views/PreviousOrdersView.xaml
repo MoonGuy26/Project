@@ -2,20 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.PreviousOrdersView"
-             BindingContext="{Binding PreviousOrdersViewModel, Source={StaticResource Locator}}">
+             BindingContext="{Binding PreviousOrdersViewModel, Source={StaticResource Locator}}"
+             BackgroundColor="{ StaticResource BgCream }"
+             >
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Orders}" HasUnevenRows="True">
+            <ListView ItemsSource="{Binding Orders}" HasUnevenRows="True" SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell IsEnabled="False">
                             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
-                                <Label Text="{Binding Date}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                <StackLayout Orientation="Horizontal" Padding="15,15,15,15">
-                                    <Label Text="{Binding Quantity}" HorizontalOptions="StartAndExpand" />
-                                    <Label Text="{Binding ProductName}" HorizontalOptions="End" />
+                                <Image Source="http://93.113.111.183/BeanifyWebApp/Images/ProductModels/product7.png" Aspect="AspectFit" HeightRequest="50" WidthRequest="50"/>
+                                
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                    <Label Text="{Binding Quantity }" HorizontalOptions="Center" TextColor="{ StaticResource CoffeeBrown }" />
+                                    <Label Text="{Binding ProductName, StringFormat= x '{0:}'}" TextColor="{ StaticResource CoffeeBrown }" HorizontalOptions="Center" />
                                 </StackLayout>
-                                <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" HorizontalOptions="StartAndExpand" />
+                                <Label Text="{Binding Date,StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{ StaticResource Cream }"/>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                    <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}, StringFormat=Price : '{0:}'}" HorizontalOptions="Center" TextColor="{ StaticResource CoffeeBrown }" />
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
