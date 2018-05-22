@@ -68,8 +68,7 @@ namespace Beanify
 
 		protected override void OnSleep ()
         {
-            var navS = new NavigationSerializer();
-            navS.SerializeNavigationStack();
+           
         }
 
 		protected override void OnResume ()

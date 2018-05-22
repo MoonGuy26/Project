@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.DashboardView"
-             BindingContext="{Binding DashboardViewModel, Source={StaticResource Locator}}">
+             BindingContext="{Binding DashboardViewModel, Source={StaticResource Locator}}"
+             BackgroundImage="bg.png">
     <ContentPage.Content>
         <StackLayout>
             <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}"
