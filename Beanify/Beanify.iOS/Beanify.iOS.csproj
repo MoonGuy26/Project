@@ -197,9 +197,6 @@
     <BundleResource Include="Resources\separator.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\bg%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\dashboard_ic%402x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +224,6 @@
     <BundleResource Include="Resources\separator%402x.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\bg%403x.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\dashboard_ic%403x.png" />
   </ItemGroup>
   <ItemGroup>
@@ -255,5 +249,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\separator%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg%403x.png" />
   </ItemGroup>
 </Project>
