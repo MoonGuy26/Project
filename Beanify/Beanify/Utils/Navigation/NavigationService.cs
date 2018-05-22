@@ -261,6 +261,7 @@ namespace Beanify.Utils.Navigation
                 masterDetailView.IsPresented = false;
 
 
+
             }
             else
             {

@@ -41,8 +41,7 @@ namespace Beanify.iOS
             CachedImageRenderer.Init();
             LoadApplication(new App());
 
-            AnimationViewRenderer.Init();
-            
+            AnimationViewRenderer.Init();      
 
             return base.FinishedLaunching(app, options);
         }

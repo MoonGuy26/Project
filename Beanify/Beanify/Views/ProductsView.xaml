@@ -19,18 +19,20 @@
                                 <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                                     <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
                                     <Label Text="{Binding Description}" FontSize="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                                        <Label Text="Price : " HorizontalOptions="Start" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Center"/>
-                                    </StackLayout>
                                 </StackLayout>
-                                <Button  Text="More info >"                                        
-                                         Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
-                                         CommandParameter="{Binding . }}"
-                                         VerticalOptions="End" 
-                                         HorizontalOptions="End"
-                                         BorderColor="Transparent"
-                                         BackgroundColor="Transparent"/>
+                                <StackLayout Orientation="Horizontal">
+
+                                    <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}, StringFormat=Price : '{0:}'}" HorizontalOptions="StartAndExpand" TextColor="{ StaticResource CoffeeBrown }" />
+                                    <Button  
+                                             Style="{StaticResource roundButtonStyle}"
+                                             Text="More info"
+                                             WidthRequest="100"
+                                             Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
+                                             CommandParameter="{Binding . }}"
+                                             VerticalOptions="End" 
+                                             HorizontalOptions="End"/>
+                                </StackLayout>
+
                             </StackLayout>
                         </customControls:CustomViewCell>
                     </DataTemplate>

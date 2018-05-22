@@ -12,18 +12,19 @@
 
     <ContentPage.Content>
         
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" >
+            <!--<StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" >
                 <StackLayout HorizontalOptions="Center"  >
-                <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}" 
-                       ></Image>
+                WidthRequest="{Binding ScreenSize,Converter={StaticResource sizeToLandscapeConverter}}"
+                <Image Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" ></Image>
                
                 <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
                 </StackLayout>
                 <StackLayout Margin="15, 15, 15, 0"  HorizontalOptions="Center">
                 <ScrollView>
                     <Label Text="{Binding ProductModel.Description}" x:Name="detail"  HorizontalOptions="Center" LineBreakMode="WordWrap"/>
-                    </ScrollView>
-                    <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
+                </ScrollView>
+
+                <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
                     <Picker Title="How many items would you like ?" 
                             x:Name="quantity_picker" 
                             ItemsSource="{Binding ObservablePicker, Mode=TwoWay}" 
@@ -34,7 +35,51 @@
                         IsEnabled="{Binding Continue, Mode=OneWayToSource}"
                         Text="Continue" Command="{Binding Commands[Continue]}" VerticalOptions="End" HorizontalOptions="Center"/>
             </StackLayout>
+            </StackLayout>-->
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+
+            <Image BackgroundColor="Pink" Grid.Row="0" Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" />
+
+            <StackLayout Grid.Row="1" BackgroundColor="Purple">
+                <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
             </StackLayout>
-        
+
+            <StackLayout Grid.Row="2" BackgroundColor="Yellow" Padding="15,0,15,0">
+                <ScrollView>
+                    <Label Text="{Binding ProductModel.Description}" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
+                </ScrollView>
+            </StackLayout>
+
+
+            <StackLayout Grid.Row="3" BackgroundColor="Green">
+                <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
+                <Picker Title="How many items would you like ?" 
+                            x:Name="quantity_picker" 
+                            ItemsSource="{Binding ObservablePicker, Mode=TwoWay}" 
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
+                            SelectedIndex="{Binding Quantity, Mode=TwoWay}" 
+                            VerticalOptions="End" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="4" BackgroundColor="Red">
+                <Button  Style="{StaticResource roundButtonStyle}"
+                        IsEnabled="{Binding Continue, Mode=OneWayToSource}"
+                        Text="Continue" Command="{Binding Commands[Continue]}" 
+                         VerticalOptions="End" 
+                         HorizontalOptions="Center"
+                         WidthRequest="200"/>
+            </StackLayout>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

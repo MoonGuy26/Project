@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.OrderReviewView"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
-             Title="Review Order"
+             Title="REVIEW ORDER"
              BackgroundColor="AliceBlue"
              BindingContext="{Binding OrderReviewViewModel, Source={StaticResource Locator}}">
     <ContentPage.Behaviors>
@@ -11,7 +11,7 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" BackgroundColor="Gray" Margin="15, 10, 15, 10"  HorizontalOptions="FillAndExpand" >
+        <!--<StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" BackgroundColor="Gray" Margin="15, 10, 15, 10"  HorizontalOptions="FillAndExpand" >
             <StackLayout VerticalOptions="Start">
 
                 <Image Source="{Binding Product.ImagePath}" Aspect="AspectFill" HeightRequest="250" WidthRequest="350"/>
@@ -41,6 +41,47 @@
                 </StackLayout>
             </StackLayout>
 
-        </StackLayout>
+        </StackLayout>-->
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Image BackgroundColor="Pink" Grid.Row="0" Source="{Binding Product.ImagePath}" Aspect="AspectFill"/>
+
+            <StackLayout BackgroundColor="Purple" Grid.Row="1" Orientation="Vertical">
+                <Label Text="Total" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="Center"/>
+                <Label Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="50"/>
+            </StackLayout>
+
+            <StackLayout BackgroundColor="Red" Grid.Row="2" Orientation="Vertical" Padding="15,0,15,0">
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="{Binding Order.Quantity}" FontSize="Medium" x:Name="title" HorizontalOptions="Start" />
+                    <Label Text="x" FontSize="Medium" LineBreakMode="WordWrap"/>
+                    <Label Text="{Binding Order.ProductName}" FontSize="Medium"  LineBreakMode="WordWrap"/>
+                    <Label Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+                <BoxView Style="{StaticResource whiteLine}"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label Text="Total" HorizontalOptions="StartAndExpand" FontAttributes="Bold"/>
+                    <Label Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" FontSize="Medium" HorizontalOptions="End" FontAttributes="Bold" />
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Row="3" BackgroundColor="Yellow">
+                <Button Style="{StaticResource roundButtonStyle}" 
+                        Text="Confirm and Order" 
+                        Command="{Binding Commands[Order]}" 
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        WidthRequest="200"/>
+            </StackLayout>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
