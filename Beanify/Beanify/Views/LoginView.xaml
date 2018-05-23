@@ -5,9 +5,10 @@
              xmlns:converters="clr-namespace:Beanify.Utils.Converters"
              xmlns:local="clr-namespace:Beanify.Views"
              xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
+             xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-             BackgroundColor="AliceBlue"
+             BackgroundImage="bg.png"
              NavigationPage.HasNavigationBar="false"
              BindingContext="{Binding LoginViewModel, Source={StaticResource Locator}}">
     <ContentPage.Behaviors>
@@ -21,91 +22,112 @@
         
     </ContentPage.Resources>    
     <ContentPage.Content>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="3*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <StackLayout Margin="20,80" Spacing="16" >
-            <Label Text="BEANIFY" HorizontalTextAlignment="Center" FontSize="22" FontAttributes="Bold" TextColor="DarkGray"></Label>
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" VerticalOptions="Center">
-                <Entry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand">
-                    <Entry.Behaviors>
-                        <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
-                        <b:EventToCommandBehavior EventName="Completed" Command="{Binding Commands[CompletedEmail]}" />
-                    </Entry.Behaviors>
+            <Image  Source="logo.png" Grid.Row="0" Grid.Column="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" ></Image>
+            <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
 
-                    <Entry.Style>
-                        <OnPlatform x:TypeArguments="Style">
-                            <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
 
-                        </OnPlatform>
-                    </Entry.Style>
+            <StackLayout  Grid.Row="2" Grid.Column="1" Spacing="16" >
 
-                    <Entry.Triggers>
-                        <Trigger TargetType="Entry"
+                <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" VerticalOptions="Center" Margin="15,0,15,0" >
+                    <custom:CustomEntry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand" 
+                           >
+                        <custom:CustomEntry.Behaviors>
+                            <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
+                            <b:EventToCommandBehavior EventName="Completed" Command="{Binding Commands[CompletedEmail]}" />
+                        </custom:CustomEntry.Behaviors>
+
+                        <custom:CustomEntry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
+
+                            </OnPlatform>
+                        </custom:CustomEntry.Style>
+
+                        <custom:CustomEntry.Triggers>
+                            <Trigger TargetType="Entry"
                         Property="IsFocused" Value="True">
-                            <Setter 
+                                <Setter 
                             Property="TextColor"
                             Value="{StaticResource BlackColor}" />
-                        </Trigger>
-                        <DataTrigger 
+                            </Trigger>
+                            <DataTrigger 
                         TargetType="Entry"
                         Binding="{Binding Email.IsValid}"
                         Value="False">
-                            <Setter Property="behaviors:LineColorBehavior.LineColor" 
+                                <Setter Property="behaviors:LineColorBehavior.LineColor" 
                                 Value="{StaticResource ErrorColor}" />
-                            <Setter Property="TextColor"
+                                <Setter Property="TextColor"
                                 Value="{StaticResource ErrorColor}" />
-                        </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
-                <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
+                            </DataTrigger>
+                        </custom:CustomEntry.Triggers>
+                    </custom:CustomEntry>
+                    <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                     IsVisible="{Binding Email.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource ErrorColor}"/>
-            </StackLayout>
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  VerticalOptions="Center">
-                <Entry Placeholder="password" IsPassword="True" 
+                </StackLayout>
+                <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}"  VerticalOptions="Center">
+                    <custom:CustomEntry Placeholder="password" IsPassword="True" 
                        Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
                        IsFocused="{Binding IsFocusedPassword}">
 
 
-                    <Entry.Style>
-                        <OnPlatform x:TypeArguments="Style">
-                            <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
+                        <custom:CustomEntry.Style>
+                            <OnPlatform x:TypeArguments="Style">
+                                <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
 
-                        </OnPlatform>
-                    </Entry.Style>
+                            </OnPlatform>
+                        </custom:CustomEntry.Style>
 
-                    <Entry.Triggers>
-                        <Trigger TargetType="Entry"
+                        <custom:CustomEntry.Triggers>
+                            <Trigger TargetType="Entry"
                         Property="IsFocused" Value="True">
-                            <Setter 
+                                <Setter 
                             Property="TextColor"
                             Value="{StaticResource BlackColor}" />
-                        </Trigger>
-                        <DataTrigger 
+                            </Trigger>
+                            <DataTrigger 
                         TargetType="Entry"
                         Binding="{Binding Password.IsValid}"
                         Value="False">
-                            <Setter Property="behaviors:LineColorBehavior.LineColor" 
+                                <Setter Property="behaviors:LineColorBehavior.LineColor" 
                                 Value="{StaticResource ErrorColor}" />
 
-                        </DataTrigger>
-                    </Entry.Triggers>
-                </Entry>
-                <Label Text="{Binding Password.Errors,Converter={StaticResource firstValidationErrorConverter}}"
+                            </DataTrigger>
+                        </custom:CustomEntry.Triggers>
+                    </custom:CustomEntry>
+                    <Label Text="{Binding Password.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                     IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource ErrorColor}"/>
-            </StackLayout>
-            <Button Text="Forgotten password ?"   Command="{Binding Commands[ResetPassword]}" 
+                </StackLayout>
+                <Button Text="Forgotten password ?"   Command="{Binding Commands[ResetPassword]}" 
                 HorizontalOptions="End"
                 BorderColor="Transparent"
                 BackgroundColor="Transparent"
                 Scale="0.8"></Button>
-            <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                <Button Text="Login"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
+            </StackLayout>
+            <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
+            <StackLayout Grid.Row="4" Grid.Column="1">
+                <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                    <Button Text="Login"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
                         Style="{StaticResource roundButtonStyle}">
-                    
-                </Button>
-                
-                <forms:AnimationView 
+
+                    </Button>
+
+                    <forms:AnimationView 
 	                x:Name="animationView" 
 	                HeightRequest="128"
                     WidthRequest="128"
@@ -119,14 +141,13 @@
 	                ClickedCommand="{Binding ClickedCommand}"
 	                VerticalOptions="FillAndExpand" 
 	                HorizontalOptions="FillAndExpand" />
-            </StackLayout>
-            <Label Text="{Binding ErrorLoginMessage}" 
+                </StackLayout>
+                <Label Text="{Binding ErrorLoginMessage}" 
                    HorizontalTextAlignment="Center"
                    FontSize="18"
                    IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
                    TextColor="{StaticResource ErrorColor}"/>
-            
-
-        </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

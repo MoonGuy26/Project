@@ -46,7 +46,7 @@ namespace Beanify.Droid.Utils.Effects
             {
                 if (control != null)
                 {
-                    control.Background.SetColorFilter(LineColorBehavior.GetLineColor(Element).ToAndroid(), Android.Graphics.PorterDuff.Mode.SrcAtop);
+                    //control.Background.SetColorFilter(LineColorBehavior.GetLineColor(Element).ToAndroid(), Android.Graphics.PorterDuff.Mode.SrcAtop);
                 }
             }
             catch (Exception ex)

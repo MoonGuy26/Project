@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             
-            <Image  Source="logo.png" Grid.Row="0" Grid.Column="1" VerticalOptions="EndAndExpand"></Image>
+            <Image  Source="logo.png" Grid.Row="0" Grid.Column="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" ></Image>
             <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
 
             <StackLayout Orientation="Vertical"  Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
