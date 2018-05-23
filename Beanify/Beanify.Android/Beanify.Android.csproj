@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Beanify.Droid</RootNamespace>
     <AssemblyName>Beanify.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -104,6 +104,9 @@
     <AndroidAsset Include="Assets\oswald_regular.ttf" />
     <AndroidAsset Include="Assets\opensans_semibold.ttf" />
     <AndroidAsset Include="Assets\oswald_semibold.ttf" />
+    <AndroidAsset Include="Assets\lato_regular.ttf" />
+    <AndroidAsset Include="Assets\oswald_bold.ttf" />
+    <AndroidAsset Include="Assets\oswald_light.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

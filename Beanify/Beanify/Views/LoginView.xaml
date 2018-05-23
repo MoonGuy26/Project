@@ -40,9 +40,9 @@
             <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
 
 
-            <StackLayout  Grid.Row="2" Grid.Column="1" Spacing="16" >
+            <StackLayout  Grid.Row="2" Grid.Column="1"  >
 
-                <StackLayout  VerticalOptions="Center" Margin="15,0,15,0" >
+                <StackLayout  VerticalOptions="Center" Margin="15,0,15,15" Spacing="6">
                     <custom:CustomEntry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand" 
                            >
                         <custom:CustomEntry.Behaviors>
@@ -77,7 +77,8 @@
                     </custom:CustomEntry>
                     <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                     IsVisible="{Binding Email.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
-                    TextColor="{StaticResource BgCream}"/>
+                    TextColor="{StaticResource BgCream}"
+                           HorizontalOptions="Center"/>
                 </StackLayout>
                 <StackLayout  VerticalOptions="Center" Margin="15,0,15,0" >
                     <custom:CustomEntry Placeholder="password" IsPassword="True" 
@@ -111,13 +112,16 @@
                     </custom:CustomEntry>
                     <Label Text="{Binding Password.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                     IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
-                    TextColor="{StaticResource BgCream}"/>
+                    TextColor="{StaticResource BgCream}"
+                           HorizontalOptions="Center"/>
                     <Button Text="Forgotten Password?"   Command="{Binding Commands[ResetPassword]}" 
+                            FontFamily="{StaticResource LatoRegular}"
+                            Margin="0,0,0,0"
                         TextColor="{StaticResource WhiteCream}"
                 HorizontalOptions="Center"
                 BorderColor="Transparent"
                 BackgroundColor="Transparent"
-                FontSize="10"></Button>
+                FontSize="12"></Button>
                 </StackLayout>
                 
                 
@@ -126,7 +130,7 @@
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
             <StackLayout Grid.Row="4" Grid.Column="1">
                 <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                    <Button Text="Login"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
+                    <Button Text="LOGIN"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
                         Style="{StaticResource roundButtonStyle}">
 
                     </Button>

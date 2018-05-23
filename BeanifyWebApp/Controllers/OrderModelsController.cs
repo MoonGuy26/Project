@@ -29,7 +29,7 @@ namespace BeanifyWebApp.Controllers
         public IQueryable<OrderModel> GetOrderModels()
         {
             var userId = User.Identity.GetUserId();
-            return db.OrderModels.Where(o => o.ApplicationUserId == userId); ;
+            return db.OrderModels.Where(o => o.ApplicationUserId == userId).OrderByDescending(o=>o.Date);
         }
          
 

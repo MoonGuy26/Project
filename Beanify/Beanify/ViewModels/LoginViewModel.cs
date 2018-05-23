@@ -228,7 +228,7 @@ namespace Beanify.ViewModels
                 }
                 else
                 {
-                    throw new Exception("Fields are not correctly filled.");
+                    throw new Exception("Fields are not correctly filled");
                 }
 
             }
@@ -254,16 +254,16 @@ namespace Beanify.ViewModels
 
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "An email adress is required."
+                ValidationMessage = "An email adress is required"
             });
             _email.Validations.Add(new IsValidEmailRule<string>
             {
-                ValidationMessage = "Please enter a valid email address."
+                ValidationMessage = "Please enter a valid email address"
             });
 
             _password.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "A password is required."
+                ValidationMessage = "A password is required"
             });
 
             /*

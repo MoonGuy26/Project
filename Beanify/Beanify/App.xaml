@@ -37,7 +37,10 @@
 
 
 
-            
+            <OnPlatform x:TypeArguments="x:String" x:Key="LatoRegular">
+                <On Platform="Android" Value="lato_regular.ttf#Lato" />
+                <On Platform="iOS" Value="lato_regular" />
+            </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="Oswald">
                 <On Platform="Android" Value="oswald_regular.ttf#Oswald" />
                 <On Platform="iOS" Value="oswald_regular" />
@@ -54,6 +57,15 @@
                 <On Platform="Android" Value="oswald_semibold.ttf#Oswald SemiBold" />
                 <On Platform="iOS" Value="oswald_semibold" />
             </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OswaldBold">
+                <On Platform="Android" Value="oswald_bold.ttf#Oswald Bold" />
+                <On Platform="iOS" Value="oswald_bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OswaldLight">
+                <On Platform="Android" Value="oswald_light.ttf#Oswald Light" />
+                <On Platform="iOS" Value="oswald_light" />
+            </OnPlatform>
+            
 
             <Style x:Key="BigLabel"
                    TargetType="Label">
@@ -87,13 +99,14 @@
                         Value="{StaticResource WhiteCream}"></Setter>
                 <Setter Property="TextColor"
                         Value="{StaticResource CoffeeBrown}"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource OpenSansRegular}"></Setter>
             </Style>
             <Style x:Key="roundButtonStyle" TargetType="Button">
                 <Setter Property="BorderRadius" Value="20"></Setter>
                 <Setter Property="BackgroundColor" Value="{ StaticResource Cream }"></Setter>
                 <Setter Property="TextColor" Value="{ StaticResource CoffeeBrown }"></Setter>
                 <Setter Property="WidthRequest" Value="150"></Setter>
-                <Setter Property="Scale" Value="1.2"></Setter>
+                <Setter Property="Scale" ></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource OswaldSemiBold}"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
@@ -107,6 +120,17 @@
                 <Setter Property="Color" Value="{ StaticResource Cream }"></Setter>
                 <Setter Property="BackgroundColor" Value="{ StaticResource Cream }"></Setter>
             </Style>
+
+            <Style x:Key="title"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource TitleWhite}"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
+                <Setter Property="HorizontalOptions" Value="Center"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource OswaldBold}"></Setter>
+                <Setter Property="FontSize" Value="28"></Setter>
+                
+            </Style>
+            
         </ResourceDictionary>
 	</Application.Resources>
 </Application>
