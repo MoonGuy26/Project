@@ -23,9 +23,6 @@ namespace Beanify
 		{
 			InitializeComponent();
 
-            
-
-
             InitNavigation();
         }
 

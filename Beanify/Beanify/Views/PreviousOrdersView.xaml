@@ -7,22 +7,35 @@
              >
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Orders}" HasUnevenRows="True" SeparatorVisibility="None">
+            <ListView ItemsSource="{Binding Orders}" HasUnevenRows="True" SeparatorVisibility="None" Margin="0, 15, 0 , 0" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell IsEnabled="False">
-                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" >
-                                <Image Source="http://93.113.111.183/BeanifyWebApp/Images/ProductModels/product7.png" Aspect="AspectFit" HeightRequest="50" WidthRequest="50"/>
-                                
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                                    <Label Text="{Binding Quantity }" HorizontalOptions="Center" TextColor="{ StaticResource CoffeeBrown }" />
-                                    <Label Text="{Binding ProductName, StringFormat= x '{0:}'}" TextColor="{ StaticResource CoffeeBrown }" HorizontalOptions="Center" />
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="0.25*"/>
+                                    <RowDefinition Height="0.25*"/>
+                                    <RowDefinition Height="0.5*"/>
+                                </Grid.RowDefinitions>
+
+                                <StackLayout Grid.Row="0">
+                                    <Image Source="products_ic.png" Aspect="AspectFit" WidthRequest="100" />
                                 </StackLayout>
-                                <Label Text="{Binding Date,StringFormat='{0:dd/MM/yy}'}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{ StaticResource Cream }"/>
-                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                                    <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}, StringFormat=Price : '{0:}'}" HorizontalOptions="Center" TextColor="{ StaticResource CoffeeBrown }" />
+
+                                <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                                    <Label Style="{StaticResource BigLabel }" Text="{Binding Quantity }" HorizontalOptions="Center" />
+                                    <Label Style="{StaticResource BigLabel }" Text="{Binding ProductName, StringFormat= x '{0:}'}" HorizontalOptions="Center" />
                                 </StackLayout>
-                            </StackLayout>
+
+                                <Label Style="{StaticResource NormalLabel }" Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Row="2" HorizontalOptions="Center" />
+
+                                <Label Style="{StaticResource NormalLabel }" Text="{Binding Date,StringFormat='{0:dd/MM/yyyy}'}" Grid.Row="3" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" TextColor="{ StaticResource Cream }"/>
+
+                                <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="4"/>
+
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
