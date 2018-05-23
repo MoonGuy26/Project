@@ -145,7 +145,7 @@ namespace Beanify.ViewModels
 
         private void OnLostFocusEmailExecute()
         {
-            ValidateUserName();
+            //ValidateUserName();
             IsFocusedPassword = true;
         }
 
@@ -249,7 +249,7 @@ namespace Beanify.ViewModels
         #region validationMethods
         private void AddValidations()
         {
-            _email = new ValidatableObject<string>();
+            _email = new ValueChangedValidatableObject<string>();
             _password = new ValueChangedValidatableObject<string>();
 
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
@@ -265,6 +265,8 @@ namespace Beanify.ViewModels
             {
                 ValidationMessage = "A password is required."
             });
+
+            /*
             _password.Validations.Add(new LengthValidationRule<string>("Password must be at least 6 characters.", 6));
             _password.Validations.Add(new ContainLowercaseRule<string>
             {
@@ -281,7 +283,7 @@ namespace Beanify.ViewModels
             _password.Validations.Add(new ContainNonLetterOrDigitRule<string>
             {
                 ValidationMessage = "Password must contain at least one special character."
-            });
+            });*/
             
         }
 

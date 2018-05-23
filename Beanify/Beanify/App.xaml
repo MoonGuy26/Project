@@ -25,13 +25,15 @@
             <converters:FloatToPriceConverter x:Key="floatToPriceConverter" />
 
             <Color x:Key="FocusColor">#abdbab</Color>
-            <Color x:Key="ErrorColor">#ea251e</Color>
+            <Color x:Key="ErrorColor">#c1291a</Color>
             <Color x:Key="BlackColor">#34657a</Color>
             <Color x:Key="Cream">#dfbb6c</Color>
             <Color x:Key="CoffeeBrown">#5b2f2e</Color>
+            <Color x:Key="LightBrown">#925c46</Color>
             <Color x:Key="BgCream">#fbfae1</Color>
             <Color x:Key="TitleWhite">#fdfae1</Color>
             <Color x:Key="SweetGray">#c6baaa</Color>
+            <Color x:Key="WhiteCream">#FBF9E0</Color>
 
 
 
@@ -49,8 +51,9 @@
                 <Setter Property="PlaceholderColor" 
                         Value="{StaticResource SweetGray}"></Setter>
                 <Setter Property="FieldBgColor" 
-                        Value="{StaticResource TitleWhite}"></Setter>
-                
+                        Value="{StaticResource WhiteCream}"></Setter>
+                <Setter Property="TextColor"
+                        Value="{StaticResource CoffeeBrown}"></Setter>
             </Style>
             <Style x:Key="roundButtonStyle" TargetType="Button">
                 <Setter Property="BorderRadius" Value="20"></Setter>
