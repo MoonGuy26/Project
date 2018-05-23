@@ -40,7 +40,7 @@
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -51,20 +51,20 @@
             <Image Grid.Row="0" Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" />
 
             <StackLayout Grid.Row="1">
-                <Label Style="{StaticResource BigLabel}" Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Style="{StaticResource BigLabel}" Text="{Binding ProductModel.Name, Mode=TwoWay}" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Image Source="separator.png" HorizontalOptions="Center"/>
             </StackLayout>
 
-            <StackLayout Grid.Row="2" Padding="15,0,15,0">
+            <StackLayout Grid.Row="2" Padding="15,0,15,0" >
                 <ScrollView>
-                    <Label Text="{Binding ProductModel.Description}" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
+                    <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,15" Text="{Binding ProductModel.Description}" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
                 </ScrollView>
                 <Image Source="separator.png" HorizontalOptions="Center"/>
             </StackLayout>
 
 
             <StackLayout Grid.Row="3" >
-                <Label HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
+                <Label Style="{StaticResource BigLabel}" HorizontalOptions="Center" FontSize="Medium" Text="Quantity :"/>
                 <Picker Title="How many items would you like ?" 
                             x:Name="quantity_picker" 
                             ItemsSource="{Binding ObservablePicker, Mode=TwoWay}" 
@@ -76,7 +76,7 @@
             <StackLayout Grid.Row="4" >
                 <Button  Style="{StaticResource roundButtonStyle}"
                         IsEnabled="{Binding Continue, Mode=OneWayToSource}"
-                        Text="Continue" Command="{Binding Commands[Continue]}" 
+                        Text="CONTINUE" Command="{Binding Commands[Continue]}" 
                          VerticalOptions="End" 
                          HorizontalOptions="Center"
                          WidthRequest="200"/>

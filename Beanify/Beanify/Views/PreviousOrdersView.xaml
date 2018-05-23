@@ -13,16 +13,15 @@
                         <ViewCell IsEnabled="False">
                             <Grid>
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="1.25*"/>
                                     <RowDefinition Height="0.5*"/>
                                     <RowDefinition Height="0.5*"/>
-                                    <RowDefinition Height="0.25*"/>
-                                    <RowDefinition Height="0.25*"/>
-                                    <RowDefinition Height="0.5*"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <StackLayout Grid.Row="0">
-                                    <Image Source="products_ic.png" Aspect="AspectFit" WidthRequest="100" />
-                                </StackLayout>
+
+                                <Image Grid.Row="0" Source="cup_ic.png" VerticalOptions="End" />
 
                                 <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
                                     <Label Style="{StaticResource BigLabel }" Text="{Binding Quantity }" HorizontalOptions="Center" />
