@@ -12,7 +12,7 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}"
               SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-              
+              BackgroundColor="{StaticResource BgCream}"
               >
     <ListView.Behaviors>
         <b:EventToCommandBehavior EventName="ItemSelected" Command="{Binding Commands[ItemSelected]}" />
@@ -22,21 +22,21 @@
       </ListView.Header>
       <ListView.ItemTemplate>
         <DataTemplate>
-                    <customControls:CustomViewCell SelectedBackgroundColor="DarkGray">
-                        <Grid Padding="15">
+                    <customControls:CustomViewCell SelectedBackgroundColor="{StaticResource Cream}">
+                        <Grid Padding="0,20,0,20">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="8*"/>
                             </Grid.ColumnDefinitions>
-                            <iconize:IconImage HeightRequest="20" Icon="{Binding Icon}" WidthRequest="20" 
-                                IconColor="Black"
+                            <Image Source="{Binding Icon}" VerticalOptions="Center" HorizontalOptions="Center"
                                 Grid.Column="0"/>
 
-                            <Label  Margin="10,0"
+                            <Label 
                             VerticalOptions="FillAndExpand" 
                             VerticalTextAlignment="Center" 
                             Text="{Binding Title}" 
-                            FontSize="24"
+                            TextColor="{StaticResource CoffeeBrown}"
+                            FontSize="20"
                             Grid.Column="1"/>
 
                         </Grid>

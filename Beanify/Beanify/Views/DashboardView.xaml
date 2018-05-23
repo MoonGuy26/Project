@@ -9,7 +9,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -23,7 +23,7 @@
             <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
 
             <StackLayout Orientation="Vertical"  Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
-                <Label Style="{StaticResource title}" FontFamily="{StaticResource OswaldLight}">NOW BREWING</Label>
+                <Label Style="{StaticResource title}" FontFamily="{StaticResource OswaldLight}" Margin="0,0,0,-10">NOW BREWING</Label>
                 <Label Style="{StaticResource title}">KENYA HARVEST</Label>
             </StackLayout>
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
