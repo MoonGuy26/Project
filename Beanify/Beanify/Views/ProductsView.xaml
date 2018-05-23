@@ -3,27 +3,61 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.ProductsView"
              xmlns:customControls="clr-namespace:Beanify.Utils.Controls"
-             BackgroundColor="AliceBlue"
+             BackgroundColor="{ StaticResource BgCream }"
              BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}"
              x:Name="Page">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorColor="CornflowerBlue">
+            <ListView ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None" Margin="0, 25, 0, 0">
                 <ListView.Header>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <customControls:CustomViewCell SelectedBackgroundColor="AliceBlue">
-                            <StackLayout x:Name="Item" Orientation="Horizontal" Margin="25, 25, 25, 25">
-                                <Image Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
-                                <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                    <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Description}" FontSize="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Horizontal">
+                        <customControls:CustomViewCell SelectedBackgroundColor="{ StaticResource BgCream }">
+                            <Grid  x:Name="Item"  Margin="25, 0, 25, 0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="3*"/>
+                                </Grid.RowDefinitions>
 
-                                    <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}, StringFormat=Price : '{0:}'}" HorizontalOptions="StartAndExpand" TextColor="{ StaticResource CoffeeBrown }" />
-                                    <Button  
+                                <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
+
+                                <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+
+                                <Label Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+
+                                <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Column="1" Grid.Row="2" HorizontalOptions="StartAndExpand" FontSize="Large" VerticalOptions="Center" TextColor="{ StaticResource CoffeeBrown }"  />
+                                
+                                <Button      Grid.Column="2" Grid.Row="2"   
+                                             Style="{StaticResource roundButtonStyle}"
+                                             Text="More info"
+                                             WidthRequest="100"
+                                             HeightRequest="40"
+                                             Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
+                                             CommandParameter="{Binding . }}"
+                                             VerticalOptions="End" 
+                                             HorizontalOptions="End"/>
+
+                                <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
+                            </Grid>
+                            <!--<StackLayout x:Name="Item" Orientation="Horizontal" Margin="25, 25, 25, 25">
+                                <Image Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
+                                <StackLayout>
+                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Description}" FontSize="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}, StringFormat=Price : '{0:}'}" HorizontalOptions="StartAndExpand" TextColor="{ StaticResource CoffeeBrown }" />
+                                        <Button  
                                              Style="{StaticResource roundButtonStyle}"
                                              Text="More info"
                                              WidthRequest="100"
@@ -31,9 +65,13 @@
                                              CommandParameter="{Binding . }}"
                                              VerticalOptions="End" 
                                              HorizontalOptions="End"/>
-                                </StackLayout>
+                                    </StackLayout>
 
-                            </StackLayout>
+                                </StackLayout>
+                                
+                                <Image Source="seperator.png" HorizontalOptions="Center"/>
+
+                            </StackLayout>-->
                         </customControls:CustomViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
