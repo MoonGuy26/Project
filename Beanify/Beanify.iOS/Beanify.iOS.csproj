@@ -95,6 +95,7 @@
     <Compile Include="Utils\Orientation\DeviceOrientationImplementation.cs" />
     <Compile Include="Utils\Renderers\CustomViewCellRenderer.cs" />
     <Compile Include="Utils\Renderers\HomeCarouselViewRenderer.cs" />
+    <Compile Include="Utils\Renderers\TextFieldRenderer.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
@@ -260,5 +261,14 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\bg%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cup_ic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cup_ic%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cup_ic%403x.png" />
   </ItemGroup>
 </Project>

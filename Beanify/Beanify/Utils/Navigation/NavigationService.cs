@@ -44,19 +44,11 @@ namespace Beanify.Utils.Navigation
         {
             if (string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
             {
-                if (Application.Current.Properties.ContainsKey("nav_saved")){
-                    var navS = new NavigationSerializer();
-                    navS.DeserializeNavigationStack();
-                    await Task.FromResult(false);
-                }
-
                 await NavigateToAsync<HomeCarouselViewModel>();
 
                // }
                 //Type type = Type.GetType("Beanify.ViewModels." + LocalStorageSettings.LastViewModel);
                 //BaseViewModel vm = Activator.CreateInstance(type) as BaseViewModel;
-                
-
             }
 
             // return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);

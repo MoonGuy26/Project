@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:Beanify.ViewModels;assembly=Beanify"
              xmlns:behaviors="clr-namespace:Beanify.Utils.Behaviors"
              xmlns:converters="clr-namespace:Beanify.Utils.Converters"
+             xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              
              x:Class="Beanify.App">
@@ -30,6 +31,9 @@
             <Color x:Key="CoffeeBrown">#5b2f2e</Color>
             <Color x:Key="BgCream">#fbfae1</Color>
             <Color x:Key="TitleWhite">#fdfae1</Color>
+            <Color x:Key="SweetGray">#c6baaa</Color>
+
+
 
             
             <OnPlatform x:TypeArguments="x:String" x:Key="Oswald">
@@ -65,11 +69,21 @@
             </Style>
 
             <Style x:Key="EntryStyle"
-            TargetType="{x:Type Entry}">
+            TargetType="{x:Type custom:CustomEntry}">
                 <Setter Property="behaviors:LineColorBehavior.ApplyLineColor"
                     Value="True" />
                 <Setter Property="behaviors:LineColorBehavior.LineColor"
                     Value="{StaticResource BlackColor}" />
+                <Setter Property="CornerRadius" Value="4"></Setter>
+                <Setter Property="IsCurvedCornersEnabled" Value="true"></Setter>
+                <Setter Property="BorderColor"
+                        Value="{StaticResource SweetGray}"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                <Setter Property="PlaceholderColor" 
+                        Value="{StaticResource SweetGray}"></Setter>
+                <Setter Property="FieldBgColor" 
+                        Value="{StaticResource TitleWhite}"></Setter>
+                
             </Style>
             <Style x:Key="roundButtonStyle" TargetType="Button">
                 <Setter Property="BorderRadius" Value="20"></Setter>
