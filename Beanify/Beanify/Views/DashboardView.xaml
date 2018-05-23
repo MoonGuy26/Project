@@ -7,25 +7,31 @@
     <ContentPage.Content>
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Image  Source="logo.png" Grid.Row="1"></Image>
-            <Image Source="separator.png" Grid.Row="2" VerticalOptions="Center" ></Image>
-     
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <Image  Source="logo.png" Grid.Row="0" Grid.Column="1" VerticalOptions="EndAndExpand"></Image>
+            <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
 
+            <StackLayout Orientation="Vertical"  Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+            <Label TextColor="{StaticResource TitleWhite}" VerticalOptions="Center"  HorizontalOptions="Center"
+                       FontFamily="Arial" FontSize="24">NOW BREWING</Label>
                 <Label TextColor="{StaticResource TitleWhite}" VerticalOptions="Center"  HorizontalOptions="Center"
-                       FontFamily="Arial" FontSize="36" Grid.Row="3">NOW BREWING</Label>
-                <Label TextColor="{StaticResource TitleWhite}" VerticalOptions="Center"  HorizontalOptions="Center"
-                    FontFamily="Arial" FontSize="36" FontAttributes="Bold" Grid.Row="4">KENYA HARVEST </Label>
-
-            <Image Source="separator.png" Grid.Row="5" VerticalOptions="Center"></Image>
-            <Label TextColor="{StaticResource TitleWhite}" 
-                FontFamily="Arial" FontSize="Medium" Grid.Row="6" VerticalOptions="Center">The medium strength Kenya Harvest is roasted from the much sought after Kenyan beans, renowned for producing an intense flavour, full body and pleasant aroma</Label>
+                    FontFamily="Arial" FontSize="24" FontAttributes="Bold">KENYA HARVEST</Label>
+            </StackLayout>
+            <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
+            <Label TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"
+                FontFamily="Arial" FontSize="18" Grid.Row="4" Grid.Column="1"
+                   VerticalOptions="FillAndExpand" HorizontalOptions="Center">The medium strength Kenya Harvest is roasted from the much sought after Kenyan beans, renowned for producing an intense flavour, full body and pleasant aroma</Label>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
