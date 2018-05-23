@@ -13,7 +13,7 @@
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <customControls:CustomViewCell SelectedBackgroundColor="{ StaticResource BgCream }">
+                        <customControls:CustomViewCell SelectedBackgroundColor="{ StaticResource BgCream }" Height="180">
                             <Grid  x:Name="Item"  Margin="25, 0, 25, 0" >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -31,7 +31,7 @@
 
                                 <Label Style="{StaticResource NormalLabel}"  Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="End" TextColor="{StaticResource Cream}"/>
 
-                                <Label Style="{StaticResource NormalLabel}"  Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" VerticalOptions="Start" LineBreakMode="TailTruncation"/>
+                                <Label Style="{StaticResource NormalLabel}"  Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="Start" LineBreakMode="TailTruncation"/>
 
                                 <Label Style="{StaticResource BigLabel}" Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Column="1" Grid.Row="2" HorizontalOptions="StartAndExpand" FontSize="40" VerticalOptions="Center" />
 
