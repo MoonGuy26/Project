@@ -51,7 +51,7 @@
             <Image Grid.Row="0" Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFill" />
 
             <StackLayout Grid.Row="1">
-                <Label Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label Style="{StaticResource BigLabel}" Text="{Binding ProductModel.Name, Mode=TwoWay}" FontSize="Large" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
                 <Image Source="separator.png" HorizontalOptions="Center"/>
             </StackLayout>
 

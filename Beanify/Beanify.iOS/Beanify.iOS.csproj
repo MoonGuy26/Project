@@ -104,6 +104,8 @@
     <BundleResource Include="trail_loading.json" />
     <BundleResource Include="Resources\Fonts\oswald_regular.ttf" />
     <BundleResource Include="Resources\Fonts\opensans_regular.ttf" />
+    <BundleResource Include="Resources\Fonts\opensans_semibold.ttf" />
+    <BundleResource Include="Resources\Fonts\oswald_semibold.ttf" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />

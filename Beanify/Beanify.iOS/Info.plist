@@ -54,8 +54,10 @@
 	<array>     
 		<string>iconize-fontawesome.ttf</string>
     <string>iconize-material.ttf</string>
-   <string>Fonts/OpenSans-Regular.ttf</string>
-   <string>Fonts/Oswald-Regular.ttf</string>    
-	</array>    
+    <string>Fonts/opensans_regular.ttf</string>
+    <string>Fonts/oswald_regular.ttf</string>
+    <string>Fonts/opensans_semibold.ttf</string>
+    <string>Fonts/oswald_semibold.ttf</string>
+   </array>    
 </dict>
 </plist>

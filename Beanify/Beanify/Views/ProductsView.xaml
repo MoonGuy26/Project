@@ -24,54 +24,29 @@
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="*"/>
                                     <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="3*"/>
+                                    <RowDefinition Height="2*"/>
                                 </Grid.RowDefinitions>
 
                                 <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="3" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
 
-                                <Label Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="Center"/>
+                                <Label Style="{StaticResource NormalLabel}"  Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="Medium" HorizontalOptions="StartAndExpand" VerticalOptions="End" TextColor="{StaticResource Cream}"/>
 
-                                <Label Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="Small" HorizontalOptions="StartAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                <Label Style="{StaticResource NormalLabel}"  Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalOptions="StartAndExpand" VerticalOptions="Start" LineBreakMode="TailTruncation"/>
 
-                                <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Column="1" Grid.Row="2" HorizontalOptions="StartAndExpand" FontSize="Large" VerticalOptions="Center" TextColor="{ StaticResource CoffeeBrown }"  />
-                                
+                                <Label Style="{StaticResource BigLabel}" Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Column="1" Grid.Row="2" HorizontalOptions="StartAndExpand" FontSize="40" VerticalOptions="Center" />
+
                                 <Button      Grid.Column="2" Grid.Row="2"   
                                              Style="{StaticResource roundButtonStyle}"
-                                             Text="More info"
+                                             Text="MORE INFO"
                                              WidthRequest="100"
-                                             HeightRequest="40"
+                                             HeightRequest="50"
+                                             Scale="0.75"
                                              Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
                                              CommandParameter="{Binding . }}"
-                                             VerticalOptions="End" 
-                                             HorizontalOptions="End"/>
+                                             VerticalOptions="End" />
 
                                 <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
                             </Grid>
-                            <!--<StackLayout x:Name="Item" Orientation="Horizontal" Margin="25, 25, 25, 25">
-                                <Image Source="{Binding ImagePath}" Aspect="AspectFill" HeightRequest="125" WidthRequest="125"/>
-                                <StackLayout>
-                                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Description}" FontSize="Small" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
-                                    </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-
-                                        <Label Text="{Binding Price, Converter={StaticResource floatToPriceConverter}, StringFormat=Price : '{0:}'}" HorizontalOptions="StartAndExpand" TextColor="{ StaticResource CoffeeBrown }" />
-                                        <Button  
-                                             Style="{StaticResource roundButtonStyle}"
-                                             Text="More info"
-                                             WidthRequest="100"
-                                             Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
-                                             CommandParameter="{Binding . }}"
-                                             VerticalOptions="End" 
-                                             HorizontalOptions="End"/>
-                                    </StackLayout>
-
-                                </StackLayout>
-                                
-                                <Image Source="seperator.png" HorizontalOptions="Center"/>
-
-                            </StackLayout>-->
                         </customControls:CustomViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

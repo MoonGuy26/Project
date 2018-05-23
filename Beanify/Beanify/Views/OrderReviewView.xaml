@@ -11,39 +11,6 @@
     </ContentPage.Behaviors>
 
     <ContentPage.Content>
-        <!--<StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" BackgroundColor="Gray" Margin="15, 10, 15, 10"  HorizontalOptions="FillAndExpand" >
-            <StackLayout VerticalOptions="Start">
-
-                <Image Source="{Binding Product.ImagePath}" Aspect="AspectFill" HeightRequest="250" WidthRequest="350"/>
-        
-            </StackLayout>
-            <StackLayout VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
-                <StackLayout Padding="5,0,5,0">
-                    <StackLayout Orientation="Vertical" Margin="0,15,0,0">
-                        <Label Text="Total" FontSize="Medium" VerticalOptions="Start" HorizontalOptions="Center"/>
-                        <Label Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="50"/>
-                        <BoxView Style="{StaticResource whiteLine}"/>
-                    </StackLayout>
-                    <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,0">
-                        <Label Text="{Binding Order.Quantity}" FontSize="Medium" x:Name="title" HorizontalOptions="Start"/>
-                        <Label Text="x" FontSize="Medium" LineBreakMode="WordWrap"/>
-                        <Label Text="{Binding Order.ProductName}" FontSize="Medium"  LineBreakMode="WordWrap"/>
-                        <Label Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
-                    </StackLayout>
-                    <BoxView Style="{StaticResource whiteLine}"/>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,15,0,15">
-                            <Label Text="Total" HorizontalOptions="StartAndExpand" LineBreakMode="WordWrap"/>
-                            <Label Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" HorizontalOptions="End" LineBreakMode="WordWrap"/>
-                        </StackLayout>
-                </StackLayout>
-                <StackLayout  Orientation="Horizontal" VerticalOptions="End" HorizontalOptions="FillAndExpand" Padding="15,0,15,0" BackgroundColor="AliceBlue">
-                    <Button Style="{StaticResource roundButtonStyle}" HorizontalOptions="FillAndExpand" Margin="0,15,0,0" Text="Confirm and Order" Command="{Binding Commands[Order]}"/>
-                </StackLayout>
-            </StackLayout>
-
-        </StackLayout>-->
-
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>

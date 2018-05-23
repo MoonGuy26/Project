@@ -31,6 +31,39 @@
             <Color x:Key="BgCream">#fbfae1</Color>
             <Color x:Key="TitleWhite">#fdfae1</Color>
 
+            
+            <OnPlatform x:TypeArguments="x:String" x:Key="Oswald">
+                <On Platform="Android" Value="oswald_regular.ttf#Oswald" />
+                <On Platform="iOS" Value="oswald_regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OpenSansRegular">
+                <On Platform="Android" Value="opensans_regular.ttf#Open Sans" />
+                <On Platform="iOS" Value="opensans_regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OpenSansSemiBold">
+                <On Platform="Android" Value="opensans_semibold.ttf#Open Sans SemiBold" />
+                <On Platform="iOS" Value="opensans_semibold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="OswaldSemiBold">
+                <On Platform="Android" Value="oswald_semibold.ttf#Oswald SemiBold" />
+                <On Platform="iOS" Value="oswald_semibold" />
+            </OnPlatform>
+
+            <Style x:Key="BigLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource CoffeeBrown}"></Setter>
+                <Setter Property="FontSize" Value="30"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource Oswald}"></Setter>
+            </Style>
+
+
+            <Style x:Key="NormalLabel"
+                   TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource CoffeeBrown}"></Setter>
+                <Setter Property="FontSize" Value="15"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource OpenSansRegular}"></Setter>
+            </Style>
+
             <Style x:Key="EntryStyle"
             TargetType="{x:Type Entry}">
                 <Setter Property="behaviors:LineColorBehavior.ApplyLineColor"
@@ -44,7 +77,10 @@
                 <Setter Property="TextColor" Value="{ StaticResource CoffeeBrown }"></Setter>
                 <Setter Property="WidthRequest" Value="150"></Setter>
                 <Setter Property="Scale" Value="1.2"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource OswaldSemiBold}"></Setter>
+                <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
+                
 
             <Style x:Key="whiteLine" 
                    TargetType="BoxView">
