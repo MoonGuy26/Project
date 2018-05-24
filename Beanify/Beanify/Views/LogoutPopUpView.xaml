@@ -20,20 +20,18 @@
 
     <StackLayout Margin="12"
                  Padding="24"
-                 BackgroundColor="AliceBlue"
                  HorizontalOptions="Center"
-                 VerticalOptions="Center">
-        <Label Text="Do you want to log out ?" HorizontalOptions="Center" FontSize="Large"/>
+                 VerticalOptions="Center"
+                 BackgroundColor="{StaticResource BgCream}">
+        <Label Text="Do you want to log out ?" HorizontalOptions="Center" Style="{StaticResource BigLabel}"/>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-            <Button BackgroundColor="LimeGreen"
-                FontSize="30"
+            <Button 
+                Style="{StaticResource YesNoButton}"
                 Text="Yes"
-                TextColor="White"
                 Command="{Binding Commands[Yes]}"/>
-            <Button BackgroundColor="IndianRed"
-                FontSize="30"
+            <Button
+                Style="{StaticResource YesNoButton}"
                 Text="No"
-                TextColor="White"
                 Command="{Binding Commands[No]}"/>
         </StackLayout>
 
