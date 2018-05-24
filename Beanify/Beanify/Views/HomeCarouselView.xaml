@@ -5,11 +5,12 @@
               xmlns:carouselPages="clr-namespace:Beanify.Views.CarouselViews"
                 x:Class="Beanify.Views.HomeCarouselView"
                xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+              xmlns:custom="clr-namespace:Beanify.Utils.Controls"
               xmlns:templateSelectors="clr-namespace:Beanify.Utils.DataTemplateSelectors"
               xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
               NavigationPage.HasNavigationBar="false"
               xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
-              
+              BackgroundImage="bg.png"
               BindingContext="{Binding HomeCarouselViewModel, Source={StaticResource Locator}}"
               
               >
@@ -31,17 +32,22 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <controls:CarouselViewControl 
+        
+            <custom:CustomCarousel
       
-            Orientation="Horizontal"
-            VerticalOptions="Fill"
-            HorizontalOptions="Fill"
-            ItemsSource="{Binding CarouselPages}"   
-            MinimumWidthRequest="{Binding ScreenWidth, Mode=TwoWay}"
-            MinimumHeightRequest="{Binding ScreenHeight,Mode=TwoWay}"
-            ShowIndicators="true"       
-            >
+                Orientation="Horizontal"
+                VerticalOptions="Fill"
+                HorizontalOptions="Fill"
+                ItemsSource="{Binding CarouselPages}"   
+                MinimumWidthRequest="{Binding ScreenWidth, Mode=TwoWay}"
+                MinimumHeightRequest="{Binding ScreenHeight,Mode=TwoWay}"
+                ShowIndicators="true"    
+                CurrentPageIndicatorTintColor="{StaticResource Cream}"
+                IndicatorsTintColor="White"
             
-        </controls:CarouselViewControl>
+                >
+            
+            </custom:CustomCarousel>
+
     </ContentPage.Content>
 </ContentPage>

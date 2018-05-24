@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Beanify.Views.HomePageView"
+             x:Class="Beanify.Views.SecondPageView"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              IsClippedToBounds="True"
              
-             BindingContext="{Binding HomePageViewModel, Source={StaticResource Locator}}">
+             BindingContext="{Binding SecondPageViewModel, Source={StaticResource Locator}}">
     <ContentView.Behaviors>
         <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
     </ContentView.Behaviors>
-<ContentView.Content>
+    <ContentView.Content>
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="4*"></RowDefinition>
@@ -24,16 +24,13 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="1" Style="{StaticResource title}" VerticalOptions="EndAndExpand">WELCOME TO</Label>
-            
-            <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
 
-            <Image  Source="logo.png" Grid.Row="2" Grid.Column="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ></Image>
-            
+            <Label Margin="16,0,16,0" TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"
+                FontFamily="{StaticResource LatoRegular}" FontSize="18" Grid.Row="2" Grid.Column="1"
+                   VerticalOptions="FillAndExpand" HorizontalOptions="Center">To continue please ensure that you are a Beanify customer and have been provided with a login and password</Label>
+
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
-            <Label Margin="25,0,25,0" TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"
-                FontFamily="{StaticResource LatoRegular}" FontSize="18" Grid.Row="4" Grid.Column="1"
-                   VerticalOptions="FillAndExpand" HorizontalOptions="Center">The simplest way to have coffee delivered to your corporate space</Label>
+            
         </Grid>
     </ContentView.Content>
 </ContentView>

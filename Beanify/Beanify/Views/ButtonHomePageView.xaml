@@ -8,14 +8,35 @@
         <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
     </ContentView.Behaviors>
   <ContentView.Content>
-        <StackLayout x:Name="layout" BackgroundColor="Black" Orientation="{Binding ScreenOrientation,Mode=TwoWay}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4.5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="4.5*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-            <Image Source="{Binding ImagePath}" Margin="15, 0, 15, 0" ></Image>
-            <Label Text="{Binding Text}" VerticalOptions="Start" HorizontalOptions="Center" Margin="15, 0, 15, 0" LineBreakMode="WordWrap" TextColor="WhiteSmoke"></Label>
-            <Button  Text="OK" VerticalOptions="Center" HorizontalOptions="Center" Command="{Binding Commands[LoginCommand]}" />       
-          
+            <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource title}" 
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   YAlign="Center"
+                   FontSize="32" 
+                   Margin="0,0,0,-10">PRESS OK TO BEGIN</Label>
 
+            <Image Source="separator.png" Grid.Row="2" Grid.Column="1" VerticalOptions="Center" ></Image>
+            <StackLayout Grid.Row="3" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Button  Text="OK"  Command="{Binding Commands[Login]}"
+                            Style="{StaticResource lgRoundButtonStyle}"
+                                Margin="20,0,20,0" >
 
-        </StackLayout>
+                </Button>
+            </StackLayout>
+        </Grid>
     </ContentView.Content>
 </ContentView>

@@ -108,7 +108,15 @@ namespace Beanify.ViewModels
                 return ServiceLocator.Current.GetInstance<HomePageViewModel>();
             }
         }
-        
+
+        public SecondPageViewModel SecondPageViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SecondPageViewModel>();
+            }
+        }
+
         public ErrorPopupViewModel ErrorPopupViewModel
         {
             get

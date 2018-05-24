@@ -19,7 +19,7 @@ namespace Beanify.ViewModels.CarouselViewModels
 
         public ButtonHomePageViewModel():base()
         {
-            Commands.Add("LoginCommand", new Command(OnLoginExecute));
+            Commands.Add("Login", new Command(OnLoginExecute));
         }
 
         #region commandMethods

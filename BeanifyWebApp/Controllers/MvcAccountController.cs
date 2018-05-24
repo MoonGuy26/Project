@@ -316,31 +316,37 @@ namespace BeanifyWebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null)
-                {
-                    /*|| !(await UserManager.IsEmailConfirmedAsync(user.Id))*/
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
-
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "MvcAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                 
-                string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/ResetPassword.html");
-                StreamReader str = new StreamReader(FilePath);
-                string MailText = str.ReadToEnd().ToString();
-                str.Close();
+                    var user = await UserManager.FindByNameAsync(model.Email);
+                    if (user == null)
+                    {
+                        /*|| !(await UserManager.IsEmailConfirmedAsync(user.Id))*/
+                        // Don't reveal that the user does not exist or is not confirmed
+                        return View("ForgotPasswordConfirmation");
+                    }
 
-                MailText = MailText.Replace("{0}", "Reset Password");
-                MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
-                MailText = MailText.Replace("{2}", user.UserName);
-                MailText = MailText.Replace("{3}", callbackUrl);
+                    
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                    var callbackUrl = Url.Action("ResetPassword", "MvcAccount", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                    string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/ResetPassword.html");
+                    StreamReader str = new StreamReader(FilePath);
+                    string MailText = str.ReadToEnd().ToString();
+                    str.Close();
+
+                    MailText = MailText.Replace("{0}", "Reset Password");
+                    MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
+                    MailText = MailText.Replace("{2}", user.UserName);
+                    MailText = MailText.Replace("{3}", callbackUrl);
 
 
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", MailText);
+                    UserManager.SendEmailAsync(user.Id, "Reset Password", MailText);
+                }).Start();
 
                 //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "MvcAccount");

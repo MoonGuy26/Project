@@ -25,26 +25,17 @@ namespace Beanify.ViewModels
             }
         }
 
-        
-        
-
         public HomeCarouselViewModel()
         {
             CarouselPages = new ObservableCollection<DataTemplate>() {
                 new DataTemplate(() => { return new HomePageView(); }),
-                new DataTemplate(() => { return new HomePageView(); }),
+                new DataTemplate(() => { return new SecondPageView(); }),
                 new DataTemplate(() => { return new ButtonHomePageView(); })};
-            
-            
-            
         }
 
         override protected void InitializeViewModel()
         {
             base.InitializeViewModel();
-
-         
-
         }
 
         

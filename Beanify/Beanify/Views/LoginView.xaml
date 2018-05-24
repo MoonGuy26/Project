@@ -70,8 +70,7 @@
                         Value="False">
                                 <Setter Property="behaviors:LineColorBehavior.LineColor" 
                                 Value="{StaticResource ErrorColor}" />
-                                <Setter Property="TextColor"
-                                Value="{StaticResource ErrorColor}" />
+                                
                             </DataTrigger>
                         </custom:CustomEntry.Triggers>
                     </custom:CustomEntry>

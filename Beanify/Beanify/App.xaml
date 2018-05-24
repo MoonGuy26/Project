@@ -87,7 +87,7 @@
                 <Setter Property="behaviors:LineColorBehavior.ApplyLineColor"
                     Value="True" />
                 <Setter Property="behaviors:LineColorBehavior.LineColor"
-                    Value="{StaticResource BlackColor}" />
+                    Value="{StaticResource CoffeeBrown}" />
                 <Setter Property="CornerRadius" Value="4"></Setter>
                 <Setter Property="IsCurvedCornersEnabled" Value="true"></Setter>
                 <Setter Property="BorderColor"
@@ -136,8 +136,8 @@
                 <Setter Property="TextColor" Value="{StaticResource TitleWhite}"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
                 <Setter Property="HorizontalOptions" Value="Center"></Setter>
-                <Setter Property="FontFamily" Value="{StaticResource OswaldBold}"></Setter>
-                <Setter Property="FontSize" Value="28"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource OswaldSemiBold}"></Setter>
+                <Setter Property="FontSize" Value="32"></Setter>
                 
             </Style>
             

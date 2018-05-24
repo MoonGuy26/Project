@@ -242,7 +242,12 @@ namespace Beanify.ViewModels
 
         private async Task NavigateForgottenView()
         {
-            await _navigationService.NavigateToAsync<ForgottenPasswordViewModel>();
+            var email = "";
+            if (ValidateUserName())
+            {
+                email = Email.Value;
+            }
+            await _navigationService.NavigateToAsync<ForgottenPasswordViewModel>(email);
         }
         #endregion
 

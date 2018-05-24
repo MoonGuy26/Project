@@ -35,7 +35,6 @@ namespace Beanify.ViewModels
                 {
                     _email = value;
                     OnPropertyChanged(nameof(Email));
-                    _email.Validate();
                 }
             }
         }
@@ -58,9 +57,20 @@ namespace Beanify.ViewModels
             _accountService = accountService;
             Commands.Add("ForgottenComplete", new Command(OnForgottenCompleteExecute));
             Commands.Add("LoginNavigation", new Command(OnLoginNavigationExecute));
-
+            TextConfirmation = "Please enter your account email adress and press Reset Password to get your reset link";
 
             AddValidations();
+        }
+
+        public override Task InitializeAsync(object navigationData)
+        {
+            if (navigationData != null)
+            {
+                var email = (string)navigationData;
+                Email.Value = email;
+            }
+
+            return base.InitializeAsync(navigationData);
         }
 
         private void AddValidations()
@@ -70,11 +80,11 @@ namespace Beanify.ViewModels
 
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "An email adress is required."
+                ValidationMessage = "An email adress is required"
             });
             _email.Validations.Add(new IsValidEmailRule<string>
             {
-                ValidationMessage = "Please enter a valid email address."
+                ValidationMessage = "Please enter a valid email address"
             });
         }
 
@@ -89,10 +99,10 @@ namespace Beanify.ViewModels
             if (ValidateEmail())
             {
                 IsVisibleLoading = true;
-                TextConfirmation = "Sending";
+                //TextConfirmation = "Sending";
                 await _accountService.ForgottenPassword(Email.Value);
                 IsVisibleLoading = false;
-                TextConfirmation = "A email has been sent to your email inbox, please go check it !";
+                TextConfirmation = "An email will be send to your email inbox. This process can take a few minutes.";
             }
             
         }
@@ -101,9 +111,6 @@ namespace Beanify.ViewModels
             await _navigationService.NavigateBackAsync();
         }
 
-        private bool CanForgottenComplete()
-        {
-            return true;
-        }
+        
     }
 }
