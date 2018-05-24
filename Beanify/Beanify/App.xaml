@@ -105,15 +105,26 @@
                         Value="{StaticResource CoffeeBrown}"></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource OpenSansRegular}"></Setter>
             </Style>
-            <Style x:Key="roundButtonStyle" TargetType="Button">
-                <Setter Property="BorderRadius" Value="20"></Setter>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="BorderRadius" Value="30"></Setter>
                 <Setter Property="BackgroundColor" Value="{ StaticResource Cream }"></Setter>
                 <Setter Property="TextColor" Value="{ StaticResource CoffeeBrown }"></Setter>
-                <Setter Property="WidthRequest" Value="150"></Setter>
-                <Setter Property="Scale" ></Setter>
+                
+                <Setter Property="FontSize" Value="18"></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource OswaldSemiBold}"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>
             </Style>
+
+            <Style x:Key="roundButtonStyle" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                <Setter Property="WidthRequest" Value="150"></Setter>
+            </Style>
+
+            <Style x:Key="lgRoundButtonStyle" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                <Setter Property="FontSize" Value="22"></Setter>
+                <Setter Property="VerticalOptions" Value="Fill"></Setter>
+                <Setter Property="HorizontalOptions" Value="Fill"></Setter>
+            </Style>
+
             <Style x:Key="YesNoButton" TargetType="Button" BasedOn="{StaticResource roundButtonStyle}">
                 <Setter Property="WidthRequest" Value="75"/>
             </Style>
@@ -125,7 +136,6 @@
                 <Setter Property="HeightRequest" Value="60"/>
                 <Setter Property="BorderRadius" Value="25"/>
             </Style>
-
 
             <Style x:Key="whiteLine" 
                    TargetType="BoxView">

@@ -48,13 +48,13 @@ namespace Beanify.ViewModels
             base.InitializeViewModel();
             MenuItems = new ObservableCollection<DashboardNavigationViewMenuItem>(new[]
             {
-                    new DashboardNavigationViewMenuItem { Id = 0, Title = "Dashboard",Icon="md-home",
+                    new DashboardNavigationViewMenuItem { Id = 0, Title = "Dashboard",Icon="dashboard_ic",
                     OnClicked =OnDashboardExecute},
-                    new DashboardNavigationViewMenuItem { Id = 1, Title = "Place Order",Icon="md-shopping-cart",
+                    new DashboardNavigationViewMenuItem { Id = 1, Title = "Place Order",Icon="products_ic",
                     OnClicked =OnPlaceOrderExecute},
-                    new DashboardNavigationViewMenuItem { Id = 2, Title = "My Previous Orders",Icon="md-free-breakfast",
+                    new DashboardNavigationViewMenuItem { Id = 2, Title = "My Previous Orders",Icon="orders_ic",
                     OnClicked =OnPreviousOrderExecute },
-                    new DashboardNavigationViewMenuItem { Id = 3, Title = "Log out",Icon="md-input",
+                    new DashboardNavigationViewMenuItem { Id = 3, Title = "Log out",Icon="logout_ic",
                     OnClicked =OnLogoutExecute },
                     
                    

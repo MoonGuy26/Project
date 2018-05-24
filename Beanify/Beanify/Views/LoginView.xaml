@@ -42,7 +42,7 @@
 
             <StackLayout  Grid.Row="2" Grid.Column="1"  >
 
-                <StackLayout  VerticalOptions="Center" Margin="15,0,15,15" Spacing="6">
+                <StackLayout  VerticalOptions="Center" Margin="20,0,20,15" Spacing="6">
                     <custom:CustomEntry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand" 
                            >
                         <custom:CustomEntry.Behaviors>
@@ -78,9 +78,10 @@
                     <Label Text="{Binding Email.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                     IsVisible="{Binding Email.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource BgCream}"
-                           HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    FontFamily="{StaticResource OpenSansRegular}"/>
                 </StackLayout>
-                <StackLayout  VerticalOptions="Center" Margin="15,0,15,0" >
+                <StackLayout  VerticalOptions="Center" Margin="20,0,20,-20" >
                     <custom:CustomEntry Placeholder="password" IsPassword="True" 
                        Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
                        IsFocused="{Binding IsFocusedPassword}">
@@ -113,7 +114,8 @@
                     <Label Text="{Binding Password.Errors,Converter={StaticResource firstValidationErrorConverter}}"
                     IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource BgCream}"
-                           HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    FontFamily="{StaticResource OpenSansRegular}"/>
                     <Button Text="Forgotten Password?"   Command="{Binding Commands[ResetPassword]}" 
                             FontFamily="{StaticResource LatoRegular}"
                             Margin="0,0,0,0"
@@ -128,13 +130,15 @@
             </StackLayout>
             
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
-            <StackLayout Grid.Row="4" Grid.Column="1">
-                <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
-                    <Button Text="LOGIN"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
-                        Style="{StaticResource roundButtonStyle}">
+            <StackLayout Grid.Row="4" Grid.Column="1" VerticalOptions="Start"  HorizontalOptions="FillAndExpand" Margin="0,-15,0,0">
+                <StackLayout Orientation="{Binding ScreenOrientation,Mode=TwoWay}">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Button Text="LOGIN"  Command="{Binding Commands[Login]}" IsVisible="{Binding IsVisibleImage,Converter={StaticResource boolToInvertBoolConverter}}"
+                            Style="{StaticResource lgRoundButtonStyle}"
+                                Margin="20,0,20,0" >
 
-                    </Button>
-
+                        </Button>
+                    </StackLayout>
                     <forms:AnimationView 
 	                x:Name="animationView" 
 	                HeightRequest="128"
@@ -154,7 +158,8 @@
                    HorizontalTextAlignment="Center"
                    FontSize="18"
                    IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
-                   TextColor="{StaticResource WhiteCream}"/>
+                   TextColor="{StaticResource WhiteCream}"
+                   FontFamily="{StaticResource OpenSansRegular}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
