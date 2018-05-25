@@ -20,12 +20,14 @@
 
     <StackLayout Margin="12"
                  Padding="24"
-                 BackgroundColor="AliceBlue"
+                 BackgroundColor="{StaticResource BgCream}"
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
-        <Label Text="{Binding ErrorMessage}" HorizontalOptions="Center" FontSize="Large"/>
+        <Label Text="{Binding ErrorMessage}" Style="{StaticResource BigLabel}" HorizontalOptions="Center" FontSize="Large"/>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-            <Button BackgroundColor="DarkGray"
+            <Button 
+                Style="{StaticResource YesNoButton}"
+                BackgroundColor="DarkGray"
                 FontSize="25"
                 Text="OK"
                 TextColor="White"

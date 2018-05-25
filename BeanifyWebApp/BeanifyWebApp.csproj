@@ -292,6 +292,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="EmailTemplates\AccountAdded.html" />
     <Content Include="EmailTemplates\AccountChanged.html" />
+    <Content Include="EmailTemplates\Images\beanify-logo.png" />
     <Content Include="Scripts\bootstrap-confirmation.js" />
     <Content Include="Scripts\bootstrap-confirmation.min.js" />
     <Content Include="Content\bootstrap.css" />

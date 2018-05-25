@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BarBackgroundColor="{StaticResource CoffeeBrown}"
              BarTextColor="{StaticResource TitleWhite}"
+                
                 Title="Beanify"
                 Icon="burger_menu.png"
              x:Class="Beanify.Views.CustomNavigationView">

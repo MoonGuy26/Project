@@ -109,10 +109,8 @@ namespace BeanifyWebApp.Controllers
                 IdentityMessage identityMessage = new IdentityMessage();
 
                 identityMessage.Destination = User.Identity.GetUserName();
-                identityMessage.Subject = "Order Confirmation";
+                identityMessage.Subject = "Beanify Order Confirmation";
 
-                //Fetching Email Body Text from EmailTemplate File.  
-                //string FilePath = Path.GetFullPath("OrderConfirmation.html");
 
                 string FilePath = System.Web.Hosting.HostingEnvironment.MapPath("~/EmailTemplates/OrderConfirmation.html");
                 StreamReader str = new StreamReader(FilePath);
@@ -128,13 +126,12 @@ namespace BeanifyWebApp.Controllers
 
                 MailText = MailText.Replace("{0}", identityMessage.Subject);
                 MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
-                MailText = MailText.Replace("{2}", User.Identity.GetUserName());
+                MailText = MailText.Replace("{2}", user.Name);
                 MailText = MailText.Replace("{3}", orderModel.ProductName);
-                MailText = MailText.Replace("{4}", orderModel.Quantity.ToString() + " items");
+                MailText = MailText.Replace("{4}", orderModel.Quantity.ToString() + " item(s)");
                 MailText = MailText.Replace("{5}", orderModel.Price.ToString());
 
                 identityMessage.Body = MailText;
-                //identityMessage.Body = "You've just ordered " + orderModel.Quantity.ToString() + " " + orderModel.ProductName + ".\n\nYou've paid " + orderModel.Price + "£ for it. Order has been passed on the " + orderModel.Date.ToShortDateString() + " at " + orderModel.Date.ToShortTimeString() +". \nThanks for buying our delicious coffees.";
 
                 email.Send(identityMessage);
             }).Start();

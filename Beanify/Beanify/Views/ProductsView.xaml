@@ -14,7 +14,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <customControls:CustomViewCell SelectedBackgroundColor="{ StaticResource BgCream }" Height="180">
-                            <Grid  x:Name="Item"  Margin="25, 0, 25, 0" >
+                            <Grid  x:Name="Item">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>

@@ -27,7 +27,7 @@
 
             <Label Margin="16,0,16,0" TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"
                 FontFamily="{StaticResource LatoRegular}" FontSize="18" Grid.Row="2" Grid.Column="1"
-                   VerticalOptions="FillAndExpand" HorizontalOptions="Center">To continue please ensure that you are a Beanify customer and have been provided with a login and password</Label>
+                   VerticalOptions="FillAndExpand" HorizontalOptions="Center" LineBreakMode="WordWrap">To continue please ensure that you are a Beanify customer and have been provided with a login and password</Label>
 
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
             
