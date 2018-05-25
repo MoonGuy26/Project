@@ -4,7 +4,6 @@
              x:Class="Beanify.Views.DashboardNavigationView"
              NavigationPage.HasNavigationBar="True"
              xmlns:pages="clr-namespace:Beanify.Views"
-                  
              >
   <MasterDetailPage.Master>
         <pages:CustomNavigationView>

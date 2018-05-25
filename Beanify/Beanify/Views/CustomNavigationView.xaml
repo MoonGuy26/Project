@@ -4,6 +4,7 @@
         xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              BarBackgroundColor="{StaticResource CoffeeBrown}"
              BarTextColor="{StaticResource TitleWhite}"
+                
                 Title="Beanify"
                
              x:Class="Beanify.Views.CustomNavigationView">

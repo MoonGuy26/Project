@@ -109,6 +109,7 @@ namespace Beanify.ViewModels
         private async void OnLoginNavigationExecute()
         {
             await _navigationService.NavigateBackAsync();
+            
         }
 
         

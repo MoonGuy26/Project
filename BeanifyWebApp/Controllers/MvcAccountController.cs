@@ -341,7 +341,7 @@ namespace BeanifyWebApp.Controllers
 
                     MailText = MailText.Replace("{0}", "Reset Password");
                     MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
-                    MailText = MailText.Replace("{2}", user.UserName);
+                    MailText = MailText.Replace("{2}", user.Name);
                     MailText = MailText.Replace("{3}", callbackUrl);
 
 

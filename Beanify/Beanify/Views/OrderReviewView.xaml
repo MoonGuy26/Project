@@ -22,9 +22,9 @@
             <Image Grid.Row="0" Source="{Binding Product.ImagePath}" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
 
             <StackLayout Grid.Row="1" Orientation="Vertical">
-                <Label Style="{StaticResource NormalLabel}" Text="Total" TextColor="{StaticResource Cream}" FontSize="Large" VerticalOptions="End" HorizontalOptions="Center"/>
+                <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,-20" Text="Total" TextColor="{StaticResource Cream}" FontSize="Large" VerticalOptions="End" HorizontalOptions="Center"/>
                 <Label Style="{StaticResource BigLabel}" Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="40"/>
-                <Image Source="separator.png" HorizontalOptions="Center" Scale="1.5"/>
+                <Image Margin="0,10,0,0" Source="separator.png" HorizontalOptions="Center" Scale="1.5"/>
             </StackLayout>
 
             <StackLayout Grid.Row="2" Orientation="Vertical" Padding="25,15,25,0">
