@@ -1,4 +1,5 @@
-﻿using Beanify.ViewModels;
+﻿using Beanify.Utils.Controls;
+using Beanify.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,7 @@ using Xamarin.Forms.Xaml;
 namespace Beanify.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashboardNavigationViewMaster : ContentPage
+    public partial class DashboardNavigationViewMaster : CustomPage
     {
         public ListView ListView;
 

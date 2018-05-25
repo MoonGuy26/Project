@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<custom:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.DashboardView"
+             xmlns:custom="clr-namespace:Beanify.Utils.Controls"
+             Title="default"
              BindingContext="{Binding DashboardViewModel, Source={StaticResource Locator}}"
              BackgroundImage="bg.png">
     <ContentPage.Content>
@@ -32,4 +34,4 @@
                    VerticalOptions="FillAndExpand" HorizontalOptions="Center">The medium strength Kenya Harvest is roasted from the much sought after Kenyan beans, renowned for producing an intense flavour, full body and pleasant aroma</Label>
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</custom:CustomPage>

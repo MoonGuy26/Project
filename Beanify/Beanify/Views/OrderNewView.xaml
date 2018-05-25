@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+<custom:CustomPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.OrderNewView"
+             xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              BackgroundColor="{ StaticResource BgCream }"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              BindingContext="{Binding OrderNewViewModel, Source={StaticResource Locator}}"
@@ -57,4 +58,4 @@
         </Grid>
 
     </ContentPage.Content>
-</ContentPage>
+</custom:CustomPage>

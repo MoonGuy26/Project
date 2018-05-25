@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.Utils.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,13 @@ using Xamarin.Forms.Xaml;
 
 namespace Beanify.Views
 {
-	public partial class CustomNavigationView : NavigationPage
+	public partial class CustomNavigationView : CustomNavigationPage
 	{
-        public CustomNavigationView() : base()
+        
+        public CustomNavigationView(Page page) : base(page)
         {
-            InitializeComponent();
-        }
-
-        public CustomNavigationView(Page root) : base(root)
-        {
+            SetTitleColor(this, (Color)Application.Current.Resources["TitleWhite"]);
+            
             InitializeComponent();
         }
     }
