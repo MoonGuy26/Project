@@ -60,7 +60,7 @@ namespace Beanify.Droid.Utils.Renderers
         {
             Page lastPage = null;
 
-            if (isPush)
+           /* if (isPush)
             {
                 if (Element?.Navigation?.NavigationStack?.Count() >= 2)
                 {
@@ -83,7 +83,7 @@ namespace Beanify.Droid.Utils.Renderers
                 lastPage.PropertyChanged += LastPage_PropertyChanged;
                 SetupToolbarCustomization(lastPage);
 
-            }
+            }*/
 
 
             base.SetupPageTransition(transaction, isPush);
@@ -192,6 +192,16 @@ namespace Beanify.Droid.Utils.Renderers
             else if (e.PropertyName == CustomNavigationPage.SubtitleFontProperty.PropertyName)
             {
                 UpdateToolbarTextFont(_subTitleTextView, CustomNavigationPage.GetSubtitleFont(lastPage), _originalFont);
+
+            }
+            else if (e.PropertyName == CustomNavigationPage.TitleFontTypeProperty.PropertyName)
+            {
+                UpdateToolbarTextFontType(_subTitleTextView, CustomNavigationPage.GetTitleFontType(lastPage));
+
+            }
+            else if (e.PropertyName == CustomNavigationPage.TitleFontSizeProperty.PropertyName)
+            {
+                UpdateToolbarTextFontSize(_subTitleTextView, CustomNavigationPage.GetTitleFontSize(lastPage));
 
             }
             else if (e.PropertyName == CustomPage.SubtitleProperty.PropertyName && (lastPage is CustomPage))
@@ -514,6 +524,8 @@ namespace Beanify.Droid.Utils.Renderers
 
             //Update main title font
             UpdateToolbarTextFont(titleTextView, CustomNavigationPage.GetTitleFont(lastPage), originalFont);
+            UpdateToolbarTextFontType(titleTextView, CustomNavigationPage.GetTitleFontType(lastPage) );
+            UpdateToolbarTextFontSize(titleTextView, CustomNavigationPage.GetTitleFontSize(lastPage));
 
         }
         void UpdateFormattedTitleText(AppCompatTextView titleTextView, FormattedString formattedString, string defaulTitle)
@@ -590,6 +602,31 @@ namespace Beanify.Droid.Utils.Renderers
                 textView.Typeface = originalFont;
             }
         }
+        void UpdateToolbarTextFontSize(AppCompatTextView textView, int fontSize)
+        {
+            if (fontSize != null)
+            {
+                textView.SetTextSize(ComplexUnitType.Sp, fontSize);
+                
+            }
+            else
+            {
+                textView.SetTextSize(ComplexUnitType.Sp, 14);
+            }
+
+        }
+
+
+        void UpdateToolbarTextFontType(AppCompatTextView textView, string customFont)
+        {
+            if (customFont != null)
+            {
+                var typeFace =  Typeface.CreateFromAsset(Xamarin.Forms.Forms.Context.ApplicationContext.Assets, customFont);
+                textView.Typeface = typeFace;
+            }
+            
+        }
+
         void ClearTextView(TextView textView, bool hide)
         {
             textView.TextFormatted = new Java.Lang.String("");

@@ -49,7 +49,16 @@ namespace Beanify.Utils.Controls
 
         public CustomPage()
         {
+            InitializeNavbar();
             InitializeComponent();
+        }
+
+        protected virtual void InitializeNavbar()
+        {
+            CustomNavigationPage.SetTitleColor(this, Color.Transparent);
+            CustomNavigationPage.SetTitleBackground(this, "logo_sm");
+            CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);
+            CustomNavigationPage.SetTitleMargin(this, new Thickness(0, 0, 100, 0));
         }
         
     }

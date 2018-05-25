@@ -324,6 +324,11 @@ namespace Beanify.iOS.Utils.Renderers
             }
         }
 
+        void SetupTextFontTypeSize(UILabel label,string font,int size)
+        {
+            label.Font = UIFont.FromName(font,size);
+        }
+
         void SetupTextFont(UILabel label, Font font, Color? titleColor)
         {
 
@@ -399,7 +404,8 @@ namespace Beanify.iOS.Utils.Renderers
         {
             var page = sender as Page;
             System.Diagnostics.Debug.WriteLine(e.PropertyName);
-            if (e.PropertyName == Page.TitleProperty.PropertyName || e.PropertyName == CustomNavigationPage.TitleFontProperty.PropertyName || e.PropertyName == CustomPage.SubtitleProperty.PropertyName || e.PropertyName == CustomNavigationPage.SubtitleFontProperty.PropertyName)
+            if (e.PropertyName == Page.TitleProperty.PropertyName || e.PropertyName == CustomNavigationPage.TitleFontProperty.PropertyName ||  e.PropertyName == CustomPage.SubtitleProperty.PropertyName || e.PropertyName == CustomNavigationPage.SubtitleFontProperty.PropertyName
+                )
             {
                 SetupTextFont(titleLabel, CustomNavigationPage.GetTitleFont(page), CustomNavigationPage.GetTitleColor(page));
 
@@ -476,6 +482,12 @@ namespace Beanify.iOS.Utils.Renderers
             else if (e.PropertyName == CustomNavigationPage.TitleFillColorProperty.PropertyName)
             {
                 titleView.BackgroundColor = CustomNavigationPage.GetTitleFillColor(Element)?.ToUIColor() ?? UIColor.Clear;
+            }
+            else if(e.PropertyName == CustomNavigationPage.TitleFontTypeProperty.PropertyName 
+                || e.PropertyName == CustomNavigationPage.TitleFontSizeProperty.PropertyName)
+            {
+                SetupTextFontTypeSize(titleLabel, CustomNavigationPage.GetTitleFontType(page),
+                    CustomNavigationPage.GetTitleFontSize(page));
             }
         }
 

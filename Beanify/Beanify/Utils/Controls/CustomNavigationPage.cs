@@ -63,6 +63,34 @@ namespace Beanify.Utils.Controls
             view.SetValue(TitleFontProperty, value);
         }
 
+        public static readonly BindableProperty TitleFontTypeProperty = BindableProperty.CreateAttached("TitleFontType", typeof(string), typeof(CustomNavigationPage),
+            Device.RuntimePlatform == Device.Android ? "lato_regular.ttf" : "lato_regular"
+           );
+
+        public static string GetTitleFontType(BindableObject view)
+        {
+
+            return (string)view.GetValue(TitleFontTypeProperty);
+        }
+
+        public static void SetTitleFontType(BindableObject view, string value)
+        {
+            view.SetValue(TitleFontTypeProperty, value);
+        }
+
+        public static readonly BindableProperty TitleFontSizeProperty = BindableProperty.CreateAttached("TitleFontSize", typeof(int), typeof(CustomNavigationPage), 20);
+
+        public static int GetTitleFontSize(BindableObject view)
+        {
+
+            return (int)view.GetValue(TitleFontSizeProperty);
+        }
+
+        public static void SetTitleFontSize(BindableObject view, int value)
+        {
+            view.SetValue(TitleFontSizeProperty, value);
+        }
+
 
         public static readonly BindableProperty TitlePaddingProperty = BindableProperty.CreateAttached("TitlePadding", typeof(Thickness), typeof(CustomNavigationPage), default(Thickness));
 

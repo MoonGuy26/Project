@@ -11,6 +11,7 @@
               NavigationPage.HasNavigationBar="false"
               xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
               BackgroundImage="bg_slider.jpg"
+              
               BindingContext="{Binding HomeCarouselViewModel, Source={StaticResource Locator}}"
               
               >

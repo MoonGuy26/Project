@@ -33,7 +33,7 @@
 
             <StackLayout Grid.Row="2" Padding="15,0,15,0" >
                 <ScrollView>
-                    <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,15" Text="{Binding ProductModel.Description}" FontSize="20" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
+                    <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,15" Text="{Binding ProductModel.Description}" FontSize="16" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
                 </ScrollView>
                 <Image Source="separator.png" HorizontalOptions="Center"/>
             </StackLayout>

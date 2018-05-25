@@ -15,8 +15,8 @@ namespace Beanify.Views
         
         public CustomNavigationView(Page page) : base(page)
         {
-            SetTitleColor(this, (Color)Application.Current.Resources["TitleWhite"]);
             
+
             InitializeComponent();
         }
     }

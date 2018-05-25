@@ -16,11 +16,8 @@ namespace Beanify.Views
 	{
 		public DashboardView ()
 		{
-            CustomNavigationPage.SetTitleColor(this, Color.Transparent);
-            CustomNavigationPage.SetTitleBackground(this, "logo_sm");
             
-            CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);
-            CustomNavigationPage.SetTitleMargin(this, new Thickness(0, 0, 100, 0));
+
             InitializeComponent();
         }
 	}

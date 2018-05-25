@@ -31,7 +31,14 @@ namespace Beanify.Views
            
         }
 
-        
+        protected override void InitializeNavbar()
+        {
+            base.InitializeNavbar();
+            
+            CustomNavigationPage.SetTitleMargin(this, new Thickness(20, 0, 0, 0));
+        }
+
+
 
     }
 }
