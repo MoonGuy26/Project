@@ -1,4 +1,5 @@
 ﻿using Beanify.iOS.Utils.Renderers;
+using Beanify.Utils.Controls;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Beanify.iOS.Utils.Renderers
                 
 
                 this.Layer.CornerRadius = (float)_xfViewReference.CornerRadius;
-                this.Layer.BorderColor = _xfViewReference.CurvedBackgroundColor.ToCGColor();
+                this.Layer.BorderColor = _xfViewReference.CornerBackgroundColor.ToCGColor();
                 this.Layer.BorderWidth = 10;
             }
         }
