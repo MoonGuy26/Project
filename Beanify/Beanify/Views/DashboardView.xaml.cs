@@ -1,4 +1,5 @@
-﻿using Beanify.ViewModels;
+﻿using Beanify.Utils.Controls;
+using Beanify.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace Beanify.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DashboardView : ContentPage
+	public partial class DashboardView : CustomPage
 	{
 		public DashboardView ()
 		{
+            
+
             InitializeComponent();
         }
 	}

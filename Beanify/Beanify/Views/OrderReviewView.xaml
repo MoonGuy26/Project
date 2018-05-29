@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<custom:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              x:Class="Beanify.Views.OrderReviewView"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              Title="REVIEW ORDER"
@@ -22,9 +23,9 @@
             <Image Grid.Row="0" Source="{Binding Product.ImagePath}" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
 
             <StackLayout Grid.Row="1" Orientation="Vertical">
-                <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,-20" Text="Total" TextColor="{StaticResource Cream}" FontSize="Large" VerticalOptions="End" HorizontalOptions="Center"/>
+                <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,-10" Text="Total" TextColor="{StaticResource Cream}" FontSize="Large" VerticalOptions="End" HorizontalOptions="Center"/>
                 <Label Style="{StaticResource BigLabel}" Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="40"/>
-                <Image Margin="0,10,0,0" Source="separator.png" HorizontalOptions="Center" Scale="1.5"/>
+                <Image Margin="0,10,0,0" Source="separator.png" HorizontalOptions="Center" />
             </StackLayout>
 
             <StackLayout Grid.Row="2" Orientation="Vertical" Padding="25,15,25,0">
@@ -49,4 +50,4 @@
 
         </Grid>
     </ContentPage.Content>
-</ContentPage>
+</custom:CustomPage>

@@ -54,6 +54,7 @@ namespace Beanify.ViewModels
         
         public void OnPlusExecute()
         {
+            if (Quantity != 99)
                 Quantity++;
         }
 

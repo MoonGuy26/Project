@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.Utils.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace Beanify.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProductsView : ContentPage
+	public partial class ProductsView : CustomPage
 	{
 		public ProductsView ()
 		{
+            //InitializeNavbar();
 			InitializeComponent ();
 		}
     }
