@@ -46,14 +46,6 @@ namespace Beanify.iOS
             return base.FinishedLaunching(app, options);
         }
 
-        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
-        {
-            var mainPage = Xamarin.Forms.Application.Current.MainPage;
-            if (mainPage.Navigation.NavigationStack.Last() is HomeCarouselView)
-            {
-                return UIInterfaceOrientationMask.AllButUpsideDown;
-            }
-            return UIInterfaceOrientationMask.Portrait;
-        }
+
     }
 }

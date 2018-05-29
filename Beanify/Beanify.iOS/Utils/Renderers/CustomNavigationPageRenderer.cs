@@ -14,10 +14,10 @@ using Beanify.iOS.Utils.Renderers;
 using Beanify.Utils.Controls;
 using Beanify.Views;
 
-[assembly: ExportRenderer(typeof(ContentPage), typeof(CustomPageRenderer))]
+[assembly: ExportRenderer(typeof(ContentPage), typeof(CustomNavigationPageRenderer))]
 namespace Beanify.iOS.Utils.Renderers
 {
-    public class CustomPageRenderer : PageRenderer
+    public class CustomNavigationPageRenderer : PageRenderer
     {
         UILabel titleLabel;
         UILabel subtitleLabel;
@@ -35,17 +35,17 @@ namespace Beanify.iOS.Utils.Renderers
         {
             base.ViewWillAppear(animated);
 
-            SetupNavBar(NavigationController.NavigationBar.Bounds.Size);
-            SetTitlePosition(CustomNavigationPage.GetTitlePosition(Element), CustomNavigationPage.GetTitlePadding(Element), CustomNavigationPage.GetTitleMargin(Element), new CGRect(0, 0, Math.Max(subtitleLabel.IntrinsicContentSize.Width, titleLabel.IntrinsicContentSize.Width), (titleLabel.IntrinsicContentSize.Height + subtitleLabel.IntrinsicContentSize.Height + (subtitleLabel.IntrinsicContentSize.Height > 0.0f ? 3.0f : 0.0f))));
+            //SetupNavBar(NavigationController.NavigationBar.Bounds.Size);
+            //SetTitlePosition(CustomNavigationPage.GetTitlePosition(Element), CustomNavigationPage.GetTitlePadding(Element), CustomNavigationPage.GetTitleMargin(Element), new CGRect(0, 0, Math.Max(subtitleLabel.IntrinsicContentSize.Width, titleLabel.IntrinsicContentSize.Width), (titleLabel.IntrinsicContentSize.Height + subtitleLabel.IntrinsicContentSize.Height + (subtitleLabel.IntrinsicContentSize.Height > 0.0f ? 3.0f : 0.0f))));
 
-            System.Diagnostics.Debug.WriteLine("Preparing");
+            //System.Diagnostics.Debug.WriteLine("Preparing");
         }
         public override void ViewWillLayoutSubviews()
         {
             base.ViewWillLayoutSubviews();
             System.Diagnostics.Debug.WriteLine("SubViews");
         }
-        public override void ViewDidLayoutSubviews()
+        /*public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
             if (lastNavBarWidth != NavigationController?.NavigationBar?.Bounds.Size.Width || lastNavBarHeight != NavigationController?.NavigationBar?.Bounds.Size.Height)
@@ -62,7 +62,7 @@ namespace Beanify.iOS.Utils.Renderers
 
 
 
-        }
+        }*/
         void SetupNavBar(CGSize size)
         {
             if (NavigationController != null && titleView != null)
@@ -111,7 +111,7 @@ namespace Beanify.iOS.Utils.Renderers
                 ParentViewController.NavigationItem.TitleView.SetNeedsDisplay();
             }
         }
-
+        /*
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -147,7 +147,7 @@ namespace Beanify.iOS.Utils.Renderers
             containerView.Add(marginView);
 
             Element.PropertyChanged += Element_PropertyChanged;
-        }
+        }*/
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);

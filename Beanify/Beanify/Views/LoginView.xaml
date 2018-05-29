@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.LoginView"
@@ -8,7 +8,7 @@
              xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
-             BackgroundImage="bg.png"
+             BackgroundImage="bg.jpg"
              NavigationPage.HasNavigationBar="false"
              BindingContext="{Binding LoginViewModel, Source={StaticResource Locator}}">
     <ContentPage.Behaviors>

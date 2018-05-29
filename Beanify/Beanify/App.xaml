@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:Beanify.ViewModels;assembly=Beanify"
@@ -39,31 +39,31 @@
 
             <OnPlatform x:TypeArguments="x:String" x:Key="LatoRegular">
                 <On Platform="Android" Value="lato_regular.ttf#Lato" />
-                <On Platform="iOS" Value="lato_regular" />
+                <On Platform="iOS" Value="Lato-Regular" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="Oswald">
                 <On Platform="Android" Value="oswald_regular.ttf#Oswald" />
-                <On Platform="iOS" Value="oswald_regular" />
+                <On Platform="iOS" Value="Oswald-Regular" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="OpenSansRegular">
                 <On Platform="Android" Value="opensans_regular.ttf#Open Sans" />
-                <On Platform="iOS" Value="opensans_regular" />
+                <On Platform="iOS" Value="OpenSans-Regular" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="OpenSansSemiBold">
                 <On Platform="Android" Value="opensans_semibold.ttf#Open Sans SemiBold" />
-                <On Platform="iOS" Value="opensans_semibold" />
+                <On Platform="iOS" Value="OpenSans-SemiBold" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="OswaldSemiBold">
                 <On Platform="Android" Value="oswald_semibold.ttf#Oswald SemiBold" />
-                <On Platform="iOS" Value="oswald_semibold" />
+                <On Platform="iOS" Value="Oswald-SemiBold" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="OswaldBold">
                 <On Platform="Android" Value="oswald_bold.ttf#Oswald Bold" />
-                <On Platform="iOS" Value="oswald_bold" />
+                <On Platform="iOS" Value="Oswald-Bold" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="OswaldLight">
                 <On Platform="Android" Value="oswald_light.ttf#Oswald Light" />
-                <On Platform="iOS" Value="oswald_light" />
+                <On Platform="iOS" Value="Oswald-Light" />
             </OnPlatform>
             
 
@@ -106,7 +106,7 @@
                 <Setter Property="FontFamily" Value="{StaticResource OpenSansRegular}"></Setter>
             </Style>
             <Style x:Key="buttonStyle" TargetType="Button">
-                <Setter Property="BorderRadius" Value="30"></Setter>
+                <Setter Property="BorderRadius" Value="20"></Setter>
                 <Setter Property="BackgroundColor" Value="{ StaticResource Cream }"></Setter>
                 <Setter Property="TextColor" Value="{ StaticResource CoffeeBrown }"></Setter>
                 
@@ -120,6 +120,7 @@
             </Style>
 
             <Style x:Key="lgRoundButtonStyle" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                <Setter Property="BorderRadius" Value="24"></Setter>
                 <Setter Property="FontSize" Value="22"></Setter>
                 <Setter Property="VerticalOptions" Value="Fill"></Setter>
                 <Setter Property="HorizontalOptions" Value="Fill"></Setter>

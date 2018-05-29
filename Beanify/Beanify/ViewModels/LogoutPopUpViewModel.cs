@@ -24,6 +24,8 @@ namespace Beanify.ViewModels
         public void OnYesExecute()
         {
             LocalStorageSettings.AccessToken = null;
+            LocalStorageSettings.Email = null;
+            LocalStorageSettings.Password = null;
             ((App)Application.Current).MainPage = new Views.LoginView();
 
             PopupNavigation.Instance.PopAsync();
