@@ -15,6 +15,10 @@ using Xamarin.Forms.Platform.Android;
 using Beanify.Droid.Utils.Renderers;
 using Xamarin.Forms;
 using Beanify.Utils.Controls;
+using Android.Graphics.Drawables;
+using Android.Util;
+
+
 
 [assembly: ExportRenderer(typeof(CustomLabel), typeof(CustomLabelRenderer))]
 namespace Beanify.Droid.Utils.Renderers
@@ -22,21 +26,38 @@ namespace Beanify.Droid.Utils.Renderers
     public class CustomLabelRenderer : LabelRenderer
     {
 
-        protected override bool DrawChild(Canvas canvas, Android.Views.View child, long drawingTime)
-        {
-            return base.DrawChild(canvas, child, drawingTime);
-        }
+        public CustomLabelRenderer(Context context) : base(context) { }
 
+        private GradientDrawable _gradientBackground;
         protected override void OnElementChanged(ElementChangedEventArgs<Label> e)
         {
             base.OnElementChanged(e);
+            var view = (CustomLabel)Element;
+            if (view == null) return;
+            // creating gradient drawable for the curved background  
+            _gradientBackground = new GradientDrawable();
+            _gradientBackground.SetShape(ShapeType.Oval);
 
-            if (!string.IsNullOrEmpty(e.NewElement?.StyleId))
-            {
-                var font = Typeface.CreateFromAsset(Forms.Context.ApplicationContext.Assets, e.NewElement.StyleId + ".ttf");
+            // Thickness of the stroke line  
+            _gradientBackground.SetStroke(10, view.CornerBackgroundColor.ToAndroid());
 
-                Control.Typeface = font;
-            }
+            Control.SetBackground(_gradientBackground);
+            Control.SetMinWidth((int)DpToPixels(this.Context, Convert.ToSingle(50)));
+            Control.SetMinHeight((int)DpToPixels(this.Context, Convert.ToSingle(50)));
+            Control.SetHeight((int)DpToPixels(this.Context, Convert.ToSingle(Control.Width)));
+            Control.SetPadding(
+                        (int)DpToPixels(this.Context, Convert.ToSingle(5)), 
+                        (int)DpToPixels(this.Context, Convert.ToSingle(5)), 
+                        (int)DpToPixels(this.Context, Convert.ToSingle(5)), 
+                        (int)DpToPixels(this.Context, Convert.ToSingle(5)));
+            
+        }
+        //Px to Dp Conver  
+        public static float DpToPixels(Context context, float valueInDp)
+        {
+            DisplayMetrics metrics = context.Resources.DisplayMetrics;
+            return TypedValue.ApplyDimension(ComplexUnitType.Dip, valueInDp, metrics);
         }
     }
 }
+

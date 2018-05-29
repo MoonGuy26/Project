@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.OrderNewView"
              xmlns:custom="clr-namespace:Beanify.Utils.Controls"
-             BackgroundColor="{ StaticResource BgCream }"
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+             BackgroundColor="{ StaticResource BgCream }"
              BindingContext="{Binding OrderNewViewModel, Source={StaticResource Locator}}"
-             NavigationPage.BackButtonTitle="Back to Dashboard">
+             >
     <ContentPage.Behaviors>
         <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
     </ContentPage.Behaviors>
@@ -41,17 +41,19 @@
 
             <StackLayout Grid.Row="3" >
                 <Label Style="{StaticResource BigLabel}" HorizontalOptions="Center" FontSize="Medium" Text="Quantity"/>
-                <Picker Title="How many items would you like ?" 
-                            x:Name="quantity_picker" 
-                            ItemsSource="{Binding ObservablePicker, Mode=TwoWay}" 
-                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}" 
-                            SelectedIndex="{Binding Quantity, Mode=TwoWay}" 
-                            VerticalOptions="End" MinimumWidthRequest="150" HorizontalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand">
+                    <Button Image="minus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Minus]}" HorizontalOptions="Start" />
+                    <custom:CustomLabel     Style="{StaticResource BigLabel}"
+                                            HorizontalTextAlignment="Center"
+                                            VerticalTextAlignment="End"
+                                          CornerBackgroundColor="{ StaticResource Cream }"   
+                                          Text="{Binding Quantity, Mode=TwoWay}"/>
+                    <Button Image="plus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Plus]}" HorizontalOptions="End"/>
+                </StackLayout>
             </StackLayout>
 
             <StackLayout Grid.Row="4" >
                 <Button  Style="{StaticResource OrderButton}"
-                         IsEnabled="{Binding Continue, Mode=OneWayToSource}"
                          Text="CONTINUE" Command="{Binding Commands[Continue]}" 
                          />
             </StackLayout>
