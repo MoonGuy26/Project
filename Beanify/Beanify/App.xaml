@@ -105,6 +105,10 @@
                         Value="{StaticResource CoffeeBrown}"></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource OpenSansRegular}"></Setter>
             </Style>
+            <Style x:Key="PlusMinusButton" TargetType="Button">
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
             <Style x:Key="buttonStyle" TargetType="Button">
                 <Setter Property="BorderRadius" Value="30"></Setter>
                 <Setter Property="BackgroundColor" Value="{ StaticResource Cream }"></Setter>
@@ -153,7 +157,6 @@
                 <Setter Property="HorizontalOptions" Value="Center"></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource OswaldSemiBold}"></Setter>
                 <Setter Property="FontSize" Value="32"></Setter>
-                
             </Style>
             
         </ResourceDictionary>

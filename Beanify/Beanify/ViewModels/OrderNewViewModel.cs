@@ -1,10 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
-using Beanify.Views;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,50 +9,6 @@ namespace Beanify.ViewModels
     public class OrderNewViewModel : BaseViewModel
     {
         private IAccountService _accountService;
-
-        private ObservableCollection<string> _observable_picker = new ObservableCollection<string>();
-
-        public ObservableCollection<string> ObservablePicker
-        {
-            get { return _observable_picker;  }
-            set {
-                if (_observable_picker != value)
-                {
-                    _observable_picker = value;
-                    OnPropertyChanged(nameof(ObservablePicker));
-                }
-            }
-        }
-
-        private string _selectedItem;
-
-        public string SelectedItem
-        {
-            get { return _selectedItem; }
-            set
-            {
-                if (_selectedItem != value)
-                {
-                    _selectedItem = value;
-                    OnPropertyChanged(nameof(SelectedItem));
-                }
-            }
-        }
-
-        private bool _continue = false;
-
-        public bool Continue
-        {
-            get { return _continue;  }
-            set
-            {
-                if(_continue != value)
-                {
-                    _continue = value;
-                    OnPropertyChanged(nameof(Continue));
-                }
-            }
-        }
 
         private int _quantity;
 
@@ -67,7 +19,6 @@ namespace Beanify.ViewModels
             {
                 if (_quantity != value)
                 {
-                    _continue = true;
                     _quantity = value;
                     OnPropertyChanged(nameof(Quantity));
                 }
@@ -89,28 +40,27 @@ namespace Beanify.ViewModels
             }
         }
 
-        static private int capacity = 100;
-        private List<string> picker_list = new List<string>(capacity);
-
         public OrderNewViewModel(IAccountService accountService) : base()
         {
             _accountService = accountService;
             Commands.Add("Continue", new Command(OnContinueExecute));
-        }
-
-        private List<string> ListInitializer(List<string> list)
-        {
-            for (int i = 1; i <= capacity; i++)
-            {
-
-                float price = _productModel.Price * i;
-                list.Add(i.ToString() + " item(s) : ( £ " + price.ToString("n2") + " )");
-            }
-            return list;
+            Commands.Add("Plus", new Command(OnPlusExecute));
+            Commands.Add("Minus", new Command(OnMinusExecute));
         }
 
         public async void OnContinueExecute() {
             await NavigateOrderReviewView();
+        }
+        
+        public void OnPlusExecute()
+        {
+                Quantity++;
+        }
+
+        public void OnMinusExecute()
+        {
+            if ( Quantity != 0)
+                Quantity--;
         }
 
         private async Task NavigateOrderReviewView()
@@ -119,8 +69,8 @@ namespace Beanify.ViewModels
             {
                 ProductModelId = ProductModel.Id,
                 ProductName = ProductModel.Name,
-                Price = _productModel.Price * (_quantity + 1),
-                Quantity = _quantity + 1,
+                Price = _productModel.Price * (_quantity),
+                Quantity = _quantity,
                 
                 IsNew = true,
                 
@@ -138,8 +88,6 @@ namespace Beanify.ViewModels
         {
 
             ProductModel = (navigationData as ProductModel);
-            picker_list = ListInitializer(picker_list);
-            ObservablePicker = new ObservableCollection<string>(picker_list);
 
             return Task.FromResult(true);
         }

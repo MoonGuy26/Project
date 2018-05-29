@@ -94,6 +94,7 @@
     <Compile Include="Utils\Effects\EntryLineColorEffect.cs" />
     <Compile Include="Utils\Orientation\DeviceOrientationImplementation.cs" />
     <Compile Include="Utils\Renderers\CustomCarouselRenderer.cs" />
+    <Compile Include="Utils\Renderers\CustomLabelRenderer.cs" />
     <Compile Include="Utils\Renderers\CustomViewCellRenderer.cs" />
     <Compile Include="Utils\Renderers\HomeCarouselViewRenderer.cs" />
     <Compile Include="Utils\Renderers\TextFieldRenderer.cs" />
