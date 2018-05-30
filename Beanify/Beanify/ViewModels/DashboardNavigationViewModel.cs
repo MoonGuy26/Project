@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Serialization;
+using Beanify.Utils.Navigation;
 using Beanify.Views;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -42,6 +43,11 @@ namespace Beanify.ViewModels
         }
 
         public ObservableCollection<DashboardNavigationViewMenuItem> MenuItems { get; set; }
+
+        public DashboardNavigationViewModel(INavigationService navigationService) : base(navigationService)
+        {
+
+        }
 
         override protected void InitializeViewModel()
         {

@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using Beanify.Views;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Beanify.ViewModels
 
         private IProductService _productService;
 
-        public ProductsViewModel(IProductService ProductService) : base()
+        public ProductsViewModel(IProductService ProductService,INavigationService navigationService) :base(navigationService)
         {
             Products = new ObservableCollection<ProductModel>();
             _productService = ProductService;

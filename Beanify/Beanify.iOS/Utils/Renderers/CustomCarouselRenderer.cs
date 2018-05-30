@@ -15,7 +15,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 
-[assembly: ExportRenderer(typeof(CustomCarousel), typeof(CustomCarouselRenderer))]
+//[assembly: ExportRenderer(typeof(CustomCarousel), typeof(CustomCarouselRenderer))]
 namespace Beanify.iOS.Utils.Renderers
 {
     public class CustomCarouselRenderer : CarouselViewRenderer

@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -40,7 +41,7 @@ namespace Beanify.ViewModels
             }
         }
 
-        public OrderNewViewModel(IAccountService accountService) : base()
+        public OrderNewViewModel(IAccountService accountService,INavigationService navigationService) :base(navigationService)
         {
             _accountService = accountService;
             Commands.Add("Continue", new Command(OnContinueExecute));

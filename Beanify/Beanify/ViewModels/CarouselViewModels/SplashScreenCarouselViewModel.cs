@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.Utils.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -9,7 +10,7 @@ namespace Beanify.ViewModels
     {
 
 
-        public SplashScreenCarouselViewModel():base()
+        public SplashScreenCarouselViewModel(INavigationService navigationService) : base(navigationService)
         {
 
 

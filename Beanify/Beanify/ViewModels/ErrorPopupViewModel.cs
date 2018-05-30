@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Beanify.Utils.Navigation;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Beanify.ViewModels
             }
         }
 
-        public ErrorPopupViewModel() : base()
+        public ErrorPopupViewModel(INavigationService navigationService) : base(navigationService)
         {
             Commands.Add("ClosePopup", new Command(OnClosePopupExecute));
         }

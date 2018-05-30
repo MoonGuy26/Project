@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using Beanify.Views;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
@@ -42,7 +43,7 @@ namespace Beanify.ViewModels
             }
         }
 
-        public OrderReviewViewModel(IOrderService orderService) : base()
+        public OrderReviewViewModel(IOrderService orderService,INavigationService navigationService) :base(navigationService)
         {
             _orderService = orderService;
             Commands.Add("Order", new Command(OnOrderExecute));

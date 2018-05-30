@@ -8,6 +8,7 @@ using System.Threading;
 using Beanify.Utils.Parallels;
 using System.Diagnostics;
 using Beanify.Utils.Orientation;
+using Beanify.Utils.Navigation;
 
 namespace Beanify.ViewModels
 {
@@ -108,7 +109,7 @@ namespace Beanify.ViewModels
 
 
 
-        public LoginViewModel(IAccountService accountService):base()
+        public LoginViewModel(IAccountService accountService,INavigationService navigationService) :base(navigationService)
         {
             _accountService = accountService;
         }

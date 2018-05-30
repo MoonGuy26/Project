@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace Beanify.ViewModels
             get; set;
         }
 
-        public PreviousOrdersViewModel(IOrderService OrderService) : base()
+        public PreviousOrdersViewModel(IOrderService OrderService,INavigationService navigationService) :base(navigationService) 
         {
             _orderService= OrderService;
             LoadOrders();

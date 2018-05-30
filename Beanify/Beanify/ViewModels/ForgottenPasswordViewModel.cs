@@ -1,4 +1,5 @@
 ﻿using Beanify.Services;
+using Beanify.Utils.Navigation;
 using Beanify.Utils.Validations;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace Beanify.ViewModels
             }
         }
 
-        public ForgottenPasswordViewModel(IAccountService accountService) : base()
+        public ForgottenPasswordViewModel(IAccountService accountService, INavigationService navigationService) :base(navigationService)
         {
             _accountService = accountService;
             Commands.Add("ForgottenComplete", new Command(OnForgottenCompleteExecute));

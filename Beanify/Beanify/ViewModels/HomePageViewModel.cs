@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.Utils.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,7 +24,7 @@ namespace Beanify.ViewModels
             set { _text = value; }
         }
 
-        public HomePageViewModel()
+        public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Text = "Test test tes. Test test tes. Test test tes. Test test tes. " +
                 "Test test tes. Test test tes. Test test tes. Test test tes. " +
