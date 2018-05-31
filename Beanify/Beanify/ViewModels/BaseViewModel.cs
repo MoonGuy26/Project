@@ -46,11 +46,11 @@ namespace Beanify.ViewModels
 
         public Dictionary<string, ICommand> Commands { get; protected set; }
 
-        public BaseViewModel()
+        public BaseViewModel(INavigationService navigationService)
         {
             InitializeViewModel();
             var viewModelLocator = new ViewModelLocator();
-            _navigationService = viewModelLocator.NavigationService;
+            _navigationService = navigationService;
         }
 
         protected void OnSizeChangedExecute()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Beanify.Utils.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Beanify.ViewModels.CarouselViewModels
 
         #endregion
 
-        public LastPageViewModel():base()
+        public LastPageViewModel(INavigationService navigationService) :base(navigationService)
         {
             Commands.Add("LoginCommand", new Command(OnLoginExecute));
         }

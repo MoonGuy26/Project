@@ -1,5 +1,6 @@
 ﻿using Beanify.Serialization;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using Beanify.Views;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -13,7 +14,7 @@ namespace Beanify.ViewModels
     {
         private IAccountService _accountService;
 
-        public LogoutPopUpViewModel(IAccountService accountService) : base()
+        public LogoutPopUpViewModel(IAccountService accountService,INavigationService navigationService) :base(navigationService) 
         {
             _accountService = accountService;
 

@@ -23,7 +23,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Beanify</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Beanify</string>
+	<string>com.lightstart.beanify</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>UILaunchStoryboardName</key>

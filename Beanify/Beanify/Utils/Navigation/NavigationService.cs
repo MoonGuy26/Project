@@ -248,9 +248,12 @@ namespace Beanify.Utils.Navigation
             var navigationPage = masterDetailView.Detail as CustomNavigationView;
             if (navigationPage != null)
             {
-
-                await navigationPage.PushAsync(page);
-                masterDetailView.IsPresented = false;
+                if (NotAlreadyOpened(page, navigationPage))
+                {
+                    await navigationPage.PushAsync(page);
+                    masterDetailView.IsPresented = false;
+                }
+                    
 
 
 

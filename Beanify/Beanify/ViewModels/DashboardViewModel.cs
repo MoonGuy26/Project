@@ -1,6 +1,7 @@
 ﻿using Beanify.Models;
 using Beanify.Serialization;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,7 +35,7 @@ namespace Beanify.ViewModels
         public ObservableCollection<ProductModel> Products { get; private set; }
         #endregion
 
-        public DashboardViewModel():base()
+        public DashboardViewModel(INavigationService navigationService) : base(navigationService)
         {
             Commands.Add("Logout",new Command(OnLogoutExecute));
             _accessToken = LocalStorageSettings.AccessToken;

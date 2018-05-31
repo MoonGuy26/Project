@@ -16,6 +16,7 @@ namespace Beanify.Views
 		public ProductsView ()
 		{
             //InitializeNavbar();
+            NavigationPage.SetBackButtonTitle(this, " ");
 			InitializeComponent ();
 		}
     }

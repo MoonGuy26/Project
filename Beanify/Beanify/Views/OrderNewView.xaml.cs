@@ -12,7 +12,10 @@ namespace Beanify.Views
 	{
         public OrderNewView ()
 		{
+            NavigationPage.SetBackButtonTitle(this, " ");
 			InitializeComponent ();            
 		}
+
+
     }
 }

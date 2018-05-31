@@ -1,5 +1,6 @@
 ﻿using Beanify.Utils.Controls;
 using Beanify.ViewModels;
+using CommonServiceLocator;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,7 +25,7 @@ namespace Beanify.Views
         {
             InitializeComponent();
 
-            BindingContext = new DashboardNavigationViewModel();
+            BindingContext = ServiceLocator.Current.GetInstance<DashboardNavigationViewModel>();
             ListView = MenuItemsListView;
             
 
@@ -34,7 +35,7 @@ namespace Beanify.Views
         protected override void InitializeNavbar()
         {
             base.InitializeNavbar();
-            
+
             CustomNavigationPage.SetTitleMargin(this, new Thickness(20, 0, 0, 0));
         }
 

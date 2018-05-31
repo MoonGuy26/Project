@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Services;
+using Beanify.Utils.Navigation;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -40,7 +41,7 @@ namespace Beanify.ViewModels
             }
         }
 
-        public OrderNewViewModel(IAccountService accountService) : base()
+        public OrderNewViewModel(IAccountService accountService,INavigationService navigationService) :base(navigationService)
         {
             _accountService = accountService;
             Commands.Add("Continue", new Command(OnContinueExecute));
@@ -54,13 +55,13 @@ namespace Beanify.ViewModels
         
         public void OnPlusExecute()
         {
-            if (Quantity < 100)
+            if (Quantity < 99)
                 Quantity++;
         }
 
         public void OnMinusExecute()
         {
-            if ( Quantity >0)
+            if ( Quantity >1)
                 Quantity--;
         }
 

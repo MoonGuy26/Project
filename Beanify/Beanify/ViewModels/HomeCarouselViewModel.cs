@@ -1,4 +1,5 @@
 ﻿using Beanify.Models;
+using Beanify.Utils.Navigation;
 using Beanify.Utils.Orientation;
 using Beanify.Utils.UI;
 using Beanify.Views;
@@ -25,7 +26,7 @@ namespace Beanify.ViewModels
             }
         }
 
-        public HomeCarouselViewModel()
+        public HomeCarouselViewModel(INavigationService navigationService) : base(navigationService)
         {
             CarouselPages = new ObservableCollection<DataTemplate>() {
                 new DataTemplate(() => { return new HomePageView(); }),
