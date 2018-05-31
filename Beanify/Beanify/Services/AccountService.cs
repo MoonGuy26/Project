@@ -77,19 +77,14 @@ namespace Beanify.Services
 
         public async Task ForgottenPassword(string email)
         {
-            RestService<ForgotPasswordViewModel> restService = new RestService<ForgotPasswordViewModel>("api/Account/ForgotPassword");
+            RestService<ForgotPasswordViewModel> restService = new RestService<ForgotPasswordViewModel>("MvcAccount/ForgotPassword");
 
-            /*var model = new ForgotPasswordBindingModel
-            {
-                Email = email
-            };*/
-
-            var model2 = new ForgotPasswordViewModel
+            var model = new ForgotPasswordViewModel
             {
                 Email = email
             };
 
-            await restService.ForgotPassword(model2);
+            await restService.ForgotPassword(model);
         }
     }
 }

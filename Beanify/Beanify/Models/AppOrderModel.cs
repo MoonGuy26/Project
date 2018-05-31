@@ -8,8 +8,6 @@ namespace Beanify.Models
     
     public class AppOrderModel:AbstractBaseModel
     {
-        //public string ImagePath { get; set; }
-
         public int Quantity { get; set; }
         public DateTime Date { get; set; }
         public float Price { get; set; }
