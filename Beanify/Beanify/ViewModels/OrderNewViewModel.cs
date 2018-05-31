@@ -55,13 +55,13 @@ namespace Beanify.ViewModels
         
         public void OnPlusExecute()
         {
-            if (Quantity < 100)
+            if (Quantity < 99)
                 Quantity++;
         }
 
         public void OnMinusExecute()
         {
-            if ( Quantity >0)
+            if ( Quantity >1)
                 Quantity--;
         }
 
