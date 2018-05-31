@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <customControls:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.ProductsView"
@@ -8,13 +8,13 @@
              x:Name="Page">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None" Margin="0, 10,0, 0" >
+            <ListView BackgroundColor="{ StaticResource BgCream }" ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None" Margin="0, 10,0, 0" >
                 <ListView.Header>
                 </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <customControls:CustomViewCell SelectedBackgroundColor="{ StaticResource BgCream }" Height="180" >
-                            <Grid  x:Name="Item" Margin="10,0,10,0">
+                        <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="180" >
+                            <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,0,10,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>

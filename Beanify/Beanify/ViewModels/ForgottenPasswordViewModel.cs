@@ -58,7 +58,7 @@ namespace Beanify.ViewModels
             _accountService = accountService;
             Commands.Add("ForgottenComplete", new Command(OnForgottenCompleteExecute));
             Commands.Add("LoginNavigation", new Command(OnLoginNavigationExecute));
-            TextConfirmation = "Please enter your account email adress and press Reset Password to get your reset link";
+            TextConfirmation = "Please enter your account email address and press Reset Password to get your reset link";
 
             AddValidations();
         }
@@ -81,7 +81,7 @@ namespace Beanify.ViewModels
 
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "An email adress is required"
+                ValidationMessage = "An email address is required"
             });
             _email.Validations.Add(new IsValidEmailRule<string>
             {

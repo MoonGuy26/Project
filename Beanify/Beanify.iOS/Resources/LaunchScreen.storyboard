@@ -1,7 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X5k-f2-b5h">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="X5k-f2-b5h">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,16 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" image="Icon-60.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
-                                <rect key="frame" x="270" y="270" width="60" height="60"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" misplaced="YES" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="23">
+                                <rect key="frame" x="0.0" y="338" width="414" height="60"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedRGB" red="0.35686274509803922" green="0.18431372549019609" blue="0.1803921568627451" alpha="1"/>
                         <constraints>
                             <constraint firstItem="23" firstAttribute="centerY" secondItem="yd7-JS-zBw" secondAttribute="centerY" priority="1" id="39"/>
                             <constraint firstItem="23" firstAttribute="centerX" secondItem="yd7-JS-zBw" secondAttribute="centerX" priority="1" id="41"/>
                         </constraints>
+                        <color key="tintColor" colorSpace="calibratedRGB" red="0.35686274509803922" green="0.18431372549019609" blue="0.1803921568627451" alpha="1"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAI-xm-WK6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -34,22 +36,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icon-60.png" width="60" height="60"/>
-        <image name="bg_slider.jpg" width="320" height="480"/>
-        <image name="cup_ic.png" width="35" height="21"/>
-        <image name="dashboard_ic.png" width="20" height="20"/>
-        <image name="Icon-Small-40.png" width="40" height="40"/>
-        <image name="Icon-Small.png" width="29" height="29"/>
-        <image name="loading_dots.png" width="64" height="64"/>
         <image name="logo.png" width="217" height="75"/>
-        <image name="logo_sm.png" width="86" height="26"/>
-        <image name="logout_ic.png" width="24" height="19"/>
-        <image name="menu_button.png" width="16" height="16"/>
-        <image name="minus_ic.png" width="21" height="2"/>
-        <image name="orders_ic.png" width="30" height="14"/>
-        <image name="plus_ic.png" width="21" height="21"/>
-        <image name="products_ic.png" width="23" height="23"/>
-        <image name="separator.png" width="67" height="15"/>
-        <image name="bg.jpg" width="320" height="480"/>
     </resources>
 </document>
