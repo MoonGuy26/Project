@@ -24,15 +24,20 @@ namespace Beanify.iOS.Utils.Renderers
                 var view = (CustomEntry)Element;
 
                 Control.LeftView = new UIView(new CGRect(0f, 0f, 9f, 20f));
+
                 Control.LeftViewMode = UITextFieldViewMode.Always;
                 Control.KeyboardAppearance = UIKeyboardAppearance.Dark;
                 Control.ReturnKeyType = UIReturnKeyType.Done;
-                Control.Layer.CornerRadius = Convert.ToSingle(view.CornerRadius);
+                Control.BackgroundColor = view.FieldBgColor.ToUIColor();
+                //Control.Layer.CornerRadius = 8;
                 Control.Layer.BorderColor = view.BorderColor.ToCGColor();
                 Control.Layer.BorderWidth = view.BorderWidth;
-                Control.BackgroundColor = view.FieldBgColor.ToUIColor();
+                Control.BorderStyle= UITextBorderStyle.RoundedRect;
+
                 Control.ClipsToBounds = true;
             }
+
         }
+
     }
 }

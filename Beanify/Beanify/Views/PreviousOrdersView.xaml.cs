@@ -15,7 +15,6 @@ namespace Beanify.Views
 	{
 		public PreviousOrdersView ()
 		{
-            
 			InitializeComponent ();
 		}
 
@@ -27,7 +26,7 @@ namespace Beanify.Views
             CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);
             CustomNavigationPage.SetTitleMargin(this, new Thickness(0, 0, 100, 0));
             // CustomNavigationPage.SetTitleFont(this, (Font)Application.Current.Resources["oswald_semibold"]);
-            CustomNavigationPage.SetTitleFontType(this, Device.RuntimePlatform == Device.Android ? "oswald_semibold.ttf" : "oswald_semibold");
+            CustomNavigationPage.SetTitleFontType(this, Device.RuntimePlatform == Device.Android ? "oswald_semibold.ttf" : "Oswald SemiBold");
         }
     }
 }
