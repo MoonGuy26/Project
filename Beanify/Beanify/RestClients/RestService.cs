@@ -61,6 +61,9 @@ namespace Beanify.RestClients
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            try
+            {
+
             HttpResponseMessage response = await client.GetAsync(RestUrl).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
@@ -73,6 +76,12 @@ namespace Beanify.RestClients
             var json = await response.Content.ReadAsStringAsync();
 
             Items = JsonConvert.DeserializeObject<List<T>>(json);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Impossible to connect to the server. Please check your connection.");
+            }
+
             return Items;
         }
 
