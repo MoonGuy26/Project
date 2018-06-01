@@ -11,7 +11,7 @@ namespace Beanify.ViewModels
     {
         private IAccountService _accountService;
 
-        private int _quantity;
+        private int _quantity=1;
 
         public int Quantity
         {

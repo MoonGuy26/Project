@@ -34,6 +34,14 @@ namespace Beanify.iOS.Utils.Renderers
                 NavigationBar.BackItem.Title = " ";
                 NavigationBar.BackItem.BackBarButtonItem.Image = arrowImage;
             }
+
+
+            NavigationBar.TitleTextAttributes = new UIStringAttributes()
+            {
+                Font = UIFont.FromName("Oswald-SemiBold", 18),
+                ForegroundColor = UIColor.White
+            };
+                         
         }
     }
 

@@ -6,7 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportRenderer(typeof(CustomLabel), typeof(CustomLabelRenderer))]  
+//[assembly: ExportRenderer(typeof(CustomLabel), typeof(CustomLabelRenderer))]  
 namespace Beanify.iOS.Utils.Renderers
 {
     public class CustomLabelRenderer : LabelRenderer

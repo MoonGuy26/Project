@@ -41,14 +41,18 @@
 
 
             <StackLayout Grid.Row="3" >
-                <Label Style="{StaticResource BigLabel}" HorizontalOptions="Center" FontSize="Medium" Text="Quantity"/>
-                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand">
+                <Label Style="{StaticResource BigLabel}" FontFamily="{StaticResource LatoRegular}"  HorizontalOptions="Center" FontSize="14" Text="Quantity"/>
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="6">
                     <Button Image="minus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Minus]}" HorizontalOptions="Start" />
-                    <custom:CustomLabel     Style="{StaticResource BigLabel}"
-                                            HorizontalTextAlignment="Center"
-                                            VerticalTextAlignment="End"
-                                          CornerBackgroundColor="{ StaticResource Cream }"   
+                    <Frame HeightRequest="34" WidthRequest="34" CornerRadius="17" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0"
+BackgroundColor="Transparent"
+                           OutlineColor="{StaticResource Cream}">
+                    <Label    Style="{StaticResource BigLabel}" FontSize="14"
+                                            HorizontalTextAlignment="Center" HorizontalOptions="Center"
+                                            VerticalTextAlignment="Center" VerticalOptions="Center"
+                                          
                                           Text="{Binding Quantity, Mode=TwoWay}"/>
+                        </Frame>
                     <Button Image="plus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Plus]}" HorizontalOptions="End"/>
                 </StackLayout>
             </StackLayout>
