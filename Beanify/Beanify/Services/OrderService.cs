@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using Beanify.Models;
 using Beanify.RestClients;
 using Beanify.Serialization;
@@ -16,7 +14,7 @@ namespace Beanify.Services
             try
             {
                 var restService = new RestService<IModel>("api/OrderModels");
-                return restService.SaveOrderAsync(LocalStorageSettings.AccessToken, item).Result;
+                return restService.SaveDataAsyncAccess(LocalStorageSettings.AccessToken, item).Result;
             }
             catch (Exception e)
             {
@@ -28,10 +26,8 @@ namespace Beanify.Services
         {
             try
             {
-                RestService<AppOrderModel> restService = new RestService<AppOrderModel>("api/OrderModels/GetFromUser");
-
-                return restService.GetOrdersAsync(LocalStorageSettings.AccessToken).Result;
-
+                RestService<AppOrderModel> restService = new RestService<AppOrderModel>("api/OrderModels");
+                return restService.RefreshDataAsyncAccess(LocalStorageSettings.AccessToken).Result;
             }
             catch (Exception e)
             {
