@@ -1,26 +1,44 @@
 ﻿
 using Beanify.RestClients;
 using Beanify.Models;
+using System.Threading.Tasks;
+using Beanify.Serialization;
+using System.Net.Http;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Beanify.Services
 {
-    public abstract class BaseService : IBaseService
+    public abstract class BaseService<T> : IBaseService<T>
     {
         
-        public BaseService()
+        public BaseService() { }
+
+
+        public HttpResponseMessage AddItem(IModel item, string uri)
         {
-            
+            try
+            {
+                var restService = new RestService<IModel>(uri);
+                return restService.SaveDataAsyncAccess(LocalStorageSettings.AccessToken, item).Result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
-
-        public Task AddItem(IModel item)
+        public List<T> GetItem(string uri)
         {
-            var restService = new RestService<IModel>("api/"+item.GetType().ToString()+"s");
-            return restService.SaveItemAsync(item, true);
+            try
+            {
+                RestService<T> restService = new RestService<T>(uri);
+                return restService.RefreshDataAsyncAccess(LocalStorageSettings.AccessToken).Result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
     }
