@@ -15,11 +15,13 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="1.4*"/>
+                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="1.4*"/>
+                <RowDefinition Height="1.2*"/>
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Cream}" />
@@ -27,25 +29,26 @@
            
             
 
-            <StackLayout Grid.Row="1">
+            <StackLayout Grid.Row="1" VerticalOptions="End">
                 <Label Style="{StaticResource BigLabel}" Text="{Binding ProductModel.Name, Mode=TwoWay}" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
-                <Image Source="separator.png" HorizontalOptions="Center"/>
-            </StackLayout>
 
-            <StackLayout Grid.Row="2" Padding="15,0,15,0" >
+            </StackLayout>
+            <Image Grid.Row="2" Source="separator.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+            <StackLayout Grid.Row="3" Padding="15,0,15,0" >
                 <ScrollView>
-                    <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,15" Text="{Binding ProductModel.Description}" FontSize="16" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
+                    <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,30" Text="{Binding ProductModel.Description}" FontSize="16" x:Name="detail"  HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" LineBreakMode="WordWrap"/>
                 </ScrollView>
-                <Image Source="separator.png" HorizontalOptions="Center"/>
+
             </StackLayout>
+            <Image Source="separator.png" Grid.Row="4" HorizontalOptions="Center" VerticalOptions="Center"/>
 
-
-            <StackLayout Grid.Row="3" >
+            <StackLayout Grid.Row="5" VerticalOptions="Start" Margin="0,0,0,0">
                 <Label Style="{StaticResource BigLabel}" FontFamily="{StaticResource LatoRegular}"  HorizontalOptions="Center" FontSize="14" Text="Quantity"/>
-                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="6">
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="20" VerticalOptions="Center">
                     <Button Image="minus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Minus]}" HorizontalOptions="Start" />
-                    <Frame HeightRequest="34" WidthRequest="34" CornerRadius="17" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0"
-BackgroundColor="Transparent"
+                    <Frame HeightRequest="34" WidthRequest="34" CornerRadius="17" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,5,0,0" Padding="0"
+BackgroundColor="Transparent" HasShadow="false"
                            OutlineColor="{StaticResource Cream}">
                     <Label    Style="{StaticResource BigLabel}" FontSize="14"
                                             HorizontalTextAlignment="Center" HorizontalOptions="Center"
@@ -57,7 +60,7 @@ BackgroundColor="Transparent"
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout Grid.Row="4" >
+            <StackLayout Grid.Row="6" VerticalOptions="Center" Margin="0,-5,0,0" >
                 <Button  Style="{StaticResource OrderButton}"
                          Text="CONTINUE" Command="{Binding Commands[Continue]}" 
                           Margin="60,0,60,0"
