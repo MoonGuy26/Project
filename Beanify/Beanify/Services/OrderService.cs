@@ -7,27 +7,29 @@ using Beanify.Serialization;
 
 namespace Beanify.Services
 {
-    public class OrderService : IOrderService
+    public class OrderService : BaseService<AppOrderModel>, IOrderService
     {
+        private string uri = "api/OrderModels";
+
         public HttpResponseMessage AddItem(IModel item)
         {
             try
             {
-                var restService = new RestService<IModel>("api/OrderModels");
-                return restService.SaveDataAsyncAccess(LocalStorageSettings.AccessToken, item).Result;
+                return AddItem(item, uri);
             }
             catch (Exception e)
             {
+
                 throw e;
             }
+            
         }
 
         public List<AppOrderModel> GetOrders()
         {
             try
             {
-                RestService<AppOrderModel> restService = new RestService<AppOrderModel>("api/OrderModels");
-                return restService.RefreshDataAsyncAccess(LocalStorageSettings.AccessToken).Result;
+                return GetItem(uri);
             }
             catch (Exception e)
             {

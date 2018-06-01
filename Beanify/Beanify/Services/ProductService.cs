@@ -6,16 +6,15 @@ using Beanify.Serialization;
 
 namespace Beanify.Services
 {
-    public class ProductService : BaseService, IProductService
+    public class ProductService : BaseService<ProductModel>,IProductService
     {
+        private string uri = "api/ProductModels";
+
         public List<ProductModel> GetProducts()
         {
             try
             {
-                RestService<ProductModel> restService = new RestService<ProductModel>("api/ProductModels");
-
-                return restService.RefreshDataAsyncAccess(LocalStorageSettings.AccessToken).Result;
-
+                return GetItem(uri);
             }
             catch (Exception e)
             {

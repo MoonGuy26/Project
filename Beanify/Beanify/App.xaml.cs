@@ -43,7 +43,7 @@ namespace Beanify
         {
             
             UnityContainer unityContainer = new UnityContainer();
-            unityContainer.RegisterType<IBaseService, BaseService>();
+           // unityContainer.RegisterType<IBaseService, BaseService>();
             unityContainer.RegisterType<IAccountService, AccountService>();
             unityContainer.RegisterType<IOrderService, OrderService>();
             unityContainer.RegisterSingleton<INavigationService, NavigationService>();

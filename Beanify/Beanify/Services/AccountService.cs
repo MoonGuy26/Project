@@ -10,9 +10,9 @@ using Beanify.Serialization;
 
 namespace Beanify.Services
 {
-    public class AccountService :BaseService, IAccountService
+    public class AccountService : IAccountService
     {
-        public AccountService() : base()
+        public AccountService()
         {
             
         }
