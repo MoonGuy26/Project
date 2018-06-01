@@ -17,7 +17,7 @@
                 <RowDefinition Height="3.4*"/>
                 <RowDefinition Height="2.2*"/>
                 <RowDefinition Height="2.1*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Image Grid.Row="0" Source="{Binding Product.ImagePath}" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
@@ -25,7 +25,7 @@
             <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10">
                 <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,-10" Text="Total" TextColor="{StaticResource Cream}" FontSize="Large" VerticalOptions="End" HorizontalOptions="Center"/>
                 <Label Style="{StaticResource BigLabel}" Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" VerticalOptions="Start" HorizontalOptions="Center" FontSize="34"/>
-                <Image Margin="0,20,0,0" Source="separator.png" HorizontalOptions="Center" />
+                <Image Margin="0,10,0,0" Source="separator.png" HorizontalOptions="Center" />
             </StackLayout>
 
             <StackLayout Grid.Row="2" Orientation="Vertical" Padding="25,15,25,0">
@@ -41,10 +41,12 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout Grid.Row="3">
+            <StackLayout Grid.Row="3" VerticalOptions="Center" Margin="0,-8,0,0" >
                 <Button Style="{StaticResource OrderButton}" 
                         Text="CONFIRM AND ORDER" 
+                        HeightRequest="54"
                         Command="{Binding Commands[Order]}"
+                        VerticalOptions="Start"
                          Margin="60,0,60,0"
                         />
             </StackLayout>

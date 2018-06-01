@@ -45,10 +45,15 @@
 
             <StackLayout Grid.Row="5" VerticalOptions="Start" Margin="0,0,0,0">
                 <Label Style="{StaticResource BigLabel}" FontFamily="{StaticResource LatoRegular}"  HorizontalOptions="Center" FontSize="14" Text="Quantity"/>
-                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="20" VerticalOptions="Center">
+                <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="8" VerticalOptions="Center">
                     <Button Image="minus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Minus]}" HorizontalOptions="Start" />
-                    <Frame HeightRequest="34" WidthRequest="34" CornerRadius="17" HorizontalOptions="Start" VerticalOptions="Start" Margin="0,5,0,0" Padding="0"
-BackgroundColor="Transparent" HasShadow="false"
+                    <Frame HeightRequest="36" WidthRequest="36" CornerRadius="18" HorizontalOptions="Start" 
+                           VerticalOptions="Start" Margin="0,5,0,0" Padding="0"
+BackgroundColor="{StaticResource Cream}" HasShadow="false"  
+                           OutlineColor="{StaticResource Cream}">
+                    <Frame HeightRequest="34" WidthRequest="34" CornerRadius="17" HorizontalOptions="Center" 
+                           VerticalOptions="Center" Margin="0,0,0,0" Padding="0"
+BackgroundColor="{StaticResource BgCream}" HasShadow="false"  
                            OutlineColor="{StaticResource Cream}">
                     <Label    Style="{StaticResource BigLabel}" FontSize="14"
                                             HorizontalTextAlignment="Center" HorizontalOptions="Center"
@@ -56,6 +61,7 @@ BackgroundColor="Transparent" HasShadow="false"
                                           
                                           Text="{Binding Quantity, Mode=TwoWay}"/>
                         </Frame>
+                    </Frame>
                     <Button Image="plus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Plus]}" HorizontalOptions="End"/>
                 </StackLayout>
             </StackLayout>
