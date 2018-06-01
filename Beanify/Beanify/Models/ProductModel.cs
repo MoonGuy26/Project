@@ -18,6 +18,5 @@ namespace Beanify.Models
                 imagePath = System.IO.Path.Combine("http://93.113.111.183:80/BeanifyWebApp/", value.Substring(2).Replace("\\\\" , "/"));   
             }
         }
-        //public bool IsSelected { get; set; } = false;
     }
 }

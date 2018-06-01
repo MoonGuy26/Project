@@ -156,7 +156,7 @@ namespace BeanifyWebApp.Controllers
                         MailText = MailText.Replace("{0}", "Account updated");
                         MailText = MailText.Replace("{1}", String.Format("{0:dddd, d MMMM yyyy}", DateTime.Now));
                         MailText = MailText.Replace("{2}", model.Name);
-                        
+                        MailText = MailText.Replace("{3}", model.Email);
                         MailText = MailText.Replace("{4}", model.Password);
                         
 

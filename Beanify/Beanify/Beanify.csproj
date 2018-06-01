@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="RestClients\RestService.cs~RF1da38b8f.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
     <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="2.5.2.1" />
     <PackageReference Include="HockeySDK.Xamarin" Version="5.1.2" />
