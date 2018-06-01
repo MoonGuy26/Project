@@ -139,19 +139,19 @@
                         </Button>
                     </StackLayout>
                     <forms:AnimationView 
-	                x:Name="animationView" 
-	                HeightRequest="128"
+                    x:Name="animationView" 
+                    HeightRequest="128"
                     WidthRequest="128"
-	                Animation="trail_loading.json" 
-	                Loop="true" 
-	                AutoPlay="true"
+                    Animation="trail_loading.json" 
+                    Loop="true" 
+                    AutoPlay="true"
                     Speed="2"
-	                IsVisible="{Binding IsVisibleImage}"
-	                PlaybackStartedCommand="{Binding Commands[PlayingAnimation]}"
-	                PlaybackFinishedCommand="{Binding Commands[FinishedAnimation]}" 
-	                ClickedCommand="{Binding ClickedCommand}"
-	                VerticalOptions="FillAndExpand" 
-	                HorizontalOptions="FillAndExpand" />
+                    IsVisible="{Binding IsVisibleImage}"
+                    PlaybackStartedCommand="{Binding Commands[PlayingAnimation]}"
+                    PlaybackFinishedCommand="{Binding Commands[FinishedAnimation]}" 
+                    ClickedCommand="{Binding ClickedCommand}"
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" />
                 </StackLayout>
                 <Label Text="{Binding ErrorLoginMessage}" 
                    HorizontalTextAlignment="Center"

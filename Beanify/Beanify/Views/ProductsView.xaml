@@ -47,12 +47,18 @@
                                              Style="{StaticResource roundButtonStyle}"
                                              Text="MORE INFO"
                                              Margin="15,0,15,0"
-                                             HeightRequest="40"
+                                            
                                              BorderRadius="16"
                                              FontSize="12"
                                              Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
                                              CommandParameter="{Binding . }}"
-                                             VerticalOptions="Center" />
+                                             VerticalOptions="Center" >
+                                        <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double"
+                         Android="40"  iOS="30"      />
+                            
+                    </Button.HeightRequest>
+                                        </Button>
                                              </StackLayout>
                                 <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
                             </Grid>
