@@ -55,15 +55,23 @@ namespace Beanify.Utils.Navigation
             else
             {
                 AccountService accountService = new AccountService();
-                var isAuthenticated = await accountService.IsAuthenticated(LocalStorageSettings.AccessToken);
-                if (isAuthenticated)
-                    ((App)Application.Current).MainPage = new DashboardNavigationView();
-                else
+                try
                 {
-                    LocalStorageSettings.AccessToken = null;
-                    ((App)Application.Current).MainPage = new Views.LoginView();
-                }
+                    var isAuthenticated = await accountService.IsAuthenticated(LocalStorageSettings.AccessToken);
+                    if (isAuthenticated)
+                        ((App)Application.Current).MainPage = new DashboardNavigationView();
+                    else
+                    {
+                        LocalStorageSettings.AccessToken = null;
+                        ((App)Application.Current).MainPage = new Views.LoginView();
+                    }
                     
+
+                }
+                catch(Exception e)
+                {
+                    await InternalSetApplicationPageAsync(typeof(DashboardViewModel), e);
+                }
 
             }
             await Task.FromResult(false);
@@ -100,6 +108,8 @@ namespace Beanify.Utils.Navigation
         {
             return InternalNavigateToInsideDashboardAsync(typeof(TViewModel), parameter);
         }
+
+        
 
         public Task SetRootAsync<TViewModel>() where TViewModel:BaseViewModel
         {
@@ -265,6 +275,13 @@ namespace Beanify.Utils.Navigation
 
             await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
 
+        }
+
+        private async Task InternalSetApplicationPageAsync(Type viewModelType, object parameter)
+        {
+            Page page = CreatePage(viewModelType, parameter);
+            Application.Current.MainPage = page;
+            await (page.BindingContext as BaseViewModel).InitializeAsync(parameter);
         }
 
         private Page CreatePage(Type viewModelType, object parameter)

@@ -19,5 +19,7 @@ namespace Beanify.Views
             NavigationPage.SetBackButtonTitle(this, " ");
 			InitializeComponent ();
 		}
+
+        
     }
 }

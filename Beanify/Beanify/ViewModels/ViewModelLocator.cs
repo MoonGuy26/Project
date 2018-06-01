@@ -28,6 +28,14 @@ namespace Beanify.ViewModels
             }
         }
 
+        public CallBackPopupViewModel CallBackPopupViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CallBackPopupViewModel>();
+            }
+        }
+
         public PreviousOrdersViewModel PreviousOrdersViewModel
         {
             get

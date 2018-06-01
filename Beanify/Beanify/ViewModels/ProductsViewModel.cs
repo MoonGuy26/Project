@@ -17,6 +17,8 @@ namespace Beanify.ViewModels
     {
         private ObservableCollection<ProductModel> _products;
 
+        private IProductService _productService;
+
         public ObservableCollection<ProductModel> Products
         {
 
@@ -33,16 +35,14 @@ namespace Beanify.ViewModels
 
 
 
-        private IProductService _productService;
+        
 
         public ProductsViewModel(IProductService ProductService,INavigationService navigationService) :base(navigationService)
         {
             Products = new ObservableCollection<ProductModel>();
             _productService = ProductService;
 
-            Thread thread = new Thread(new ThreadStart(AsynchronousTask));
-            thread.IsBackground = true;
-            thread.Start();
+            
             
             // Problem has been identified : It should be run-away tasks issues, so, it means that the UI is lock due to this run-away tasks
             // https://blog.xamarin.com/getting-started-with-async-await/ - Here is a nice tutorial to get rid of it.
@@ -66,6 +66,23 @@ namespace Beanify.ViewModels
         {
             await _navigationService.NavigateToInsideDashboardAsync<OrderNewViewModel>((ProductModel)currentObject);
         }
-  
+
+        public override Task InitializeAsync(object navigationData)
+        {
+            if (navigationData != null)
+            {
+                var productList = navigationData as List<ProductModel>;
+                Products = new ObservableCollection<ProductModel>(productList);
+            }
+            else
+            {
+                Thread thread = new Thread(new ThreadStart(AsynchronousTask));
+                thread.IsBackground = true;
+                thread.Start();
+            }
+            
+            return base.InitializeAsync(navigationData);
+        }
+
     }
 }

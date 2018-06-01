@@ -50,14 +50,15 @@ namespace Beanify.Utils.Controls
         public CustomPage()
         {
             InitializeNavbar();
-            if(Device.RuntimePlatform == Device.Android) 
-                Title="default";
+            
 
             InitializeComponent();
         }
 
         protected virtual void InitializeNavbar()
         {
+            if (Device.RuntimePlatform == Device.Android)
+                Title = "default";
             
             CustomNavigationPage.SetTitleColor(this, Color.Transparent);
             CustomNavigationPage.SetTitleBackground(this, "logo_sm.png");

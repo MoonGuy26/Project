@@ -260,7 +260,7 @@ namespace Beanify.ViewModels
 
             _email.Validations.Add(new IsNotNullOrEmptyRule<string>
             {
-                ValidationMessage = "An email address is required"
+                ValidationMessage = "An email add   ress is required"
             });
             _email.Validations.Add(new IsValidEmailRule<string>
             {

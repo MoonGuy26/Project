@@ -2,11 +2,15 @@
 using Beanify.Serialization;
 using Beanify.Services;
 using Beanify.Utils.Navigation;
+using Beanify.Views;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Beanify.ViewModels
@@ -16,7 +20,7 @@ namespace Beanify.ViewModels
         #region fields
         private string _dashboardMessage;
         private string _accessToken;
-        private AccountService accountService;
+
         #endregion
 
         #region properties
@@ -32,64 +36,41 @@ namespace Beanify.ViewModels
             }
         }
 
-        public ObservableCollection<ProductModel> Products { get; private set; }
+        
         #endregion
 
         public DashboardViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Commands.Add("Logout",new Command(OnLogoutExecute));
-            _accessToken = LocalStorageSettings.AccessToken;
             
-            GetCurrentUserRole();
-
-            //RemovePreviousStack();
-
-            Commands.Add("OrderView", new Command(OnOrderingView));
-            Commands.Add("List", new Command(OnListingView));
         }
 
         #region commandMethods
         #region execute
-        private void OnLogoutExecute()
-        {
-            LocalStorageSettings.AccessToken = null;
-            _navigationService.SetRootFromPageAsync<Views.LoginView>();
-        }
 
-        private void OnOrderingView()
-        {
-            _navigationService.NavigateToAsync<OrderNewViewModel>();
-        }
 
-        private void OnListingView()
-        {
-            _navigationService.NavigateToAsync<ProductsViewModel>();
-        }
 
         #endregion
         #region canExecute
         #endregion
         #endregion
 
-        #region logicMethods
-        private async void GetCurrentUserRole()
+        public override Task InitializeAsync(object navigationData)
         {
-            accountService = new AccountService();
-            //var isAdmin = await accountService.IsAdmin(_accessToken);
-            //if(isAdmin)
-            //{
-            //    DashboardMessage = "ADMIN DASHBOARD";
-            //}
-            //else
-            //{
-            //    DashboardMessage = "USER DASHBOARD";
-            //}
+            if (navigationData != null)
+            {
+                var exception = navigationData as Exception;
+                PopupPage popup = new CallBackPopupView();
+                PopupNavigation.Instance.PushAsync(popup);
+                var errorMessage =exception.Message;
+                
+                (popup.BindingContext as BaseViewModel).InitializeAsync(errorMessage);
+            }
+            return base.InitializeAsync(navigationData);
         }
 
-        private async void RemovePreviousStack()
-        {
-            await _navigationService.RemoveBackStackAsync();
-        }
+        #region logicMethods
+
+
         #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Beanify.Models;
 using Beanify.Serialization;
+using Beanify.Services;
 using Beanify.Utils.Navigation;
 using Beanify.Views;
 using Rg.Plugins.Popup.Services;
@@ -7,18 +8,37 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading;
 using Xamarin.Forms;
 
 namespace Beanify.ViewModels
 {
     public class DashboardNavigationViewModel : BaseViewModel
     {
+        private List<ProductModel> _products;
 
+        
         private DashboardNavigationViewMenuItem _selectedItem;
         private Page _detailPage;
 
         private DashboardNavigationViewMenuItem _previousSelectedItem;
-        
+
+        private IProductService _productService;
+
+        public List<ProductModel> Products
+        {
+
+            get { return _products; }
+            set
+            {
+                if (_products != value)
+                {
+                    _products = value;
+                    OnPropertyChanged(nameof(Products));
+                }
+            }
+        }
+
         public DashboardNavigationViewMenuItem SelectedItem
         {
             get { return _selectedItem; }
@@ -44,10 +64,22 @@ namespace Beanify.ViewModels
 
         public ObservableCollection<DashboardNavigationViewMenuItem> MenuItems { get; set; }
 
-        public DashboardNavigationViewModel(INavigationService navigationService) : base(navigationService)
+        public DashboardNavigationViewModel(IProductService ProductService,INavigationService navigationService) : base(navigationService)
         {
+            Products = new List<ProductModel>();
+            _productService = ProductService;
+
+            Thread thread = new Thread(new ThreadStart(AsynchronousTask));
+            thread.IsBackground = true;
+            thread.Start();
 
         }
+
+        private void AsynchronousTask()
+        {
+            Products = _productService.GetProducts();
+        }
+    
 
         override protected void InitializeViewModel()
         {
@@ -90,7 +122,7 @@ namespace Beanify.ViewModels
 
         private void OnPlaceOrderExecute()
         {
-            _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
+            _navigationService.NavigateToDashboardAsync<ProductsViewModel>(Products);
         }
 
         private void OnLogoutExecute()

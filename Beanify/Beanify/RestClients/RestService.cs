@@ -51,7 +51,7 @@ namespace Beanify.RestClients
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(@"ERROR {0}", ex.Message);
+                throw new Exception("Impossible to connect to the server. Please check your connection.");
             }
 
             return Items;
@@ -164,6 +164,10 @@ namespace Beanify.RestClients
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
+            try
+            {
+
+           
             var requestTask = client.GetAsync(RestUrl);
             var response = Task.Run(() => requestTask).Result;
             var isAuthenticated = Convert.ToBoolean(await response.Content.ReadAsStringAsync());
@@ -182,7 +186,13 @@ namespace Beanify.RestClients
 
             }
             return true;
-            
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Impossible to connect to the server. Please check your connection.");
+            }
+
+
         }
 
         public async Task ForgotPassword(T item)
@@ -260,8 +270,7 @@ namespace Beanify.RestClients
             }
         }
 
-        #endregion
-
+        #region private
         private void CheckUnauthorized(HttpResponseMessage response)
         {
             if (response.StatusCode == HttpStatusCode.Unauthorized)
@@ -278,8 +287,13 @@ namespace Beanify.RestClients
                     new KeyValuePair<string, string>("password",password),
                     new KeyValuePair<string, string>("grant_type","password")
                 };
-            LocalStorageSettings.AccessToken= await this.LoginAsync(keyValues);
+            LocalStorageSettings.AccessToken = await this.LoginAsync(keyValues);
         }
+        #endregion
+
+        #endregion
+
+
 
     }
 }

@@ -17,5 +17,7 @@ namespace Beanify.Views
 		{
 			InitializeComponent ();
 		}
+
+
 	}
 }

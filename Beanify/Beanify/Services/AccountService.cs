@@ -68,11 +68,18 @@ namespace Beanify.Services
 
         public async Task<bool> IsAuthenticated(string accessToken)
         {
-            RestService<object> restService = new RestService<object>("api/Account/IsAuthenticated");
+            try
+            {
+                RestService<object> restService = new RestService<object>("api/Account/IsAuthenticated");
 
-            var isAuthenticated = await restService.IsAuthenticated(accessToken);
+                var isAuthenticated = await restService.IsAuthenticated(accessToken);
 
-            return isAuthenticated;
+                return isAuthenticated;
+            }
+           catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         public async Task ForgottenPassword(string email)

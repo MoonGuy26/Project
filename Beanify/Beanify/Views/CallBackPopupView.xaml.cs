@@ -1,5 +1,4 @@
-﻿using Beanify.Utils.Controls;
-using Beanify.ViewModels;
+﻿using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace Beanify.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DashboardView : CustomPage
-	{
-		public DashboardView ()
+	public partial class CallBackPopupView : PopupPage
+    {
+		public CallBackPopupView ()
 		{
-            
-
-            InitializeComponent();
-        }
-
+			InitializeComponent ();
+		}
 	}
 }
