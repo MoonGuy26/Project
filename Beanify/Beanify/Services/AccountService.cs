@@ -1,36 +1,15 @@
-﻿
-using Beanify.RestClients;
+﻿using Beanify.RestClients;
 using Beanify.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
 using Beanify.Serialization;
 
 namespace Beanify.Services
 {
     public class AccountService : IAccountService
     {
-        public AccountService()
-        {
-            
-        }
-
-        public async Task AddUser(string email, string password, string confirmPassword)
-        {
-            RestService<RegisterBindingModel> restService = new RestService<RegisterBindingModel>("");
-
-            var model = new RegisterBindingModel
-            {
-                Email = email,
-                Password = password,
-                ConfirmPassword = confirmPassword
-            };
-
-            await restService.SaveItemAsync(model, true);
-
-        }
+        public AccountService(){ }
 
         public async Task<string> LoginUser(string email, string password)
         {
@@ -55,15 +34,6 @@ namespace Beanify.Services
             {
                 throw e;
             }
-        }
-
-        public async Task<bool> IsAdmin(string accessToken)
-        {
-            RestService<object> restService = new RestService<object>("api/Account/IsUserAdmin");
-
-            var isAdmin =  await restService.IsAdmin(accessToken);
-
-            return isAdmin;
         }
 
         public async Task<bool> IsAuthenticated(string accessToken)

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
 
@@ -22,8 +20,6 @@ namespace Beanify.Utils.Converters
                     return str.Remove(str.Length - 3);
             }
             return str;
-
-
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

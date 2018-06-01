@@ -1,12 +1,8 @@
 ﻿using Beanify.Models;
-using Beanify.Serialization;
 using Beanify.Utils.Navigation;
 using Beanify.Views;
 using Rg.Plugins.Popup.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Beanify.ViewModels

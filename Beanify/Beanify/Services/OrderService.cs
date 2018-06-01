@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using Beanify.Models;
-using Beanify.RestClients;
-using Beanify.Serialization;
 
 namespace Beanify.Services
 {
@@ -29,7 +27,7 @@ namespace Beanify.Services
         {
             try
             {
-                return GetItem(uri);
+                return GetItems(uri);
             }
             catch (Exception e)
             {
