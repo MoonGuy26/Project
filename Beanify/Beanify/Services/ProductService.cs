@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Beanify.Models;
-using Beanify.RestClients;
-using Beanify.Serialization;
 
 namespace Beanify.Services
 {
-    public class ProductService : BaseService<ProductModel>,IProductService
+    public class ProductService : BaseService<ProductModel>, IProductService
     {
         private string uri = "api/ProductModels";
 
@@ -14,7 +12,7 @@ namespace Beanify.Services
         {
             try
             {
-                return GetItem(uri);
+                return GetItems(uri);
             }
             catch (Exception e)
             {

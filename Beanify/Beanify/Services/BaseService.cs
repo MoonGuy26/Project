@@ -1,7 +1,5 @@
-﻿
-using Beanify.RestClients;
+﻿using Beanify.RestClients;
 using Beanify.Models;
-using System.Threading.Tasks;
 using Beanify.Serialization;
 using System.Net.Http;
 using System;
@@ -28,7 +26,7 @@ namespace Beanify.Services
             }
         }
 
-        public List<T> GetItem(string uri)
+        public List<T> GetItems(string uri)
         {
             try
             {

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Beanify.Models
 {
-    
-    
+
+
     public class AppOrderModel:AbstractBaseModel
     {
         public int Quantity { get; set; }

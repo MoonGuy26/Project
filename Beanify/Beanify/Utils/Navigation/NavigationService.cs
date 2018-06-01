@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Beanify.Serialization;
 using Beanify.Services;
 using Beanify.ViewModels;
 using Beanify.Views;
-using Beanify.Views.CarouselViews;
-using Newtonsoft.Json;
-using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace Beanify.Utils.Navigation
@@ -45,13 +39,8 @@ namespace Beanify.Utils.Navigation
             if (string.IsNullOrEmpty(LocalStorageSettings.AccessToken))
             {
                 await NavigateToAsync<HomeCarouselViewModel>();
-
-               // }
-                //Type type = Type.GetType("Beanify.ViewModels." + LocalStorageSettings.LastViewModel);
-                //BaseViewModel vm = Activator.CreateInstance(type) as BaseViewModel;
             }
 
-            // return InternalNavigateToFromPageAsync(typeof(CustomCarouselPage),null);
             else
             {
                 AccountService accountService = new AccountService();
@@ -75,8 +64,6 @@ namespace Beanify.Utils.Navigation
 
             }
             await Task.FromResult(false);
-
-            //return NavigateToAsync<DashboardNavigationViewModel>();
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel

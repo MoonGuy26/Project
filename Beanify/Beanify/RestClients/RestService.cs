@@ -1,5 +1,4 @@
-﻿
-using Beanify.Models;
+﻿using Beanify.Models;
 using Beanify.Serialization;
 using Beanify.Utils.Exceptions;
 using Newtonsoft.Json;
@@ -33,6 +32,7 @@ namespace Beanify.RestClients
 
         #region methods
 
+        #region CRUD Methods
         public async Task<List<T>> RefreshDataAsync()
         {
             Items = new List<T>();
@@ -54,6 +54,25 @@ namespace Beanify.RestClients
                 throw new Exception("Impossible to connect to the server. Please check your connection.");
             }
 
+            return Items;
+        }
+
+        public async Task<List<T>> RefreshDataAsyncAccess(string accessToken)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            HttpResponseMessage response = await client.GetAsync(RestUrl).ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                CheckUnauthorized(response);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", LocalStorageSettings.AccessToken);
+                response = await client.GetAsync(RestUrl).ConfigureAwait(false);
+
+            }
+            var json = await response.Content.ReadAsStringAsync();
+
+            Items = JsonConvert.DeserializeObject<List<T>>(json);
             return Items;
         }
 
@@ -92,6 +111,35 @@ namespace Beanify.RestClients
             }
         }
 
+        public async Task<HttpResponseMessage> SaveDataAsyncAccess(string accessToken, IModel orderModel)
+        {
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            var json = JsonConvert.SerializeObject(orderModel);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            try
+            {
+                var response = await client.PostAsync(RestUrl, content).ConfigureAwait(false);
+                if (response.IsSuccessStatusCode)
+                {
+                    return response;
+                }
+                else
+                {
+                    Debug.Write(response.Content);
+                    throw new UnsuccessfulStatusCodeException("An error has occurred during the ordering proccess. No order has been made.");
+                }
+            }
+            catch (UnsuccessfulStatusCodeException)
+            {
+                throw;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Impossible to connect to the server. Please check your connection.");
+            }
+        }
+
         public async Task DeleteItemAsync(string id)
         {
             var uri = new Uri(string.Format(RestUrl, id));
@@ -111,6 +159,7 @@ namespace Beanify.RestClients
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
         }
+        #endregion 
 
         public async Task<string> LoginAsync(List<KeyValuePair<string, string>> logs)
         {
@@ -147,16 +196,6 @@ namespace Beanify.RestClients
             {
                 throw new Exception("Impossible to connect to the server. Please check your connection.");
             }
-        }
-
-        public async Task<bool> IsAdmin(string accessToken)
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-            var response = await client.GetStringAsync(RestUrl);
-
-            return Convert.ToBoolean(response);
         }
 
         public async Task<bool> IsAuthenticated(string accessToken)
@@ -220,54 +259,6 @@ namespace Beanify.RestClients
                 Debug.WriteLine(@"ERROR {0}", ex.Message);
             }
 
-        }
-
-        public async Task<List<T>> RefreshDataAsyncAccess(string accessToken)
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            HttpResponseMessage response = await client.GetAsync(RestUrl).ConfigureAwait(false);
-
-            if (!response.IsSuccessStatusCode)
-            {
-                CheckUnauthorized(response);
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", LocalStorageSettings.AccessToken);
-                response = await client.GetAsync(RestUrl).ConfigureAwait(false);
-
-            }
-            var json = await response.Content.ReadAsStringAsync();
-
-            Items = JsonConvert.DeserializeObject<List<T>>(json);
-            return Items;
-        }
-
-        public async Task<HttpResponseMessage> SaveDataAsyncAccess(string accessToken, IModel orderModel)
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-            var json = JsonConvert.SerializeObject(orderModel);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            try
-            {
-                var response = await client.PostAsync(RestUrl, content).ConfigureAwait(false);
-                if (response.IsSuccessStatusCode)
-                {
-                    return response;
-                }
-                else
-                {
-                    Debug.Write(response.Content);
-                    throw new UnsuccessfulStatusCodeException("An error has occurred during the ordering proccess. No order has been made.");
-                }
-            }
-            catch (UnsuccessfulStatusCodeException)
-            {
-                throw;
-            }
-            catch (Exception e)
-            {
-                throw new Exception("Impossible to connect to the server. Please check your connection.");
-            }
         }
 
         #region private

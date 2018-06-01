@@ -1,5 +1,4 @@
-﻿using Beanify.Models;
-using Beanify.Serialization;
+﻿using Beanify.Serialization;
 using Beanify.Services;
 using Beanify.Utils.Navigation;
 using Beanify.Views;

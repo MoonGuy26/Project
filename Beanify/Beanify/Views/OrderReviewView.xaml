@@ -41,14 +41,20 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout Grid.Row="3" VerticalOptions="Center" Margin="0,-8,0,0" >
+            <StackLayout Grid.Row="3" VerticalOptions="Center" Margin="0,-8,0,8" >
                 <Button Style="{StaticResource OrderButton}" 
                         Text="CONFIRM AND ORDER" 
-                        HeightRequest="54"
+                       
                         Command="{Binding Commands[Order]}"
                         VerticalOptions="Start"
                          Margin="60,0,60,0"
-                        />
+                        >
+                    <Button.HeightRequest>
+                        <OnPlatform x:TypeArguments="x:Double"
+                         Android="54"   iOS="44"        />
+                            
+                    </Button.HeightRequest>
+                    </Button>
             </StackLayout>
 
         </Grid>
