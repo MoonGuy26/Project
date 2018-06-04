@@ -97,7 +97,8 @@ namespace Beanify.ViewModels
                     
                    
                 });
-            _previousSelectedItem= MenuItems[0];
+            _selectedItem = MenuItems[0];
+            _previousSelectedItem= _selectedItem;
             
             Commands.Add("ItemSelected", new Command(ItemSelectedExecute));
             

@@ -14,11 +14,6 @@ namespace Beanify.Utils.Navigation
     public class NavigationService : INavigationService
     {
 
-        
-        public NavigationService()
-        {
-
-        }
 
         
         public BaseViewModel PreviousPageViewModel
@@ -59,7 +54,13 @@ namespace Beanify.Utils.Navigation
                 }
                 catch(Exception e)
                 {
-                    await InternalSetApplicationPageAsync(typeof(DashboardViewModel), e);
+                    if(Device.RuntimePlatform==Device.Android)
+                        await InternalSetApplicationPageAsync(typeof(DashboardViewModel), e);
+                    else
+                    { 
+                        await InternalSetApplicationPageAsync(typeof(ErrorViewModel), e.Message);
+                    }
+                        
                 }
 
             }

@@ -29,10 +29,12 @@ namespace Beanify.iOS.Utils.Renderers
                 Control.KeyboardAppearance = UIKeyboardAppearance.Dark;
                 Control.ReturnKeyType = UIReturnKeyType.Done;
                 Control.BackgroundColor = view.FieldBgColor.ToUIColor();
-                //Control.Layer.CornerRadius = 8;
+                Control.Layer.CornerRadius = (nfloat)view.CornerRadius;
                 Control.Layer.BorderColor = view.BorderColor.ToCGColor();
                 Control.Layer.BorderWidth = view.BorderWidth;
-                Control.BorderStyle= UITextBorderStyle.RoundedRect;
+                Control.TextAlignment = UITextAlignment.Center;
+                Control.TintColor = view.CursorColor.ToUIColor();
+                //Control.BorderStyle= UITextBorderStyle.;
 
                 Control.ClipsToBounds = true;
             }

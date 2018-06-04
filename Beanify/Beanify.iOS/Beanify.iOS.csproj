@@ -91,7 +91,6 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Utils\Effects\EntryLineColorEffect.cs" />
     <Compile Include="Utils\Orientation\DeviceOrientationImplementation.cs" />
     <Compile Include="Utils\Renderers\CustomCarouselRenderer.cs" />
     <Compile Include="Utils\Renderers\CustomLabelRenderer.cs" />

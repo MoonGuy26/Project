@@ -16,8 +16,6 @@ namespace Beanify.Views
 	{
 		public DashboardView ()
 		{
-            
-
             InitializeComponent();
         }
 
