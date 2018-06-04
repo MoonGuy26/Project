@@ -211,23 +211,30 @@ namespace Beanify.RestClients
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
+            bool isAuthenticated = false;
             try
             {
 
            
-            var requestTask = client.GetAsync(RestUrl);
-            var response = Task.Run(() => requestTask).Result;
-            var isAuthenticated = Convert.ToBoolean(await response.Content.ReadAsStringAsync());
-            
-            if (!response.IsSuccessStatusCode||!isAuthenticated)
+            var requestTask =  client.GetAsync(RestUrl);
+            var response = requestTask.GetAwaiter().GetResult();
+            if (response.IsSuccessStatusCode)
+            {
+                    isAuthenticated = Convert.ToBoolean(await response.Content.ReadAsStringAsync());
+
+            }
+            else
             {
                 CheckUnauthorized(response);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", 
                     LocalStorageSettings.AccessToken);
-                HttpResponseMessage secondResponse = await client.GetAsync(RestUrl).ConfigureAwait(false) ;
-                isAuthenticated = Convert.ToBoolean(await secondResponse.Content.ReadAsStringAsync());
-                if (!secondResponse.IsSuccessStatusCode|| !isAuthenticated)
+                var secondRequestTask = client.GetAsync(RestUrl);
+                HttpResponseMessage secondResponse = secondRequestTask.GetAwaiter().GetResult();
+                if (secondResponse.IsSuccessStatusCode)
+                {
+                    isAuthenticated = Convert.ToBoolean(await secondResponse.Content.ReadAsStringAsync());
+                }
+                else
                 {
                     return false;
                 }
