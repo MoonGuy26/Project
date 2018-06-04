@@ -64,7 +64,7 @@ namespace Beanify.Utils.Controls
         }
 
         public static readonly BindableProperty TitleFontTypeProperty = BindableProperty.CreateAttached("TitleFontType", typeof(string), typeof(CustomNavigationPage),
-            Device.RuntimePlatform == Device.Android ? "lato_regular.ttf" : "lato_regular"
+            Device.RuntimePlatform == Device.Android ? "oswald_semibold.ttf" : "Oswald-SemiBold"
            );
 
         public static string GetTitleFontType(BindableObject view)
@@ -267,6 +267,19 @@ namespace Beanify.Utils.Controls
             view.SetValue(TitleBorderWidthProperty, value);
         }
 
+        public static readonly BindableProperty TitleVisibleProperty = BindableProperty.CreateAttached("TitleVisible", typeof(bool), typeof(CustomNavigationPage), false);
+
+        public static bool GetTitleVisible(BindableObject view)
+        {
+
+            return (bool)view.GetValue(TitleVisibleProperty);
+        }
+
+        public static void SetTitleVisible(BindableObject view, bool value)
+        {
+            view.SetValue(TitleVisibleProperty, value);
+        }
+
         public static readonly BindableProperty BarBackgroundOpacityProperty = BindableProperty.CreateAttached("BarBackgroundOpacity", typeof(float), typeof(CustomNavigationPage), 1.0f);
 
         public static float GetBarBackgroundOpacity(BindableObject view)
@@ -279,6 +292,9 @@ namespace Beanify.Utils.Controls
         {
             view.SetValue(BarBackgroundOpacityProperty, value);
         }
+
+
+
         public CustomNavigationPage(Page page) : base(page)
         {
 

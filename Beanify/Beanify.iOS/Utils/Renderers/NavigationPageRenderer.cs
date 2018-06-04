@@ -1,26 +1,34 @@
 ﻿using System;
 using Beanify.iOS.Utils.Renderers;
+using Beanify.Utils.Controls;
 using Beanify.Views;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 
-[assembly: ExportRenderer(typeof(NavigationPage), typeof(NavigationPageRenderer))]
+[assembly: ExportRenderer(typeof(CustomNavigationPage), typeof(NavigationPageRenderer))]
 namespace Beanify.iOS.Utils.Renderers
 {
    
     public class NavigationPageRenderer : NavigationRenderer
     {
+
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            NavigationBar.TopItem.TitleView = new UIImageView(UIImage.FromBundle("logo_sm.png"))
-            {
-                ContentMode = UIViewContentMode.Center,
-                ContentScaleFactor = 2.5f
-                                               
-            };
+            CustomNavigationPage bar = (CustomNavigationPage)Element;
+
+            if(!CustomNavigationPage.GetTitleVisible(bar)){
+                NavigationBar.TopItem.TitleView = new UIImageView(UIImage.FromBundle("logo_sm.png"))
+                {
+                    ContentMode = UIViewContentMode.Center,
+                    ContentScaleFactor = 2.5f
+
+                };
+            }
+            /**/
             // Create the back arrow icon image
             var arrowImage = UIImage.FromBundle("back_arrow.png");
             NavigationBar.BackIndicatorImage = arrowImage;
@@ -38,7 +46,7 @@ namespace Beanify.iOS.Utils.Renderers
 
             NavigationBar.TitleTextAttributes = new UIStringAttributes()
             {
-                Font = UIFont.FromName("Oswald-SemiBold", 18),
+                Font = UIFont.FromName(CustomNavigationPage.GetTitleFontType(bar), 18),
                 ForegroundColor = UIColor.White
             };
                          
