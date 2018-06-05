@@ -26,6 +26,7 @@ namespace Beanify.iOS.Utils.Renderers
                 Control.LeftView = new UIView(new CGRect(0f, 0f, 15f, 20f));
 
                 Control.LeftViewMode = UITextFieldViewMode.Always;
+
                 Control.KeyboardAppearance = UIKeyboardAppearance.Dark;
                 Control.ReturnKeyType = UIReturnKeyType.Done;
                 Control.BackgroundColor = view.FieldBgColor.ToUIColor();
