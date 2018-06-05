@@ -52,9 +52,9 @@
                     <Button.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double"
                          Android="54"   iOS="44"        />
-                            
+
                     </Button.HeightRequest>
-                    </Button>
+                </Button>
             </StackLayout>
 
         </Grid>
