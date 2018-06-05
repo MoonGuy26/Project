@@ -25,14 +25,15 @@
                  BackgroundColor="{StaticResource BgCream}"
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
-        <Label Text="{Binding ErrorMessage}" Style="{StaticResource BigLabel}" HorizontalOptions="Center" FontSize="Large"/>
+        <Label Text="{Binding Message}" Style="{StaticResource BigLabel}" HorizontalOptions="Center" FontSize="Large" XAlign="Center"/>
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
             <Button 
                 WidthRequest="160"
                 Style="{StaticResource YesNoButton}"
                 BackgroundColor="{StaticResource Cream}"
                 FontSize="25"
-                Text="RELOAD"
+                
+                Text="{Binding ButtonMessage}"
                 TextColor="{StaticResource CoffeeBrown}"
                 Command="{Binding Commands[ClosePopup]}"/>
         </StackLayout>

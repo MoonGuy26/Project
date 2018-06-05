@@ -10,29 +10,44 @@ namespace Beanify.ViewModels
 {
     public class CallBackPopupViewModel: BaseViewModel
     {
-        private string _errorMessage;
+        private string _message;
+        private bool _reloadOnClose;
+        private string _buttonMessage;
 
-        public string ErrorMessage
+        
+
+
+        public string Message
         {
-            get => _errorMessage;
+            get => _message;
             set
             {
-                if (value != _errorMessage)
+                if (value != _message)
                 {
-                    _errorMessage = value;
-                    OnPropertyChanged(nameof(ErrorMessage));
+                    _message = value;
+                    OnPropertyChanged(nameof(Message));
                 }
+            }
+        }
+
+        public string ButtonMessage
+        {
+            get { return _buttonMessage; }
+            set { _buttonMessage = value;
+                OnPropertyChanged(nameof(ButtonMessage));
             }
         }
 
         public CallBackPopupViewModel(INavigationService navigationService) : base(navigationService)
         {
+            ButtonMessage = "OK";
             Commands.Add("ClosePopup", new Command(OnClosePopupExecute));
         }
 
         public void OnClosePopupExecute()
         {
-            _navigationService.InitializeAsync();
+            if(_reloadOnClose)
+                _navigationService.InitializeAsync();
             PopupNavigation.Instance.PopAsync();
         }
 
@@ -40,11 +55,22 @@ namespace Beanify.ViewModels
         {
             if (navigationData == null)
             {
-                ErrorMessage = "An error has occurred.";
+                Message = "An error has occurred.";
             }
             else
             {
-                ErrorMessage = (string)navigationData;
+                if (navigationData.GetType() == typeof(bool))
+                {
+                    _reloadOnClose = (bool)navigationData;
+                    if (_reloadOnClose)
+                    {
+                        ButtonMessage = "RELOAD";
+                    }
+                }
+                if (navigationData.GetType() == typeof(string))
+                {
+                    Message = (string)navigationData;
+                }
             }
             return base.InitializeAsync(navigationData);
         }

@@ -49,10 +49,12 @@ namespace Beanify.ViewModels
             catch(Exception e)
             {  
                 PopupPage popup = new CallBackPopupView();
-                PopupNavigation.Instance.PushAsync(popup);
                 var errorMessage = e.Message;
 
                 (popup.BindingContext as BaseViewModel).InitializeAsync(errorMessage);
+                (popup.BindingContext as BaseViewModel).InitializeAsync(true);
+                PopupNavigation.Instance.PushAsync(popup);
+                
             }
             return base.InitializeAsync(navigationData);
         }
