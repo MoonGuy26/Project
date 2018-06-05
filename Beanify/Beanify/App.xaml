@@ -20,6 +20,8 @@
             <converters:OrientationToVisibilityConverter x:Key="orientationToVisibilityConverter" />
             <converters:ErrorsToVisibilityConverter x:Key="errorsToVisibilityConverter" />
             <converters:BoolToInvertBoolConverter x:Key="boolToInvertBoolConverter" />
+            <converters:BoolToSpaceConverter x:Key="boolToSpaceConverter" />
+            <converters:BoolToHeightConverter x:Key="boolToHeightConverter" />
             <converters:ScreenOrientationToCarouselOrientationConverter x:Key="screenOrientationToCarouselOrientationConverter" />
             <converters:SizeToLandscapeConverter x:Key="sizeToLandscapeConverter" />
             <converters:FloatToPriceConverter x:Key="floatToPriceConverter" />

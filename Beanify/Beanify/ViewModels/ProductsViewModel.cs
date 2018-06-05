@@ -52,7 +52,9 @@ namespace Beanify.ViewModels
 
         private void AsynchronousTask()
         {
-            Products = new ObservableCollection<ProductModel>(_productService.GetProducts());
+            var productsList = _productService.GetProducts();
+            productsList[0].IsFirst = true;
+            Products = new ObservableCollection<ProductModel>(productsList);
         }
 
         private Command<object> _OnMoreInfoExecute;
@@ -72,7 +74,9 @@ namespace Beanify.ViewModels
             if (navigationData != null)
             {
                 var productList = navigationData as List<ProductModel>;
+                productList[0].IsFirst = true;
                 Products = new ObservableCollection<ProductModel>(productList);
+               
             }
             else
             {

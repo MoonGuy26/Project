@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.DashboardView"
              xmlns:custom="clr-namespace:Beanify.Utils.Controls"
-             Title="default"
+             
              BindingContext="{Binding DashboardViewModel, Source={StaticResource Locator}}"
              BackgroundImage="bg.jpg">
     <custom:CustomPage.Content>

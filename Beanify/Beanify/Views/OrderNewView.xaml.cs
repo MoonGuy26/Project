@@ -18,7 +18,7 @@ namespace Beanify.Views
 
         protected override void InitializeNavbar()
         {
-
+            base.InitializeNavbar();
             CustomNavigationPage.SetTitleColor(this, (Color)Application.Current.Resources["TitleWhite"]);
 
             CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);

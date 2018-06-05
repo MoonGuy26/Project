@@ -24,6 +24,7 @@ namespace Beanify.Views
 
             CustomNavigationPage.SetTitleVisible(this, true);
             CustomNavigationPage.SetTitleColor(this, (Color)Application.Current.Resources["TitleWhite"]);
+            
 
             CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);
             CustomNavigationPage.SetTitleMargin(this, new Thickness(0, 0, 100, 0));

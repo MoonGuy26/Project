@@ -58,7 +58,7 @@ namespace Beanify.Utils.Controls
         protected virtual void InitializeNavbar()
         {
             if (Device.RuntimePlatform == Device.Android){
-                Title = "default";
+                Title = "defaulttttttttt";
                 CustomNavigationPage.SetTitleFontType(this, "oswald_semibold.ttf");  
             }
             else{
@@ -66,7 +66,8 @@ namespace Beanify.Utils.Controls
             }
             
             CustomNavigationPage.SetTitleColor(this, Color.Transparent);
-            CustomNavigationPage.SetTitleBackground(this, "logo_sm.png");
+            CustomNavigationPage.SetTitleBackground(this, "logo_sm");
+           
             CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);
             CustomNavigationPage.SetTitleMargin(this, new Thickness(0, 0, 100, 0));
         }
