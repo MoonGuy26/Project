@@ -54,7 +54,7 @@
                          Android="53"   iOS="43"        />
                             
                     </Button.HeightRequest>
-                    </Button>
+                </Button>
             </StackLayout>
 
         </Grid>

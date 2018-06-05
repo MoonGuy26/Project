@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Xamarin.Forms;
-
+/*
 namespace Beanify.Utils.Behaviors
 {
     public class EmailValidatorBehavior : Behavior<Entry>
@@ -40,4 +40,4 @@ namespace Beanify.Utils.Behaviors
 
         }
     }
-}
+}*/

@@ -63,7 +63,7 @@ namespace Beanify.Utils.Controls
                 CustomNavigationPage.SetTitleFontSize(this, 18);
             }
             else{
-                CustomNavigationPage.SetTitleFontType(this, "Oswald-SemiBold");
+                CustomNavigationPage.SetTitleFontType(this, "Oswald SemiBold");
             }
             
             CustomNavigationPage.SetTitleColor(this, Color.Transparent);
