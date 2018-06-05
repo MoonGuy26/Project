@@ -54,11 +54,11 @@
                                              CommandParameter="{Binding . }}"
                                              VerticalOptions="Center" >
                                         <Button.HeightRequest>
-                        <OnPlatform x:TypeArguments="x:Double"
+                                            <OnPlatform x:TypeArguments="x:Double"
                          Android="40"  iOS="30"      />
-                            
-                    </Button.HeightRequest>
-                                        </Button>
+
+                                        </Button.HeightRequest>
+                                    </Button>
                                              </StackLayout>
                                 <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
                             </Grid>
