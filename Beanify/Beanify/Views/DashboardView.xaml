@@ -13,7 +13,7 @@
                 <RowDefinition Height="2*"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="2*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -23,15 +23,15 @@
             
             <Image  Source="logo.png" Grid.Row="0" Grid.Column="1" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" ></Image>
             <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
-
-            <StackLayout Orientation="Vertical"  Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
+            <Label TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"
+                FontFamily="{StaticResource LatoRegular}" FontSize="18" Grid.Row="2" Grid.Column="1"
+                   VerticalOptions="FillAndExpand" HorizontalOptions="Center">The medium strength Kenya Harvest is roasted from the much sought after Kenyan beans, renowned for producing an intense flavour, full body and pleasant aroma</Label>
+            <!--<StackLayout Orientation="Vertical"  Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
                 <Label Style="{StaticResource title}" FontFamily="{StaticResource OswaldLight}" Margin="0,0,0,-10">NOW BREWING</Label>
                 <Label Style="{StaticResource title}">KENYA HARVEST</Label>
-            </StackLayout>
+            </StackLayout>-->
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
-            <Label TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"
-                FontFamily="{StaticResource LatoRegular}" FontSize="18" Grid.Row="4" Grid.Column="1"
-                   VerticalOptions="FillAndExpand" HorizontalOptions="Center">The medium strength Kenya Harvest is roasted from the much sought after Kenyan beans, renowned for producing an intense flavour, full body and pleasant aroma</Label>
+            <Image Source="stamp.png" Grid.Row="4" Grid.ColumnSpan="3" VerticalOptions="Center" Aspect="AspectFit"></Image>
         </Grid>
     </custom:CustomPage.Content>
 </custom:CustomPage>
