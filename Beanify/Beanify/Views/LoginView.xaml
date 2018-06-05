@@ -44,7 +44,7 @@
 
                 <StackLayout  VerticalOptions="Center" Margin="20,0,20,15" Spacing="6">
                     <custom:CustomEntry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand" 
-                           VerticalOptions="Center" TextColor="{StaticResource CoffeeBrown}" HeightRequest="40"
+                           VerticalOptions="Center" TextColor="{StaticResource CoffeeBrown}" HeightRequest="45" HorizontalTextAlignment="Center"
                             CursorColor="{StaticResource CoffeeBrown}" Keyboard="Email">
                         <custom:CustomEntry.Behaviors>
                             <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
@@ -74,13 +74,15 @@
                     IsVisible="{Binding Email.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource BgCream}"
                     HorizontalOptions="Center"
+                    XAlign="Center"
                     FontFamily="{StaticResource OpenSansRegular}"/>
                 </StackLayout>
                 <StackLayout  VerticalOptions="Center" Margin="20,0,20,-20" >
-                    <custom:CustomEntry Placeholder="password" IsPassword="True" HeightRequest="40" 
+                    <custom:CustomEntry Placeholder="password" IsPassword="True" HeightRequest="45" 
                        Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
                        IsFocused="{Binding IsFocusedPassword}" TextColor="{StaticResource CoffeeBrown}"
-                        CursorColor="{StaticResource CoffeeBrown}">
+                        CursorColor="{StaticResource CoffeeBrown}"
+                                        HorizontalTextAlignment="Center">
 
                         <custom:CustomEntry.Triggers>
                             <Trigger TargetType="Entry"
@@ -103,6 +105,7 @@
                     IsVisible="{Binding Password.Errors,Converter={StaticResource errorsToVisibilityConverter}}"
                     TextColor="{StaticResource BgCream}"
                     HorizontalOptions="Center"
+                    XAlign="Center"
                     FontFamily="{StaticResource OpenSansRegular}"/>
                     <Button Text="Forgotten Password?"   Command="{Binding Commands[ResetPassword]}" 
                             FontFamily="{StaticResource LatoRegular}"
@@ -145,6 +148,7 @@
                 <Label Text="{Binding ErrorLoginMessage}" 
                    HorizontalTextAlignment="Center"
                    FontSize="18"
+                    XAlign="Center"
                    IsVisible="{Binding ErrorLoginMessage,Converter={StaticResource stringToVisibilityConverter}}"
                    TextColor="{StaticResource WhiteCream}"
                    FontFamily="{StaticResource OpenSansRegular}"/>

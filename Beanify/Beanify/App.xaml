@@ -115,7 +115,6 @@
                 <Setter Property="BorderRadius" Value="20"></Setter>
                 <Setter Property="BackgroundColor" Value="{ StaticResource Cream }"></Setter>
                 <Setter Property="TextColor" Value="{ StaticResource CoffeeBrown }"></Setter>
-                
                 <Setter Property="FontSize" Value="18"></Setter>
                 <Setter Property="FontFamily" Value="{StaticResource OswaldSemiBold}"></Setter>
                 <Setter Property="VerticalOptions" Value="Center"></Setter>

@@ -17,7 +17,7 @@ namespace Beanify.ViewModels
     {
         private List<ProductModel> _products;
 
-        
+        private bool _triggerEvent = true;
         private DashboardNavigationViewMenuItem _selectedItem;
         private Page _detailPage;
 
@@ -103,13 +103,29 @@ namespace Beanify.ViewModels
             _previousSelectedItem = MenuItems[0];
             
             Commands.Add("ItemSelected", new Command(ItemSelectedExecute));
-            
+
+            SubscribeToMessages();
+
+        }
+
+        private void SubscribeToMessages()
+        {
+            MessagingCenter.Subscribe<DashboardViewModel>(this, "NavigateToPlaceOrder", (sender) =>
+            {
+                SelectedItem = MenuItems[1];
+                OnPlaceOrderExecute();
+            });
+            MessagingCenter.Subscribe<LogoutPopUpViewModel>(this, "TriggerNavigation", (sender) =>
+            {
+                _triggerEvent = true;
+            });
         }
 
 
         private void ItemSelectedExecute()
         {
-            _selectedItem.OnClicked?.Invoke();
+            if(_triggerEvent)
+                _selectedItem.OnClicked?.Invoke();
         }
 
         private void OnDashboardExecute()
@@ -117,6 +133,7 @@ namespace Beanify.ViewModels
             _navigationService.NavigateToDashboardAsync<DashboardViewModel>();
         }
 
+        
         private void OnPreviousOrderExecute()
         {
             _navigationService.NavigateToDashboardAsync<PreviousOrdersViewModel>();
@@ -134,10 +151,12 @@ namespace Beanify.ViewModels
 
             //LocalStorageSettings.AccessToken = null;
             //((App)Application.Current).MainPage = new Views.LoginView();
-            if(_previousSelectedItem!=null)
-                _selectedItem = _previousSelectedItem;
-           PopupNavigation.Instance.PushAsync(new LogoutPopUpView());
+            _triggerEvent = false;
+            if (_previousSelectedItem!=null)
+                SelectedItem = _previousSelectedItem;
             
+           PopupNavigation.Instance.PushAsync(new LogoutPopUpView());
+           
         }
 
         

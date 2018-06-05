@@ -58,8 +58,9 @@ namespace Beanify.Utils.Controls
         protected virtual void InitializeNavbar()
         {
             if (Device.RuntimePlatform == Device.Android){
-                Title = "defaulttttttttt";
-                CustomNavigationPage.SetTitleFontType(this, "oswald_semibold.ttf");  
+                Title = "*******";
+                CustomNavigationPage.SetTitleFontType(this, "opensans_regular.ttf");
+                CustomNavigationPage.SetTitleFontSize(this, 18);
             }
             else{
                 CustomNavigationPage.SetTitleFontType(this, "Oswald-SemiBold");
