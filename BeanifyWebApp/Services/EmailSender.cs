@@ -13,7 +13,7 @@ namespace BeanifyWebApp.Services
     public class EmailSender : IEmailSender
     {
        // Sending Email Adress
-        private string sender = "s.daroukh.dev@gmail.com";
+        private string sender = "noreply.beanify@gmail.com";
 
         public Task SendEmailAsync(string email, string subject, string message)
         { 
@@ -24,8 +24,8 @@ namespace BeanifyWebApp.Services
             mailMessage.BodyEncoding = Encoding.UTF8;
             mailMessage.IsBodyHtml = true;
 
-            //return SendEmailAsyncUsingGoogleSMTP(mailMessage);
-            return SendEmailAsyncUsingSendGrid(mailMessage);
+            return SendEmailAsyncUsingGoogleSMTP(mailMessage);
+            //return SendEmailAsyncUsingSendGrid(mailMessage);
         }
 
         private Task SendEmailAsyncUsingGoogleSMTP(MailMessage mailMessage)
@@ -53,8 +53,8 @@ namespace BeanifyWebApp.Services
         {
             string sender = "coffee@beanify.com";
 
-            //var apiKey = Environment.GetEnvironmentVariable("BEANIFY_SENDGRID_KEY");
-            var client = new SendGridClient("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");
+            var apiKey = Environment.GetEnvironmentVariable("BEANIFY_SENDGRID_KEY");
+            var client = new SendGridClient(apiKey);
             
             var from = new EmailAddress(sender);
             var to = new EmailAddress(mailMessage.To.ToString());
