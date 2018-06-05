@@ -11,8 +11,8 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="validItemTemplate">
-                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="200" >
-                    <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,20,10,0" >
+                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="192" >
+                    <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,18,10,0" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -21,9 +21,9 @@
                         <Grid.RowDefinitions>
 
                             <RowDefinition Height="0.75*"/>
-                            <RowDefinition Height="0.75*"/>
-                            <RowDefinition Height="1.1*"/>
-                            <RowDefinition Height="1.2*"/>
+                            <RowDefinition Height="0.6*"/>
+                            <RowDefinition Height="0.9*"/>
+                            <RowDefinition Height="1.25*"/>
                         </Grid.RowDefinitions>
 
                         <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
@@ -64,7 +64,7 @@
                 </customControls:CustomViewCell>
             </DataTemplate>
             <DataTemplate x:Key="invalidItemTemplate">
-                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="180" >
+                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="174" >
                     <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,0,10,0" >
                         <Grid.ColumnDefinitions>
 
@@ -75,9 +75,9 @@
                         <Grid.RowDefinitions>
 
                             <RowDefinition Height="0.75*"/>
-                            <RowDefinition Height="0.75*"/>
-                            <RowDefinition Height="1.1*"/>
-                            <RowDefinition Height="1.2*"/>
+                            <RowDefinition Height="0.6*"/>
+                            <RowDefinition Height="0.9*"/>
+                            <RowDefinition Height="1.25*"/>
                         </Grid.RowDefinitions>
 
                         <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 

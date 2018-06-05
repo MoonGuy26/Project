@@ -37,6 +37,9 @@ namespace Beanify.ViewModels
         public void OnNoExecute()
         {
             PopupNavigation.Instance.PopAsync();
+            MessagingCenter.Send<LogoutPopUpViewModel>(this, "TriggerNavigation");
+            var masterDetailView = Application.Current.MainPage as DashboardNavigationView;
+            masterDetailView.IsPresented = false;
         }
     
     }

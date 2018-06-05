@@ -29,23 +29,30 @@ namespace Beanify.ViewModels
             set {
                 if (_dashboardMessage != value)
                 {
-                   _dashboardMessage = value;
+                    _dashboardMessage = value;
                     OnPropertyChanged(nameof(DashboardMessage));
                 }
             }
         }
+
+        public Action CallBack{get;set;}
 
         
         #endregion
 
         public DashboardViewModel(INavigationService navigationService) : base(navigationService)
         {
-            
+            Commands.Add("NavigateToProducts", new Command(NavigateToProductsExecute));
         }
+
+
 
         #region commandMethods
         #region execute
-
+        private void NavigateToProductsExecute(object obj)
+        {
+            MessagingCenter.Send<DashboardViewModel>(this, "NavigateToPlaceOrder");
+        }
 
 
         #endregion
@@ -57,12 +64,21 @@ namespace Beanify.ViewModels
         {
             if (navigationData != null)
             {
-                var exception = navigationData as Exception;
-                PopupPage popup = new CallBackPopupView();
-                PopupNavigation.Instance.PushAsync(popup);
-                var errorMessage =exception.Message;
+                if (navigationData.GetType() == typeof(Exception))
+                {
+                    var exception = navigationData as Exception;
+                    PopupPage popup = new CallBackPopupView();
+                    PopupNavigation.Instance.PushAsync(popup);
+                    var errorMessage =exception.Message;
                 
-                (popup.BindingContext as BaseViewModel).InitializeAsync(errorMessage);
+                    (popup.BindingContext as BaseViewModel).InitializeAsync(errorMessage);
+
+                }
+                if(navigationData.GetType() == typeof(Action))
+                {
+                    var action = navigationData as Action;
+                    CallBack = action;
+                }
             }
             return base.InitializeAsync(navigationData);
         }
