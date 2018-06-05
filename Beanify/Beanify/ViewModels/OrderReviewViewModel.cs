@@ -65,7 +65,11 @@ namespace Beanify.ViewModels
                 Order.Date = DateTime.Now;
                 
                 _orderService.AddItem(Order);
-                await _navigationService.NavigateToDashboardAsync<ProductsViewModel>();
+                PopupPage popup = new CallBackPopupView();
+                _navigationService.NavigateToDashboardAsync<DashboardViewModel>();
+                await (popup.BindingContext as BaseViewModel).InitializeAsync("Thank you for ordering our products! You will be sent a confirmation email.");
+                await PopupNavigation.Instance.PushAsync(popup);
+                
             }
             catch (Exception e)
             {

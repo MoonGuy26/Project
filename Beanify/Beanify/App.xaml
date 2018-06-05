@@ -133,6 +133,7 @@
 
             <Style x:Key="YesNoButton" TargetType="Button" BasedOn="{StaticResource roundButtonStyle}">
                 <Setter Property="WidthRequest" Value="75"/>
+                <Setter Property="BorderRadius" Value="24"></Setter>
             </Style>
             <Style x:Key="OrderButton" TargetType="Button" BasedOn="{StaticResource roundButtonStyle}">
                 <Setter Property="FontSize" Value="20"/>

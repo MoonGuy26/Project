@@ -45,7 +45,7 @@
                 </StackLayout>
             </ScrollView>
             <Image Source="separator.png" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>
-            <StackLayout Grid.Row="2" VerticalOptions="Start" Margin="0,0,0,0">
+            <StackLayout Grid.Row="2" VerticalOptions="Center" Margin="0,6,0,0">
                 <Label Style="{StaticResource BigLabel}" FontFamily="{StaticResource LatoRegular}"  HorizontalOptions="Center" FontSize="14" Text="Quantity"/>
                 <StackLayout Orientation="Horizontal"  HorizontalOptions="CenterAndExpand" Spacing="8" VerticalOptions="Center">
                     <Button Image="minus_ic.png" Style="{StaticResource PlusMinusButton}" Command="{Binding Commands[Minus]}" HorizontalOptions="Start" />
