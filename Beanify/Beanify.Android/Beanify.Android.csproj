@@ -116,6 +116,12 @@
     <AndroidResource Include="Resources\values\styles.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\stamp.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\stamp.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\stamp.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\stamp.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\stamp.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\stamp.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Beanify\Beanify.csproj">
