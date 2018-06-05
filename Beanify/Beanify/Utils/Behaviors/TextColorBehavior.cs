@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xamarin.Forms;
-
+﻿using Xamarin.Forms;
+/*
 namespace Beanify.Utils.Behaviors
 {
     public static class TextColorBehavior
@@ -57,3 +53,4 @@ namespace Beanify.Utils.Behaviors
         }
     }
 }
+*/
