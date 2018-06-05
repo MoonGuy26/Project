@@ -58,6 +58,8 @@ namespace Beanify.Droid.Utils.Renderers
                     Control.PaddingTop,
                     (int)DpToPixels(this.Context, Convert.ToSingle(12)),
                     Control.PaddingBottom);
+                Control.Gravity = GravityFlags.CenterHorizontal;
+
             }
 
             if (Control != null)

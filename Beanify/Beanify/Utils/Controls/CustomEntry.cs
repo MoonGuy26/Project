@@ -7,6 +7,20 @@ namespace Beanify.Utils.Controls
 {
     public class CustomEntry: Entry
     {
+        public static readonly BindableProperty CursorColorProperty =
+        BindableProperty.Create(
+            nameof(CursorColor),
+            typeof(Color),
+            typeof(CustomEntry),
+            Color.Gray);
+        
+        // Gets or sets BorderColor value
+        public Color CursorColor
+        {
+            get { return (Color)GetValue(CursorColorProperty); }
+            set { SetValue(CursorColorProperty, value); }
+        }
+
         public static readonly BindableProperty BorderColorProperty =
         BindableProperty.Create(
             nameof(BorderColor),

@@ -79,7 +79,7 @@ namespace Beanify.RestClients
             }
             catch (Exception ex)
             {
-                throw new Exception("Impossible to connect to the server. Please check your connection.");
+                throw new ImpossibleServerConnectionException();
             }
 
             return Items;
@@ -145,7 +145,7 @@ namespace Beanify.RestClients
             }
             catch (Exception e)
             {
-                throw new Exception("Impossible to connect to the server. Please check your connection.");
+                throw new ImpossibleServerConnectionException();
             }
         }
 
@@ -203,7 +203,7 @@ namespace Beanify.RestClients
             }
             catch(Exception e)
             {
-                throw new Exception("Impossible to connect to the server. Please check your connection.");
+                throw new ImpossibleServerConnectionException();
             }
         }
 
@@ -244,7 +244,7 @@ namespace Beanify.RestClients
             }
             catch(Exception e)
             {
-                throw new Exception("Impossible to connect to the server. Please check your connection.");
+                throw new ImpossibleServerConnectionException();
             }
 
 

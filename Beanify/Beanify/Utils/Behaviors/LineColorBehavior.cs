@@ -1,5 +1,4 @@
-﻿using Beanify.Utils.Effects;
-using System.Linq;
+﻿using System.Linq;
 using Xamarin.Forms;
 
 namespace Beanify.Utils.Behaviors
@@ -37,25 +36,7 @@ namespace Beanify.Utils.Behaviors
         {
             var view = bindable as View;
 
-            if (view == null)
-            {
-                return;
-            }
-
-            bool hasLine = (bool)newValue;
-
-            if (hasLine)
-            {
-                view.Effects.Add(new EntryLineColorEffect());
-            }
-            else
-            {
-                var entryLineColorEffectToRemove = view.Effects.FirstOrDefault(e => e is EntryLineColorEffect);
-                if (entryLineColorEffectToRemove != null)
-                {
-                    view.Effects.Remove(entryLineColorEffectToRemove);
-                }
-            }
+           
         }
     }
 }

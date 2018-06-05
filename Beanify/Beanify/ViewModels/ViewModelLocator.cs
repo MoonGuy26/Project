@@ -125,6 +125,14 @@ namespace Beanify.ViewModels
             }
         }
 
+        public ErrorViewModel ErrorViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ErrorViewModel>();
+            }
+        }
+
         public ErrorPopupViewModel ErrorPopupViewModel
         {
             get

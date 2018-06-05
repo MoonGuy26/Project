@@ -44,18 +44,14 @@
 
                 <StackLayout  VerticalOptions="Center" Margin="20,0,20,15" Spacing="6">
                     <custom:CustomEntry Placeholder="email" Text="{Binding Email.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand" 
-                           >
+                           VerticalOptions="Center" TextColor="{StaticResource CoffeeBrown}"
+                            CursorColor="{StaticResource CoffeeBrown}">
                         <custom:CustomEntry.Behaviors>
                             <b:EventToCommandBehavior EventName="Unfocused" Command="{Binding Commands[LostFocusEmail]}" />
                             <b:EventToCommandBehavior EventName="Completed" Command="{Binding Commands[CompletedEmail]}" />
                         </custom:CustomEntry.Behaviors>
 
-                        <custom:CustomEntry.Style>
-                            <OnPlatform x:TypeArguments="Style">
-                                <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
 
-                            </OnPlatform>
-                        </custom:CustomEntry.Style>
 
                         <custom:CustomEntry.Triggers>
                             <Trigger TargetType="Entry"
@@ -83,15 +79,8 @@
                 <StackLayout  VerticalOptions="Center" Margin="20,0,20,-20" >
                     <custom:CustomEntry Placeholder="password" IsPassword="True" 
                        Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
-                       IsFocused="{Binding IsFocusedPassword}">
-
-
-                        <custom:CustomEntry.Style>
-                            <OnPlatform x:TypeArguments="Style">
-                                <On Platform="iOS, Android" Value="{StaticResource EntryStyle}" />
-
-                            </OnPlatform>
-                        </custom:CustomEntry.Style>
+                       IsFocused="{Binding IsFocusedPassword}" TextColor="{StaticResource CoffeeBrown}"
+                        CursorColor="{StaticResource CoffeeBrown}">
 
                         <custom:CustomEntry.Triggers>
                             <Trigger TargetType="Entry"

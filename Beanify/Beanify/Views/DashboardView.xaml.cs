@@ -16,9 +16,19 @@ namespace Beanify.Views
 	{
 		public DashboardView ()
 		{
-            
-
             InitializeComponent();
+        }
+
+        protected override void InitializeNavbar()
+        {
+            base.InitializeNavbar();
+            CustomNavigationPage.SetTitleVisible(this, false);
+            CustomNavigationPage.SetTitleColor(this, (Color)Application.Current.Resources["TitleWhite"]);
+
+            CustomNavigationPage.SetTitlePosition(this, CustomNavigationPage.TitleAlignment.Center);
+            CustomNavigationPage.SetTitleMargin(this, new Thickness(0, 0, 100, 0));
+            // CustomNavigationPage.SetTitleFont(this, (Font)Application.Current.Resources["oswald_semibold"]);
+            CustomNavigationPage.SetTitleFontType(this, Device.RuntimePlatform == Device.Android ? "oswald_semibold.ttf" : "Oswald-SemiBold");
         }
 
 	}
