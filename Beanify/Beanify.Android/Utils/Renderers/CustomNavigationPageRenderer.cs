@@ -324,6 +324,9 @@ namespace Beanify.Droid.Utils.Renderers
             {
                 UpdateTitleViewLayout(lastPage, _titleViewLayout, _titleTextView, _subTitleTextView, _originalDrawable);
 
+                UpdateTitleViewLayoutBackground(_titleViewLayout, CustomNavigationPage.GetTitleBackground(lastPage), _originalToolbarBackground);
+
+
                 UpdateToolbarTitle(lastPage, _titleTextView, _subTitleTextView, _originalFont, _originalColorStateList);
 
                 UpdateToolbarStyle(_toolbar, lastPage, Context as Activity, _originalToolbarBackground, _originalWindowContent);
@@ -523,6 +526,7 @@ namespace Beanify.Droid.Utils.Renderers
             UpdateToolbarTextColor(titleTextView, CustomNavigationPage.GetTitleColor(lastPage), defaultColorStateList);
 
             //Update main title font
+            
             UpdateToolbarTextFont(titleTextView, CustomNavigationPage.GetTitleFont(lastPage), originalFont);
             UpdateToolbarTextFontType(titleTextView, CustomNavigationPage.GetTitleFontType(lastPage) );
             UpdateToolbarTextFontSize(titleTextView, CustomNavigationPage.GetTitleFontSize(lastPage));

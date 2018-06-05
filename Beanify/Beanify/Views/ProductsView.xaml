@@ -3,47 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.ProductsView"
              xmlns:customControls="clr-namespace:Beanify.Utils.Controls"
+             xmlns:converters="clr-namespace:Beanify.Utils.Converters"
+             xmlns:selector="clr-namespace:Beanify.Utils.DataTemplateSelectors"
              BackgroundColor="{ StaticResource BgCream }"
              BindingContext="{Binding ProductsViewModel, Source={StaticResource Locator}}"
              x:Name="Page">
-    <ContentPage.Content>
-        <StackLayout>
-            <ListView BackgroundColor="{ StaticResource BgCream }" ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None" Margin="0, 10,0, 0" >
-                <ListView.Header>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="180" >
-                            <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,0,10,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.75*"/>
-                                    <RowDefinition Height="0.75*"/>
-                                    <RowDefinition Height="1.1*"/>
-                                    <RowDefinition Height="1.2*"/>
-                                </Grid.RowDefinitions>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="validItemTemplate">
+                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="200" >
+                    <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,20,10,0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
 
-                                <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
+                            <RowDefinition Height="0.75*"/>
+                            <RowDefinition Height="0.75*"/>
+                            <RowDefinition Height="1.1*"/>
+                            <RowDefinition Height="1.2*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
                                        HeightRequest="120" WidthRequest="120"
                                        VerticalOptions="Start"/>
 
-                                <Label Style="{StaticResource NormalLabel}"  Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="End" TextColor="{StaticResource Cream}"/>
+                        <Label Style="{StaticResource NormalLabel}"  Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="End" TextColor="{StaticResource Cream}"/>
 
-                                <Label Style="{StaticResource NormalLabel}"  Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="Start" LineBreakMode="TailTruncation"/>
+                        <Label Style="{StaticResource NormalLabel}"  Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="Start" LineBreakMode="TailTruncation"/>
 
-                                <Label Style="{StaticResource BigLabel}" 
+                        <Label Style="{StaticResource BigLabel}" 
                                        Text="{Binding Price, Converter={StaticResource floatToPriceConverter},ConverterParameter=true}" 
                                        Grid.Column="1" Grid.Row="2" 
                                        VerticalTextAlignment="End"
                                        
                                       FontSize="36"
                                        />
-                                       <StackLayout Grid.Column="2" Grid.Row="2"  VerticalOptions="Center"  >
-                                <Button       
+                        <StackLayout Grid.Column="2" Grid.Row="2"  VerticalOptions="Center"  >
+                            <Button       
                                              Style="{StaticResource roundButtonStyle}"
                                              Text="MORE INFO"
                                              Margin="15,0,15,0"
@@ -53,17 +52,81 @@
                                              Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
                                              CommandParameter="{Binding . }}"
                                              VerticalOptions="Center" >
-                                        <Button.HeightRequest>
-                                            <OnPlatform x:TypeArguments="x:Double"
+                                <Button.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
                          Android="40"  iOS="30"      />
 
-                                        </Button.HeightRequest>
-                                    </Button>
-                                             </StackLayout>
-                                <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
-                            </Grid>
-                        </customControls:CustomViewCell>
-                    </DataTemplate>
+                                </Button.HeightRequest>
+                            </Button>
+                        </StackLayout>
+                        <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
+                    </Grid>
+                </customControls:CustomViewCell>
+            </DataTemplate>
+            <DataTemplate x:Key="invalidItemTemplate">
+                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="180" >
+                    <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,0,10,0" >
+                        <Grid.ColumnDefinitions>
+
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+
+                            <RowDefinition Height="0.75*"/>
+                            <RowDefinition Height="0.75*"/>
+                            <RowDefinition Height="1.1*"/>
+                            <RowDefinition Height="1.2*"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
+                                       HeightRequest="120" WidthRequest="120"
+                                       VerticalOptions="Start"/>
+
+                        <Label Style="{StaticResource NormalLabel}"  Text="{Binding Name}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="20" HorizontalOptions="StartAndExpand" VerticalOptions="End" TextColor="{StaticResource Cream}"/>
+
+                        <Label Style="{StaticResource NormalLabel}"  Text="{Binding Description}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="Start" LineBreakMode="TailTruncation"/>
+
+                        <Label Style="{StaticResource BigLabel}" 
+                                       Text="{Binding Price, Converter={StaticResource floatToPriceConverter},ConverterParameter=true}" 
+                                       Grid.Column="1" Grid.Row="2" 
+                                       VerticalTextAlignment="End"
+                                       
+                                      FontSize="36"
+                                       />
+                        <StackLayout Grid.Column="2" Grid.Row="2"  VerticalOptions="Center"  >
+                            <Button       
+                                             Style="{StaticResource roundButtonStyle}"
+                                             Text="MORE INFO"
+                                             Margin="15,0,15,0"
+                                            
+                                             BorderRadius="16"
+                                             FontSize="12"
+                                             Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
+                                             CommandParameter="{Binding . }}"
+                                             VerticalOptions="Center" >
+                                <Button.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double"
+                         Android="40"  iOS="30"      />
+
+                                </Button.HeightRequest>
+                            </Button>
+                        </StackLayout>
+                        <Image Source="separator.png" HorizontalOptions="Center" Grid.Row="3" Grid.ColumnSpan="3"/>
+                    </Grid>
+                </customControls:CustomViewCell>
+            </DataTemplate>
+            <selector:FirstItemDataTemplateSelector x:Key="firstItemDataTemplateSelector"
+                ValidTemplate="{StaticResource validItemTemplate}"
+                InvalidTemplate="{StaticResource invalidItemTemplate}" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        
+        <StackLayout>
+            <ListView BackgroundColor="{ StaticResource BgCream }" ItemTemplate="{StaticResource firstItemDataTemplateSelector}"  ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None" >
+                <ListView.ItemTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>

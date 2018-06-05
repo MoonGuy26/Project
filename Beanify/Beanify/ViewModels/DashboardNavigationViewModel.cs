@@ -97,8 +97,10 @@ namespace Beanify.ViewModels
                     
                    
                 });
-            _selectedItem = MenuItems[0];
-            _previousSelectedItem= _selectedItem;
+            if(Device.RuntimePlatform==Device.iOS)
+                _selectedItem = MenuItems[0];
+            
+            _previousSelectedItem = MenuItems[0];
             
             Commands.Add("ItemSelected", new Command(ItemSelectedExecute));
             

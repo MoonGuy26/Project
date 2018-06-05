@@ -59,8 +59,9 @@ namespace Beanify.ViewModels
 
         private void LoadOrders()
         {
-            
-                Orders = new ObservableCollection<AppOrderModel>(_orderService.GetOrders());
+            var orderList = _orderService.GetOrders();
+            orderList[0].IsFirst = true;
+            Orders = new ObservableCollection<AppOrderModel>(orderList);
             
         }
     }
