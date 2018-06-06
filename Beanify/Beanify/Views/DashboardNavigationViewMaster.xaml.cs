@@ -27,7 +27,7 @@ namespace Beanify.Views
 
             BindingContext = ServiceLocator.Current.GetInstance<DashboardNavigationViewModel>();
             ListView = MenuItemsListView;
-            
+
 
            
         }
@@ -35,7 +35,10 @@ namespace Beanify.Views
         protected override void InitializeNavbar()
         {
             base.InitializeNavbar();
-
+            if (Device.RuntimePlatform==Device.iOS)
+            {
+                CustomNavigationPage.SetTitleVisible(this, true);
+            }
             CustomNavigationPage.SetTitleMargin(this, new Thickness(20, 0, 0, 0));
         }
 

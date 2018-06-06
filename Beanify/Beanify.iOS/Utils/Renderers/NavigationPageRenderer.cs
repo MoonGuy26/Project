@@ -14,7 +14,7 @@ namespace Beanify.iOS.Utils.Renderers
     public class NavigationPageRenderer : NavigationRenderer
     {
 
-
+       
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();

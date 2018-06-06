@@ -18,10 +18,18 @@ namespace Beanify.iOS.Utils.Renderers
         {
             var cell = base.GetCell(item, reusableCell, tv);
             var view = item as CustomViewCell;
-            cell.SelectedBackgroundView = new UIView
+            if(view.IsSelectable)
             {
-                BackgroundColor = view.SelectedBackgroundColor.ToUIColor(),
-            };
+                cell.SelectedBackgroundView = new UIView
+                {
+                    BackgroundColor = view.SelectedBackgroundColor.ToUIColor(),
+                };  
+            }
+            else
+            {
+                cell.SelectionStyle = UITableViewCellSelectionStyle.None;
+            }
+
 
             return cell;
         }

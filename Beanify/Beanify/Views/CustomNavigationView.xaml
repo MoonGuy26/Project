@@ -4,7 +4,7 @@
         xmlns:custom="clr-namespace:Beanify.Utils.Controls"
              BarBackgroundColor="{StaticResource CoffeeBrown}"
              BarTextColor="{StaticResource TitleWhite}"
-                
+                Icon="burger_ic.png"
                Title="☰"
              x:Class="Beanify.Views.CustomNavigationView">
     </custom:CustomNavigationPage>

@@ -19,6 +19,9 @@ namespace Beanify.ViewModels
 
         private IProductService _productService;
 
+        private DashboardNavigationViewMenuItem _selectedItem;
+
+
         public ObservableCollection<ProductModel> Products
         {
 
@@ -33,6 +36,19 @@ namespace Beanify.ViewModels
             }
         }
 
+        public DashboardNavigationViewMenuItem SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
+                }
+            }
+        }
 
 
         
@@ -48,6 +64,8 @@ namespace Beanify.ViewModels
             // https://blog.xamarin.com/getting-started-with-async-await/ - Here is a nice tutorial to get rid of it.
 
             Commands.Add("LoadingDetails", OnMoreInfoExecute);
+            Commands.Add("ItemSelected", new Command(OnItemSelectedExecute));
+
         }
 
         private void AsynchronousTask()
@@ -62,6 +80,10 @@ namespace Beanify.ViewModels
         public  Command<object> OnMoreInfoExecute
         {
             get { return _OnMoreInfoExecute ?? (_OnMoreInfoExecute = new Command<object>((currentObject) => NavigateToInfo(currentObject))); }
+        }
+
+        private void OnItemSelectedExecute(){
+            SelectedItem = null;
         }
 
         private async void NavigateToInfo(object currentObject)

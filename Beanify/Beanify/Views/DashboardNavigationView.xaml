@@ -4,7 +4,7 @@
              x:Class="Beanify.Views.DashboardNavigationView"
              NavigationPage.HasNavigationBar="True"
                   MasterBehavior="Popover"
-
+                  Title="   "
              xmlns:pages="clr-namespace:Beanify.Views"
              >
   <MasterDetailPage.Master>

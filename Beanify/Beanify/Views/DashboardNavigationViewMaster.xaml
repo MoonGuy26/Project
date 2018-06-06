@@ -4,8 +4,8 @@
              xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              xmlns:iconize="clr-namespace:FormsPlugin.Iconize;assembly=FormsPlugin.Iconize"
              xmlns:customControls="clr-namespace:Beanify.Utils.Controls"
-                           Icon="cup_ic.png"
              x:Class="Beanify.Views.DashboardNavigationViewMaster"
+             Title="  "
              >
   <StackLayout>
     <ListView x:Name="MenuItemsListView"
