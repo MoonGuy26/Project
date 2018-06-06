@@ -141,7 +141,8 @@ namespace Beanify.ViewModels
             if (navigationData != null)
             {
                 var email = (string)navigationData;
-                Email.Value = email;
+                if(!String.IsNullOrWhiteSpace(email))
+                    Email.Value = email;
             }
             return base.InitializeAsync(navigationData);
         }
@@ -222,7 +223,6 @@ namespace Beanify.ViewModels
             CancellationTokenSource cts = new CancellationTokenSource();
             var token = cts.Token;
             IsVisibleImage = true;
-            RotateElement(token);
             try
             {
                 if (ValidateUserName() & ValidatePassword())
@@ -315,20 +315,6 @@ namespace Beanify.ViewModels
         #endregion
 
         #region UIMethods
-        private void RotateElement(CancellationToken cancellation)
-        {
-            ParallelTask parallelTask = new ParallelTask();
-            
-
-            Task t = Task.Factory.StartNew(
-                () => {
-                    parallelTask.ExecuteParallelLoop(cancellation, "45", value => ImageAngle += Int32.Parse(value));
-                },
-                cancellation,
-                TaskCreationOptions.LongRunning,
-                TaskScheduler.Default
-            );    
-        }
         
         #endregion
     }

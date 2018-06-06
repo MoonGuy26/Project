@@ -5,16 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\CarouselViews\Page1.xaml.cs" />
-    <Compile Remove="Views\CarouselViews\SplashScreenView.xaml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Views\CarouselViews\Page1.xaml" />
-    <EmbeddedResource Remove="Views\CarouselViews\SplashScreenView.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="RestClients\RestService.cs~RF1da38b8f.TMP" />
   </ItemGroup>
 
@@ -37,12 +27,6 @@
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\CarouselCellView.xaml.cs">
-      <DependentUpon>CarouselCellView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\CarouselViews\SimplePage.xaml.cs">
-      <DependentUpon>SimplePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\DashboardNavigationViewMaster.xaml.cs">
       <DependentUpon>DashboardNavigationViewMaster.xaml</DependentUpon>
@@ -69,12 +53,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CallBackPopupView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselCellView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\CarouselViews\SimplePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CustomNavigationView.xaml">

@@ -18,20 +18,7 @@
     <ContentPage.Behaviors>
         <b:EventToCommandBehavior EventName="SizeChanged" Command="{Binding Commands[SizeChanged]}" />
     </ContentPage.Behaviors>
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <DataTemplate x:Key="buttonPage" >
-                <local:CarouselCellView></local:CarouselCellView>
-            </DataTemplate>
-            <DataTemplate x:Key="commonPage">
-                <local:CarouselCellView></local:CarouselCellView>
-            </DataTemplate>
-            <templateSelectors:CarouselDataTemplateSelector x:Key="carouselDataTemplateSelector"
-                          CommonPageTemplate="{StaticResource commonPage}"
-                ButtonPageTemplate="{StaticResource buttonPage}"
-                 />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+    
     <ContentPage.Content>
         
             <custom:CustomCarousel

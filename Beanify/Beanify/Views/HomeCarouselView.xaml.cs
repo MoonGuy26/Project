@@ -17,6 +17,7 @@ namespace Beanify.Views
 			InitializeComponent ();
 		}
 
+        /* Useless since landscape landscape is disabled on the whole app
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -28,6 +29,6 @@ namespace Beanify.Views
             base.OnDisappearing();
             MessagingCenter.Send(this, "allowLandScapePortrait");
             
-        }
+        }*/
     }
 }

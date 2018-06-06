@@ -82,7 +82,7 @@
                        Text="{Binding Password.Value, Mode=TwoWay}" HorizontalOptions="FillAndExpand"
                        IsFocused="{Binding IsFocusedPassword}" TextColor="{StaticResource CoffeeBrown}"
                         CursorColor="{StaticResource CoffeeBrown}"
-                                        HorizontalTextAlignment="Center">
+                                        HorizontalTextAlignment="Center">   
 
                         <custom:CustomEntry.Triggers>
                             <Trigger TargetType="Entry"

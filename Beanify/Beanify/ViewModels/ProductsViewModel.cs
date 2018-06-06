@@ -64,7 +64,7 @@ namespace Beanify.ViewModels
             // https://blog.xamarin.com/getting-started-with-async-await/ - Here is a nice tutorial to get rid of it.
 
             Commands.Add("LoadingDetails", OnMoreInfoExecute);
-            Commands.Add("ItemSelected", new Command(OnItemSelectedExecute));
+     
 
         }
 
@@ -82,9 +82,7 @@ namespace Beanify.ViewModels
             get { return _OnMoreInfoExecute ?? (_OnMoreInfoExecute = new Command<object>((currentObject) => NavigateToInfo(currentObject))); }
         }
 
-        private void OnItemSelectedExecute(){
-            SelectedItem = null;
-        }
+        
 
         private async void NavigateToInfo(object currentObject)
         {

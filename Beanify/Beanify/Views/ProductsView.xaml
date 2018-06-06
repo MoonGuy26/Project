@@ -51,7 +51,7 @@
                                              BorderRadius="16"
                                              FontSize="12"
                                              Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
-                                             CommandParameter="{Binding . }}"
+                                             CommandParameter="{Binding .}"
                                              VerticalOptions="Center" >
                                 <Button.HeightRequest>
                                     <OnPlatform x:TypeArguments="x:Double"
@@ -101,11 +101,11 @@
                                              Style="{StaticResource roundButtonStyle}"
                                              Text="MORE INFO"
                                              Margin="15,0,15,0"
-                                            
+                                             
                                              BorderRadius="16"
                                              FontSize="12"
                                              Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
-
+                                             CommandParameter="{Binding .}"
                                              VerticalOptions="Center" >
                                 <Button.HeightRequest>
                                     <OnPlatform x:TypeArguments="x:Double"
