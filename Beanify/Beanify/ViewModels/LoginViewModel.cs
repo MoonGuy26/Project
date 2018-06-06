@@ -136,6 +136,16 @@ namespace Beanify.ViewModels
             Password.IsValid = true;
         }
 
+        public override Task InitializeAsync(object navigationData)
+        {
+            if (navigationData != null)
+            {
+                var email = (string)navigationData;
+                Email.Value = email;
+            }
+            return base.InitializeAsync(navigationData);
+        }
+
         #region commandMethods
 
         #region execute

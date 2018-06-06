@@ -11,7 +11,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="validItemTemplate">
-                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="192" >
+                <customControls:CustomViewCell IsEnabled="False"  SelectedBackgroundColor="{ StaticResource BgCream }" Height="192" >
                     <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,18,10,0" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
