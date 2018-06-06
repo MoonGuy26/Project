@@ -73,7 +73,8 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <ListView BackgroundColor="{ StaticResource BgCream }"  ItemTemplate="{StaticResource firstItemDataTemplateSelector}" ItemsSource="{Binding Orders}" HasUnevenRows="True" SeparatorVisibility="None"  >
+            <ListView BackgroundColor="{ StaticResource BgCream }"  ItemTemplate="{StaticResource firstItemDataTemplateSelector}"
+                      ItemsSource="{Binding Orders}" HasUnevenRows="True" SeparatorVisibility="None"  >
                 <ListView.ItemTemplate>
                     
                 </ListView.ItemTemplate>

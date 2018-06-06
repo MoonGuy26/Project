@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Beanify.Views.ProductsView"
              xmlns:customControls="clr-namespace:Beanify.Utils.Controls"
+             xmlns:b="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
              xmlns:converters="clr-namespace:Beanify.Utils.Converters"
              xmlns:selector="clr-namespace:Beanify.Utils.DataTemplateSelectors"
              BackgroundColor="{ StaticResource BgCream }"
@@ -11,7 +12,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="validItemTemplate">
-                <customControls:CustomViewCell IsEnabled="False"  SelectedBackgroundColor="{ StaticResource BgCream }" Height="192" >
+                <customControls:CustomViewCell IsSelectable="false" SelectedBackgroundColor="{ StaticResource BgCream }" Height="192" >
                     <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,18,10,0" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -64,8 +65,8 @@
                 </customControls:CustomViewCell>
             </DataTemplate>
             <DataTemplate x:Key="invalidItemTemplate">
-                <customControls:CustomViewCell  SelectedBackgroundColor="{ StaticResource BgCream }" Height="174" >
-                    <Grid BackgroundColor="{ StaticResource BgCream }" x:Name="Item" Margin="10,0,10,0" >
+                <customControls:CustomViewCell IsSelectable="false" SelectedBackgroundColor="{ StaticResource BgCream }" Height="174" >
+                    <Grid  x:Name="Item" Margin="10,0,10,0" BackgroundColor="{ StaticResource BgCream }" >
                         <Grid.ColumnDefinitions>
 
                             <ColumnDefinition Width="*"/>
@@ -104,7 +105,7 @@
                                              BorderRadius="16"
                                              FontSize="12"
                                              Command="{Binding Path=BindingContext.Commands[LoadingDetails], Source={x:Reference Page}}"
-                                             CommandParameter="{Binding . }}"
+
                                              VerticalOptions="Center" >
                                 <Button.HeightRequest>
                                     <OnPlatform x:TypeArguments="x:Double"
@@ -125,7 +126,10 @@
     <ContentPage.Content>
         
         <StackLayout>
-            <ListView BackgroundColor="{ StaticResource BgCream }" ItemTemplate="{StaticResource firstItemDataTemplateSelector}"  ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None" >
+            <ListView BackgroundColor="{ StaticResource BgCream }" ItemTemplate="{StaticResource firstItemDataTemplateSelector}"  
+                      ItemsSource="{Binding Products, Mode=TwoWay}" HasUnevenRows="True" SeparatorVisibility="None"
+                     >
+                
                 <ListView.ItemTemplate>
                 </ListView.ItemTemplate>
             </ListView>

@@ -124,6 +124,10 @@
     <BundleResource Include="Resources\stamp.png" />
     <BundleResource Include="Resources\stamp%402x.png" />
     <BundleResource Include="Resources\stamp%403x.png" />
+    <BundleResource Include="Resources\transparent.png" />
+    <BundleResource Include="Resources\burger_ic.png" />
+    <BundleResource Include="Resources\burger_ic%402x.png" />
+    <BundleResource Include="Resources\burger_ic%403x.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon-60%403x.png" />

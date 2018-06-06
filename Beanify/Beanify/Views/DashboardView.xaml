@@ -27,7 +27,7 @@
                    Margin="20,0,20,0">WELCOME TO BEANIFY</Label>
 
             <Image Source="separator.png" Grid.Row="1" Grid.Column="1" VerticalOptions="Center" ></Image>
-            <Label TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"  Margin="20,0,20,0"
+            <Label TextColor="{StaticResource TitleWhite}" Text="Center" XAlign="Center"  Margin="30,0,30,0"
                 FontFamily="{StaticResource LatoRegular}" FontSize="18" Grid.Row="2" Grid.Column="1"
                    VerticalOptions="CenterAndExpand" HorizontalOptions="Center">The simplest way to have coffee delivered to your corporate space</Label>
             <!--<StackLayout Orientation="Vertical"  Grid.Row="2" Grid.Column="1" VerticalOptions="Center">
@@ -37,7 +37,7 @@
             <Image Source="separator.png" Grid.Row="3" Grid.Column="1" VerticalOptions="Center"></Image>
             <Image Source="stamp.png" Grid.Row="4" Grid.ColumnSpan="3" VerticalOptions="Center" Aspect="AspectFit"></Image>
             <StackLayout Grid.Row="5" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-                <Button  Text="PLACE AND ORDER"  Command="{Binding Commands[NavigateToProducts]}"
+                <Button  Text="PLACE AN ORDER"  Command="{Binding Commands[NavigateToProducts]}"
                             Style="{StaticResource lgRoundButtonStyle}"
                                 Margin="20,0,20,0" >
 
