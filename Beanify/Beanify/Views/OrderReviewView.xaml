@@ -21,7 +21,8 @@
             </Grid.RowDefinitions>
             
 
-            <Image Grid.Row="0" Source="{Binding Product.ImagePath}" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Image Grid.Row="0" Source="{Binding Product.ImagePath}" 
+                   Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
 
             <StackLayout Grid.Row="1" Orientation="Vertical" Spacing="10">
                 <Label Style="{StaticResource NormalLabel}" Margin="0,0,0,-10" Text="Total" TextColor="{StaticResource Cream}" FontSize="Large" VerticalOptions="End" HorizontalOptions="Center"/>
