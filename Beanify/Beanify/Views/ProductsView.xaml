@@ -27,7 +27,7 @@
                             <RowDefinition Height="1.25*"/>
                         </Grid.RowDefinitions>
 
-                        <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
+                        <Image Source="{Binding Picture}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
                                        HeightRequest="120" WidthRequest="120"
                                        VerticalOptions="Start"/>
 
@@ -81,7 +81,7 @@
                             <RowDefinition Height="1.25*"/>
                         </Grid.RowDefinitions>
 
-                        <Image Source="{Binding ImagePath}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
+                        <Image Source="{Binding Picture}"  Grid.Column="0" Grid.RowSpan="4" Aspect="AspectFit" 
                                        HeightRequest="120" WidthRequest="120"
                                        VerticalOptions="Start"/>
 

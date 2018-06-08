@@ -25,8 +25,8 @@
                         <Image Grid.Row="0" Source="cup_ic.png" VerticalOptions="Center" Margin="0,0,0,-20" />
 
                         <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-                            <Label Style="{StaticResource BigLabel }" Text="{Binding Quantity }" HorizontalOptions="Center" />
-                            <Label Style="{StaticResource BigLabel }" Text="{Binding ProductName, StringFormat= x '{0:}'}" HorizontalOptions="Center" />
+                            <Label Style="{StaticResource BigLabel }" Text="{Binding Quantity }" HorizontalOptions="Center" Margin="20,0,0,0"/>
+                            <Label Style="{StaticResource BigLabel }" Text="{Binding ProductName, StringFormat= x '{0:}'}" HorizontalOptions="Center" Margin="0,0,20,0" LineBreakMode="TailTruncation"/>
                         </StackLayout>
 
                         <Label Style="{StaticResource NormalLabel }" Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Row="2" HorizontalOptions="Center" />
@@ -53,8 +53,8 @@
                         <Image Grid.Row="0" Source="cup_ic.png" VerticalOptions="Center" Margin="0,0,0,-20" />
 
                         <StackLayout Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="Start">
-                            <Label Style="{StaticResource BigLabel }" Text="{Binding Quantity }" HorizontalOptions="Center" />
-                            <Label Style="{StaticResource BigLabel }" Text="{Binding ProductName, StringFormat= x '{0:}'}" HorizontalOptions="Center" />
+                            <Label Style="{StaticResource BigLabel }" Text="{Binding Quantity }" HorizontalOptions="Center" Margin="20,0,0,0"/>
+                            <Label Style="{StaticResource BigLabel }" Text="{Binding ProductName, StringFormat= x '{0:}'}" HorizontalOptions="Center" Margin="0,0,20,0" LineBreakMode="TailTruncation"/>
                         </StackLayout>
 
                         <Label Style="{StaticResource NormalLabel }" Text="{Binding Price, Converter={StaticResource floatToPriceConverter}}" Grid.Row="2" HorizontalOptions="Center" />
