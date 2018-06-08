@@ -10,7 +10,7 @@
         {
             get { return _imagePath; }
             set {
-                _imagePath = System.IO.Path.Combine("http://93.113.111.183:80/BeanifyWebApp/", value.Substring(2).Replace("\\\\" , "/"));   
+                _imagePath = System.IO.Path.Combine(Settings.Default.HttpRoute, value.Substring(2).Replace("\\\\" , "/"));   
             }
         }
         

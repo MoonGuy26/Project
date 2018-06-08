@@ -55,7 +55,7 @@
                                              VerticalOptions="Center" >
                                 <Button.HeightRequest>
                                     <OnPlatform x:TypeArguments="x:Double"
-                         Android="40"  iOS="30"      />
+                                     Android="40"  iOS="30" />
 
                                 </Button.HeightRequest>
                             </Button>

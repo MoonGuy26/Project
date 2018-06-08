@@ -47,7 +47,7 @@ namespace BeanifyWebApp
             user.UserName = "arthur.tronche@gmail.com";
             user.Email = "arthur.tronche@gmail.com";
 
-            string userPWD = "Test123==";
+            string userPWD = "DefaultPassword123==";
 
             var chkUser = UserManager.Create(user, userPWD);
 

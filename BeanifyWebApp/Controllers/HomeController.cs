@@ -24,7 +24,7 @@ namespace BeanifyWebApp.Controllers
             return View();
         }
 
-        public ActionResult FileUpload(HttpPostedFileBase file)
+        /*public ActionResult FileUpload(HttpPostedFileBase file)
         {
             if (file != null)
             {
@@ -37,6 +37,6 @@ namespace BeanifyWebApp.Controllers
             }
             // after successfully uploading redirect the user
             return RedirectToAction("Edit", "MvdProductModels");
-        }
+        }*/
     }
 }

@@ -27,7 +27,7 @@ namespace Beanify.RestClients
         public RestService(string name)
         {
             client = new HttpClient();
-            RestUrl = "http://93.113.111.183:80/BeanifyWebApp/" + name ;
+            RestUrl = Settings.Default.HttpRoute + name ;
         }
 
         #region methods
@@ -280,9 +280,17 @@ namespace Beanify.RestClients
         #region private
         private void CheckUnauthorized(HttpResponseMessage response)
         {
-            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            try
             {
-                RequestAccessToken(LocalStorageSettings.Email, LocalStorageSettings.Password);
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    RequestAccessToken(LocalStorageSettings.Email, LocalStorageSettings.Password);
+                }
+
+            }
+            catch(Exception e)
+            {
+                throw e;
             }
         }
 
@@ -294,7 +302,15 @@ namespace Beanify.RestClients
                     new KeyValuePair<string, string>("password",password),
                     new KeyValuePair<string, string>("grant_type","password")
                 };
-            LocalStorageSettings.AccessToken = await this.LoginAsync(keyValues);
+            try
+            {
+                LocalStorageSettings.AccessToken = await this.LoginAsync(keyValues);
+
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
         #endregion
 

@@ -24,7 +24,7 @@
         @foreach (var item in Model)
     {
         <tr class="colorize cursor"
-            onclick="document.location='/BeanifyWebApp/MvcProductModels/Edit/@Html.Raw(item.Id) '">
+            onclick="document.location='/MvcProductModels/Edit/@Html.Raw(item.Id) '">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

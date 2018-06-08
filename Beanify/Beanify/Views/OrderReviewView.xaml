@@ -19,6 +19,7 @@
                 <RowDefinition Height="2.1*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
 
             <Image Grid.Row="0" Source="{Binding Product.ImagePath}" Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="Center"/>
 
@@ -29,13 +30,13 @@
             </StackLayout>
 
             <StackLayout Grid.Row="2" Orientation="Vertical" Padding="25,15,25,0">
-                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,0,0,10">
+                <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,0,0,5">
                     <Label Style="{StaticResource NormalLabel}" Text="{Binding Order.Quantity}" FontSize="Medium" x:Name="title" HorizontalOptions="Start" />
                     <Label Style="{StaticResource NormalLabel}" Text="{Binding Order.ProductName,StringFormat= x '{0:}'}" FontSize="Medium"  LineBreakMode="WordWrap"/>
-                    <Label Style="{StaticResource NormalLabel}" Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" FontFamily="{StaticResource OpenSansSemiBold}" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
+                    <Label Style="{StaticResource NormalLabel}" XAlign="End" WidthRequest="100" Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" FontFamily="{StaticResource OpenSansSemiBold}" FontSize="Medium" HorizontalOptions="EndAndExpand"/>
                 </StackLayout>
                 <BoxView Style="{StaticResource whiteLine}"/>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Margin="0,5,0,0">
                     <Label Style="{StaticResource BoldNormalLabel}" Text="TOTAL" HorizontalOptions="StartAndExpand" />
                     <Label Style="{StaticResource BoldNormalLabel}" Text="{Binding Order.Price, Converter={StaticResource floatToPriceConverter}}" FontSize="Medium" HorizontalOptions="End" />
                 </StackLayout>
@@ -51,7 +52,7 @@
                         >
                     <Button.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double"
-                         Android="53"   iOS="43"        />
+                         Android="53"   iOS="43"/>
                             
                     </Button.HeightRequest>
                 </Button>

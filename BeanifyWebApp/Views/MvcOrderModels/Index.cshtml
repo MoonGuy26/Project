@@ -36,7 +36,7 @@
         @foreach (var item in Model)
         {
 
-        <tr class='highlight cursor @(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/BeanifyWebApp/MvcOrderModels/Details/@Html.Raw(item.Id) '">
+        <tr class='highlight cursor @(item.IsNew ? "table-info" : "table-light")' onclick="document.location='/MvcOrderModels/Details/@Html.Raw(item.Id) '">
             <th scope="row">
                 @Html.DisplayFor(modelItem => item.CustomerName)
             </th>

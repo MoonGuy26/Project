@@ -26,11 +26,13 @@
                 <StackLayout Grid.Row="0">
 
                     <StackLayout BackgroundColor="{StaticResource Cream}">
-                        <Image BackgroundColor="{StaticResource Cream}" Grid.Row="0" Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="200"  />
+                        <Image BackgroundColor="{StaticResource Cream}" Grid.Row="0" Source="{Binding ProductModel.ImagePath, Mode=TwoWay}" 
+                               Aspect="AspectFill" VerticalOptions="Center" HorizontalOptions="FillAndExpand" 
+                               />
                     </StackLayout>
 
                     <StackLayout  VerticalOptions="End">
-                        <Label Style="{StaticResource BigLabel}" Text="{Binding ProductModel.Name, Mode=TwoWay}" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <Label Style="{StaticResource BigLabel}" Text="{Binding ProductModel.Name, Mode=TwoWay}" x:Name="title" HorizontalOptions="Center" VerticalOptions="Center" XAlign="Center" Margin="30,0,30,0"/>
 
                     </StackLayout>
                     <!--<Image Grid.Row="2" Source="separator.png" VerticalOptions="Center" HorizontalOptions="Center"/>-->
